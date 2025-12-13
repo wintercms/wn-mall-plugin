@@ -1,54 +1,54 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
 use App;
 use Backend\Widgets\Form;
 use Illuminate\Support\Facades\Event;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Models\User as MallUser;
-use RainLab\Location\Models\Country as RainLabCountry;
-use RainLab\User\Controllers\Users as RainLabUsersController;
-use RainLab\User\Models\User as RainLabUser;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\User as MallUser;
+use Winter\Location\Models\Country as WinterCountry;
+use Winter\User\Controllers\Users as WinterUsersController;
+use Winter\User\Models\User as WinterUser;
 use System\Classes\PluginManager;
 
 trait BootExtensions
 {
     protected function registerExtensions()
     {
-        if (PluginManager::instance()->exists('RainLab.Location')) {
-            $this->extendRainLabCountry();
+        if (PluginManager::instance()->exists('Winter.Location')) {
+            $this->extendWinterCountry();
         }
-        if (PluginManager::instance()->exists('RainLab.User')) {
-            $this->extendRainLabUser();
+        if (PluginManager::instance()->exists('Winter.User')) {
+            $this->extendWinterUser();
         }
     }
 
-    protected function extendRainLabCountry()
+    protected function extendWinterCountry()
     {
-        RainLabCountry::extend(function ($model) {
+        WinterCountry::extend(function ($model) {
             $model->belongsToMany['taxes'] = [
                 Tax::class,
-                'table'    => 'offline_mall_country_tax',
+                'table'    => 'winter_mall_country_tax',
                 'key'      => 'country_id',
                 'otherKey' => 'tax_id',
             ];
         });
     }
 
-    protected function extendRainLabUser()
+    protected function extendWinterUser()
     {
         // Use custom user model
         App::singleton('user.auth', function () {
-            return \OFFLINE\Mall\Classes\Customer\AuthManager::instance();
+            return \Winter\Mall\Classes\Customer\AuthManager::instance();
         });
 
-        RainLabUser::extend(function ($model) {
+        WinterUser::extend(function ($model) {
             $model->hasOne['customer']          = Customer::class;
-            $model->belongsTo['customer_group'] = [CustomerGroup::class, 'key' => 'offline_mall_customer_group_id'];
+            $model->belongsTo['customer_group'] = [CustomerGroup::class, 'key' => 'winter_mall_customer_group_id'];
             $model->hasManyThrough['addresses']        = [
                 Address::class,
                 'key'        => 'user_id',
@@ -59,11 +59,11 @@ trait BootExtensions
             $model->rules['name']               = 'required';
         });
 
-        RainLabUsersController::extend(function (RainLabUsersController $users) {
+        WinterUsersController::extend(function (WinterUsersController $users) {
             if (!isset($users->relationConfig)) {
                 $users->addDynamicProperty('relationConfig');
             }
-            $myConfigPath = '$/offline/mall/controllers/users/config_relation.yaml';
+            $myConfigPath = '$/winter/mall/controllers/users/config_relation.yaml';
             $users->relationConfig = $users->mergeConfig(
                 $users->relationConfig,
                 $myConfigPath
@@ -80,52 +80,52 @@ trait BootExtensions
             $model->rules['name']    = 'required';
         });
 
-        // Add Customer Groups menu entry to RainLab.User
+        // Add Customer Groups menu entry to Winter.User
         Event::listen('backend.menu.extendItems', function ($manager) {
-            $manager->addSideMenuItems('RainLab.User', 'user', [
+            $manager->addSideMenuItems('Winter.User', 'user', [
                 'customer_groups' => [
-                    'label'       => 'offline.mall::lang.common.customer_groups',
-                    'url'         => \Backend::url('offline/mall/customergroups'),
+                    'label'       => 'winter.mall::lang.common.customer_groups',
+                    'url'         => \Backend::url('winter/mall/customergroups'),
                     'icon'        => 'icon-users',
-                    'permissions' => ['offline.mall.manage_customer_groups'],
+                    'permissions' => ['winter.mall.manage_customer_groups'],
                 ],
             ]);
-            $manager->addSideMenuItems('RainLab.User', 'user', [
+            $manager->addSideMenuItems('Winter.User', 'user', [
                 'customer_addresses' => [
-                    'label'       => 'offline.mall::lang.common.addresses',
-                    'url'         => \Backend::url('offline/mall/addresses'),
+                    'label'       => 'winter.mall::lang.common.addresses',
+                    'url'         => \Backend::url('winter/mall/addresses'),
                     'icon'        => 'icon-home',
-                    'permissions' => ['offline.mall.manage_customer_addresses'],
+                    'permissions' => ['winter.mall.manage_customer_addresses'],
                 ],
             ]);
         }, 5);
 
-        // Add Customer Groups relation to RainLab.User form
+        // Add Customer Groups relation to Winter.User form
         Event::listen('backend.form.extendFields', function (Form $widget) {
-            if ( ! $widget->getController() instanceof \RainLab\User\Controllers\Users) {
+            if ( ! $widget->getController() instanceof \Winter\User\Controllers\Users) {
                 return;
             }
 
-            if ( ! $widget->model instanceof \RainLab\User\Models\User) {
+            if ( ! $widget->model instanceof \Winter\User\Models\User) {
                 return;
             }
 
             $widget->addTabFields([
                 'customer_group' => [
-                    'label'       => trans('offline.mall::lang.common.customer_group'),
+                    'label'       => trans('winter.mall::lang.common.customer_group'),
                     'type'        => 'relation',
                     'nameFrom'    => 'name',
-                    'emptyOption' => trans('offline.mall::lang.common.none'),
-                    'tab'         => 'offline.mall::lang.plugin.name',
+                    'emptyOption' => trans('winter.mall::lang.common.none'),
+                    'tab'         => 'winter.mall::lang.plugin.name',
                 ],
                 //
                 // This feature is blocked by https://github.com/octobercms/october/issues/2508
                 //
                 // 'addresses'      => [
-                //     'label' => trans('offline.mall::lang.common.addresses'),
+                //     'label' => trans('winter.mall::lang.common.addresses'),
                 //     'type'  => 'partial',
-                //     'path'  => '$/offline/mall/controllers/users/_addresses.htm',
-                //     'tab'   => 'offline.mall::lang.plugin.name',
+                //     'path'  => '$/winter/mall/controllers/users/_addresses.htm',
+                //     'tab'   => 'winter.mall::lang.plugin.name',
                 // ],
             ]);
         }, 5);

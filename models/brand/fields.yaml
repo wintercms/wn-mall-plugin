@@ -1,23 +1,23 @@
 fields:
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         span: auto
         type: text
     slug:
-        label: 'offline.mall::lang.common.slug'
+        label: 'winter.mall::lang.common.slug'
         span: auto
         type: text
     description:
-        label: 'offline.mall::lang.product.description'
+        label: 'winter.mall::lang.product.description'
         size: large
         span: auto
         type: richeditor
     website:
-        label: 'offline.mall::lang.common.website'
+        label: 'winter.mall::lang.common.website'
         span: auto
         type: text
     logo:
-        label: 'offline.mall::lang.common.logo'
+        label: 'winter.mall::lang.common.logo'
         mode: image
         imageWidth: '200'
         imageHeight: '200'

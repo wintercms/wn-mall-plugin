@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Downloads;
+namespace Winter\Mall\Classes\Downloads;
 
 use Auth;
 use Cms\Classes\Page;
@@ -10,8 +10,8 @@ use Request;
 use Session;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\ProductFileGrant;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\ProductFileGrant;
 
 class VirtualProductFileDownload
 {
@@ -63,7 +63,7 @@ class VirtualProductFileDownload
 
         // If no file is around, return and log an error. The site admin needs to fix this!
         Log::error(
-            '[OFFLINE.Mall] A virtual product without a file attachment has been purchased. You need to fix this!',
+            '[Winter.Mall] A virtual product without a file attachment has been purchased. You need to fix this!',
             ['grant' => $grant, 'product' => $product, 'user' => Auth::getUser()]
         );
 
@@ -93,7 +93,7 @@ class VirtualProductFileDownload
     protected function redirectToLogin()
     {
         Session::put('mall.login.redirect', Request::url());
-        Flash::warning(trans('offline.mall::frontend.session.login_required'));
+        Flash::warning(trans('winter.mall::frontend.session.login_required'));
 
         $url = Page::url(GeneralSettings::get('account_page'));
 
@@ -109,6 +109,6 @@ class VirtualProductFileDownload
      */
     protected function trans(string $key)
     {
-        return trans('offline.mall::lang.product_file.errors.' . $key);
+        return trans('winter.mall::lang.product_file.errors.' . $key);
     }
 }

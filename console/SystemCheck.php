@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Console;
+<?php namespace Winter\Mall\Console;
 
 use Illuminate\Console\Command;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ShippingMethod;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -159,7 +159,7 @@ class SystemCheck extends Command
         $errors = [];
         foreach ($pages as $page) {
             if (GeneralSettings::get($page) === null) {
-                $errors[] = '- ' . trans('offline.mall::lang.general_settings.' . $page);
+                $errors[] = '- ' . trans('winter.mall::lang.general_settings.' . $page);
             }
         }
         if (count($errors) < 1) {

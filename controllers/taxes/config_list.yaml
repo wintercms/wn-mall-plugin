@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.taxes'
-modelClass: OFFLINE\Mall\Models\Tax
-list: $/offline/mall/models/tax/columns.yaml
-recordUrl: 'offline/mall/taxes/update/:id'
+title: 'winter.mall::lang.common.taxes'
+modelClass: Winter\Mall\Models\Tax
+list: $/winter/mall/models/tax/columns.yaml
+recordUrl: 'winter/mall/taxes/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

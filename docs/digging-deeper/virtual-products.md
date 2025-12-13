@@ -51,15 +51,15 @@ You can find an example on how to generate custom gift cards below
  ([or in this gist](https://gist.github.com/tobias-kuendig/49ec99fc080fc6ba3824024f965eeafc)). 
 
 ```php
-<?php namespace OFFLINE\MallGiftCards;
+<?php namespace Winter\MallGiftCards;
 
 use Event;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ProductFileGrant;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ProductFileGrant;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase

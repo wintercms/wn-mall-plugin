@@ -1,20 +1,20 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Customer;
+namespace Winter\Mall\Classes\Customer;
 
 use DB;
 use Event;
 use Flash;
 use Illuminate\Support\Facades\Validator;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\User;
-use OFFLINE\Mall\Models\Wishlist;
-use RainLab\User\Facades\Auth;
-use RainLab\User\Models\UserGroup;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\User;
+use Winter\Mall\Models\Wishlist;
+use Winter\User\Facades\Auth;
+use Winter\User\Models\UserGroup;
 use Redirect;
 use System\Classes\PluginManager;
 
@@ -172,7 +172,7 @@ class DefaultSignUpHandler implements SignUpHandler
 
     public static function rules($forSignup = true): array
     {
-        $minPasswordLength = \RainLab\User\Models\User::getMinPasswordLength();
+        $minPasswordLength = \Winter\User\Models\User::getMinPasswordLength();
         $rules = [
             'firstname'           => 'required',
             'lastname'            => 'required',
@@ -213,34 +213,34 @@ class DefaultSignUpHandler implements SignUpHandler
     public static function messages(): array
     {
         $messages = [
-            'email.required'          => trans('offline.mall::lang.components.signup.errors.email.required'),
-            'email.email'             => trans('offline.mall::lang.components.signup.errors.email.email'),
-            'email.unique'            => trans('offline.mall::lang.components.signup.errors.email.unique'),
-            'email.non_existing_user' => trans('offline.mall::lang.components.signup.errors.email.non_existing_user'),
+            'email.required'          => trans('winter.mall::lang.components.signup.errors.email.required'),
+            'email.email'             => trans('winter.mall::lang.components.signup.errors.email.email'),
+            'email.unique'            => trans('winter.mall::lang.components.signup.errors.email.unique'),
+            'email.non_existing_user' => trans('winter.mall::lang.components.signup.errors.email.non_existing_user'),
 
-            'firstname.required'           => trans('offline.mall::lang.components.signup.errors.firstname.required'),
-            'lastname.required'            => trans('offline.mall::lang.components.signup.errors.lastname.required'),
-            'billing_lines.required'       => trans('offline.mall::lang.components.signup.errors.lines.required'),
-            'billing_zip.required'         => trans('offline.mall::lang.components.signup.errors.zip.required'),
-            'billing_city.required'        => trans('offline.mall::lang.components.signup.errors.city.required'),
-            'billing_country_id.required'  => trans('offline.mall::lang.components.signup.errors.country_id.required'),
-            'billing_country_id.exists'    => trans('offline.mall::lang.components.signup.errors.country_id.exists'),
-            'billing_state_id.required'    => trans('offline.mall::lang.components.signup.errors.state_id.required'),
-            'billing_state_id.exists'      => trans('offline.mall::lang.components.signup.errors.state_id.exists'),
-            'shipping_lines.required'      => trans('offline.mall::lang.components.signup.errors.lines.required'),
-            'shipping_zip.required'        => trans('offline.mall::lang.components.signup.errors.zip.required'),
-            'shipping_city.required'       => trans('offline.mall::lang.components.signup.errors.city.required'),
-            'shipping_country_id.required' => trans('offline.mall::lang.components.signup.errors.country_id.required'),
-            'shipping_country_id.exists'   => trans('offline.mall::lang.components.signup.errors.country_id.exists'),
+            'firstname.required'           => trans('winter.mall::lang.components.signup.errors.firstname.required'),
+            'lastname.required'            => trans('winter.mall::lang.components.signup.errors.lastname.required'),
+            'billing_lines.required'       => trans('winter.mall::lang.components.signup.errors.lines.required'),
+            'billing_zip.required'         => trans('winter.mall::lang.components.signup.errors.zip.required'),
+            'billing_city.required'        => trans('winter.mall::lang.components.signup.errors.city.required'),
+            'billing_country_id.required'  => trans('winter.mall::lang.components.signup.errors.country_id.required'),
+            'billing_country_id.exists'    => trans('winter.mall::lang.components.signup.errors.country_id.exists'),
+            'billing_state_id.required'    => trans('winter.mall::lang.components.signup.errors.state_id.required'),
+            'billing_state_id.exists'      => trans('winter.mall::lang.components.signup.errors.state_id.exists'),
+            'shipping_lines.required'      => trans('winter.mall::lang.components.signup.errors.lines.required'),
+            'shipping_zip.required'        => trans('winter.mall::lang.components.signup.errors.zip.required'),
+            'shipping_city.required'       => trans('winter.mall::lang.components.signup.errors.city.required'),
+            'shipping_country_id.required' => trans('winter.mall::lang.components.signup.errors.country_id.required'),
+            'shipping_country_id.exists'   => trans('winter.mall::lang.components.signup.errors.country_id.exists'),
 
-            'password.required' => trans('offline.mall::lang.components.signup.errors.password.required'),
-            'password.min'      => trans('offline.mall::lang.components.signup.errors.password.min'),
-            'password.max'      => trans('offline.mall::lang.components.signup.errors.password.max'),
+            'password.required' => trans('winter.mall::lang.components.signup.errors.password.required'),
+            'password.min'      => trans('winter.mall::lang.components.signup.errors.password.min'),
+            'password.max'      => trans('winter.mall::lang.components.signup.errors.password.max'),
 
-            'password_repeat.required' => trans('offline.mall::lang.components.signup.errors.password_repeat.required'),
-            'password_repeat.same'     => trans('offline.mall::lang.components.signup.errors.password_repeat.same'),
+            'password_repeat.required' => trans('winter.mall::lang.components.signup.errors.password_repeat.required'),
+            'password_repeat.same'     => trans('winter.mall::lang.components.signup.errors.password_repeat.same'),
 
-            'terms_accepted.required' => trans('offline.mall::lang.components.signup.errors.terms_accepted.required'),
+            'terms_accepted.required' => trans('winter.mall::lang.components.signup.errors.terms_accepted.required'),
         ];
 
         Event::fire('mall.customer.extendSignupMessages', [&$messages]);

@@ -1,15 +1,15 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Validation;
 use System\Models\File;
 
 class ProductFile extends Model
 {
     use Validation;
 
-    public $table = 'offline_mall_product_files';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_product_files';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'display_name',
     ];

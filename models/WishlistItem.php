@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Cookie;
 use Model;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Classes\Traits\Cart\CartItemPriceAccessors;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Classes\Traits\Cart\CartItemPriceAccessors;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\User\Facades\Auth;
 use Session;
 
 class WishlistItem extends Model
@@ -15,11 +15,11 @@ class WishlistItem extends Model
     use CartItemPriceAccessors;
     use HashIds;
 
-    public $table = 'offline_mall_wishlist_items';
+    public $table = 'winter_mall_wishlist_items';
     public $rules = [
-        'product_id'  => 'required|exists:offline_mall_products,id',
-        'wishlist_id' => 'required|exists:offline_mall_wishlists,id',
-        'variant_id'  => 'nullable|exists:offline_mall_product_variants,id',
+        'product_id'  => 'required|exists:winter_mall_products,id',
+        'wishlist_id' => 'required|exists:winter_mall_wishlists,id',
+        'variant_id'  => 'nullable|exists:winter_mall_product_variants,id',
     ];
     public $belongsTo = [
         'wishlist' => Wishlist::class,

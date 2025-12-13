@@ -1,13 +1,13 @@
-name: 'offline.mall::lang.common.reviews'
-modelClass: OFFLINE\Mall\Models\Review
-form: $/offline/mall/models/review/fields.yaml
-defaultRedirect: offline/mall/reviews
+name: 'winter.mall::lang.common.reviews'
+modelClass: Winter\Mall\Models\Review
+form: $/winter/mall/models/review/fields.yaml
+defaultRedirect: winter/mall/reviews
 create:
-    title: 'offline.mall::lang.titles.reviews.create'
-    redirect: 'offline/mall/reviews/update/:id'
-    redirectClose: offline/mall/reviews
+    title: 'winter.mall::lang.titles.reviews.create'
+    redirect: 'winter/mall/reviews/update/:id'
+    redirectClose: winter/mall/reviews
 update:
-    title: 'offline.mall::lang.titles.reviews.update'
-    redirect: offline/mall/reviews
-    redirectClose: offline/mall/reviews
+    title: 'winter.mall::lang.titles.reviews.update'
+    redirect: winter/mall/reviews
+    redirectClose: winter/mall/reviews
 preview: {  }

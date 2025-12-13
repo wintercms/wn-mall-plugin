@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
 use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\PDF;
@@ -8,24 +8,24 @@ use Dompdf\Dompdf;
 use Hashids\Hashids;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Cache;
-use OFFLINE\Mall\Classes\Customer\AuthManager;
-use OFFLINE\Mall\Classes\Customer\DefaultSignInHandler;
-use OFFLINE\Mall\Classes\Customer\DefaultSignUpHandler;
-use OFFLINE\Mall\Classes\Customer\SignInHandler;
-use OFFLINE\Mall\Classes\Customer\SignUpHandler;
-use OFFLINE\Mall\Classes\Index\Filebase;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\IndexNotSupportedException;
-use OFFLINE\Mall\Classes\Index\MySQL\MySQL;
-use OFFLINE\Mall\Classes\Payments\DefaultPaymentGateway;
-use OFFLINE\Mall\Classes\Payments\Offline;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
-use OFFLINE\Mall\Classes\Payments\PayPalRest;
-use OFFLINE\Mall\Classes\Payments\PostFinance;
-use OFFLINE\Mall\Classes\Payments\Stripe;
-use OFFLINE\Mall\Classes\Utils\DefaultMoney;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\GeneralSettings;
+use Winter\Mall\Classes\Customer\AuthManager;
+use Winter\Mall\Classes\Customer\DefaultSignInHandler;
+use Winter\Mall\Classes\Customer\DefaultSignUpHandler;
+use Winter\Mall\Classes\Customer\SignInHandler;
+use Winter\Mall\Classes\Customer\SignUpHandler;
+use Winter\Mall\Classes\Index\Filebase;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\IndexNotSupportedException;
+use Winter\Mall\Classes\Index\MySQL\MySQL;
+use Winter\Mall\Classes\Payments\DefaultPaymentGateway;
+use Winter\Mall\Classes\Payments\Offline;
+use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Payments\PayPalRest;
+use Winter\Mall\Classes\Payments\PostFinance;
+use Winter\Mall\Classes\Payments\Stripe;
+use Winter\Mall\Classes\Utils\DefaultMoney;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\GeneralSettings;
 
 trait BootServiceContainer
 {
@@ -56,7 +56,7 @@ trait BootServiceContainer
             return AuthManager::instance();
         });
         $this->app->bind(Index::class, function () {
-            $driver = Cache::rememberForever('offline_mall.mysql.index.driver', function () {
+            $driver = Cache::rememberForever('winter_mall.mysql.index.driver', function () {
                 $driver = GeneralSettings::get('index_driver');
                 if ($driver === null) {
                     GeneralSettings::set('index_driver', 'database');
@@ -72,10 +72,10 @@ trait BootServiceContainer
                 return new MySQL();
             } catch (IndexNotSupportedException $e) {
                 logger()->error(
-                    '[OFFLINE.Mall] Your database does not support JSON data. Your index driver has been switched to "Filesystem". Update your database to make use of database indexing.'
+                    '[Winter.Mall] Your database does not support JSON data. Your index driver has been switched to "Filesystem". Update your database to make use of database indexing.'
                 );
                 GeneralSettings::set('index_driver', 'filesystem');
-                Cache::forget('offline_mall.mysql.index.driver');
+                Cache::forget('winter_mall.mysql.index.driver');
 
                 return new Filebase();
             }
@@ -92,14 +92,14 @@ trait BootServiceContainer
         AliasLoader::getInstance()->alias('PDF', Facade::class);
 
         $this->app->bind('dompdf.options', function () {
-            if ($defines = $this->app['config']->get('offline.mall::pdf.defines')) {
+            if ($defines = $this->app['config']->get('winter.mall::pdf.defines')) {
                 $options = [];
                 foreach ($defines as $key => $value) {
                     $key           = strtolower(str_replace('DOMPDF_', '', $key));
                     $options[$key] = $value;
                 }
             } else {
-                $options = $this->app['config']->get('offline.mall::pdf.options', []);
+                $options = $this->app['config']->get('winter.mall::pdf.options', []);
             }
 
             return $options;

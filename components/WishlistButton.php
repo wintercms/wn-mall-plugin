@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Illuminate\Support\Collection;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Models\Wishlist;
-use OFFLINE\Mall\Models\WishlistItem;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Models\Wishlist;
+use Winter\Mall\Models\WishlistItem;
+use Winter\User\Facades\Auth;
 use Validator;
 
 class WishlistButton extends MallComponent
@@ -23,8 +23,8 @@ class WishlistButton extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.wishlistButton.details.name',
-            'description' => 'offline.mall::lang.components.wishlistButton.details.description',
+            'name'        => 'winter.mall::lang.components.wishlistButton.details.name',
+            'description' => 'winter.mall::lang.components.wishlistButton.details.description',
         ];
     }
 
@@ -32,13 +32,13 @@ class WishlistButton extends MallComponent
     {
         return [
             'product' => [
-                'title'       => 'offline.mall::lang.components.wishlistButton.properties.product.title',
-                'description' => 'offline.mall::lang.components.wishlistButton.properties.product.description',
+                'title'       => 'winter.mall::lang.components.wishlistButton.properties.product.title',
+                'description' => 'winter.mall::lang.components.wishlistButton.properties.product.description',
                 'type'        => 'string',
             ],
             'variant' => [
-                'title'       => 'offline.mall::lang.components.wishlistButton.properties.variant.title',
-                'description' => 'offline.mall::lang.components.wishlistButton.properties.variant.description',
+                'title'       => 'winter.mall::lang.components.wishlistButton.properties.variant.title',
+                'description' => 'winter.mall::lang.components.wishlistButton.properties.variant.description',
                 'type'        => 'string',
             ],
         ];
@@ -93,7 +93,7 @@ class WishlistButton extends MallComponent
             'wishlist_id' => $wishlist->id,
         ]);
 
-        Flash::success(trans('offline.mall::frontend.wishlist.added'));
+        Flash::success(trans('winter.mall::frontend.wishlist.added'));
         
         $this->page['items'] = $this->getWishlists();
 

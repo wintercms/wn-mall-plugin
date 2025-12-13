@@ -1,7 +1,7 @@
 title: PriceCategories
-modelClass: OFFLINE\Mall\Models\PriceCategory
-list: $/offline/mall/models/pricecategory/columns.yaml
-recordUrl: 'offline/mall/pricecategories/update/:id'
+modelClass: Winter\Mall\Models\PriceCategory
+list: $/winter/mall/models/pricecategory/columns.yaml
+recordUrl: 'winter/mall/pricecategories/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

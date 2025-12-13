@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
 use DB;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Classes\Customer\SignUpHandler;
-use RainLab\User\Models\User;
-use RainLab\User\Models\UserGroup;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Classes\Customer\SignUpHandler;
+use Winter\User\Models\User;
+use Winter\User\Models\UserGroup;
 use Validator;
 
 /**
@@ -30,8 +30,8 @@ class CustomerProfile extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.customerProfile.details.name',
-            'description' => 'offline.mall::lang.components.customerProfile.details.description',
+            'name'        => 'winter.mall::lang.components.customerProfile.details.name',
+            'description' => 'winter.mall::lang.components.customerProfile.details.description',
         ];
     }
 
@@ -104,6 +104,6 @@ class CustomerProfile extends MallComponent
         // Re-authenticate the user with his new credentials
         Auth::login($this->user);
 
-        Flash::success(trans('offline.mall::lang.common.saved_changes'));
+        Flash::success(trans('winter.mall::lang.common.saved_changes'));
     }
 }

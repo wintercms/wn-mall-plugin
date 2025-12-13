@@ -1,10 +1,10 @@
 fields:
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         span: auto
         type: text
     code:
-        label: 'offline.mall::lang.common.code'
+        label: 'winter.mall::lang.common.code'
         span: auto
         preset:
             field: name

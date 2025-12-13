@@ -1,23 +1,23 @@
 fields:
     name:
-        label: 'offline.mall::lang.custom_field_options.name'
+        label: 'winter.mall::lang.custom_field_options.name'
         span: auto
         type: text
     code:
-        label: 'offline.mall::lang.common.code'
+        label: 'winter.mall::lang.common.code'
         span: auto
         preset:
             field: name
             type: slug
         type: text
-        comment: 'offline.mall::lang.common.code_comment'
+        comment: 'winter.mall::lang.common.code_comment'
     description:
-        label: 'offline.mall::lang.product.description'
+        label: 'winter.mall::lang.product.description'
         size: large
         span: auto
         type: richeditor
     taxes:
-        label: 'offline.mall::lang.common.taxes'
+        label: 'winter.mall::lang.common.taxes'
         size: large
         span: auto
         type: partial
@@ -29,10 +29,10 @@ tabs:
             path: options
             type: partial
             context: update
-            tab: 'offline.mall::lang.common.options'
+            tab: 'winter.mall::lang.common.options'
         products:
             span: full
             path: products
             type: partial
             context: update
-            tab: 'offline.mall::lang.common.products'
+            tab: 'winter.mall::lang.common.products'

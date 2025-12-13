@@ -86,7 +86,7 @@
 1.0.20:
     - Optimized handling of customer group specific prices
 1.0.21:
-    - Optimized RainLab.Translate integration (thanks to @alxy)
+    - Optimized Winter.Translate integration (thanks to @alxy)
 1.0.22:
     - Updated Omnipay to v3, added list views for payment logs and customer addresses. If you have custom payment providers that use Omnipay make sure that they are compatible with v3 before updating
 1.1.0:
@@ -146,7 +146,7 @@
 1.2.3:
     - Added flash messages to add to cart events
 1.2.4:
-    - Added support for RainLab.User account activation links ("user" mode only, "admin" mode is unsupported)
+    - Added support for Winter.User account activation links ("user" mode only, "admin" mode is unsupported)
 1.2.5:
     - Fixed index entry creation of newly created variants
 1.2.6:
@@ -226,7 +226,7 @@
 1.7.1: 
     - Bugfix for parent category dropdown in backend
 1.7.2: 
-    - Fixed bug where product entries in RainLab.Pages menus included the wrong variant id
+    - Fixed bug where product entries in Winter.Pages menus included the wrong variant id
 1.7.3: 
     - Minor Bugfix when editing a Review on the frontend
 1.7.4: 
@@ -279,9 +279,9 @@
 1.10.1:
     - Bugfix release
 1.10.2:
-    - "!!! Do not update until version 1.11 is released. There is a bug in RainLab.Translate because of which translations won't be loaded correctly. Also do not update RainLab.Translate until this bug is fixed: https://github.com/rainlab/translate-plugin/issues/539. We will release a new version as soon as everything is back in order."
+    - "!!! Do not update until version 1.11 is released. There is a bug in Winter.Translate because of which translations won't be loaded correctly. Also do not update Winter.Translate until this bug is fixed: https://github.com/rainlab/translate-plugin/issues/539. We will release a new version as soon as everything is back in order."
 1.11.0:
-    - "!!! Fixed RainLab.Translate issue. Also, RainLab.Translate is now a required dependency for this plugin. Make sure to install at least version 1.6.6 of RainLab.Translate before installing this update."
+    - "!!! Fixed Winter.Translate issue. Also, Winter.Translate is now a required dependency for this plugin. Make sure to install at least version 1.6.6 of Winter.Translate before installing this update."
 1.11.1:
     - "Optimized compatibility with Laravel 6"
 1.11.2:
@@ -304,7 +304,7 @@
 1.11.9:
     - Minor bugfix release
 1.11.10:
-    - Fixed multi-lang search with recent RainLab.Translate versions
+    - Fixed multi-lang search with recent Winter.Translate versions
 1.11.11:
     - Fixed display of e-mail address in orders list
 1.11.12:
@@ -358,7 +358,7 @@
 1.12.2:
     - Bugfix release
 1.12.3:
-    - Re-use RainLab.User's min password length setting, fixed various bugs
+    - Re-use Winter.User's min password length setting, fixed various bugs
 1.13.0:
     - '!!! Switched to Stripe Intents API (supports Strong Customer Authentication and 3D Secure payment flows). Test this update with your Stripe setup before deploying it in production! (Changelog: https://tinyurl.com/y79ane6j)'
 1.13.1:
@@ -422,7 +422,7 @@
 2.0.10:
     - 'Added PDFMaker trait to product model'
 2.0.11:
-    - 'Update to Version 3 of this plugin to get RainLab.Translate v2 support'
+    - 'Update to Version 3 of this plugin to get Winter.Translate v2 support'
 2.0.12:
     - 'Fixed bug in product filter with new October JS framework'
 2.0.13:
@@ -464,3 +464,7 @@
     - 'Fixed FR translations (thanks to @damsfx)'
 2.0.34:
     - 'Fixed compatibility issue with Winter CMS (thanks to @damsfx)'
+2.1.0:
+    - 'Rebranded to Winter/Mall'
+    - rename_tables.php
+

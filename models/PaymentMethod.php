@@ -1,18 +1,18 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Cms\Classes\Theme;
 use Model;
-use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Parse\Twig;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Parse\Twig;
+use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 use System\Models\File;
 use Auth;
-use OFFLINE\Mall\Classes\Totals\PaymentTotal;
+use Winter\Mall\Classes\Totals\PaymentTotal;
 
 class PaymentMethod extends Model
 {
@@ -30,8 +30,8 @@ class PaymentMethod extends Model
         'payment_provider' => 'required',
         'fee_percentage'   => 'nullable',
     ];
-    public $table = 'offline_mall_payment_methods';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_payment_methods';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $appends = ['settings'];
     public $with = ['prices'];
     public $nullable = ['fee_percentage'];
@@ -59,7 +59,7 @@ class PaymentMethod extends Model
     public $belongsToMany = [
         'taxes' => [
             Tax::class,
-            'table'    => 'offline_mall_payment_method_tax',
+            'table'    => 'winter_mall_payment_method_tax',
             'key'      => 'payment_method_id',
             'otherKey' => 'tax_id',
         ],
@@ -67,7 +67,7 @@ class PaymentMethod extends Model
 
     public function afterDelete()
     {
-        \DB::table('offline_mall_prices')
+        \DB::table('winter_mall_prices')
            ->where('priceable_type', self::MORPH_KEY)
            ->where('priceable_id', $this->id)
            ->delete();
@@ -110,7 +110,7 @@ class PaymentMethod extends Model
     public function getPdfPartialOptions(): array
     {
 
-        $null = [null => '-- ' . trans('offline.mall::lang.payment_method.pdf_partial_none')];
+        $null = [null => '-- ' . trans('winter.mall::lang.payment_method.pdf_partial_none')];
         $path = themes_path(sprintf('%s/partials/mallPDF/*', Theme::getActiveThemeCode()));
 
         return $null + collect(glob($path, GLOB_ONLYDIR))->mapWithKeys(function ($dir) {

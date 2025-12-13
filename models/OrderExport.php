@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Models;
+namespace Winter\Mall\Models;
 
 use Backend\Models\ExportModel;
 

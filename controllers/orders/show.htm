@@ -6,7 +6,7 @@
                 <ul>
                     <li>
                         <a href="<?= $ordersList ?>">
-                            <?= e(trans('offline.mall::lang.common.orders')) ?>
+                            <?= e(trans('winter.mall::lang.common.orders')) ?>
                         </a>
                     </li>
                     <li><?= e($order['invoice_number']) ?></li>
@@ -36,12 +36,12 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#order">
-                                            <?= e(trans('offline.mall::lang.common.products')) ?>
+                                            <?= e(trans('winter.mall::lang.common.products')) ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#payments">
-                                            <?= e(trans('offline.mall::lang.common.payments')) ?>
+                                            <?= e(trans('winter.mall::lang.common.payments')) ?>
                                         </a>
                                     </li>
                                 </ul>
@@ -67,8 +67,8 @@
                                         type="button"
                                         class="oc-icon-trash-o btn-icon danger pull-right"
                                         data-request="onDelete"
-                                        data-load-indicator="<?= e(trans('offline.mall::lang.order.deleting')) ?>"
-                                        data-request-confirm="<?= e(trans('offline.mall::lang.order.delete_confirm')) ?>">
+                                        data-load-indicator="<?= e(trans('winter.mall::lang.order.deleting')) ?>"
+                                        data-request-confirm="<?= e(trans('winter.mall::lang.order.delete_confirm')) ?>">
                                 </button>
                             </div>
                         </div>
@@ -85,18 +85,18 @@
                 <div class="sidebar-content">
                     <?= $this->makePartial('address', [
                         'address' => $order['shipping_address'],
-                        'heading' => e(trans('offline.mall::lang.order.shipping_address'))
+                        'heading' => e(trans('winter.mall::lang.order.shipping_address'))
                     ]) ?>
 
                     <?php if( ! $order['shipping_address_same_as_billing']): ?>
                         <?= $this->makePartial('address', [
                             'address' => $order['billing_address'],
-                            'heading' => e(trans('offline.mall::lang.order.billing_address'))
+                            'heading' => e(trans('winter.mall::lang.order.billing_address'))
                         ]) ?>
                     <?php else: ?>
                         <div class="sidebar-box sidebar-box--with-icon">
                             <i class="icon icon-info-circle"></i>
-                            <?= e(trans('offline.mall::lang.order.shipping_address_is_same_as_billing')); ?>
+                            <?= e(trans('winter.mall::lang.order.shipping_address_is_same_as_billing')); ?>
                         </div>
                     <?php endif; ?>
 

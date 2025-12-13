@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -19,12 +19,12 @@ class Brands extends Controller
     public $reorderConfig = 'config_reorder.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_brands',
+        'winter.mall.manage_brands',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-brands');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-brands');
     }
 }

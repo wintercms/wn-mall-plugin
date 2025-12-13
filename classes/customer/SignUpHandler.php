@@ -1,9 +1,9 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Customer;
+namespace Winter\Mall\Classes\Customer;
 
-use OFFLINE\Mall\Models\User;
+use Winter\Mall\Models\User;
 
 interface SignUpHandler
 {

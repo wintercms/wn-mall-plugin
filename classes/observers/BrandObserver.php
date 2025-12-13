@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Observers;
+namespace Winter\Mall\Classes\Observers;
 
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Models\Brand;
-use OFFLINE\Mall\Models\Product;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Models\Brand;
+use Winter\Mall\Models\Product;
 
 class BrandObserver
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Category;
+namespace Winter\Mall\Classes\Traits\Category;
 
 use Cache;
-use OFFLINE\Mall\Models\Category;
+use Winter\Mall\Models\Category;
 use System\Classes\PluginManager;
 
 trait Translation
@@ -83,8 +83,8 @@ trait Translation
         }
 
         $locale = Category::DEFAULT_LOCALE;
-        if (class_exists(\RainLab\Translate\Classes\Translator::class)) {
-            $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
+        if (class_exists(\Winter\Translate\Classes\Translator::class)) {
+            $locale = \Winter\Translate\Classes\Translator::instance()->getLocale();
         }
 
         return $locale;
@@ -99,19 +99,19 @@ trait Translation
     {
         $locales = [Category::DEFAULT_LOCALE];
         if ($this->rainlabTranslateInstalled()) {
-            $locales = \RainLab\Translate\Models\Locale::get(['code'])->pluck('code')->toArray();
+            $locales = \Winter\Translate\Models\Locale::get(['code'])->pluck('code')->toArray();
         }
 
         return $locales;
     }
 
     /**
-     * Check if the Translator class of RainLab.Translate is available.
+     * Check if the Translator class of Winter.Translate is available.
      *
      * @return bool
      */
     protected function rainlabTranslateInstalled(): bool
     {
-        return PluginManager::instance()->exists('RainLab.Translate');
+        return PluginManager::instance()->exists('Winter.Translate');
     }
 }

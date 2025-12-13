@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use OFFLINE\Mall\Classes\Traits\JsonPrice;
+use Winter\Mall\Classes\Traits\JsonPrice;
 
 class OrderProduct extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\SoftDelete;
+    use \Winter\Storm\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\SoftDelete;
 
     use JsonPrice {
         useCurrency as fallbackCurrency;
@@ -55,7 +55,7 @@ class OrderProduct extends Model
         'service_options',
     ];
 
-    public $table = 'offline_mall_order_products';
+    public $table = 'winter_mall_order_products';
 
     public $belongsTo = [
         'variant' => Variant::class,

@@ -1,11 +1,11 @@
-name: 'offline.mall::lang.common.variants'
-modelClass: OFFLINE\Mall\Models\Variant
-form: $/offline/mall/models/variant/fields.yaml
-defaultRedirect: offline/mall/variants
+name: 'winter.mall::lang.common.variants'
+modelClass: Winter\Mall\Models\Variant
+form: $/winter/mall/models/variant/fields.yaml
+defaultRedirect: winter/mall/variants
 create:
-    redirect: 'offline/mall/variants/update/:id'
-    redirectClose: offline/mall/variants
+    redirect: 'winter/mall/variants/update/:id'
+    redirectClose: winter/mall/variants
 update:
-    redirect: offline/mall/variants
-    redirectClose: offline/mall/variants
+    redirect: winter/mall/variants
+    redirectClose: winter/mall/variants
 preview: {  }

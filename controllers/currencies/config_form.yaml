@@ -1,11 +1,11 @@
 name: Currencies
-modelClass: OFFLINE\Mall\Models\Currency
-form: $/offline/mall/models/currency/fields.yaml
-defaultRedirect: offline/mall/currencies
+modelClass: Winter\Mall\Models\Currency
+form: $/winter/mall/models/currency/fields.yaml
+defaultRedirect: winter/mall/currencies
 create:
-    redirect: 'offline/mall/currencies/update/:id'
-    redirectClose: offline/mall/currencies
+    redirect: 'winter/mall/currencies/update/:id'
+    redirectClose: winter/mall/currencies
 update:
-    redirect: offline/mall/currencies
-    redirectClose: offline/mall/currencies
+    redirect: winter/mall/currencies
+    redirectClose: winter/mall/currencies
 preview: {  }

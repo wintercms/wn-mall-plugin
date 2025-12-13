@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 
 class ServiceOption extends Model
 {
@@ -15,8 +15,8 @@ class ServiceOption extends Model
 
     const MORPH_KEY = 'mall.service_option';
 
-    public $table = 'offline_mall_service_options';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_service_options';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $fillable = [
         'name',
         'description',

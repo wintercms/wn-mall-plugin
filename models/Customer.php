@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Carbon\Carbon;
 use DB;
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use RainLab\User\Models\User;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\User\Models\User;
 
 class Customer extends Model
 {
@@ -22,7 +22,7 @@ class Customer extends Model
         'is_guest'  => 'boolean',
         'user_id'   => 'required|exists:users,id',
     ];
-    public $table = 'offline_mall_customers';
+    public $table = 'winter_mall_customers';
     public $belongsTo = [
         'user' => User::class,
     ];
@@ -62,9 +62,9 @@ class Customer extends Model
     }
 
     /**
-     * Cleanup of old data using OFFLINE.GDPR.
+     * Cleanup of old data using Winter.GDPR.
      *
-     * @see https://github.com/OFFLINE-GmbH/oc-gdpr-plugin
+     * @see https://github.com/Winter-GmbH/oc-gdpr-plugin
      *
      * @param Carbon $deadline
      * @param int    $keepDays

@@ -2,7 +2,7 @@ columns:
     sort_order_handle:
             label: " "
             type: partial
-            path: $/offline/mall/partials/_reorder_handle.htm
+            path: $/winter/mall/partials/_reorder_handle.htm
             sortable: false
             width: 20px
     pivot[sort_order]:
@@ -10,33 +10,33 @@ columns:
         type: number
         sortable: true
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         type: text
         searchable: true
         sortable: false
     type:
-        label: 'offline.mall::lang.custom_fields.type'
+        label: 'winter.mall::lang.custom_fields.type'
         searchable: true
         sortable: false
         type: partial
-        path: $/offline/mall/models/property/_type.htm
+        path: $/winter/mall/models/property/_type.htm
     unit:
-        label: 'offline.mall::lang.common.unit'
+        label: 'winter.mall::lang.common.unit'
         type: text
         searchable: true
         sortable: false
     pivot[filter_type]:
-        label: 'offline.mall::lang.properties.filter_type'
+        label: 'winter.mall::lang.properties.filter_type'
         sortable: false
         type: partial
-        path: $/offline/mall/models/property/_filter_type.htm
+        path: $/winter/mall/models/property/_filter_type.htm
     pivot[use_for_variants]:
-        label: 'offline.mall::lang.properties.use_for_variants'
+        label: 'winter.mall::lang.properties.use_for_variants'
         sortable: false
         type: partial
-        path: $/offline/mall/models/property/_use_for_variants.htm
+        path: $/winter/mall/models/property/_use_for_variants.htm
     created_at:
-        label: 'offline.mall::lang.common.created_at'
+        label: 'winter.mall::lang.common.created_at'
         type: datetime
         searchable: true
         sortable: false

@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentMethod;
 use Session;
 
 /**

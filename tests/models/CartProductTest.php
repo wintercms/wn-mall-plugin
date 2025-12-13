@@ -1,18 +1,18 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\CustomFieldOption;
-use OFFLINE\Mall\Models\CustomFieldValue;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Service;
-use OFFLINE\Mall\Models\ServiceOption;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Models\Variant;
-use OFFLINE\Mall\Tests\PluginTestCase;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\CustomFieldValue;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Service;
+use Winter\Mall\Models\ServiceOption;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Tests\PluginTestCase;
 
 class CartProductTest extends PluginTestCase
 {

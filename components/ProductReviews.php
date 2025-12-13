@@ -1,16 +1,16 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Cms\Classes\ComponentBase;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\CategoryReview;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Product as ProductModel;
-use OFFLINE\Mall\Models\Review;
-use OFFLINE\Mall\Models\ReviewCategory;
-use OFFLINE\Mall\Models\ReviewSettings;
-use RainLab\User\Facades\Auth;
+use Winter\Mall\Models\CategoryReview;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Product as ProductModel;
+use Winter\Mall\Models\Review;
+use Winter\Mall\Models\ReviewCategory;
+use Winter\Mall\Models\ReviewSettings;
+use Winter\User\Facades\Auth;
 
 class ProductReviews extends ComponentBase
 {
@@ -51,8 +51,8 @@ class ProductReviews extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.productReviews.details.name',
-            'description' => 'offline.mall::lang.components.productReviews.details.description',
+            'name'        => 'winter.mall::lang.components.productReviews.details.name',
+            'description' => 'winter.mall::lang.components.productReviews.details.description',
         ];
     }
 
@@ -60,22 +60,22 @@ class ProductReviews extends ComponentBase
     {
         return [
             'product'                   => [
-                'title'       => 'offline.mall::lang.components.wishlistButton.properties.product.title',
-                'description' => 'offline.mall::lang.components.wishlistButton.properties.product.description',
+                'title'       => 'winter.mall::lang.components.wishlistButton.properties.product.title',
+                'description' => 'winter.mall::lang.components.wishlistButton.properties.product.description',
                 'type'        => 'string',
             ],
             'variant'                   => [
-                'title'       => 'offline.mall::lang.components.wishlistButton.properties.variant.title',
-                'description' => 'offline.mall::lang.components.wishlistButton.properties.variant.description',
+                'title'       => 'winter.mall::lang.components.wishlistButton.properties.variant.title',
+                'description' => 'winter.mall::lang.components.wishlistButton.properties.variant.description',
                 'type'        => 'string',
             ],
             'perPage'                   => [
-                'title' => 'offline.mall::lang.components.productReviews.properties.perPage.title',
+                'title' => 'winter.mall::lang.components.productReviews.properties.perPage.title',
                 'type'  => 'string',
             ],
             'currentVariantReviewsOnly' => [
-                'title'       => 'offline.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.title',
-                'description' => 'offline.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.description',
+                'title'       => 'winter.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.title',
+                'description' => 'winter.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.description',
                 'type'        => 'checkbox',
                 'default'     => 0,
             ],

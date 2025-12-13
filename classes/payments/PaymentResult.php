@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
-use OFFLINE\Mall\Classes\PaymentState\FailedState;
-use OFFLINE\Mall\Classes\PaymentState\PaidState;
-use OFFLINE\Mall\Classes\PaymentState\PendingState;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentLog;
+use Winter\Mall\Classes\PaymentState\FailedState;
+use Winter\Mall\Classes\PaymentState\PaidState;
+use Winter\Mall\Classes\PaymentState\PendingState;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentLog;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -88,7 +88,7 @@ class PaymentResult
         } catch (\Throwable $e) {
             // Even if the log failed we *have* to mark this order as paid since the payment went already through.
             logger()->error(
-                'OFFLINE.Mall: Could not log successful payment.',
+                'Winter.Mall: Could not log successful payment.',
                 ['data' => $data, 'response' => $response, 'order' => $this->order, 'exception' => $e]
             );
         }
@@ -100,7 +100,7 @@ class PaymentResult
         } catch (\Throwable $e) {
             // If the order could not be marked as paid the shop admin will have to do this manually.
             logger()->critical(
-                'OFFLINE.Mall: Could not mark paid order as paid.',
+                'Winter.Mall: Could not mark paid order as paid.',
                 ['data' => $data, 'response' => $response, 'order' => $this->order, 'exception' => $e]
             );
         }
@@ -126,7 +126,7 @@ class PaymentResult
         } catch (\Throwable $e) {
             // If the order could not be marked as pending the shop admin will have to do this manually.
             logger()->critical(
-                'OFFLINE.Mall: Could not mark pending order as pending.',
+                'Winter.Mall: Could not mark pending order as pending.',
                 ['order' => $this->order, 'exception' => $e]
             );
         }
@@ -150,7 +150,7 @@ class PaymentResult
         $this->successful = false;
 
         logger()->error(
-            'OFFLINE.Mall: A payment failed.',
+            'Winter.Mall: A payment failed.',
             ['data' => $data, 'response' => $response, 'order' => $this->order]
         );
 
@@ -158,7 +158,7 @@ class PaymentResult
             $this->failedPayment = $this->logFailedPayment($data, $response);
         } catch (\Throwable $e) {
             logger()->error(
-                'OFFLINE.Mall: Could not log failed payment.',
+                'Winter.Mall: Could not log failed payment.',
                 ['data' => $data, 'response' => $response, 'order' => $this->order, 'exception' => $e]
             );
         }
@@ -169,7 +169,7 @@ class PaymentResult
         } catch (\Throwable $e) {
             // If the order could not be marked as failed the shop admin will have to do this manually.
             logger()->critical(
-                'OFFLINE.Mall: Could not mark failed order as failed.',
+                'Winter.Mall: Could not mark failed order as failed.',
                 ['data' => $data, 'response' => $response, 'order' => $this->order, 'exception' => $e]
             );
         }

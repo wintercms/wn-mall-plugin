@@ -1,10 +1,10 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Models\ImageSet;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Models\ImageSet;
 use System\Models\File;
 
 trait Images

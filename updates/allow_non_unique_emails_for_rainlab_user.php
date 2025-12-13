@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
 use Schema;
-use October\Rain\Database\Updates\Migration;
+use Winter\Storm\Database\Updates\Migration;
 
 class AllowNonUniqueEmailsForRainlabUser extends Migration
 {
     /**
-     * The OFFLINE.Mall plugin allows multiple guest signups
+     * The Winter.Mall plugin allows multiple guest signups
      * with the same email address. Rainlab.User blocks this by
      * using a unique index on the login and email columns.
      */

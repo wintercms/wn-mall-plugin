@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Model;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
 use RuntimeException;
 use Session;
 
@@ -22,7 +22,7 @@ class Currency extends Model
     public static $defaultCurrency;
 
     public $rules = [
-        'code'     => 'required|unique:offline_mall_currencies,code',
+        'code'     => 'required|unique:winter_mall_currencies,code',
         'rate'     => 'required',
         'decimals' => 'required',
         'format'   => 'required',
@@ -44,7 +44,7 @@ class Currency extends Model
         'created_at',
         'updated_at',
     ];
-    public $table = 'offline_mall_currencies';
+    public $table = 'winter_mall_currencies';
 
     public function getRoundingOptions()
     {
@@ -75,9 +75,9 @@ class Currency extends Model
 
     public function afterDelete()
     {
-        DB::table('offline_mall_prices')->where('currency_id', $this->id)->delete();
-        DB::table('offline_mall_product_prices')->where('currency_id', $this->id)->delete();
-        DB::table('offline_mall_customer_group_prices')->where('currency_id', $this->id)->delete();
+        DB::table('winter_mall_prices')->where('currency_id', $this->id)->delete();
+        DB::table('winter_mall_product_prices')->where('currency_id', $this->id)->delete();
+        DB::table('winter_mall_customer_group_prices')->where('currency_id', $this->id)->delete();
         Cache::forget(self::CURRENCIES_CACHE_KEY);
         Cache::forget(self::DEFAULT_CURRENCY_CACHE_KEY);
         Cache::forget(self::JSON_PRICE_CACHE_KEY);
@@ -163,13 +163,13 @@ class Currency extends Model
     public static function unknown($currency = null): self
     {
         Log::error(
-            '[OFFLINE.Mall] Unknown currency was requested',
+            '[Winter.Mall] Unknown currency was requested',
             ['currency' => $currency, 'url' => request()->url()]
         );
 
         return new self([
             'code'       => '???',
-            'symbol'     => trans('offline.mall::lang.currency_settings.unknown'),
+            'symbol'     => trans('winter.mall::lang.currency_settings.unknown'),
             'rate'       => 1,
             'decimals'   => 2,
             'format'     => '{{ price|number_format(currency.decimals, " ", ",") }} ({{ currency.symbol }})',

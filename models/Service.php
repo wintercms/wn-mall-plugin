@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\SortableRelation;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\SortableRelation;
 use DB;
 
 class Service extends Model
@@ -14,8 +14,8 @@ class Service extends Model
     use SortableRelation;
     use SoftDelete;
 
-    public $table = 'offline_mall_services';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_services';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $fillable = [
         'name',
         'description',
@@ -27,7 +27,7 @@ class Service extends Model
         'options' => [
             ServiceOption::class,
             'sort'     => 'sort_order ASC',
-            'table'    => 'offline_mall_service_options',
+            'table'    => 'winter_mall_service_options',
             'key'      => 'service_id',
             'otherKey' => 'id',
         ],
@@ -35,14 +35,14 @@ class Service extends Model
     public $belongsToMany = [
         'products' => [
             Product::class,
-            'table'    => 'offline_mall_product_service',
+            'table'    => 'winter_mall_product_service',
             'key'      => 'service_id',
             'otherKey' => 'product_id',
             'pivot'    => ['required'],
         ],
         'taxes'    => [
             Tax::class,
-            'table'    => 'offline_mall_service_tax',
+            'table'    => 'winter_mall_service_tax',
             'key'      => 'service_id',
             'otherKey' => 'tax_id',
         ],
@@ -58,6 +58,6 @@ class Service extends Model
     public function afterDelete()
     {
         $this->options->each->delete();
-        DB::table('offline_mall_product_service')->where('service_id', $this->id)->delete();
+        DB::table('winter_mall_product_service')->where('service_id', $this->id)->delete();
     }
 }

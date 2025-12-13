@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Category;
+namespace Winter\Mall\Classes\Traits\Category;
 
 use Cache;
 use Cms\Classes\Controller;
 use Cms\Classes\Page;
 use InvalidArgumentException;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Product;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Product;
 
 trait MenuItems
 {

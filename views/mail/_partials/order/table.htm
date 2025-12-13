@@ -5,16 +5,16 @@ name = "Order table"
         <thead>
         <tr>
             <th style="text-align:left; width: 50%">
-                {{ 'offline.mall::lang.product.name' | trans }}
+                {{ 'winter.mall::lang.product.name' | trans }}
             </th>
             <th style="text-align: right; width: 10%">
-                {{ 'offline.mall::lang.order.quantity' | trans }}
+                {{ 'winter.mall::lang.order.quantity' | trans }}
             </th>
             <th style="text-align: right; width: 20%">
-                {{ 'offline.mall::lang.product.price' | trans }}
+                {{ 'winter.mall::lang.product.price' | trans }}
             </th>
             <th style="text-align: right; width: 20%">
-                {{ 'offline.mall::lang.order.total' | trans }}
+                {{ 'winter.mall::lang.order.total' | trans }}
             </th>
         </tr>
         </thead>
@@ -26,7 +26,7 @@ name = "Order table"
                     {{ item.name }}<br/>
                     <div class="services">
                         {% for option in item.service_options %}
-                            {{ 'offline.mall::lang.common.service' | trans }}:
+                            {{ 'winter.mall::lang.common.service' | trans }}:
                             {{ option.name }}
                             <br>
                         {% endfor %}
@@ -45,7 +45,7 @@ name = "Order table"
                     </div>
                     {% if item.is_virtual %}
                         <div class="download">
-                            {{ 'offline.mall::lang.order.virtual_product_download_hint' | trans }}
+                            {{ 'winter.mall::lang.order.virtual_product_download_hint' | trans }}
                         </div>
                     {% endif %}
                 </td>
@@ -61,7 +61,7 @@ name = "Order table"
         {% endfor %}
         <tr class="orderfooter separator separator-bottom">
             <td colspan="3" style="border-top: 1px solid #f5f8fa; font-style: italic;">
-                {{ 'offline.mall::lang.order.subtotal' | trans }}
+                {{ 'winter.mall::lang.order.subtotal' | trans }}
             </td>
             <td style="text-align: right; border-top: 1px solid #f5f8fa; font-style: italic;">
                 {{ order.totalProductPostTaxes() | raw }}
@@ -70,7 +70,7 @@ name = "Order table"
         {% for entry in order.discounts %}
             <tr class="orderdiscount">
                 <td colspan="3">
-                    {{ 'offline.mall::lang.common.discount' | trans }}:
+                    {{ 'winter.mall::lang.common.discount' | trans }}:
                     {{ entry.discount.name }}
                 </td>
                 <td style="text-align: right">
@@ -81,7 +81,7 @@ name = "Order table"
         {% if order.shipping %}
             <tr class="orderfooter separator">
                 <td colspan="3">
-                    {{ 'offline.mall::lang.common.shipping' | trans }}:
+                    {{ 'winter.mall::lang.common.shipping' | trans }}:
                     {{ order.shipping.method.name }}
                     {% if order.shipping.appliedDiscount %}
                         ({{ order.shipping.appliedDiscount.discount.name }},
@@ -105,7 +105,7 @@ name = "Order table"
         {% endif %}
         <tr class="orderfooter-bottomline">
             <td colspan="3" style=" border-top: 1px solid #f5f8fa; font-weight: bold;">
-                {{ 'offline.mall::lang.order.grand_total' | trans }}
+                {{ 'winter.mall::lang.order.grand_total' | trans }}
             </td>
             <td style="text-align: right; border-top: 1px solid #f5f8fa; font-weight: bold;">
                 {{ order.totalPostTaxes() | raw }}

@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.shipping_methods'
-modelClass: OFFLINE\Mall\Models\ShippingMethod
-list: $/offline/mall/models/shippingmethod/columns.yaml
-recordUrl: 'offline/mall/shippingmethods/update/:id'
+title: 'winter.mall::lang.common.shipping_methods'
+modelClass: Winter\Mall\Models\ShippingMethod
+list: $/winter/mall/models/shippingmethod/columns.yaml
+recordUrl: 'winter/mall/shippingmethods/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

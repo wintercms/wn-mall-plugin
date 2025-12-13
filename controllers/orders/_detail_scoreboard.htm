@@ -1,11 +1,11 @@
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.order_number')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.order_number')) ?></h4>
     <p><?= e($order['order_number']) ?></p>
     <p class="description"><?= e($order['created_at']) ?></p>
 </div>
 
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.customer')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.customer')) ?></h4>
     <p><a href="<?= $customerPreview . '/' . e($order->customer->user_id); ?>">
         <?= e($order['billing_address']['name']) ?>
     </a></p>
@@ -17,7 +17,7 @@
 </div>
 
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.status')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.status')) ?></h4>
     <p id="order_state">
         <?php echo e($order->order_state->name) ?>
     </p>
@@ -27,18 +27,18 @@
 </div>
 
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.shipped')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.shipped')) ?></h4>
     <p id="shipped_at">
         <?php echo $order->shipped_at ? $order->shipped_at->toFormattedDateString() : '-'  ?>
     </p>
 </div>
 
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.payment_gateway_used')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.payment_gateway_used')) ?></h4>
     <p><?= e($order['payment_method']['name']) ?></p>
 </div>
 
 <div class="scoreboard-item title-value">
-    <h4><?= e(trans('offline.mall::lang.order.grand_total')) ?></h4>
+    <h4><?= e(trans('winter.mall::lang.order.grand_total')) ?></h4>
     <p><?= e($order->totalPostTaxes()) ?></p>
 </div>

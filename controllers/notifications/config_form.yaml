@@ -1,12 +1,12 @@
-name: 'offline.mall::lang.common.notifications'
-modelClass: OFFLINE\Mall\Models\Notification
-form: $/offline/mall/models/notification/fields.yaml
-defaultRedirect: offline/mall/notifications
+name: 'winter.mall::lang.common.notifications'
+modelClass: Winter\Mall\Models\Notification
+form: $/winter/mall/models/notification/fields.yaml
+defaultRedirect: winter/mall/notifications
 create:
-    title: 'offline.mall::lang.titles.notifications.create'
-    redirect: 'offline/mall/notifications/update/:id'
-    redirectClose: offline/mall/notifications
+    title: 'winter.mall::lang.titles.notifications.create'
+    redirect: 'winter/mall/notifications/update/:id'
+    redirectClose: winter/mall/notifications
 update:
-    title: 'offline.mall::lang.titles.notifications.update'
-    redirect: offline/mall/notifications
-    redirectClose: offline/mall/notifications
+    title: 'winter.mall::lang.titles.notifications.update'
+    redirect: winter/mall/notifications
+    redirectClose: winter/mall/notifications

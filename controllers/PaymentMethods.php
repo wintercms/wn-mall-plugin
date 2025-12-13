@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -6,8 +6,8 @@ use Backend\Behaviors\RelationController;
 use Backend\Behaviors\ReorderController;
 use Backend\Classes\Controller;
 use BackendMenu;
-use OFFLINE\Mall\Models\PaymentMethod;
-use OFFLINE\Mall\Models\Price;
+use Winter\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\Price;
 use System\Classes\SettingsManager;
 
 class PaymentMethods extends Controller
@@ -25,14 +25,14 @@ class PaymentMethods extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.settings.manage_payment_methods',
+        'winter.mall.settings.manage_payment_methods',
     ];
 
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('OFFLINE.Mall', 'payment_method_settings');
+        SettingsManager::setContext('Winter.Mall', 'payment_method_settings');
     }
 
     public function formAfterCreate(PaymentMethod $model)

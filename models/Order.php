@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
@@ -6,16 +6,16 @@ use DB;
 use Event;
 use Illuminate\Support\Facades\Queue;
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Jobs\SendVirtualProductFiles;
-use OFFLINE\Mall\Classes\PaymentState\PaidState;
-use OFFLINE\Mall\Classes\PaymentState\PendingState;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\JsonPrice;
-use OFFLINE\Mall\Classes\Traits\PDFMaker;
-use OFFLINE\Mall\Classes\Utils\Money;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Jobs\SendVirtualProductFiles;
+use Winter\Mall\Classes\PaymentState\PaidState;
+use Winter\Mall\Classes\PaymentState\PendingState;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\JsonPrice;
+use Winter\Mall\Classes\Traits\PDFMaker;
+use Winter\Mall\Classes\Utils\Money;
 use RuntimeException;
 use Session;
 use System\Classes\PluginManager;
@@ -40,7 +40,7 @@ class Order extends Model
         'billing_address'                  => 'required',
         'lang'                             => 'required',
         'ip_address'                       => 'required',
-        'customer_id'                      => 'required|exists:offline_mall_customers,id',
+        'customer_id'                      => 'required|exists:winter_mall_customers,id',
     ];
     public $jsonable = [
         'billing_address',
@@ -52,7 +52,7 @@ class Order extends Model
         'discounts',
         'shipping',
     ];
-    public $table = 'offline_mall_orders';
+    public $table = 'winter_mall_orders';
     public $hasOne = ['payment_log' => PaymentLog::class];
     public $hasMany = [
         'products'         => OrderProduct::class,
@@ -148,7 +148,7 @@ class Order extends Model
         // Make sure all products in the cart are still published.
         $removed = $cart->removeUnpublishedProducts();
         if ($removed->count() > 0) {
-            throw new ValidationException(['cart' => trans('offline.mall::frontend.cart.products_unavailable')]);
+            throw new ValidationException(['cart' => trans('winter.mall::frontend.cart.products_unavailable')]);
         }
 
         $order = DB::transaction(function () use ($cart) {
@@ -406,17 +406,17 @@ class Order extends Model
 
     protected function getLocale()
     {
-        if (PluginManager::instance()->exists('RainLab.Translate')) {
-            return \RainLab\Translate\Classes\Translator::instance()->getLocale();
+        if (PluginManager::instance()->exists('Winter.Translate')) {
+            return \Winter\Translate\Classes\Translator::instance()->getLocale();
         }
 
         return 'default';
     }
 
     /**
-     * Cleanup of old data using OFFLINE.GDPR.
+     * Cleanup of old data using Winter.GDPR.
      *
-     * @see https://github.com/OFFLINE-GmbH/oc-gdpr-plugin
+     * @see https://github.com/Winter-GmbH/oc-gdpr-plugin
      *
      * @param Carbon $deadline
      * @param int    $keepDays

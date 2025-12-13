@@ -1,20 +1,20 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use Backend\Widgets\Table;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\CustomerGroupPrice;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\PriceCategory;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ProductPrice;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\CustomerGroupPrice;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\PriceCategory;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ProductPrice;
+use Winter\Mall\Models\Variant;
 
 trait ProductPriceTable
 {
@@ -39,7 +39,7 @@ trait ProductPriceTable
         $customerGroups = CustomerGroup::orderBy('sort_order', 'ASC')->get();
         $customerGroups->each(function (CustomerGroup $group) use ($config) {
             $config->columns['group__' . $group->id] = [
-                'title' => sprintf('%s %s', trans('offline.mall::lang.product.price'), $group->name),
+                'title' => sprintf('%s %s', trans('winter.mall::lang.product.price'), $group->name),
             ];
         });
         $this->vars['customerGroups'] = $customerGroups;
@@ -85,7 +85,7 @@ trait ProductPriceTable
             }
 
             if ( ! $hasPriceInDefaultCurrency) {
-                throw new ValidationException(['prices' => trans('offline.mall::lang.common.price_missing')]);
+                throw new ValidationException(['prices' => trans('winter.mall::lang.common.price_missing')]);
             }
         });
 

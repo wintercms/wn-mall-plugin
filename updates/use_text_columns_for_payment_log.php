@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
 use Artisan;
 use DB;
-use October\Rain\Database\Updates\Migration;
+use Winter\Storm\Database\Updates\Migration;
 use Schema;
 
 class UseTextColumnsForPaymentLog extends Migration

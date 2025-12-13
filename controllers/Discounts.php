@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use BackendMenu;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\Price;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\Price;
 
 class Discounts extends Controller
 {
@@ -18,13 +18,13 @@ class Discounts extends Controller
     public $formConfig = 'config_form.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_discounts',
+        'winter.mall.manage_discounts',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-orders', 'mall-discounts');
+        BackendMenu::setContext('Winter.Mall', 'mall-orders', 'mall-discounts');
     }
 
     public function formAfterCreate(Discount $model)

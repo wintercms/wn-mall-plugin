@@ -1,0 +1,58 @@
+<?php namespace Winter\Mall\Updates;
+
+use Db;
+use Schema;
+use Winter\Storm\Database\Updates\Migration;
+use Winter\Mall\Models\Category;
+
+class RenameTables extends Migration
+{
+    const MODELS = [
+        'Category',
+        'OrderState',
+        'Property',
+        'PropertyValue',
+        'PropertyGroup',
+    ];
+
+    public function up()
+    {
+        $tables = collect(Db::select('SHOW TABLES LIKE "offline_mall_%"'))->map(fn($table) => head((array)$table))->all();
+
+        foreach ($tables as $old) {
+            $new = str_replace('offline_', 'winter_', $old);
+            if (Schema::hasTable($old) && !Schema::hasTable($new)) {
+                Schema::rename($old, $new);
+            }
+        }
+
+        foreach (static::MODELS as $model) {
+            $from = 'OFFLINE\Mall\Models\\' . $model;
+            $to = $model === 'Category' ? Category::MORPH_KEY : 'Winter\Mall\Models\\' . $model;
+
+            Db::table('system_files')->where('attachment_type', $from)->update(['attachment_type' => $to]);
+            Db::table('winter_translate_indexes')->where('model_type', $from)->update(['model_type' => $to]);
+            Db::table('winter_translate_attributes')->where('model_type', $from)->update(['model_type' => $to]);
+        }
+    }
+
+    public function down()
+    {
+        $tables = collect(Db::select('SHOW TABLES LIKE "winter_mall_%"'))->map(fn($table) => head((array)$table))->all();
+        foreach ($tables as $old) {
+            $new = str_replace('winter_', 'offline_', $old);
+            if (Schema::hasTable($old) && !Schema::hasTable($new)) {
+                Schema::rename($old, $new);
+            }
+        }
+
+        foreach (static::MODELS as $model) {
+            $from = $model === 'Category' ? Category::MORPH_KEY : 'Winter\Mall\Models\\' . $model;
+            $to = 'OFFLINE\Mall\Models\\' . $model;
+
+            Db::table('system_files')->where('attachment_type', $from)->update(['attachment_type' => $to]);
+            Db::table('winter_translate_indexes')->where('model_type', $from)->update(['model_type' => $to]);
+            Db::table('winter_translate_attributes')->where('model_type', $from)->update(['model_type' => $to]);
+        }
+    }
+}

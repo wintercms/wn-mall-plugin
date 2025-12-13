@@ -1,17 +1,17 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
 use DB;
 use Illuminate\Contracts\Encryption\DecryptException;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
-use OFFLINE\Mall\Classes\Payments\PaymentRedirector;
-use OFFLINE\Mall\Classes\Payments\PaymentService;
-use OFFLINE\Mall\Components\Cart as CartComponent;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Payments\PaymentRedirector;
+use Winter\Mall\Classes\Payments\PaymentService;
+use Winter\Mall\Components\Cart as CartComponent;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentMethod;
 use Redirect;
 use Request;
 use Session;
@@ -75,8 +75,8 @@ class Checkout extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.checkout.details.name',
-            'description' => 'offline.mall::lang.components.checkout.details.description',
+            'name'        => 'winter.mall::lang.components.checkout.details.name',
+            'description' => 'winter.mall::lang.components.checkout.details.description',
         ];
     }
 
@@ -90,7 +90,7 @@ class Checkout extends MallComponent
         return [
             'step' => [
                 'type' => 'dropdown',
-                'name' => 'offline.mall::lang.components.checkout.properties.step.name',
+                'name' => 'winter.mall::lang.components.checkout.properties.step.name',
             ],
         ];
     }
@@ -103,12 +103,12 @@ class Checkout extends MallComponent
     public function getStepOptions()
     {
         return [
-            'payment'   => trans('offline.mall::lang.components.checkout.steps.payment'),
-            'shipping'  => trans('offline.mall::lang.components.checkout.steps.shipping'),
-            'confirm'   => trans('offline.mall::lang.components.checkout.steps.confirm'),
-            'failed'    => trans('offline.mall::lang.components.checkout.steps.failed'),
-            'cancelled' => trans('offline.mall::lang.components.checkout.steps.cancelled'),
-            'done'      => trans('offline.mall::lang.components.checkout.steps.done'),
+            'payment'   => trans('winter.mall::lang.components.checkout.steps.payment'),
+            'shipping'  => trans('winter.mall::lang.components.checkout.steps.shipping'),
+            'confirm'   => trans('winter.mall::lang.components.checkout.steps.confirm'),
+            'failed'    => trans('winter.mall::lang.components.checkout.steps.failed'),
+            'cancelled' => trans('winter.mall::lang.components.checkout.steps.cancelled'),
+            'done'      => trans('winter.mall::lang.components.checkout.steps.done'),
         ];
     }
 
@@ -225,7 +225,7 @@ class Checkout extends MallComponent
 
         if ($this->cart->payment_method_id === null) {
             throw new ValidationException(
-                [trans('offline.mall::lang.components.checkout.errors.missing_settings')]
+                [trans('winter.mall::lang.components.checkout.errors.missing_settings')]
             );
         }
 
@@ -338,7 +338,7 @@ class Checkout extends MallComponent
             $data['ecommerce']['purchase'] = [
                 'actionField' => [
                     'id'          => $this->order->hash_id,
-                    'affiliation' => 'OFFLINE Mall',
+                    'affiliation' => 'Winter Mall',
                     'revenue'     => $this->order->total_post_taxes,
                     'tax'         => $this->order->total_taxes,
                     'shipping'    => $this->order->total_shipping_post_taxes,

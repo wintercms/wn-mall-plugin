@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
 use Cms\Classes\Controller;
 use Cms\Classes\Theme;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Parse\Twig;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentGatewaySettings;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Parse\Twig;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentGatewaySettings;
 use Request;
 use Session;
 use Url;
@@ -151,7 +151,7 @@ abstract class PaymentProvider
         }
 
         $fallback = plugins_path(sprintf(
-            'offline/mall/classes/payments/%s/%s.htm',
+            'winter/mall/classes/payments/%s/%s.htm',
             $this->identifier(),
             $this->paymentFormPartial()
         ));
@@ -200,7 +200,7 @@ abstract class PaymentProvider
     /**
      * Get the settings of this PaymentProvider.
      *
-     * @return \October\Rain\Support\Collection
+     * @return \Winter\Storm\Support\Collection
      */
     public function getSettings()
     {

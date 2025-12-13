@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Category;
+namespace Winter\Mall\Classes\Traits\Category;
 
 use Cache;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\Category;
+use Winter\Mall\Models\Category;
 
 trait Properties
 {
@@ -51,7 +51,7 @@ trait Properties
      */
     protected function getPropertiesInGroups(array $groupIds): Collection
     {
-        return \DB::table('offline_mall_property_property_group')
+        return \DB::table('winter_mall_property_property_group')
                   ->where('property_group_id', $groupIds)
                   ->get(['property_id'])
                   ->pluck('property_id')

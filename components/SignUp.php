@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Illuminate\Support\Facades\Session;
-use OFFLINE\Mall\Classes\Customer\SignInHandler;
-use OFFLINE\Mall\Classes\Customer\SignUpHandler;
-use OFFLINE\Mall\Models\GeneralSettings;
-use RainLab\Location\Models\Country;
-use RainLab\User\Models\Settings as UserSettings;
+use Winter\Mall\Classes\Customer\SignInHandler;
+use Winter\Mall\Classes\Customer\SignUpHandler;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Location\Models\Country;
+use Winter\User\Models\Settings as UserSettings;
 
 /**
  * The SignUp component displays a signup and login form
@@ -40,8 +40,8 @@ class SignUp extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.signup.details.name',
-            'description' => 'offline.mall::lang.components.signup.details.description',
+            'name'        => 'winter.mall::lang.components.signup.details.name',
+            'description' => 'winter.mall::lang.components.signup.details.description',
         ];
     }
 
@@ -55,7 +55,7 @@ class SignUp extends MallComponent
         return [
             'redirect' => [
                 'type' => 'string',
-                'name' => 'offline.mall::lang.components.signup.properties.redirect.name',
+                'name' => 'winter.mall::lang.components.signup.properties.redirect.name',
             ],
         ];
     }

@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Flash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Models\Cart as CartModel;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\ShippingMethod;
-use RainLab\User\Facades\Auth;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Models\Cart as CartModel;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\User\Facades\Auth;
 
 /**
  * The Cart component displays a user's cart.
@@ -77,8 +77,8 @@ class Cart extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.cart.details.name',
-            'description' => 'offline.mall::lang.components.cart.details.description',
+            'name'        => 'winter.mall::lang.components.cart.details.name',
+            'description' => 'winter.mall::lang.components.cart.details.description',
         ];
     }
 
@@ -92,28 +92,28 @@ class Cart extends MallComponent
         return [
             'showDiscountApplier' => [
                 'type'    => 'checkbox',
-                'title'   => 'offline.mall::lang.components.cart.properties.showDiscountApplier.title',
+                'title'   => 'winter.mall::lang.components.cart.properties.showDiscountApplier.title',
                 'default' => 1,
             ],
             'discountCodeLimit' => [
                 'type'    => 'string',
-                'title'   => 'offline.mall::lang.components.cart.properties.discountCodeLimit.title',
-                'description' => 'offline.mall::lang.components.cart.properties.discountCodeLimit.description',
+                'title'   => 'winter.mall::lang.components.cart.properties.discountCodeLimit.title',
+                'description' => 'winter.mall::lang.components.cart.properties.discountCodeLimit.description',
                 'default' => 0,
             ],
             'showTaxes'           => [
                 'type'    => 'checkbox',
-                'title'   => 'offline.mall::lang.components.cart.properties.showTaxes.title',
+                'title'   => 'winter.mall::lang.components.cart.properties.showTaxes.title',
                 'default' => 1,
             ],
             'showShipping' => [
                 'type'    => 'checkbox',
-                'title'   => 'offline.mall::lang.components.cart.properties.showShipping.title',
+                'title'   => 'winter.mall::lang.components.cart.properties.showShipping.title',
                 'default' => 1,
             ],
             'showProceedToCheckoutButton' => [
                 'type'    => 'checkbox',
-                'title'   => 'offline.mall::lang.components.cart.properties.showProceedToCheckoutButton.title',
+                'title'   => 'winter.mall::lang.components.cart.properties.showProceedToCheckoutButton.title',
                 'default' => 0,
             ],
         ];
@@ -185,7 +185,7 @@ class Cart extends MallComponent
         try {
             $cart->setQuantity($product->id, (int)input('quantity'));
         } catch (OutOfStockException $e) {
-            Flash::error(trans('offline.mall::lang.common.out_of_stock', ['quantity' => $e->product->stock]));
+            Flash::error(trans('winter.mall::lang.common.out_of_stock', ['quantity' => $e->product->stock]));
 
             return;
         } finally {
@@ -226,7 +226,7 @@ class Cart extends MallComponent
      * The user removed a previously applied discount code from the cart.
      *
      * @return array
-     * @throws \October\Rain\Exception\ValidationException
+     * @throws \Winter\Storm\Exception\ValidationException
      */
     public function onRemoveDiscountCode()
     {

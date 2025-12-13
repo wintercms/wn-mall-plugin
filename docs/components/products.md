@@ -135,7 +135,7 @@ perPage = 4
 paginate = 0
 sort = "random"
 ==
-use OFFLINE\Mall\Models\Category;
+use Winter\Mall\Models\Category;
 
 function onStart() {
     // Fetch the category from the product component.

@@ -1,8 +1,8 @@
 <?php Block::put('breadcrumb') ?>
 <ul>
     <li>
-        <a href="<?= Backend::url('offline/mall/products') ?>">
-            <?= e(trans('offline.mall::lang.common.products'))?>
+        <a href="<?= Backend::url('winter/mall/products') ?>">
+            <?= e(trans('winter.mall::lang.common.products'))?>
         </a>
     </li>
     <li><?= e($this->pageTitle) ?></li>
@@ -24,11 +24,11 @@
             </button>
             <div class="header">
                 <i class="icon-warning"></i>
-                <h3><?= e(trans('offline.mall::lang.common.action_required')) ?></h3>
+                <h3><?= e(trans('winter.mall::lang.common.action_required')) ?></h3>
             </div>
             <div class="content">
                 <p>
-                    <?= e(trans('offline.mall::lang.product.missing_category')) ?>
+                    <?= e(trans('winter.mall::lang.product.missing_category')) ?>
                 </p>
             </div>
         </div>
@@ -51,7 +51,7 @@
         </button>
 
         <span class="btn-text">
-                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('offline/mall/products')
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('winter/mall/products')
                     ?>"><?= e
                     (trans('backend::lang.form.cancel')) ?></a>
                 </span>
@@ -61,6 +61,6 @@
 
 <?php else: ?>
 <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-<p><a href="<?= Backend::url('offline/mall/products') ?>" class="btn btn-default"><?= e(trans('backend::lang.form
+<p><a href="<?= Backend::url('winter/mall/products') ?>" class="btn btn-default"><?= e(trans('backend::lang.form
 .return_to_list')) ?></a></p>
 <?php endif ?>

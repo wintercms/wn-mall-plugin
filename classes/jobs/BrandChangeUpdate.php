@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Jobs;
+namespace Winter\Mall\Classes\Jobs;
 
 use Illuminate\Contracts\Queue\Job;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Models\Product;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Models\Product;
 
 class BrandChangeUpdate
 {

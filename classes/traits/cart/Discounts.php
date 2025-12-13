@@ -1,13 +1,13 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Cart;
+namespace Winter\Mall\Classes\Traits\Cart;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Discount;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Discount;
+use Winter\User\Facades\Auth;
 
 trait Discounts
 {
@@ -19,7 +19,7 @@ trait Discounts
      * @param Discount $discount
      * @param int $discountCodeLimit
      *
-     * @throws \October\Rain\Exception\ValidationException
+     * @throws \Winter\Storm\Exception\ValidationException
      * @throws ValidationException
      */
     public function applyDiscount(Discount $discount, int $discountCodeLimit = 0)
@@ -28,7 +28,7 @@ trait Discounts
 
         if (in_array($discount->type, $uniqueDiscountTypes)
             && $this->discounts->where('type', $discount->type)->count() > 0) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.' . $discount->type)]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.' . $discount->type)]);
         }
 
         $previousOrderDiscounts = collect();
@@ -40,23 +40,23 @@ trait Discounts
         }
 
         if ($discountCodeLimit > 0 && $this->discounts->count() >= $discountCodeLimit) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.cart_limit_reached')]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.cart_limit_reached')]);
         }
 
         if ($this->discounts->contains($discount) || $previousOrderDiscounts->contains($discount->id)) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.duplicate')]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.duplicate')]);
         }
 
         if ($discount->valid_from && $discount->valid_from->gte(Carbon::now())) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.not_found')]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.not_found')]);
         }
 
         if ($discount->expires && $discount->expires->lt(Carbon::today())) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.expired')]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.expired')]);
         }
 
         if ($discount->max_number_of_usages !== null && $discount->number_of_usages >= $discount->max_number_of_usages) {
-            throw new ValidationException([trans('offline.mall::lang.discounts.validation.usage_limit_reached')]);
+            throw new ValidationException([trans('winter.mall::lang.discounts.validation.usage_limit_reached')]);
         }
 
         $this->discounts()->save($discount);
@@ -67,7 +67,7 @@ trait Discounts
         $code = strtoupper(trim($code));
         if ($code === '') {
             throw new ValidationException([
-                'code' => trans('offline.mall::lang.discounts.validation.empty'),
+                'code' => trans('winter.mall::lang.discounts.validation.empty'),
             ]);
         }
 
@@ -75,7 +75,7 @@ trait Discounts
             $discount = Discount::isActive()->whereCode($code)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             throw new ValidationException([
-                'code' => trans('offline.mall::lang.discounts.validation.not_found'),
+                'code' => trans('winter.mall::lang.discounts.validation.not_found'),
             ]);
         }
 
@@ -124,7 +124,7 @@ trait Discounts
             });
         } catch (ModelNotFoundException $e) {
             throw new ValidationException([
-                'code' => trans('offline.mall::lang.discounts.validation.not_found'),
+                'code' => trans('winter.mall::lang.discounts.validation.not_found'),
             ]);
         }
     }

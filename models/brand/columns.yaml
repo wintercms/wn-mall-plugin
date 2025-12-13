@@ -1,32 +1,32 @@
 columns:
     sort_order:
-        label: 'offline.mall::lang.common.sort_order'
+        label: 'winter.mall::lang.common.sort_order'
         type: number
         searchable: false
         sortable: true
         invisible: true
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         type: text
         searchable: true
         sortable: true
     description:
-        label: 'offline.mall::lang.product.description'
+        label: 'winter.mall::lang.product.description'
         type: text
         searchable: true
         sortable: true
     website:
-        label: 'offline.mall::lang.common.website'
+        label: 'winter.mall::lang.common.website'
         type: text
         searchable: true
         sortable: true
     created_at:
-        label: 'offline.mall::lang.common.created_at'
+        label: 'winter.mall::lang.common.created_at'
         type: datetime
         invisible: true
         sortable: true
     updated_at:
-        label: 'offline.mall::lang.order.updated'
+        label: 'winter.mall::lang.order.updated'
         type: datetime
         invisible: true
         sortable: true

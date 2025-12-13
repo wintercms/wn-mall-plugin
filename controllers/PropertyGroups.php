@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\RelationController;
 use Backend\Classes\Controller;
@@ -7,8 +7,8 @@ use Backend\Behaviors\ListController;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ReorderController;
 use Flash;
-use OFFLINE\Mall\Classes\Traits\ReorderRelation;
-use OFFLINE\Mall\Models\PropertyGroup;
+use Winter\Mall\Classes\Traits\ReorderRelation;
+use Winter\Mall\Models\PropertyGroup;
 
 class PropertyGroups extends Controller
 {
@@ -27,19 +27,19 @@ class PropertyGroups extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_properties',
+        'winter.mall.manage_properties',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-properties');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-properties');
 
         // Legacy (v1)
         if (!class_exists('System')) {
-            $this->addJs('/plugins/offline/mall/assets/Sortable.js');
+            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
         }
 
-        $this->addJs('/plugins/offline/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/backend.js');
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 /**
  * The MallDependencies component bundles all needed
@@ -14,8 +14,8 @@ class MallDependencies extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.dependencies.details.name',
-            'description' => 'offline.mall::lang.components.dependencies.details.description',
+            'name'        => 'winter.mall::lang.components.dependencies.details.name',
+            'description' => 'winter.mall::lang.components.dependencies.details.description',
         ];
     }
 

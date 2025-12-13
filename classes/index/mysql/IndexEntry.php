@@ -1,13 +1,13 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Index\MySQL;
+namespace Winter\Mall\Classes\Index\MySQL;
 
 
 use Model;
 
 class IndexEntry extends Model
 {
-    public $table = 'offline_mall_index';
+    public $table = 'winter_mall_index';
     public $guarded = ['id'];
     public $timestamps = false;
 

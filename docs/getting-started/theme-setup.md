@@ -32,7 +32,7 @@ description = "Default Layout"
 
 ### `session`
 
-RainLab.Users's `session` component should be placed on every layout that
+Winter.Users's `session` component should be placed on every layout that
 provides shop functionality. This makes sure the user remains logged in while browsing your store.
 
 ```ini{3}
@@ -73,7 +73,7 @@ the `{% framework extras %}` tag.
 
 ### Static pages menu
 
-If you are using the `RainLab.Pages` plugin, you can add the `All mall shop categories` entry to your navigation. 
+If you are using the `Winter.Pages` plugin, you can add the `All mall shop categories` entry to your navigation. 
 
 This will render a tree of all available categories in your theme. 
 

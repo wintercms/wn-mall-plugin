@@ -3,11 +3,11 @@
 # ===================================
 
 taxes:
-    label: 'offline.mall::lang.common.taxes'
+    label: 'winter.mall::lang.common.taxes'
     view:
-        list: $/offline/mall/models/tax/columns.yaml
+        list: $/winter/mall/models/tax/columns.yaml
         toolbarButtons: add|create|remove
     manage:
-        form: $/offline/mall/models/tax/fields.yaml
+        form: $/winter/mall/models/tax/fields.yaml
         recordsPerPage: 10
     deferredBinding: true

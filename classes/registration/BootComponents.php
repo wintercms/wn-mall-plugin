@@ -1,31 +1,31 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
-use OFFLINE\Mall\Components\AddressForm;
-use OFFLINE\Mall\Components\AddressList;
-use OFFLINE\Mall\Components\AddressSelector;
-use OFFLINE\Mall\Components\Cart;
-use OFFLINE\Mall\Components\Checkout;
-use OFFLINE\Mall\Components\CurrencyPicker;
-use OFFLINE\Mall\Components\CustomerProfile;
-use OFFLINE\Mall\Components\DiscountApplier;
-use OFFLINE\Mall\Components\EnhancedEcommerceAnalytics;
-use OFFLINE\Mall\Components\MallDependencies;
-use OFFLINE\Mall\Components\MyAccount;
-use OFFLINE\Mall\Components\OrdersList;
-use OFFLINE\Mall\Components\PaymentMethodSelector;
-use OFFLINE\Mall\Components\Product as ProductComponent;
-use OFFLINE\Mall\Components\ProductReviews;
-use OFFLINE\Mall\Components\Products as ProductsComponent;
-use OFFLINE\Mall\Components\ProductsFilter;
-use OFFLINE\Mall\Components\QuickCheckout;
-use OFFLINE\Mall\Components\ShippingMethodSelector;
-use OFFLINE\Mall\Components\SignUp;
-use OFFLINE\Mall\Components\WishlistButton;
-use OFFLINE\Mall\Components\Wishlists;
-use OFFLINE\Mall\FormWidgets\Price;
-use OFFLINE\Mall\FormWidgets\PropertyFields;
+use Winter\Mall\Components\AddressForm;
+use Winter\Mall\Components\AddressList;
+use Winter\Mall\Components\AddressSelector;
+use Winter\Mall\Components\Cart;
+use Winter\Mall\Components\Checkout;
+use Winter\Mall\Components\CurrencyPicker;
+use Winter\Mall\Components\CustomerProfile;
+use Winter\Mall\Components\DiscountApplier;
+use Winter\Mall\Components\EnhancedEcommerceAnalytics;
+use Winter\Mall\Components\MallDependencies;
+use Winter\Mall\Components\MyAccount;
+use Winter\Mall\Components\OrdersList;
+use Winter\Mall\Components\PaymentMethodSelector;
+use Winter\Mall\Components\Product as ProductComponent;
+use Winter\Mall\Components\ProductReviews;
+use Winter\Mall\Components\Products as ProductsComponent;
+use Winter\Mall\Components\ProductsFilter;
+use Winter\Mall\Components\QuickCheckout;
+use Winter\Mall\Components\ShippingMethodSelector;
+use Winter\Mall\Components\SignUp;
+use Winter\Mall\Components\WishlistButton;
+use Winter\Mall\Components\Wishlists;
+use Winter\Mall\FormWidgets\Price;
+use Winter\Mall\FormWidgets\PropertyFields;
 
 trait BootComponents
 {

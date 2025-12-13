@@ -1,14 +1,14 @@
-name: 'offline.mall::lang.common.category'
-modelClass: OFFLINE\Mall\Models\Category
-form: $/offline/mall/models/category/fields.yaml
-defaultRedirect: offline/mall/categories
+name: 'winter.mall::lang.common.category'
+modelClass: Winter\Mall\Models\Category
+form: $/winter/mall/models/category/fields.yaml
+defaultRedirect: winter/mall/categories
 create:
-    title: 'offline.mall::lang.titles.categories.create'
-    redirect: 'offline/mall/categories/update/:id'
-    redirectClose: offline/mall/categories
+    title: 'winter.mall::lang.titles.categories.create'
+    redirect: 'winter/mall/categories/update/:id'
+    redirectClose: winter/mall/categories
 update:
-    title: 'offline.mall::lang.titles.categories.update'
-    redirect: offline/mall/categories
-    redirectClose: offline/mall/categories
+    title: 'winter.mall::lang.titles.categories.update'
+    redirect: winter/mall/categories
+    redirectClose: winter/mall/categories
 preview:
-    title: 'offline.mall::lang.titles.categories.preview'
+    title: 'winter.mall::lang.titles.categories.preview'

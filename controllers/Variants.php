@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -16,6 +16,6 @@ class Variants extends Controller
     public $formConfig = 'config_form.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_products',
+        'winter.mall.manage_products',
     ];
 }

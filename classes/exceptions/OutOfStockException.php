@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Exceptions;
+namespace Winter\Mall\Classes\Exceptions;
 
 class OutOfStockException extends \RuntimeException
 {

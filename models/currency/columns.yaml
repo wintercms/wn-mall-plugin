@@ -1,25 +1,25 @@
 columns:
     sort_order:
-        label: 'offline.mall::lang.common.sort_order'
+        label: 'winter.mall::lang.common.sort_order'
         type: number
         searchable: false
         sortable: true
         invisible: true
     code:
-        label: 'offline.mall::lang.currency_settings.currency_code'
+        label: 'winter.mall::lang.currency_settings.currency_code'
         type: text
         searchable: true
     symbol:
-        label: 'offline.mall::lang.currency_settings.currency_symbol'
+        label: 'winter.mall::lang.currency_settings.currency_symbol'
         type: text
         searchable: true
     rate:
-        label: 'offline.mall::lang.currency_settings.currency_rate'
+        label: 'winter.mall::lang.currency_settings.currency_rate'
         type: number
     decimals:
-        label: 'offline.mall::lang.currency_settings.currency_decimals'
+        label: 'winter.mall::lang.currency_settings.currency_decimals'
         type: number
     is_default:
-        label: 'offline.mall::lang.currency_settings.is_default'
+        label: 'winter.mall::lang.currency_settings.is_default'
         type: switch
         searchable: true

@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Stats;
+namespace Winter\Mall\Classes\Stats;
 
 
 use DB;
 use Illuminate\Support\Carbon;
-use OFFLINE\Mall\Classes\PaymentState\PaidState;
-use OFFLINE\Mall\Classes\PaymentState\PaymentState;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\OrderState;
+use Winter\Mall\Classes\PaymentState\PaidState;
+use Winter\Mall\Classes\PaymentState\PaymentState;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\OrderState;
 
 class OrdersStats
 {

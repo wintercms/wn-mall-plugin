@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\CustomerGroup;
-use RainLab\Location\Models\Country;
-use RainLab\Location\Models\State;
-use RainLab\User\Models\User;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Location\Models\Country;
+use Winter\Location\Models\State;
+use Winter\User\Models\User;
 
 class CustomerTableSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class CustomerTableSeeder extends Seeder
         $user->password                       = '12345678';
         $user->password_confirmation          = '12345678';
         $user->is_activated                   = true;
-        $user->offline_mall_customer_group_id = $customerGroupId;
+        $user->winter_mall_customer_group_id = $customerGroupId;
         $user->save();
 
         $customer            = new Customer();

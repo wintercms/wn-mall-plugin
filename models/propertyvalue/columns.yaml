@@ -1,9 +1,9 @@
 columns:
     property:
-        label: 'offline.mall::lang.common.property'
+        label: 'winter.mall::lang.common.property'
         type: text
         searchable: true
     value:
-        label: 'offline.mall::lang.product.property_value'
+        label: 'winter.mall::lang.product.property_value'
         type: text
         searchable: true

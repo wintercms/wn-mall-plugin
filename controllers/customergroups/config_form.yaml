@@ -1,12 +1,12 @@
-name: 'offline.mall::lang.common.customer_groups'
-modelClass: OFFLINE\Mall\Models\CustomerGroup
-form: $/offline/mall/models/customergroup/fields.yaml
-defaultRedirect: offline/mall/customergroups
+name: 'winter.mall::lang.common.customer_groups'
+modelClass: Winter\Mall\Models\CustomerGroup
+form: $/winter/mall/models/customergroup/fields.yaml
+defaultRedirect: winter/mall/customergroups
 create:
-    title: 'offline.mall::lang.titles.customer_groups.create'
-    redirect: 'offline/mall/customergroups/update/:id'
-    redirectClose: offline/mall/customergroups
+    title: 'winter.mall::lang.titles.customer_groups.create'
+    redirect: 'winter/mall/customergroups/update/:id'
+    redirectClose: winter/mall/customergroups
 update:
-    title: 'offline.mall::lang.titles.customer_groups.update'
-    redirect: offline/mall/customergroups
-    redirectClose: offline/mall/customergroups
+    title: 'winter.mall::lang.titles.customer_groups.update'
+    redirect: winter/mall/customergroups
+    redirectClose: winter/mall/customergroups

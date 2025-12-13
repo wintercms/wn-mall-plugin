@@ -1,15 +1,15 @@
-subject = "{{ 'offline.mall::mail.payment.failed.subject' | trans() }}"
+subject = "{{ 'winter.mall::mail.payment.failed.subject' | trans() }}"
 description = "Sent when a payment for an order fails"
 ==
 
-{{ 'offline.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
+{{ 'winter.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
 
-{{ 'offline.mall::mail.payment.failed.message' | trans({number: order.order_number}) }}
+{{ 'winter.mall::mail.payment.failed.message' | trans({number: order.order_number}) }}
 
-{{ 'offline.mall::mail.payment.failed.payment_advice' | trans() }}
+{{ 'winter.mall::mail.payment.failed.payment_advice' | trans() }}
 
-{{ 'offline.mall::mail.payment.failed.support' | trans() }}
+{{ 'winter.mall::mail.payment.failed.support' | trans() }}
 
 {% partial 'button' url=account_url type='primary' body %}
-    {{ 'offline.mall::mail.common.view_order_status_online' | trans() }}
+    {{ 'winter.mall::mail.common.view_order_status_online' | trans() }}
 {% endpartial %}

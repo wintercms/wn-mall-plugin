@@ -1,16 +1,16 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Jobs;
+namespace Winter\Mall\Classes\Jobs;
 
 use Cms\Classes\Controller;
 use DB;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Support\Facades\Mail;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Notification;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\OrderProduct;
-use OFFLINE\Mall\Models\ProductFileGrant;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Notification;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\OrderProduct;
+use Winter\Mall\Models\ProductFileGrant;
 
 /**
  * This Job generates ProductFileGrants for each purchased product.
@@ -52,7 +52,7 @@ class SendVirtualProductFiles
             });
 
             // If the file notification has been disabled exit here.
-            if ( ! $this->enabledNotifications->has('offline.mall::product.file_download')) {
+            if ( ! $this->enabledNotifications->has('winter.mall::product.file_download')) {
                 return;
             }
 
@@ -69,7 +69,7 @@ class SendVirtualProductFiles
             ];
 
             Mail::send(
-                $this->enabledNotifications->get('offline.mall::product.file_download'),
+                $this->enabledNotifications->get('winter.mall::product.file_download'),
                 $data,
                 function ($message) use ($order) {
                     $message->to($order->customer->user->email, $order->customer->name);

@@ -1,7 +1,7 @@
 <?php return [
     'plugin' => [
         'name' => 'Mall',
-        'description' => 'Solución de E-commerce para October CMS',
+        'description' => 'Solución de E-commerce para Winter CMS',
     ],
     'titles' => [
         'products' => [

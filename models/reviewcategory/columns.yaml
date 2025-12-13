@@ -1,21 +1,21 @@
 columns:
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         type: text
         searchable: true
         sortable: true
     slug:
-        label: 'offline.mall::lang.common.slug'
+        label: 'winter.mall::lang.common.slug'
         type: text
         searchable: true
         sortable: true
     created_at:
-        label: 'offline.mall::lang.common.created_at'
+        label: 'winter.mall::lang.common.created_at'
         type: datetime
         invisible: true
         sortable: true
     updated_at:
-        label: 'offline.mall::lang.common.updated_at'
+        label: 'winter.mall::lang.common.updated_at'
         type: datetime
         invisible: true
         sortable: true

@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Demo\Products;
+namespace Winter\Mall\Classes\Demo\Products;
 
-use OFFLINE\Mall\Models\ProductPrice;
+use Winter\Mall\Models\ProductPrice;
 
 class Jersey extends DemoProduct
 {

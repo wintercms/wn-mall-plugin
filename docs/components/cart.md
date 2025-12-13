@@ -94,8 +94,8 @@ url = "/cart"
 [cart]
 ==
 <?php
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\ShippingMethod;
 
 function onInit() {
     // Set this to your free shipping method

@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 
 class CustomFieldValue extends Model
 {
@@ -11,10 +11,10 @@ class CustomFieldValue extends Model
     use PriceAccessors;
 
     public $rules = [
-        'cart_product_id' => 'exists:offline_mall_cart_products,id',
-        'custom_field_id' => 'exists:offline_mall_custom_fields,id',
+        'cart_product_id' => 'exists:winter_mall_cart_products,id',
+        'custom_field_id' => 'exists:winter_mall_custom_fields,id',
     ];
-    public $table = 'offline_mall_cart_custom_field_value';
+    public $table = 'winter_mall_cart_custom_field_value';
     public $with = ['custom_field_option', 'prices'];
     public $belongsTo = [
         'cart_product'        => CartProduct::class,

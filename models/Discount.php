@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Carbon\Carbon;
 use Model;
-use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 
 class Discount extends Model
 {
@@ -26,14 +26,14 @@ class Discount extends Model
         'types'                                => 'in:fixed_amount,rate,shipping',
         'product'                              => 'required_if:trigger,product',
         'customer_group'                       => 'required_if:trigger,customer_group',
-        'code'                                 => 'nullable|unique:offline_mall_discounts,code',
+        'code'                                 => 'nullable|unique:winter_mall_discounts,code',
         'type'                                 => 'in:fixed_amount,rate,shipping',
         'rate'                                 => 'required_if:type,rate|nullable|numeric',
         'shipping_description'                 => 'required_if:type,shipping',
         'shipping_guaranteed_days_to_delivery' => 'nullable|numeric',
     ];
     public $with = ['shipping_prices', 'amounts', 'totals_to_reach'];
-    public $table = 'offline_mall_discounts';
+    public $table = 'winter_mall_discounts';
     public $dates = ['valid_from', 'expires'];
     public $nullable = ['max_number_of_usages'];
     public $casts = [
@@ -66,11 +66,11 @@ class Discount extends Model
         'payment_method' => [PaymentMethod::class],
     ];
     public $belongsToMany = [
-        'carts' => [Cart::class, 'table' => 'offline_mall_cart_discount'],
-        'shipping_methods' => [ShippingMethod::class, 'table' => 'offline_mall_shipping_method_discount']
+        'carts' => [Cart::class, 'table' => 'winter_mall_cart_discount'],
+        'shipping_methods' => [ShippingMethod::class, 'table' => 'winter_mall_shipping_method_discount']
     ];
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
         'shipping_description',
@@ -121,7 +121,7 @@ class Discount extends Model
         ];
 
         return collect($keys)->mapWithKeys(function ($key) {
-            return [$key => trans('offline.mall::lang.discounts.types.' . $key)];
+            return [$key => trans('winter.mall::lang.discounts.types.' . $key)];
         });
     }
 
@@ -137,7 +137,7 @@ class Discount extends Model
         ];
 
         return collect($keys)->mapWithKeys(function ($key) {
-            return [$key => trans('offline.mall::lang.discounts.triggers.' . $key)];
+            return [$key => trans('winter.mall::lang.discounts.triggers.' . $key)];
         });
     }
 
@@ -158,6 +158,6 @@ class Discount extends Model
 
     public function getProductIdOptions()
     {
-        return [null => trans('offline.mall::lang.common.none')] + Product::get()->pluck('name', 'id')->toArray();
+        return [null => trans('winter.mall::lang.common.none')] + Product::get()->pluck('name', 'id')->toArray();
     }
 }

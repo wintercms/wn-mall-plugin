@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Models;
+namespace Winter\Mall\Models;
 
 use Model;
 use Session;
@@ -8,8 +8,8 @@ use Session;
 class FeedSettings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'offline_mall_settings';
-    public $settingsFields = '$/offline/mall/models/settings/fields_feeds.yaml';
+    public $settingsCode = 'winter_mall_settings';
+    public $settingsFields = '$/winter/mall/models/settings/fields_feeds.yaml';
 
     public function filterFields()
     {

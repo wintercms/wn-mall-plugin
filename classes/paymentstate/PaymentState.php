@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\PaymentState;
+namespace Winter\Mall\Classes\PaymentState;
 
 abstract class PaymentState
 {
@@ -11,7 +11,7 @@ abstract class PaymentState
         $parts = explode('\\', get_called_class());
         $state = snake_case($parts[count($parts) - 1]);
 
-        return trans('offline.mall::lang.order.payment_states.' . $state);
+        return trans('winter.mall::lang.order.payment_states.' . $state);
     }
 
     public static function color(): string

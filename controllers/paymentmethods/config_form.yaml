@@ -1,12 +1,12 @@
 name: PaymentMethods
-modelClass: OFFLINE\Mall\Models\PaymentMethod
-form: $/offline/mall/models/paymentmethod/fields.yaml
-defaultRedirect: offline/mall/paymentmethods
+modelClass: Winter\Mall\Models\PaymentMethod
+form: $/winter/mall/models/paymentmethod/fields.yaml
+defaultRedirect: winter/mall/paymentmethods
 create:
-    title: 'offline.mall::lang.titles.payment_methods.create'
-    redirect: 'offline/mall/paymentmethods/update/:id'
-    redirectClose: offline/mall/paymentmethods
+    title: 'winter.mall::lang.titles.payment_methods.create'
+    redirect: 'winter/mall/paymentmethods/update/:id'
+    redirectClose: winter/mall/paymentmethods
 update:
-    title: 'offline.mall::lang.titles.payment_methods.edit'
-    redirect: offline/mall/paymentmethods
-    redirectClose: offline/mall/paymentmethods
+    title: 'winter.mall::lang.titles.payment_methods.edit'
+    redirect: winter/mall/paymentmethods
+    redirectClose: winter/mall/paymentmethods

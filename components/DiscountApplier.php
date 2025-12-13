@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Models\Cart;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Models\Cart;
 
 /**
  * The DiscountApplier component allow the user to enter a discount code.
@@ -18,8 +18,8 @@ class DiscountApplier extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.discountApplier.details.name',
-            'description' => 'offline.mall::lang.components.discountApplier.details.description',
+            'name'        => 'winter.mall::lang.components.discountApplier.details.name',
+            'description' => 'winter.mall::lang.components.discountApplier.details.description',
         ];
     }
 
@@ -33,8 +33,8 @@ class DiscountApplier extends MallComponent
         return [
             'discountCodeLimit' => [
                 'type'    => 'string',
-                'title'   => 'offline.mall::lang.components.cart.properties.discountCodeLimit.title',
-                'description' => 'offline.mall::lang.components.cart.properties.discountCodeLimit.description',
+                'title'   => 'winter.mall::lang.components.cart.properties.discountCodeLimit.title',
+                'description' => 'winter.mall::lang.components.cart.properties.discountCodeLimit.description',
                 'default' => 0,
             ],
         ];
@@ -60,6 +60,6 @@ class DiscountApplier extends MallComponent
             ]);
         }
 
-        Flash::success(trans('offline.mall::lang.components.discountApplier.discount_applied'));
+        Flash::success(trans('winter.mall::lang.components.discountApplier.discount_applied'));
     }
 }

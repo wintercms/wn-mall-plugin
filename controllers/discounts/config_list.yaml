@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.discounts'
-modelClass: OFFLINE\Mall\Models\Discount
-list: $/offline/mall/models/discount/columns.yaml
-recordUrl: 'offline/mall/discounts/update/:id'
+title: 'winter.mall::lang.common.discounts'
+modelClass: Winter\Mall\Models\Discount
+list: $/winter/mall/models/discount/columns.yaml
+recordUrl: 'winter/mall/discounts/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

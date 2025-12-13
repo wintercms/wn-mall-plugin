@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Utils;
+namespace Winter\Mall\Classes\Utils;
 
-use OFFLINE\Mall\Models\Currency;
+use Winter\Mall\Models\Currency;
 
 interface Money
 {

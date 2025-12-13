@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.customer_groups'
-modelClass: OFFLINE\Mall\Models\CustomerGroup
-list: $/offline/mall/models/customergroup/columns.yaml
-recordUrl: 'offline/mall/customergroups/update/:id'
+title: 'winter.mall::lang.common.customer_groups'
+modelClass: Winter\Mall\Models\CustomerGroup
+list: $/winter/mall/models/customergroup/columns.yaml
+recordUrl: 'winter/mall/customergroups/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

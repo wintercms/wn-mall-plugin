@@ -1,15 +1,15 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Cart;
+namespace Winter\Mall\Classes\Traits\Cart;
 
 use DB;
 use Event;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Variant;
 
 trait CartActions
 {

@@ -1,4 +1,4 @@
-title: 'offline.mall::lang.common.categories'
-modelClass: OFFLINE\Mall\Models\Category
+title: 'winter.mall::lang.common.categories'
+modelClass: Winter\Mall\Models\Category
 toolbar:
     buttons: reorder_toolbar

@@ -1,7 +1,7 @@
 title: Currencies
-modelClass: OFFLINE\Mall\Models\Currency
-list: $/offline/mall/models/currency/columns.yaml
-recordUrl: 'offline/mall/currencies/update/:id'
+modelClass: Winter\Mall\Models\Currency
+list: $/winter/mall/models/currency/columns.yaml
+recordUrl: 'winter/mall/currencies/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

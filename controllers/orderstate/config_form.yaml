@@ -1,12 +1,12 @@
-name: 'offline.mall::lang.common.order_states'
-modelClass: OFFLINE\Mall\Models\OrderState
-form: $/offline/mall/models/orderstate/fields.yaml
-defaultRedirect: offline/mall/orderstate
+name: 'winter.mall::lang.common.order_states'
+modelClass: Winter\Mall\Models\OrderState
+form: $/winter/mall/models/orderstate/fields.yaml
+defaultRedirect: winter/mall/orderstate
 create:
-    title: 'offline.mall::lang.titles.order_states.create'
-    redirect: 'offline/mall/orderstate/update/:id'
-    redirectClose: offline/mall/orderstate
+    title: 'winter.mall::lang.titles.order_states.create'
+    redirect: 'winter/mall/orderstate/update/:id'
+    redirectClose: winter/mall/orderstate
 update:
-    title: 'offline.mall::lang.titles.order_states.edit'
-    redirect: offline/mall/orderstate
-    redirectClose: offline/mall/orderstate
+    title: 'winter.mall::lang.titles.order_states.edit'
+    redirect: winter/mall/orderstate
+    redirectClose: winter/mall/orderstate

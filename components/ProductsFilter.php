@@ -1,20 +1,20 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\CategoryFilter\Filter;
-use OFFLINE\Mall\Classes\CategoryFilter\QueryString;
-use OFFLINE\Mall\Classes\CategoryFilter\RangeFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SetFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
-use OFFLINE\Mall\Classes\Queries\PriceRangeQuery;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\Brand;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyGroup;
+use Winter\Mall\Classes\CategoryFilter\Filter;
+use Winter\Mall\Classes\CategoryFilter\QueryString;
+use Winter\Mall\Classes\CategoryFilter\RangeFilter;
+use Winter\Mall\Classes\CategoryFilter\SetFilter;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
+use Winter\Mall\Classes\Queries\PriceRangeQuery;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\Brand;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyGroup;
 use Session;
 use Validator;
 
@@ -162,8 +162,8 @@ class ProductsFilter extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.productsFilter.details.name',
-            'description' => 'offline.mall::lang.components.productsFilter.details.description',
+            'name'        => 'winter.mall::lang.components.productsFilter.details.name',
+            'description' => 'winter.mall::lang.components.productsFilter.details.description',
         ];
     }
 
@@ -176,40 +176,40 @@ class ProductsFilter extends MallComponent
     {
         return [
             'category'            => [
-                'title'   => 'offline.mall::lang.common.category',
+                'title'   => 'winter.mall::lang.common.category',
                 'default' => null,
                 'type'    => 'dropdown',
             ],
             'includeChildren'     => [
-                'title'       => 'offline.mall::lang.components.productsFilter.properties.includeChildren.title',
-                'description' => 'offline.mall::lang.components.productsFilter.properties.includeChildren.description',
+                'title'       => 'winter.mall::lang.components.productsFilter.properties.includeChildren.title',
+                'description' => 'winter.mall::lang.components.productsFilter.properties.includeChildren.description',
                 'default'     => null,
                 'type'        => 'checkbox',
             ],
             'includeVariants'     => [
-                'title'       => 'offline.mall::lang.components.productsFilter.properties.includeVariants.title',
-                'description' => 'offline.mall::lang.components.productsFilter.properties.includeVariants.description',
+                'title'       => 'winter.mall::lang.components.productsFilter.properties.includeVariants.title',
+                'description' => 'winter.mall::lang.components.productsFilter.properties.includeVariants.description',
                 'default'     => null,
                 'type'        => 'checkbox',
             ],
             'showPriceFilter'     => [
-                'title'   => 'offline.mall::lang.components.productsFilter.properties.showPriceFilter.title',
+                'title'   => 'winter.mall::lang.components.productsFilter.properties.showPriceFilter.title',
                 'default' => '1',
                 'type'    => 'checkbox',
             ],
             'showBrandFilter'     => [
-                'title'   => 'offline.mall::lang.components.productsFilter.properties.showBrandFilter.title',
+                'title'   => 'winter.mall::lang.components.productsFilter.properties.showBrandFilter.title',
                 'default' => '1',
                 'type'    => 'checkbox',
             ],
             'showOnSaleFilter'    => [
-                'title'   => 'offline.mall::lang.components.productsFilter.properties.showOnSaleFilter.title',
+                'title'   => 'winter.mall::lang.components.productsFilter.properties.showOnSaleFilter.title',
                 'default' => '0',
                 'type'    => 'checkbox',
             ],
             'includeSliderAssets' => [
-                'title'       => 'offline.mall::lang.components.productsFilter.properties.includeSliderAssets.title',
-                'description' => 'offline.mall::lang.components.productsFilter.properties.includeSliderAssets.description',
+                'title'       => 'winter.mall::lang.components.productsFilter.properties.includeSliderAssets.title',
+                'description' => 'winter.mall::lang.components.productsFilter.properties.includeSliderAssets.description',
                 'default'     => '1',
                 'type'        => 'checkbox',
             ],
@@ -223,7 +223,7 @@ class ProductsFilter extends MallComponent
      */
     public function getCategoryOptions()
     {
-        return [':slug' => trans('offline.mall::lang.components.category.properties.use_url')]
+        return [':slug' => trans('winter.mall::lang.components.category.properties.use_url')]
             + Category::get()->pluck('name', 'id')->toArray();
     }
 
@@ -283,7 +283,7 @@ class ProductsFilter extends MallComponent
         $this->setVar('propertyGroups', $this->getPropertyGroups());
         $this->setProps();
 
-        $nullOption = [null => trans('offline.mall::frontend.select')];
+        $nullOption = [null => trans('winter.mall::frontend.select')];
 
         $this->setVar('filter', $this->getFilter());
         $this->setVar('sortOrder', $this->getSortOrder());
@@ -385,16 +385,16 @@ class ProductsFilter extends MallComponent
      */
     protected function setBrands()
     {
-        $brands = \DB::table('offline_mall_products')
-                     ->whereIn('offline_mall_category_product.category_id', $this->categories->pluck('id'))
-                     ->select('offline_mall_brands.*')
+        $brands = \DB::table('winter_mall_products')
+                     ->whereIn('winter_mall_category_product.category_id', $this->categories->pluck('id'))
+                     ->select('winter_mall_brands.*')
                      ->distinct()
-                     ->join('offline_mall_brands', 'offline_mall_products.brand_id', '=', 'offline_mall_brands.id')
+                     ->join('winter_mall_brands', 'winter_mall_products.brand_id', '=', 'winter_mall_brands.id')
                      ->join(
-                         'offline_mall_category_product',
-                         'offline_mall_products.id', '=', 'offline_mall_category_product.product_id'
+                         'winter_mall_category_product',
+                         'winter_mall_products.id', '=', 'winter_mall_category_product.product_id'
                      )
-                     ->orderBy('offline_mall_brands.name')
+                     ->orderBy('winter_mall_brands.name')
                      ->get()
                      ->toArray();
 

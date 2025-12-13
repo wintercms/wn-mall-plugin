@@ -1,5 +1,5 @@
 <?php
-if($this->vars['formModel'] instanceof \OFFLINE\Mall\Models\Review) {
+if($this->vars['formModel'] instanceof \Winter\Mall\Models\Review) {
     $id = $this->vars['formModel']->id;
     $handler = 'onApprove';
     $label = 'approve_next';
@@ -16,5 +16,5 @@ if($this->vars['formModel'] instanceof \OFFLINE\Mall\Models\Review) {
         data-request-redirect
         data-request-flash
         data-attach-loading>
-    <?= e(trans('offline.mall::lang.reviews.' . $label)) ?>
+    <?= e(trans('winter.mall::lang.reviews.' . $label)) ?>
 </button>

@@ -2,7 +2,7 @@
 return [
     'plugin' => [
         'name' => 'Шоп',
-        'description' => 'E-commerce решение для October CMS',
+        'description' => 'E-commerce решение для Winter CMS',
     ],
     'titles' => [
         'products' => [

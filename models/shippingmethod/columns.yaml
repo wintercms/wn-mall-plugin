@@ -1,22 +1,22 @@
 columns:
     sort_order:
-        label: 'offline.mall::lang.common.sort_order'
+        label: 'winter.mall::lang.common.sort_order'
         type: number
         searchable: false
         sortable: true
         invisible: true
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         type: text
         searchable: true
         sortable: true
     price:
-        label: 'offline.mall::lang.product.price'
+        label: 'winter.mall::lang.product.price'
         type: partial
-        path: $/offline/mall/models/shippingmethod/_price.htm
+        path: $/winter/mall/models/shippingmethod/_price.htm
         searchable: true
         sortable: true
     guaranteed_delivery_days:
-        label: 'offline.mall::lang.discounts.shipping_guaranteed_days_to_delivery'
+        label: 'winter.mall::lang.discounts.shipping_guaranteed_days_to_delivery'
         type: number
         sortable: true

@@ -1,19 +1,19 @@
-subject = "{{ 'offline.mall::mail.customer.created.subject' | trans({firstname: user.customer.firstname, lastname: user.customer.lastname}) }}"
+subject = "{{ 'winter.mall::mail.customer.created.subject' | trans({firstname: user.customer.firstname, lastname: user.customer.lastname}) }}"
 description = "Sent after a customer signs up"
 ==
 
-{{ 'offline.mall::mail.common.hello' | trans({firstname: user.customer.firstname, lastname: user.customer.lastname}) }}
+{{ 'winter.mall::mail.common.hello' | trans({firstname: user.customer.firstname, lastname: user.customer.lastname}) }}
 
 {% if confirm %}
-    {{ 'offline.mall::mail.customer.created.confirm_mail' | trans() }}
+    {{ 'winter.mall::mail.customer.created.confirm_mail' | trans() }}
 {% else %}
-    {{ 'offline.mall::mail.customer.created.message' | trans({email: user.email}) }}
+    {{ 'winter.mall::mail.customer.created.message' | trans({email: user.email}) }}
 {% endif %}
 
-{{ 'offline.mall::mail.customer.created.possibilities' | trans() }}
+{{ 'winter.mall::mail.customer.created.possibilities' | trans() }}
 
 {% partial 'button' url=(confirm ? confirm_url : app_url) type='primary' body %}
     {{ confirm
-       ? 'offline.mall::mail.customer.created.button.confirm' | trans()
-       : 'offline.mall::mail.customer.created.button.visit_store' | trans() }}
+       ? 'winter.mall::mail.customer.created.button.confirm' | trans()
+       : 'winter.mall::mail.customer.created.button.visit_store' | trans() }}
 {% endpartial %}

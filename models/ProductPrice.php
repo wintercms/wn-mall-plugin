@@ -1,14 +1,14 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
-use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Storm\Database\Traits\Validation;
 
 class ProductPrice extends Price
 {
     use Validation;
     use Nullable;
 
-    public $table = 'offline_mall_product_prices';
+    public $table = 'winter_mall_product_prices';
     public $nullable = ['price', 'variant_id'];
     protected $touches = ['product', 'variant'];
     // Remove parent relation

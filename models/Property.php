@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Queue;
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Jobs\PropertyRemovalUpdate;
-use OFFLINE\Mall\Classes\Queries\UniquePropertyValuesInCategoriesQuery;
-use OFFLINE\Mall\Classes\Traits\HashIds;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Jobs\PropertyRemovalUpdate;
+use Winter\Mall\Classes\Queries\UniquePropertyValuesInCategoriesQuery;
+use Winter\Mall\Classes\Traits\HashIds;
 
 class Property extends Model
 {
@@ -25,8 +25,8 @@ class Property extends Model
     public $slugs = [
         'slug' => 'name',
     ];
-    public $table = 'offline_mall_properties';
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_properties';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
         'unit',
@@ -45,7 +45,7 @@ class Property extends Model
     public $belongsToMany = [
         'property_groups' => [
             PropertyGroup::class,
-            'table'      => 'offline_mall_property_property_group',
+            'table'      => 'winter_mall_property_property_group',
             'key'        => 'property_id',
             'otherKey'   => 'property_group_id',
             'pivot'      => ['use_for_variants', 'filter_type', 'sort_order'],
@@ -60,7 +60,7 @@ class Property extends Model
 
             Product
                 ::whereHas('categories', function ($q) use ($categories) {
-                    $q->whereIn('offline_mall_category_product.category_id', $categories->pluck('id'));
+                    $q->whereIn('winter_mall_category_product.category_id', $categories->pluck('id'));
                 })
                 ->where('group_by_property_id', $this->id)
                 ->update(['group_by_property_id' => null]);
@@ -116,19 +116,19 @@ class Property extends Model
     public function getTypeOptions()
     {
         return [
-            'text'       => trans('offline.mall::lang.custom_field_options.text'),
-            'integer'    => trans('offline.mall::lang.custom_field_options.integer'),
-            'float'      => trans('offline.mall::lang.custom_field_options.float'),
-            'textarea'   => trans('offline.mall::lang.custom_field_options.textarea'),
-            'richeditor' => trans('offline.mall::lang.custom_field_options.richeditor'),
-            'dropdown'   => trans('offline.mall::lang.custom_field_options.dropdown'),
-            'checkbox'   => trans('offline.mall::lang.custom_field_options.checkbox'),
-            'checkboxlist'   => trans('offline.mall::lang.custom_field_options.checkboxlist'),
-            'color'      => trans('offline.mall::lang.custom_field_options.color'),
-//            'image'    => trans('offline.mall::lang.custom_field_options.image'),
-            'datetime'   => trans('offline.mall::lang.custom_field_options.datetime'),
-            'date'       => trans('offline.mall::lang.custom_field_options.date'),
-            'switch'     => trans('offline.mall::lang.custom_field_options.switch'),
+            'text'       => trans('winter.mall::lang.custom_field_options.text'),
+            'integer'    => trans('winter.mall::lang.custom_field_options.integer'),
+            'float'      => trans('winter.mall::lang.custom_field_options.float'),
+            'textarea'   => trans('winter.mall::lang.custom_field_options.textarea'),
+            'richeditor' => trans('winter.mall::lang.custom_field_options.richeditor'),
+            'dropdown'   => trans('winter.mall::lang.custom_field_options.dropdown'),
+            'checkbox'   => trans('winter.mall::lang.custom_field_options.checkbox'),
+            'checkboxlist'   => trans('winter.mall::lang.custom_field_options.checkboxlist'),
+            'color'      => trans('winter.mall::lang.custom_field_options.color'),
+//            'image'    => trans('winter.mall::lang.custom_field_options.image'),
+            'datetime'   => trans('winter.mall::lang.custom_field_options.datetime'),
+            'date'       => trans('winter.mall::lang.custom_field_options.date'),
+            'switch'     => trans('winter.mall::lang.custom_field_options.switch'),
         ];
     }
 }

@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
 use DB;
 
 class PriceCategory extends Model
@@ -14,8 +14,8 @@ class PriceCategory extends Model
 
     const OLD_PRICE_CATEGORY_ID = 1;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
-    public $table = 'offline_mall_price_categories';
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+    public $table = 'winter_mall_price_categories';
     public $translatable = ['name'];
     public $rules = [
         'name' => 'required',
@@ -34,6 +34,6 @@ class PriceCategory extends Model
 
     public function afterDelete()
     {
-        DB::table('offline_mall_prices')->where('price_category_id', $this->id)->delete();
+        DB::table('winter_mall_prices')->where('price_category_id', $this->id)->delete();
     }
 }

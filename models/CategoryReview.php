@@ -1,17 +1,17 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Validation;
 
 class CategoryReview extends Model
 {
     use Validation;
 
-    public $table = 'offline_mall_category_reviews';
+    public $table = 'winter_mall_category_reviews';
     public $rules = [
         'rating'             => 'required|between:1,5',
-        'review_id'          => 'required|exists:offline_mall_reviews,id',
-        'review_category_id' => 'nullable|exists:offline_mall_review_categories,id',
+        'review_id'          => 'required|exists:winter_mall_reviews,id',
+        'review_category_id' => 'nullable|exists:winter_mall_review_categories,id',
     ];
     public $fillable = [
         'review_id',

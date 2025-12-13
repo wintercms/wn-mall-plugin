@@ -1,46 +1,46 @@
-<?php namespace OFFLINE\Mall\Console;
+<?php namespace Winter\Mall\Console;
 
 use DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use OFFLINE\Mall\Classes\Demo\Products\Cruiser1000;
-use OFFLINE\Mall\Classes\Demo\Products\Cruiser1500;
-use OFFLINE\Mall\Classes\Demo\Products\Cruiser3000;
-use OFFLINE\Mall\Classes\Demo\Products\Cruiser3500;
-use OFFLINE\Mall\Classes\Demo\Products\Cruiser5000;
-use OFFLINE\Mall\Classes\Demo\Products\GiftCard100;
-use OFFLINE\Mall\Classes\Demo\Products\GiftCard200;
-use OFFLINE\Mall\Classes\Demo\Products\GiftCard50;
-use OFFLINE\Mall\Classes\Demo\Products\Jersey;
-use OFFLINE\Mall\Classes\Demo\Products\RedShirt;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\Noop;
-use OFFLINE\Mall\Classes\Index\ProductEntry;
-use OFFLINE\Mall\Classes\Index\VariantEntry;
-use OFFLINE\Mall\Models\Brand;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyGroup;
-use OFFLINE\Mall\Models\ReviewCategory;
-use OFFLINE\Mall\Models\Service;
-use OFFLINE\Mall\Models\ServiceOption;
-use OFFLINE\Mall\Models\Tax;
+use Winter\Mall\Classes\Demo\Products\Cruiser1000;
+use Winter\Mall\Classes\Demo\Products\Cruiser1500;
+use Winter\Mall\Classes\Demo\Products\Cruiser3000;
+use Winter\Mall\Classes\Demo\Products\Cruiser3500;
+use Winter\Mall\Classes\Demo\Products\Cruiser5000;
+use Winter\Mall\Classes\Demo\Products\GiftCard100;
+use Winter\Mall\Classes\Demo\Products\GiftCard200;
+use Winter\Mall\Classes\Demo\Products\GiftCard50;
+use Winter\Mall\Classes\Demo\Products\Jersey;
+use Winter\Mall\Classes\Demo\Products\RedShirt;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\Noop;
+use Winter\Mall\Classes\Index\ProductEntry;
+use Winter\Mall\Classes\Index\VariantEntry;
+use Winter\Mall\Models\Brand;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyGroup;
+use Winter\Mall\Models\ReviewCategory;
+use Winter\Mall\Models\Service;
+use Winter\Mall\Models\ServiceOption;
+use Winter\Mall\Models\Tax;
 use Symfony\Component\Console\Input\InputOption;
 
 class SeedDemoData extends Command
 {
     protected $name = 'mall:seed-demo';
-    protected $description = 'Import OFFLINE.Mall demo data';
+    protected $description = 'Import Winter.Mall demo data';
 
     public $bikePropertyGroups = [];
     public $clothingPropertyGroups = [];
 
     public function handle()
     {
-        $question = 'All existing OFFLINE.Mall data will be erased. Do you want to continue?';
+        $question = 'All existing Winter.Mall data will be erased. Do you want to continue?';
         if ( ! $this->option('force') && ! $this->output->confirm($question, false)) {
             return 0;
         }
@@ -98,15 +98,15 @@ class SeedDemoData extends Command
 
         // October 2.0
         if (class_exists(\Editor\ServiceProvider::class)) {
-            Artisan::call('plugin:refresh', ['name' => 'OFFLINE.Mall', '--force' => true]);
+            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall', '--force' => true]);
         } else {
-            Artisan::call('plugin:refresh', ['name' => 'OFFLINE.Mall']);
+            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall']);
         }
 
         Artisan::call('cache:clear');
 
         DB::table('system_files')
-          ->where('attachment_type', 'LIKE', 'OFFLINE%Mall%')
+          ->where('attachment_type', 'LIKE', 'Winter%Mall%')
           ->orWhere('attachment_type', 'LIKE', 'mall.%')
           ->delete();
 
@@ -156,8 +156,8 @@ class SeedDemoData extends Command
     protected function createCategories()
     {
         $this->output->writeln('Creating categories...');
-        DB::table('offline_mall_categories')->truncate();
-        DB::table('offline_mall_category_property_group')->truncate();
+        DB::table('winter_mall_categories')->truncate();
+        DB::table('winter_mall_category_property_group')->truncate();
 
         $bikes = Category::create([
             'name'             => 'Bikes',
@@ -224,9 +224,9 @@ class SeedDemoData extends Command
     protected function createProperties()
     {
         $this->output->writeln('Creating properties...');
-        DB::table('offline_mall_property_property_group')->truncate();
-        DB::table('offline_mall_property_groups')->truncate();
-        DB::table('offline_mall_properties')->truncate();
+        DB::table('winter_mall_property_property_group')->truncate();
+        DB::table('winter_mall_property_groups')->truncate();
+        DB::table('winter_mall_properties')->truncate();
 
         //
         // General bike specs
@@ -377,7 +377,7 @@ class SeedDemoData extends Command
     protected function createCurrencies()
     {
         $this->output->writeln('Creating currencies...');
-        DB::table('offline_mall_currencies')->truncate();
+        DB::table('winter_mall_currencies')->truncate();
         Currency::create([
             'code'     => 'USD',
             'format'   => '{{ currency.symbol }} {{ price|number_format(2, ".", ",") }}',
@@ -404,7 +404,7 @@ class SeedDemoData extends Command
     protected function createTaxes()
     {
         $this->output->writeln('Creating taxes...');
-        DB::table('offline_mall_taxes')->truncate();
+        DB::table('winter_mall_taxes')->truncate();
         Tax::create([
             'name'       => 'VAT',
             'percentage' => 10,
@@ -414,7 +414,7 @@ class SeedDemoData extends Command
     protected function createReviewCategories()
     {
         $this->output->writeln('Creating review categories...');
-        DB::table('offline_mall_review_categories')->truncate();
+        DB::table('winter_mall_review_categories')->truncate();
         ReviewCategory::create(['name' => 'Price']);
         ReviewCategory::create(['name' => 'Design']);
         ReviewCategory::create(['name' => 'Build quality']);
@@ -423,8 +423,8 @@ class SeedDemoData extends Command
     protected function createServices()
     {
         $this->output->writeln('Creating services...');
-        DB::table('offline_mall_services')->truncate();
-        DB::table('offline_mall_service_options')->truncate();
+        DB::table('winter_mall_services')->truncate();
+        DB::table('winter_mall_service_options')->truncate();
 
         $warranty = Service::create([
             'name'        => 'Warranty',

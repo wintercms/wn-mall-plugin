@@ -1,16 +1,16 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Totals;
+namespace Winter\Mall\Classes\Totals;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\Cart\DiscountApplier;
-use OFFLINE\Mall\Classes\Traits\FilteredTaxes;
-use OFFLINE\Mall\Classes\Traits\Rounding;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Models\WishlistItem;
+use Winter\Mall\Classes\Cart\DiscountApplier;
+use Winter\Mall\Classes\Traits\FilteredTaxes;
+use Winter\Mall\Classes\Traits\Rounding;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\WishlistItem;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyFields)

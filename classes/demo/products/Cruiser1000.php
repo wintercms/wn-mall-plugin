@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Demo\Products;
+namespace Winter\Mall\Classes\Demo\Products;
 
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\ProductPrice;
-use OFFLINE\Mall\Models\Review;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\ProductPrice;
+use Winter\Mall\Models\Review;
 
 class Cruiser1000 extends DemoProduct
 {

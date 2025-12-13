@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -6,9 +6,9 @@ use Backend\Behaviors\RelationController;
 use Backend\Classes\Controller;
 use BackendMenu;
 use Flash;
-use OFFLINE\Mall\Classes\Traits\ReorderRelation;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Service;
+use Winter\Mall\Classes\Traits\ReorderRelation;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Service;
 
 class Services extends Controller
 {
@@ -21,20 +21,20 @@ class Services extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_services',
+        'winter.mall.manage_services',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-services');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-services');
 
         // Legacy (v1)
         if (!class_exists('System')) {
-            $this->addJs('/plugins/offline/mall/assets/Sortable.js');
+            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
         }
 
-        $this->addJs('/plugins/offline/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/backend.js');
     }
 
     public function onRelationManageCreate()

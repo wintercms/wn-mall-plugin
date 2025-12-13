@@ -1,15 +1,8 @@
-<p align="center"> 
-	<img style="max-width: 100%; margin: 2rem auto; display: block;" src="https://user-images.githubusercontent.com/8600029/52163618-c3bf3d80-26e4-11e9-870c-427401a27937.jpeg">
-</p>
+# wn-mall-plugin
 
+> E-commerce solution for Winter CMS
 
-# oc-mall
-
-> E-commerce solution for October CMS
-
-[![Build Status](https://travis-ci.com/OFFLINE-GmbH/oc-mall-plugin.svg?branch=develop)](https://travis-ci.com/github/OFFLINE-GmbH/oc-mall-plugin)
-
-`oc-mall` is a fully featured online shop solution for October CMS.
+`wn-mall-plugin` is a fully featured online shop solution for Winter CMS.
 
 * Manage Products and Variants
 * Virtual products (download only, no shipping)
@@ -19,8 +12,8 @@
 * Reviews and ratings
 * Checkout via Stripe, PayPal and PostFinance supported out-of-the-box
 * Custom payment providers 
-* Integrated with RainLab.User
-* Multi-currency and multi-language (integrates with RainLab.Translate)
+* Integrated with Winter.User
+* Multi-currency and multi-language (integrates with Winter.Translate)
 * Shipping and Tax management
 * Specific prices for different customer groups
 * Unlimited additional price fields (reseller, retail, reduced, etc)
@@ -29,10 +22,6 @@
 * Easily extendable with custom features
 * [Google Tag Manager and Google Merchant Center integrations](https://offline-gmbh.github.io/oc-mall-plugin/digging-deeper/analytics.html)
 
-#### Compatibility
-
-For October 1, use version 1.x of this plugin. For October 2+ use the latest version.
-
 #### Documentation
 The documentation of this plugin can be found here:
 [https://offline-gmbh.github.io/oc-mall-plugin/](https://offline-gmbh.github.io/oc-mall-plugin/)
@@ -40,7 +29,7 @@ The documentation of this plugin can be found here:
 #### Requirements
 
 * PHP7.2+
-* October Build 444+
+* Winter Version 1.2+
 * For best performance use MySQL 5.7+ or MariaDB 10.2+
 
 #### Demo
@@ -58,10 +47,10 @@ The easiest way to get you started is by using the command line:
 
 ```bash
 composer require \
-   rainlab/user-plugin \
-   rainlab/location-plugin \
-   rainlab/translate-plugin \
-   offline/oc-mall-plugin
+   winter/wn-user-plugin \
+   winter/wn-location-plugin \
+   winter/wn-translate-plugin \
+   winter/wn-mall-plugin
 ``` 
 
 Once the plugin is installed take a look at
@@ -77,7 +66,7 @@ October was run on Ubuntu 18.04, PHP 7.2.10, Apache 2.4.19 and MySQL 5.7.24.
 All measurements were done using the [Bedard.Debugbar](https://octobercms.com/plugin/bedard-debugbar) 
 plugin and are the average load time over 10 page loads (I told you they were unscientific!).
  
-`Index size` defines the size of the `offline_mall_index` table. This table includes de-normalized 
+`Index size` defines the size of the `winter_mall_index` table. This table includes de-normalized 
 information about all Products and Variants. An index size of 1000 means there are 1000 
 individual Variants and Products stored. The demo data used was built using the 
  `php artisan mall:seed-demo` command run in an infinite loop.

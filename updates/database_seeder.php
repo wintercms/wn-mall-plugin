@@ -1,24 +1,24 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
 use Cache;
-use October\Rain\Database\Model;
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Classes\Registration\BootServiceContainer;
-use OFFLINE\Mall\Classes\Registration\BootTwig;
-use OFFLINE\Mall\Classes\Seeders\CategoryTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\CustomerGroupTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\CustomerTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\CustomFieldTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\NotificationTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\OrderStateTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\PaymentMethodTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\ProductTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\PropertyTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\ShippingMethodTableSeeder;
-use OFFLINE\Mall\Classes\Seeders\TaxTableSeeder;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\PriceCategory;
-use OFFLINE\Mall\Models\ReviewSettings;
+use Winter\Storm\Database\Model;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Classes\Registration\BootServiceContainer;
+use Winter\Mall\Classes\Registration\BootTwig;
+use Winter\Mall\Classes\Seeders\CategoryTableSeeder;
+use Winter\Mall\Classes\Seeders\CustomerGroupTableSeeder;
+use Winter\Mall\Classes\Seeders\CustomerTableSeeder;
+use Winter\Mall\Classes\Seeders\CustomFieldTableSeeder;
+use Winter\Mall\Classes\Seeders\NotificationTableSeeder;
+use Winter\Mall\Classes\Seeders\OrderStateTableSeeder;
+use Winter\Mall\Classes\Seeders\PaymentMethodTableSeeder;
+use Winter\Mall\Classes\Seeders\ProductTableSeeder;
+use Winter\Mall\Classes\Seeders\PropertyTableSeeder;
+use Winter\Mall\Classes\Seeders\ShippingMethodTableSeeder;
+use Winter\Mall\Classes\Seeders\TaxTableSeeder;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\PriceCategory;
+use Winter\Mall\Models\ReviewSettings;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,10 +37,21 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Cache::clear();
 
+        PriceCategory::extend(function () {
+            $this->setTable('offline_mall_price_categories');
+        }, true);
         PriceCategory::create([
             'code' => 'old_price',
             'name' => 'Old price',
         ]);
+        PriceCategory::extend(function () {
+            $this->setTable('winter_mall_price_categories');
+        }, true);
+
+        Currency::extend(function () {
+            $this->setTable('offline_mall_currencies');
+            $this->rules['code'] = str_replace('winter_', 'offline_', $this->rules['code']);
+        }, true);
         Currency::create([
             'is_default' => app()->runningUnitTests(),
             'code'       => 'CHF',
@@ -64,6 +75,10 @@ class DatabaseSeeder extends Seeder
             'symbol'     => '$',
             'rate'       => 1.02,
         ]);
+        Currency::extend(function () {
+            $this->setTable('winter_mall_currencies');
+            $this->rules['code'] = str_replace('offline_', 'winter_', $this->rules['code']);
+        }, true);
 
         $this->call(CategoryTableSeeder::class);
         $this->call(TaxTableSeeder::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use DB;
 use Exception;

@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\PaymentState;
+namespace Winter\Mall\Classes\PaymentState;
 
 class RefundedState extends PaymentState
 {

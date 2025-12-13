@@ -1,22 +1,22 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Cms\Classes\Page;
 use DB;
 use Html;
 use Illuminate\Support\Collection;
 use Model;
-use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\CustomFields;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\Images;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
-use OFFLINE\Mall\Classes\Traits\ProductPriceAccessors;
-use OFFLINE\Mall\Classes\Traits\PropertyValues;
-use OFFLINE\Mall\Classes\Traits\StockAndQuantity;
-use OFFLINE\Mall\Classes\Traits\UserSpecificPrice;
-use RainLab\Translate\Models\Locale;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\CustomFields;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\Images;
+use Winter\Mall\Classes\Traits\PriceAccessors;
+use Winter\Mall\Classes\Traits\ProductPriceAccessors;
+use Winter\Mall\Classes\Traits\PropertyValues;
+use Winter\Mall\Classes\Traits\StockAndQuantity;
+use Winter\Mall\Classes\Traits\UserSpecificPrice;
+use Winter\Translate\Models\Locale;
 use System\Models\File;
 
 class Variant extends Model
@@ -37,9 +37,9 @@ class Variant extends Model
 
     public $slugs = [];
     public $nullable = ['image_set_id'];
-    public $table = 'offline_mall_product_variants';
+    public $table = 'winter_mall_product_variants';
     public $dates = ['deleted_at'];
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $appends = ['hashid'];
     public $translatable = [
         'name',
@@ -115,14 +115,14 @@ class Variant extends Model
 
     public function afterDelete()
     {
-        DB::table('offline_mall_property_values')->where('variant_id', $this->id)->delete();
-        DB::table('offline_mall_wishlist_items')->where('variant_id', $this->id)->delete();
+        DB::table('winter_mall_property_values')->where('variant_id', $this->id)->delete();
+        DB::table('winter_mall_wishlist_items')->where('variant_id', $this->id)->delete();
     }
 
     public function getImageSetIdOptions()
     {
         $null = [
-            '' => '-- ' . trans('offline.mall::lang.image_sets.create_new'),
+            '' => '-- ' . trans('winter.mall::lang.image_sets.create_new'),
         ];
 
         $sets = Product::find(post('id', $this->product_id))->image_sets;
@@ -255,7 +255,7 @@ class Variant extends Model
     }
 
     /**
-     * Resolve the item for RainLab.Sitemap and RainLab.Pages plugins.
+     * Resolve the item for Winter.Sitemap and Winter.Pages plugins.
      *
      * @param $item
      * @param $url
@@ -276,7 +276,7 @@ class Variant extends Model
         $items = self
             ::published()
 			->whereHas('product',function($query) {
-					$query->where('offline_mall_products.published', 1);
+					$query->where('winter_mall_products.published', 1);
 				})
             ->with('product')
             ->get()

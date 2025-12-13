@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Event;
 use Illuminate\Support\Carbon;
@@ -8,7 +8,7 @@ use System\Models\File;
 
 class ProductFileGrant extends Model
 {
-    public $table = 'offline_mall_product_file_grants';
+    public $table = 'winter_mall_product_file_grants';
     public $dates = ['expires_at'];
     public $belongsTo = [
         'order_product' => [OrderProduct::class, 'deleted' => true],

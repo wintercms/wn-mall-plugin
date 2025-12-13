@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.notifications'
-modelClass: OFFLINE\Mall\Models\Notification
-list: $/offline/mall/models/notification/columns.yaml
-recordUrl: 'offline/mall/notifications/update/:id'
+title: 'winter.mall::lang.common.notifications'
+modelClass: Winter\Mall\Models\Notification
+list: $/winter/mall/models/notification/columns.yaml
+recordUrl: 'winter/mall/notifications/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

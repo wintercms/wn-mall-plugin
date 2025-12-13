@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
-use OFFLINE\Mall\Models\User as RainLabUser;
+use Winter\Mall\Models\User as WinterUser;
 use Validator;
 
 trait BootValidation
@@ -10,7 +10,7 @@ trait BootValidation
     protected function registerValidationRules()
     {
         Validator::extend('non_existing_user', function ($attribute, $value, $parameters) {
-            return RainLabUser
+            return WinterUser
                     ::with('customer')
                     ->where('email', $value)
                     ->whereHas('customer', function ($q) {

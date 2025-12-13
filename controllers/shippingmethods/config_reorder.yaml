@@ -1,5 +1,5 @@
-title: 'offline.mall::lang.common.shipping_methods'
-modelClass: OFFLINE\Mall\Models\ShippingMethod
+title: 'winter.mall::lang.common.shipping_methods'
+modelClass: Winter\Mall\Models\ShippingMethod
 nameFrom: name
 toolbar:
     buttons: reorder_toolbar

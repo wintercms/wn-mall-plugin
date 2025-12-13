@@ -1,13 +1,13 @@
-subject = "{{ 'offline.mall::mail.order.shipped.subject' | trans() }}"
+subject = "{{ 'winter.mall::mail.order.shipped.subject' | trans() }}"
 description = "Sent when tracking information was added"
 ==
 
-{{ 'offline.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
+{{ 'winter.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
 
-{{ 'offline.mall::mail.order.shipped.message' | trans({number: order.order_number}) }}
+{{ 'winter.mall::mail.order.shipped.message' | trans({number: order.order_number}) }}
 
 {% partial 'mall.order.tracking' order=order %}
 
 {% partial 'button' url=account_url type='primary' body %}
-    {{ 'offline.mall::mail.common.view_order_status_online' | trans() }}
+    {{ 'winter.mall::mail.common.view_order_status_online' | trans() }}
 {% endpartial %}

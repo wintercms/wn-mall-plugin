@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
-use OFFLINE\Mall\Models\Currency;
+use Winter\Mall\Models\Currency;
 
 trait Rounding
 {

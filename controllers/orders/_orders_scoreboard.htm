@@ -4,21 +4,21 @@
     <div data-control="toolbar">
 
         <div class="scoreboard-item title-value">
-            <h4><?= e(trans('offline.mall::lang.common.orders')) ?></h4>
+            <h4><?= e(trans('winter.mall::lang.common.orders')) ?></h4>
             <p><?= e($count) ?></p>
-            <p class="description"><?= e(trans('offline.mall::lang.common.since_begin')) ?></p>
+            <p class="description"><?= e(trans('winter.mall::lang.common.since_begin')) ?></p>
         </div>
 
         <div class="scoreboard-item title-value">
-            <h4><?= e(trans('offline.mall::lang.common.weekly')) ?></h4>
+            <h4><?= e(trans('winter.mall::lang.common.weekly')) ?></h4>
             <p><?= e($stats->perWeekCount()) ?></p>
-            <p class="description"><?= e(trans('offline.mall::lang.common.orders')) ?></p>
+            <p class="description"><?= e(trans('winter.mall::lang.common.orders')) ?></p>
         </div>
 
         <div class="scoreboard-item title-value">
-            <h4><?= e(trans('offline.mall::lang.order.total_revenue')) ?></h4>
+            <h4><?= e(trans('winter.mall::lang.order.total_revenue')) ?></h4>
             <p><?= e($money->format($stats->grandTotal())) ?></p>
-            <p class="description"><?= e(trans('offline.mall::lang.common.since_begin')) ?></p>
+            <p class="description"><?= e(trans('winter.mall::lang.common.since_begin')) ?></p>
         </div>
 
         <div class="scoreboard-item control-chart" data-control="chart-pie">

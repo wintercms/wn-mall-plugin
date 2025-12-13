@@ -12,30 +12,30 @@ matrix:
         - 8.0
       sudo: false
       before_install:
-        - mysql -e 'CREATE DATABASE IF NOT EXISTS october;'
+        - mysql -e 'CREATE DATABASE IF NOT EXISTS winter;'
       install:
         - composer self-update
-        - git clone https://github.com/octobercms/october.git
-        - mkdir -p ./october/plugins/offline/mall
-        - cd october
+        - git clone https://github.com/wintercms/winter.git
+        - mkdir -p ./winter/plugins/winter/mall
+        - cd winter
         - git checkout 1.0
         - travis_retry composer install --no-interaction --prefer-source
-        - php artisan october:env
+        - php artisan winter:env
         - php artisan key:generate
         - echo "DB_HOST=127.0.0.1" > .env
-        - echo "DB_DATABASE=october" >> .env
+        - echo "DB_DATABASE=winter" >> .env
         - echo "DB_USERNAME=root" >> .env
         - echo "DB_PASSWORD=" >> .env
-        - php artisan october:up -v
-        - php artisan plugin:install RainLab.Translate
-        - php artisan plugin:install RainLab.User
-        - php artisan plugin:install RainLab.Location
+        - php artisan winter:up -v
+        - php artisan plugin:install Winter.Translate
+        - php artisan plugin:install Winter.User
+        - php artisan plugin:install Winter.Location
         - cd ..
       before_script:
-        - mv !(october) october/plugins/offline/mall
-        - cd october
-        - php artisan october:up -v
-        - cd plugins/offline/mall
+        - mv !(winter) winter/plugins/winter/mall
+        - cd winter
+        - php artisan winter:up -v
+        - cd plugins/winter/mall
         - travis_retry composer require illuminate/support ^5.5 # force Laravel 5.5 dependencies
         - travis_retry composer install --no-interaction --prefer-source
       script: ../../../vendor/bin/phpunit
@@ -66,7 +66,7 @@ matrix:
         skip-cleanup: true
         local_dir: docs/.vuepress/dist
         github-token: $GITHUB_TOKEN
-        repo: OFFLINE-GmbH/oc-mall-plugin
+        repo: wintercms/wn-mall-plugin
         keep-history: false
         target-branch: gh-pages
         on:

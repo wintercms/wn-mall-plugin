@@ -4,25 +4,25 @@
 
 scopes:
     status:
-        label: offline.mall::lang.order.status
+        label: winter.mall::lang.order.status
         type: group
-        modelClass: OFFLINE\Mall\Models\OrderState
+        modelClass: Winter\Mall\Models\OrderState
         conditions: order_state_id in (:filtered)
         nameFrom: name
     payment_state:
-        label: offline.mall::lang.order.payment_status
+        label: winter.mall::lang.order.payment_status
         type: group
         conditions: payment_state in (:filtered)
         options:
-            OFFLINE\Mall\Classes\PaymentState\PaidState: offline.mall::lang.payment_status.paid
-            OFFLINE\Mall\Classes\PaymentState\RefundedState: offline.mall::lang.payment_status.refunded
-            OFFLINE\Mall\Classes\PaymentState\FailedState: offline.mall::lang.payment_status.failed
-            OFFLINE\Mall\Classes\PaymentState\PendingState: offline.mall::lang.payment_status.pending
+            Winter\Mall\Classes\PaymentState\PaidState: winter.mall::lang.payment_status.paid
+            Winter\Mall\Classes\PaymentState\RefundedState: winter.mall::lang.payment_status.refunded
+            Winter\Mall\Classes\PaymentState\FailedState: winter.mall::lang.payment_status.failed
+            Winter\Mall\Classes\PaymentState\PendingState: winter.mall::lang.payment_status.pending
     shipping_pending:
-        label: offline.mall::lang.order.shipping_pending
+        label: winter.mall::lang.order.shipping_pending
         type: checkbox
         conditions: shipped_at is null
     created_at:
-        label: offline.mall::lang.order.creation_date
+        label: winter.mall::lang.order.creation_date
         type: daterange
         conditions: created_at >= ':after' AND created_at <= ':before'

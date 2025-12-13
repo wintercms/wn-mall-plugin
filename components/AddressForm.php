@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\GeneralSettings;
-use RainLab\Location\Models\Country;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Location\Models\Country;
+use Winter\User\Facades\Auth;
 
 /**
  * The AddressForm component displays a form to edit an address.
@@ -52,8 +52,8 @@ class AddressForm extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.addressForm.details.name',
-            'description' => 'offline.mall::lang.components.addressForm.details.description',
+            'name'        => 'winter.mall::lang.components.addressForm.details.name',
+            'description' => 'winter.mall::lang.components.addressForm.details.description',
         ];
     }
 
@@ -67,15 +67,15 @@ class AddressForm extends MallComponent
         return [
             'address'  => [
                 'type'  => 'dropdown',
-                'title' => 'offline.mall::lang.components.addressForm.properties.address.title',
+                'title' => 'winter.mall::lang.components.addressForm.properties.address.title',
             ],
             'redirect' => [
                 'type'  => 'dropdown',
-                'title' => 'offline.mall::lang.components.addressForm.properties.redirect.title',
+                'title' => 'winter.mall::lang.components.addressForm.properties.redirect.title',
             ],
             'set'      => [
                 'type'  => 'dropdown',
-                'title' => 'offline.mall::lang.components.addressForm.properties.set.title',
+                'title' => 'winter.mall::lang.components.addressForm.properties.set.title',
             ],
         ];
     }
@@ -98,8 +98,8 @@ class AddressForm extends MallComponent
     public function getRedirectOptions()
     {
         return [
-            'checkout' => trans('offline.mall::lang.components.addressForm.redirects.checkout'),
-            'account'  => trans('offline.mall::lang.components.addressForm.redirects.account'),
+            'checkout' => trans('winter.mall::lang.components.addressForm.redirects.checkout'),
+            'account'  => trans('winter.mall::lang.components.addressForm.redirects.account'),
         ];
     }
 
@@ -111,9 +111,9 @@ class AddressForm extends MallComponent
     public function getSetOptions()
     {
         return [
-            null       => trans('offline.mall::lang.common.not_in_use'),
-            'billing'  => trans('offline.mall::lang.components.addressForm.set.billing'),
-            'shipping' => trans('offline.mall::lang.components.addressForm.set.shipping'),
+            null       => trans('winter.mall::lang.common.not_in_use'),
+            'billing'  => trans('winter.mall::lang.components.addressForm.set.billing'),
+            'shipping' => trans('winter.mall::lang.components.addressForm.set.shipping'),
         ];
     }
 
@@ -204,7 +204,7 @@ class AddressForm extends MallComponent
         }
         $user->customer->save();
 
-        Flash::success(trans('offline.mall::lang.common.saved_changes'));
+        Flash::success(trans('winter.mall::lang.common.saved_changes'));
 
         if ($url = $this->getRedirectUrl()) {
             return redirect()->to(url($url));

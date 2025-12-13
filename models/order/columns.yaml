@@ -1,59 +1,59 @@
 columns:
     invoice_number:
-        label: 'offline.mall::lang.order.invoice_number'
+        label: 'winter.mall::lang.order.invoice_number'
         type: number
         searchable: true
         sortable: true
         invisible: true
     order_number:
-        label: 'offline.mall::lang.order.order_number'
+        label: 'winter.mall::lang.order.order_number'
         type: number
         searchable: true
         sortable: true
     payment_hash:
-        label: 'offline.mall::lang.order.payment_hash'
+        label: 'winter.mall::lang.order.payment_hash'
         type: text
         searchable: true
         sortable: true
         invisible: true
     customer:
-        label: 'offline.mall::lang.order.customer'
+        label: 'winter.mall::lang.order.customer'
         relation: customer
         type: text
         searchable: true
         sortable: false
         select: concat(firstname, ' ', lastname)
     email:
-        label: 'offline.mall::lang.order.email'
+        label: 'winter.mall::lang.order.email'
         type: partial
-        path: $/offline/mall/models/order/_email.htm
+        path: $/winter/mall/models/order/_email.htm
         sortable: false
         searchable: false
     created_at:
-        label: 'offline.mall::lang.common.created_at'
+        label: 'winter.mall::lang.common.created_at'
         type: datetime
         sortable: true
     total_post_taxes:
-        label: 'offline.mall::lang.order.grand_total'
-        path: $/offline/mall/models/order/_total.htm
+        label: 'winter.mall::lang.order.grand_total'
+        path: $/winter/mall/models/order/_total.htm
         type: partial
         align: right
         sortable: true
     order_state:
-        label: 'offline.mall::lang.order.status'
+        label: 'winter.mall::lang.order.status'
         type: partial
-        path: $/offline/mall/models/order/_order_state.htm
+        path: $/winter/mall/models/order/_order_state.htm
         sortable: false
         searchable: false
     payment_state:
-        label: 'offline.mall::lang.order.payment_status'
+        label: 'winter.mall::lang.order.payment_status'
         type: partial
-        path: $/offline/mall/models/order/_payment_state.htm
+        path: $/winter/mall/models/order/_payment_state.htm
         sortable: true
         searchable: false
     shipped_at:
-        label: 'offline.mall::lang.order.shipped'
+        label: 'winter.mall::lang.order.shipped'
         type: partial
-        path: $/offline/mall/models/order/_shipped.htm
+        path: $/winter/mall/models/order/_shipped.htm
         sortable: true
         searchable: false

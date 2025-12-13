@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\Price;
-use RainLab\User\Facades\Auth;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\Price;
+use Winter\User\Facades\Auth;
 
 trait UserSpecificPrice
 {
@@ -51,7 +51,7 @@ trait UserSpecificPrice
     {
         return ! app()->runningInBackend()
             && app()->has('user.auth')
-            && optional(Auth::getUser())->offline_mall_customer_group_id !== null
+            && optional(Auth::getUser())->winter_mall_customer_group_id !== null
             && $this->customer_group_prices->count() > 0;
     }
 }

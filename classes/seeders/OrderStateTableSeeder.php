@@ -1,16 +1,16 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\OrderState;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\OrderState;
 use System\Classes\PluginManager;
 
 class OrderStateTableSeeder extends Seeder
 {
     public function run()
     {
-        $isTranslatable = PluginManager::instance()->hasPlugin('RainLab.Translate');
+        $isTranslatable = PluginManager::instance()->hasPlugin('Winter.Translate');
         $states         = [
             ['name' => 'New', 'flag' => OrderState::FLAG_NEW, 'color' => '#3498db', 'german_name' => 'Neu'],
             ['name' => 'In Progress', 'color' => '#f1c40f', 'german_name' => 'Wird bearbeitet'],
@@ -28,6 +28,11 @@ class OrderStateTableSeeder extends Seeder
                 'german_name' => 'Abgeschlossen',
             ],
         ];
+
+        OrderState::extend(function () {
+            $this->setTable('offline_mall_order_states');
+        }, true);
+
         foreach ($states as $state) {
             $s = new OrderState();
             if ($isTranslatable) {
@@ -43,5 +48,9 @@ class OrderStateTableSeeder extends Seeder
                 $s->save();
             }
         }
+
+        OrderState::extend(function () {
+            $this->setTable('winter_mall_order_states');
+        }, true);
     }
 }

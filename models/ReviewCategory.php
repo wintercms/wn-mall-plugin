@@ -1,22 +1,22 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\Validation;
 
 class ReviewCategory extends Model
 {
     use Validation;
     use Sluggable;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
     ];
     public $fillable = [
         'name',
     ];
-    public $table = 'offline_mall_review_categories';
+    public $table = 'winter_mall_review_categories';
     public $slugs = [
         'slug' => 'name',
     ];
@@ -26,7 +26,7 @@ class ReviewCategory extends Model
     public $belongsToMany = [
         'categories' => [
             Category::class,
-            'table' => 'offline_mall_category_review_category',
+            'table' => 'winter_mall_category_review_category',
         ]
     ];
 }

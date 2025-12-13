@@ -1,14 +1,14 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Closure;
 use Event;
 use Illuminate\Support\Facades\Session;
 use Model;
-use October\Rain\Database\Collection;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
-use Rainlab\Location\Models\Country as RainLabCountry;
+use Winter\Storm\Database\Collection;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\PriceAccessors;
+use Rainlab\Location\Models\Country as WinterCountry;
 use System\Models\File;
 
 class ShippingMethod extends Model
@@ -21,7 +21,7 @@ class ShippingMethod extends Model
 
     const MORPH_KEY = 'mall.shipping_method';
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $with = ['prices'];
     public $hidden = ['created_at', 'updated_at', 'deleted_at'];
     public $translatable = [
@@ -34,7 +34,7 @@ class ShippingMethod extends Model
     public $casts = [
         'price_includes_tax' => 'boolean',
     ];
-    public $table = 'offline_mall_shipping_methods';
+    public $table = 'winter_mall_shipping_methods';
     public $appends = ['price_formatted'];
     public $fillable = [
         'name',
@@ -70,19 +70,19 @@ class ShippingMethod extends Model
     public $belongsToMany = [
         'taxes'     => [
             Tax::class,
-            'table'    => 'offline_mall_shipping_method_tax',
+            'table'    => 'winter_mall_shipping_method_tax',
             'key'      => 'shipping_method_id',
             'otherKey' => 'tax_id',
         ],
         'discounts'     => [
             Discount::class,
-            'table'    => 'offline_mall_shipping_method_discount',
+            'table'    => 'winter_mall_shipping_method_discount',
             'key'      => 'shipping_method_id',
             'otherKey' => 'discount_id',
         ],
         'countries' => [
-            RainLabCountry::class,
-            'table'    => 'offline_mall_shipping_countries',
+            WinterCountry::class,
+            'table'    => 'winter_mall_shipping_countries',
             'key'      => 'shipping_method_id',
             'otherKey' => 'country_id',
         ],
@@ -97,14 +97,14 @@ class ShippingMethod extends Model
     public static function noShippingRequired()
     {
         return new self([
-            'name'        => trans('offline.mall::lang.shipping_method.not_required_name'),
-            'description' => trans('offline.mall::lang.shipping_method.not_required_description'),
+            'name'        => trans('winter.mall::lang.shipping_method.not_required_name'),
+            'description' => trans('winter.mall::lang.shipping_method.not_required_description'),
         ]);
     }
 
     public function afterDelete()
     {
-        \DB::table('offline_mall_prices')
+        \DB::table('winter_mall_prices')
            ->where('priceable_type', self::MORPH_KEY)
            ->where('priceable_id', $this->id)
            ->delete();

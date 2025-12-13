@@ -7,9 +7,9 @@ searching: false
 alias: pricetable
 columns:
     name:
-        title: offline.mall::lang.common.product_or_variant
+        title: winter.mall::lang.common.product_or_variant
         readOnly: true
     stock:
-        title: offline.mall::lang.product.stock
+        title: winter.mall::lang.product.stock
     price:
-        title: offline.mall::lang.product.price
+        title: winter.mall::lang.product.price

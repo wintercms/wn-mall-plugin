@@ -1,19 +1,19 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Nullable;
-use OFFLINE\Mall\Classes\Utils\Money;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Mall\Classes\Utils\Money;
 
 class Price extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\Validation;
     use Nullable;
 
     public $nullable = ['price'];
     public $with = ['currency'];
     public $rules = [
     ];
-    public $table = 'offline_mall_prices';
+    public $table = 'winter_mall_prices';
     public $morphTo = [
         'priceable' => [],
     ];

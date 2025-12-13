@@ -7,7 +7,7 @@
                     {% for option in product.service_options %}
                         <br/>
                         <span class="text-muted">
-                        <strong>{{ 'offline.mall::lang.common.service' | trans }}</strong>:
+                        <strong>{{ 'winter.mall::lang.common.service' | trans }}</strong>:
                         {{ option.name }}
                     </span>
                     {% endfor %}
@@ -60,7 +60,7 @@
     <tr class="mall-cart__total">
         <td></td>
         <td colspan="2">
-            {{ 'offline.mall::frontend.total' | trans }}
+            {{ 'winter.mall::frontend.total' | trans }}
         </td>
         <td class="text-right">
             {{ order.totalProductPostTaxes() | raw }}
@@ -103,7 +103,7 @@
     <tr class="mall-cart__grand-total">
         <td></td>
         <td colspan="2">
-            {{ 'offline.mall::frontend.grand_total' | trans }}
+            {{ 'winter.mall::frontend.grand_total' | trans }}
         </td>
         <td class="text-right">
             {{ order.totalPostTaxes() | raw }}

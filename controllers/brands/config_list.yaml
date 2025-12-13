@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.brands'
-modelClass: OFFLINE\Mall\Models\Brand
-list: $/offline/mall/models/brand/columns.yaml
-recordUrl: 'offline/mall/brands/update/:id'
+title: 'winter.mall::lang.common.brands'
+modelClass: Winter\Mall\Models\Brand
+list: $/winter/mall/models/brand/columns.yaml
+recordUrl: 'winter/mall/brands/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\PriceCategory;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\PriceCategory;
 use System\Classes\SettingsManager;
 use Backend\Behaviors\ListController;
 use Backend\Behaviors\FormController;
@@ -23,14 +23,14 @@ class PriceCategories extends Controller
     public $reorderConfig = 'config_reorder.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.settings.manage_price_categories',
+        'winter.mall.settings.manage_price_categories',
     ];
 
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('OFFLINE.Mall', 'price_categories_settings');
+        SettingsManager::setContext('Winter.Mall', 'price_categories_settings');
     }
 
     public function index_onDelete()

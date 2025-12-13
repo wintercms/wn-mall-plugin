@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Classes\Customer\AuthManager;
-use RainLab\User\Facades\Auth;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\CustomerGroupPrice;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\User;
-use OFFLINE\Mall\Models\Variant;
-use OFFLINE\Mall\Tests\PluginTestCase;
+use Winter\Mall\Classes\Customer\AuthManager;
+use Winter\User\Facades\Auth;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\CustomerGroupPrice;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\User;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Tests\PluginTestCase;
 
 class CustomerGroupPriceTest extends PluginTestCase
 {

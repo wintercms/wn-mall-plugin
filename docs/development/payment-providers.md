@@ -4,7 +4,7 @@ You can add your own payment provider by providing an implementation of a `Payme
  
 ## Implement a PaymentProvider 
 
-To implement a `PaymentProvider` simply extend the abstract `OFFLINE\Mall\Classes\Payments\PaymentProvider` class and
+To implement a `PaymentProvider` simply extend the abstract `Winter\Mall\Classes\Payments\PaymentProvider` class and
  implement all missing methods. 
  
 You can place your custom `PaymentProvider` inside the `classes` directory of your plugin:
@@ -25,15 +25,15 @@ methods.
 <?php
 namespace YourName\YourPlugin\Classes;
 
-use OFFLINE\Mall\Models\PaymentGatewaySettings;
-use OFFLINE\Mall\Classes\Payments\PaymentResult;
+use Winter\Mall\Models\PaymentGatewaySettings;
+use Winter\Mall\Classes\Payments\PaymentResult;
 
-class ExampleProvider extends \OFFLINE\Mall\Classes\Payments\PaymentProvider
+class ExampleProvider extends \Winter\Mall\Classes\Payments\PaymentProvider
 {
     /**
      * The order that is being paid.
      *
-     * @var \OFFLINE\Mall\Models\Order
+     * @var \Winter\Mall\Models\Order
      */
     public $order;
     /**
@@ -68,7 +68,7 @@ class ExampleProvider extends \OFFLINE\Mall\Classes\Payments\PaymentProvider
      * Validate the given input data for this payment.
      *
      * @return bool
-     * @throws \October\Rain\Exception\ValidationException
+     * @throws \Winter\Storm\Exception\ValidationException
      */
     public function validate(): bool
     {
@@ -78,7 +78,7 @@ class ExampleProvider extends \OFFLINE\Mall\Classes\Payments\PaymentProvider
 
         $validation = \Validator::make($this->data, $rules);
         if ($validation->fails()) {
-            throw new \October\Rain\Exception\ValidationException($validation);
+            throw new \Winter\Storm\Exception\ValidationException($validation);
         }
 
         return true;
@@ -175,7 +175,7 @@ method.
 namespace YourName\YourPlugin;
 
 use YourName\YourPlugin\Classes\ExampleProvider;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Payments\PaymentGateway;
 use System\Classes\PluginBase;
 
 // Your Plugin.php

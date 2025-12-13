@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\RelationController;
 use Backend\Classes\Controller;
@@ -24,13 +24,13 @@ class CustomerGroups extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_customer_groups',
+        'winter.mall.manage_customer_groups',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('RainLab.User', 'user', 'customer_groups');
+        BackendMenu::setContext('Winter.User', 'user', 'customer_groups');
     }
 
     public function relationExtendConfig($config, $field, $model)

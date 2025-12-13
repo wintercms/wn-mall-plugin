@@ -1,18 +1,18 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Carbon\Carbon;
 use Cookie;
 use Illuminate\Support\Collection;
 use Model;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Classes\Totals\TotalsCalculator;
-use OFFLINE\Mall\Classes\Totals\TotalsCalculatorInput;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\PDFMaker;
-use OFFLINE\Mall\Classes\Traits\ShippingMethods;
-use RainLab\User\Facades\Auth;
-use RainLab\User\Models\User;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Classes\Totals\TotalsCalculator;
+use Winter\Mall\Classes\Totals\TotalsCalculatorInput;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\PDFMaker;
+use Winter\Mall\Classes\Traits\ShippingMethods;
+use Winter\User\Facades\Auth;
+use Winter\User\Models\User;
 use Session;
 
 class Wishlist extends Model
@@ -22,7 +22,7 @@ class Wishlist extends Model
     use PDFMaker;
     use ShippingMethods;
 
-    public $table = 'offline_mall_wishlists';
+    public $table = 'winter_mall_wishlists';
     public $rules = [
         'name'        => 'required',
         'session_id'  => 'required_without:customer_id',
@@ -113,7 +113,7 @@ class Wishlist extends Model
             ? ['customer_id' => $user->customer->id]
             : ['session_id' => static::getSessionId()];
 
-        $name = $name ?? trans('offline.mall::frontend.wishlist.default_name');
+        $name = $name ?? trans('winter.mall::frontend.wishlist.default_name');
 
         return Wishlist::create(array_merge($attributes, ['name' => $name]));
     }
@@ -155,9 +155,9 @@ class Wishlist extends Model
     }
 
     /**
-     * Cleanup of old data using OFFLINE.GDPR.
+     * Cleanup of old data using Winter.GDPR.
      *
-     * @see https://github.com/OFFLINE-GmbH/oc-gdpr-plugin
+     * @see https://github.com/Winter-GmbH/oc-gdpr-plugin
      *
      * @param Carbon $deadline
      * @param int    $keepDays

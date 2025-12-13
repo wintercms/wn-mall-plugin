@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Jobs;
+namespace Winter\Mall\Classes\Jobs;
 
 use Illuminate\Contracts\Queue\Job;
-use OFFLINE\Mall\Models\PropertyValue;
+use Winter\Mall\Models\PropertyValue;
 
 class PropertyRemovalUpdate
 {
@@ -15,7 +15,7 @@ class PropertyRemovalUpdate
         }
 
         // Reset any products that were grouped by a removed property.
-        \DB::table('offline_mall_products')
+        \DB::table('winter_mall_products')
            ->whereIn('group_by_property_id', $data['properties'] ?? [])
            ->update([
                'group_by_property_id' => null,

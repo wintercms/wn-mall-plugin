@@ -1,25 +1,25 @@
-<?php namespace OFFLINE\Mall;
+<?php namespace Winter\Mall;
 
 
 use Illuminate\Support\Facades\View;
-use OFFLINE\Mall\Classes\Registration\BootComponents;
-use OFFLINE\Mall\Classes\Registration\BootEvents;
-use OFFLINE\Mall\Classes\Registration\BootExtensions;
-use OFFLINE\Mall\Classes\Registration\BootMails;
-use OFFLINE\Mall\Classes\Registration\BootRelations;
-use OFFLINE\Mall\Classes\Registration\BootServiceContainer;
-use OFFLINE\Mall\Classes\Registration\BootSettings;
-use OFFLINE\Mall\Classes\Registration\BootTwig;
-use OFFLINE\Mall\Classes\Registration\BootValidation;
-use OFFLINE\Mall\Console\Initialize;
-use OFFLINE\Mall\Console\ReindexProducts;
-use OFFLINE\Mall\Console\SeedDemoData;
-use OFFLINE\Mall\Console\SystemCheck;
+use Winter\Mall\Classes\Registration\BootComponents;
+use Winter\Mall\Classes\Registration\BootEvents;
+use Winter\Mall\Classes\Registration\BootExtensions;
+use Winter\Mall\Classes\Registration\BootMails;
+use Winter\Mall\Classes\Registration\BootRelations;
+use Winter\Mall\Classes\Registration\BootServiceContainer;
+use Winter\Mall\Classes\Registration\BootSettings;
+use Winter\Mall\Classes\Registration\BootTwig;
+use Winter\Mall\Classes\Registration\BootValidation;
+use Winter\Mall\Console\Initialize;
+use Winter\Mall\Console\ReindexProducts;
+use Winter\Mall\Console\SeedDemoData;
+use Winter\Mall\Console\SystemCheck;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
-    public $require = ['RainLab.User', 'RainLab.Location', 'RainLab.Translate'];
+    public $require = ['Winter.User', 'Winter.Location', 'Winter.Translate'];
 
     use BootEvents;
     use BootExtensions;
@@ -39,6 +39,18 @@ class Plugin extends PluginBase
         $this->registerRelations();
     }
 
+    public function pluginDetails()
+    {
+        return [
+            'name' => 'winter.mall::lang.plugin.name',
+            'description' => 'winter.mall::lang.plugin.description',
+            'author' => 'OFFLINE GmbH',
+            'icon' => 'oc-icon-shopping-cart',
+            'homepage' => '',
+            'replaces' => ['OFFLINE.Mall' => '~2.0'],
+        ];
+    }
+
     public function register()
     {
         $this->registerServices();
@@ -51,10 +63,10 @@ class Plugin extends PluginBase
         $this->registerEvents();
         $this->registerValidationRules();
 
-        $this->registerConsoleCommand('offline.mall.seed-demo', SeedDemoData::class);
-        $this->registerConsoleCommand('offline.mall.reindex', ReindexProducts::class);
-        $this->registerConsoleCommand('offline.mall.system-check', SystemCheck::class);
-        $this->registerConsoleCommand('offline.mall.initialize', Initialize::class);
+        $this->registerConsoleCommand('winter.mall.seed-demo', SeedDemoData::class);
+        $this->registerConsoleCommand('winter.mall.reindex', ReindexProducts::class);
+        $this->registerConsoleCommand('winter.mall.system-check', SystemCheck::class);
+        $this->registerConsoleCommand('winter.mall.initialize', Initialize::class);
 
         View::share('app_url', config('app.url'));
     }

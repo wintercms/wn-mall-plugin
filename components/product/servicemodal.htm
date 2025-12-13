@@ -3,7 +3,7 @@
       data-request-success="window.Mall.Modal.removeClass('mall-modal--visible'); $.publish('mall.cart.productAdded', data);"
       data-request-validate
       data-request-flash>
-    <h3>{{ 'offline.mall::frontend.services.modal_title' | trans }}</h3>
+    <h3>{{ 'winter.mall::frontend.services.modal_title' | trans }}</h3>
 
     <div class="mall-product-services">
         {% for service in services %}
@@ -16,7 +16,7 @@
             {% endif %}
             {% if service.pivot.required %}
                 <div class="mall-product-service__required visible" data-validate-for="service.{{ service.id }}">
-                    {{ 'offline.mall::frontend.services.required' | trans }}
+                    {{ 'winter.mall::frontend.services.required' | trans }}
                 </div>
             {% endif %}
             <div class="mall-product-service-options">
@@ -26,7 +26,7 @@
                         <input type="radio" name="service[{{ service.id }}][]" value="" id="service-none-{{ service.id }}" checked>
                     </span>
                     <span class="mall-product-service-option__name">
-                        {{ 'offline.mall::frontend.services.none' | trans }}
+                        {{ 'winter.mall::frontend.services.none' | trans }}
                     </span>
                 </label>
                 {% endif %}
@@ -58,12 +58,12 @@
     <div class="mall-modal__actions">
         <div>
             <a href="javascript:;" onclick="window.Mall.Modal.removeClass('mall-modal--visible');" class="mall-btn">
-                {{ 'offline.mall::frontend.cancel' | trans }}
+                {{ 'winter.mall::frontend.cancel' | trans }}
             </a>
         </div>
         <div>
         <button class="mall-btn mall-btn--primary" data-attach-loading>
-            {{ 'offline.mall::frontend.cart.add' | trans }}
+            {{ 'winter.mall::frontend.cart.add' | trans }}
         </button>
         </div>
     </div>

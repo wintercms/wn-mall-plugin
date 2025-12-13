@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
-use OFFLINE\Mall\Models\PaymentGatewaySettings;
+use Winter\Mall\Models\PaymentGatewaySettings;
 use Omnipay\Omnipay;
 use Request;
 use Session;
@@ -132,18 +132,18 @@ class PayPalRest extends PaymentProvider
     {
         return [
             'paypal_test_mode' => [
-                'label'   => 'offline.mall::lang.payment_gateway_settings.paypal.test_mode',
-                'comment' => 'offline.mall::lang.payment_gateway_settings.paypal.test_mode_comment',
+                'label'   => 'winter.mall::lang.payment_gateway_settings.paypal.test_mode',
+                'comment' => 'winter.mall::lang.payment_gateway_settings.paypal.test_mode_comment',
                 'span'    => 'left',
                 'type'    => 'switch',
             ],
             'paypal_client_id' => [
-                'label' => 'offline.mall::lang.payment_gateway_settings.paypal.client_id',
+                'label' => 'winter.mall::lang.payment_gateway_settings.paypal.client_id',
                 'span'  => 'left',
                 'type'  => 'text',
             ],
             'paypal_secret'    => [
-                'label' => 'offline.mall::lang.payment_gateway_settings.paypal.secret',
+                'label' => 'winter.mall::lang.payment_gateway_settings.paypal.secret',
                 'span'  => 'left',
                 'type'  => 'text',
             ],

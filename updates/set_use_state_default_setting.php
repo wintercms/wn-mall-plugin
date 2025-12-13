@@ -1,7 +1,7 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
-use October\Rain\Database\Updates\Migration;
-use OFFLINE\Mall\Models\GeneralSettings;
+use Winter\Storm\Database\Updates\Migration;
+use Winter\Mall\Models\GeneralSettings;
 use Schema;
 
 class SetUseStateDefaultSetting extends Migration

@@ -1,14 +1,14 @@
-name: 'offline.mall::lang.common.discount'
-modelClass: OFFLINE\Mall\Models\Discount
-form: $/offline/mall/models/discount/fields.yaml
-defaultRedirect: offline/mall/discounts
+name: 'winter.mall::lang.common.discount'
+modelClass: Winter\Mall\Models\Discount
+form: $/winter/mall/models/discount/fields.yaml
+defaultRedirect: winter/mall/discounts
 create:
-    title: 'offline.mall::lang.titles.discounts.create'
-    redirect: 'offline/mall/discounts/update/:id'
-    redirectClose: offline/mall/discounts
+    title: 'winter.mall::lang.titles.discounts.create'
+    redirect: 'winter/mall/discounts/update/:id'
+    redirectClose: winter/mall/discounts
 update:
-    title: 'offline.mall::lang.titles.discounts.update'
-    redirect: offline/mall/discounts
-    redirectClose: offline/mall/discounts
+    title: 'winter.mall::lang.titles.discounts.update'
+    redirect: winter/mall/discounts
+    redirectClose: winter/mall/discounts
 preview:
-    title: 'offline.mall::lang.titles.discounts.preview'
+    title: 'winter.mall::lang.titles.discounts.preview'

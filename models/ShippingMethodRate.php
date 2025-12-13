@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 
 class ShippingMethodRate extends Model
 {
@@ -28,7 +28,7 @@ class ShippingMethodRate extends Model
         'from_weight' => 'int',
         'to_weight'   => 'int',
     ];
-    public $table = 'offline_mall_shipping_method_rates';
+    public $table = 'winter_mall_shipping_method_rates';
     public $belongsTo = [
         'shipping_method' => ShippingMethod::class,
     ];

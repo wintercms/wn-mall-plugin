@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Category;
+namespace Winter\Mall\Classes\Traits\Category;
 
 use Cache;
-use October\Rain\Exception\ValidationException;
+use Winter\Storm\Exception\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use OFFLINE\Mall\Models\Category;
+use Winter\Mall\Models\Category;
 
 trait Slug
 {
@@ -46,7 +46,7 @@ trait Slug
             $map  = $model->getSlugMap($locale);
 
             if (array_key_exists($slug, $map) && $map[$slug] !== (int)$model->id) {
-                throw new ValidationException(['slug' => trans('offline.mall::lang.common.slug_unique')]);
+                throw new ValidationException(['slug' => trans('winter.mall::lang.common.slug_unique')]);
             }
         }
     }

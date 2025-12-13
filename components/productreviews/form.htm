@@ -7,7 +7,7 @@
             <input id="rating" name="rating" type="hidden" value="{{ review.rating }}">
             {% partial __SELF__ ~ '::stars' rating=review.rating variant="big" clickable=true %}
             <div class="mall-product-reviews__summary">
-                {{ 'offline.mall::frontend.reviews.overall_rating' | trans }}
+                {{ 'winter.mall::frontend.reviews.overall_rating' | trans }}
                 <div data-validate-for="rating"></div>
             </div>
         </div>
@@ -38,46 +38,46 @@
             </div>
             <div class="mall-product-reviews__user-review-actions">
                 <button class="mall-btn mall-btn--text js-mall-edit-review">
-                    {{ 'offline.mall::frontend.reviews.edit' | trans }}
+                    {{ 'winter.mall::frontend.reviews.edit' | trans }}
                 </button>
             </div>
         </div>
     {% endif %}
     <div class="mall-product-reviews__form-details">
         <div class="mall-form-control">
-            <label for="title">{{ 'offline.mall::lang.reviews.title' | trans }}</label>
+            <label for="title">{{ 'winter.mall::lang.reviews.title' | trans }}</label>
             <div class="mall-form-comment">
-                {{ 'offline.mall::frontend.reviews.optional' | trans }}
+                {{ 'winter.mall::frontend.reviews.optional' | trans }}
             </div>
             <input id="title" name="title" type="text" value="{{ review.title }}">
             <div data-validate-for="title"></div>
         </div>
         <div class="mall-form-control">
-            <label for="description">{{ 'offline.mall::lang.reviews.review' | trans }}</label>
+            <label for="description">{{ 'winter.mall::lang.reviews.review' | trans }}</label>
             <div class="mall-form-comment">
-                {{ 'offline.mall::frontend.reviews.optional' | trans }}
+                {{ 'winter.mall::frontend.reviews.optional' | trans }}
             </div>
             <textarea id="description" name="description">{{ review.description }}</textarea>
             <div data-validate-for="description"></div>
         </div>
         <div class="mall-form-control">
-            <label for="pros">{{ 'offline.mall::lang.reviews.pros' | trans }}</label>
+            <label for="pros">{{ 'winter.mall::lang.reviews.pros' | trans }}</label>
             <div class="mall-form-comment">
-                {{ 'offline.mall::frontend.reviews.one_per_line' | trans }}
+                {{ 'winter.mall::frontend.reviews.one_per_line' | trans }}
             </div>
             <textarea id="pros" name="pros">{{ review.pros_string }}</textarea>
             <div data-validate-for="pros"></div>
         </div>
         <div class="mall-form-control">
-            <label for="cons">{{ 'offline.mall::lang.reviews.cons' | trans }}</label>
+            <label for="cons">{{ 'winter.mall::lang.reviews.cons' | trans }}</label>
             <div class="mall-form-comment">
-                {{ 'offline.mall::frontend.reviews.one_per_line' | trans }}
+                {{ 'winter.mall::frontend.reviews.one_per_line' | trans }}
             </div>
             <textarea id="cons" name="cons">{{ review.cons_string }}</textarea>
             <div data-validate-for="cons"></div>
         </div>
         <button class="mall-btn mall-btn--primary" type="submit" data-attach-loading>
-            {{ ('offline.mall::frontend.reviews.' ~ (review ? 'update' : 'create')) | trans }}
+            {{ ('winter.mall::frontend.reviews.' ~ (review ? 'update' : 'create')) | trans }}
         </button>
     </div>
 </form>

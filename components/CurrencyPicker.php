@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
-use October\Rain\Router\Router as RainRouter;
-use OFFLINE\Mall\Models\Currency;
+use Winter\Storm\Router\Router as RainRouter;
+use Winter\Mall\Models\Currency;
 
 /**
  * The CurrencyPicker allows the user to select a currenty.
@@ -31,8 +31,8 @@ class CurrencyPicker extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.currencyPicker.details.name',
-            'description' => 'offline.mall::lang.components.currencyPicker.details.description',
+            'name'        => 'winter.mall::lang.components.currencyPicker.details.name',
+            'description' => 'winter.mall::lang.components.currencyPicker.details.description',
         ];
     }
 

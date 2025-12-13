@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use Closure;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Variant;
 
 trait NullPrice
 {

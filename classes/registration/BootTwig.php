@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
-use OFFLINE\Mall\Classes\Utils\Money;
+use Winter\Mall\Classes\Utils\Money;
 use System\Twig\Extension as TwigExtension;
 use System\Twig\Loader as TwigLoader;
 use Twig\Environment;
@@ -28,7 +28,7 @@ trait BootTwig
         ];
 
         // Check the translate plugin is installed
-        if ( ! class_exists('RainLab\Translate\Behaviors\TranslatableModel')) {
+        if ( ! class_exists('Winter\Translate\Behaviors\TranslatableModel')) {
             $filters['_']  = ['Lang', 'get'];
             $filters['__'] = ['Lang', 'choice'];
         }

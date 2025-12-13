@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\FormWidgets;
+<?php namespace Winter\Mall\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Currency;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Currency;
 
 /**
- * Copied from RainLab.Translate's MLText
+ * Copied from Winter.Translate's MLText
  */
 class Price extends FormWidgetBase
 {
@@ -18,8 +18,8 @@ class Price extends FormWidgetBase
     public function init()
     {
         $this->defaultCurrency = Currency::orderBy('is_default', 'DESC')->first();
-        $this->addJs('/plugins/offline/mall/assets/pricewidget.js', 'OFFLINE.Mall');
-        $this->addCss('/plugins/offline/mall/assets/pricewidget.css', 'OFFLINE.Mall');
+        $this->addJs('/plugins/winter/mall/assets/pricewidget.js', 'Winter.Mall');
+        $this->addCss('/plugins/winter/mall/assets/pricewidget.css', 'Winter.Mall');
     }
 
     public function render()
@@ -55,7 +55,7 @@ class Price extends FormWidgetBase
         })->filter();
 
         if ( ! $values->has($this->defaultCurrency->id)) {
-            throw new ValidationException([$this->valueFrom => trans('offline.mall::lang.common.price_missing')]);
+            throw new ValidationException([$this->valueFrom => trans('winter.mall::lang.common.price_missing')]);
         }
 
         return null;

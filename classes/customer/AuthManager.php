@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Customer;
+namespace Winter\Mall\Classes\Customer;
 
-use October\Rain\Auth\AuthException;
-use OFFLINE\Mall\Models\User;
+use Winter\Storm\Auth\AuthException;
+use Winter\Mall\Models\User;
 
-class AuthManager extends \RainLab\User\Classes\AuthManager
+class AuthManager extends \Winter\User\Classes\AuthManager
 {
     protected $userModel = User::class;
 

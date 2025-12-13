@@ -3,10 +3,10 @@
 # ===================================
 
 addresses:
-    label: 'offline.mall::lang.common.address'
+    label: 'winter.mall::lang.common.address'
     manage:
-        form: $/offline/mall/models/address/fields.yaml
-        list: $/offline/mall/models/address/columns.yaml
+        form: $/winter/mall/models/address/fields.yaml
+        list: $/winter/mall/models/address/columns.yaml
     view:
-        list: $/offline/mall/models/address/columns.yaml
+        list: $/winter/mall/models/address/columns.yaml
         toolbarButtons: create|delete

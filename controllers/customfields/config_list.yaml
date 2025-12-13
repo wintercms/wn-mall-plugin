@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.custom_fields'
-modelClass: OFFLINE\Mall\Models\CustomField
-list: $/offline/mall/models/customfield/columns.yaml
-recordUrl: 'offline/mall/customfields/update/:id'
+title: 'winter.mall::lang.common.custom_fields'
+modelClass: Winter\Mall\Models\CustomField
+list: $/winter/mall/models/customfield/columns.yaml
+recordUrl: 'winter/mall/customfields/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

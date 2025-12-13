@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Index;
+namespace Winter\Mall\Classes\Index;
 
 use Illuminate\Support\Collection;
 use Nahid\JsonQ\Jsonq;
-use OFFLINE\Mall\Classes\CategoryFilter\Filter;
-use OFFLINE\Mall\Classes\CategoryFilter\RangeFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SetFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
-use OFFLINE\Mall\Models\Currency;
+use Winter\Mall\Classes\CategoryFilter\Filter;
+use Winter\Mall\Classes\CategoryFilter\RangeFilter;
+use Winter\Mall\Classes\CategoryFilter\SetFilter;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
+use Winter\Mall\Models\Currency;
 
 class Filebase implements Index
 {

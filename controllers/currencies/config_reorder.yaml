@@ -1,5 +1,5 @@
 title: Currencies
-modelClass: OFFLINE\Mall\Models\Currency
+modelClass: Winter\Mall\Models\Currency
 nameFrom: code
 toolbar:
     buttons: reorder_toolbar

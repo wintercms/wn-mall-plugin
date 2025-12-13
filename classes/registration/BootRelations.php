@@ -1,18 +1,19 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
-use October\Rain\Database\Relations\Relation;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\CustomFieldOption;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\ImageSet;
-use OFFLINE\Mall\Models\PaymentMethod;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ServiceOption;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\ShippingMethodRate;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Database\Relations\Relation;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\ImageSet;
+use Winter\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ServiceOption;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\ShippingMethodRate;
+use Winter\Mall\Models\Variant;
 
 trait BootRelations
 {
@@ -20,6 +21,7 @@ trait BootRelations
     public function registerRelations()
     {
         Relation::morphMap([
+            Category::MORPH_KEY           => Category::class,
             Variant::MORPH_KEY            => Variant::class,
             Product::MORPH_KEY            => Product::class,
             ImageSet::MORPH_KEY           => ImageSet::class,

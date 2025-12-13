@@ -1,13 +1,13 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Tax;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Tax;
+use Winter\User\Facades\Auth;
 
 /**
  * This trait is used to filter a Collection of taxes based

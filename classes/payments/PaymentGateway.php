@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentMethod;
 
 /**
  * The PaymentGateway is responsible for the orchestration

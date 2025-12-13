@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\PaymentMethod;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Tests\PluginTestCase;
-use RainLab\Location\Models\Country;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Tests\PluginTestCase;
+use Winter\Location\Models\Country;
 
 class PaymentMethodTest extends PluginTestCase
 {

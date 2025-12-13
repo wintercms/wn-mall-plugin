@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\CategoryFilter;
+namespace Winter\Mall\Classes\CategoryFilter;
 
 class SetFilter extends Filter
 {

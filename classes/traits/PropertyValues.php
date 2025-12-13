@@ -1,15 +1,15 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyGroup;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyGroup;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\Variant;
 
 trait PropertyValues
 {

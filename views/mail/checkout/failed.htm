@@ -1,12 +1,12 @@
-subject = "{{ 'offline.mall::mail.checkout.failed.subject' | trans({number: order.order_number}) }}"
+subject = "{{ 'winter.mall::mail.checkout.failed.subject' | trans({number: order.order_number}) }}"
 description = "Sent when a checkout has failed"
 ==
-{{ 'offline.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
+{{ 'winter.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
 
-{{ 'offline.mall::mail.checkout.failed.problem_message' | trans() }}
+{{ 'winter.mall::mail.checkout.failed.problem_message' | trans() }}
 
-{{ 'offline.mall::mail.checkout.failed.check_order_status' | trans() }}
+{{ 'winter.mall::mail.checkout.failed.check_order_status' | trans() }}
 
 {% partial 'button' url=account_url type='primary' body %}
-    {{ 'offline.mall::mail.common.view_order_status_online' | trans() }}
+    {{ 'winter.mall::mail.common.view_order_status_online' | trans() }}
 {% endpartial %}

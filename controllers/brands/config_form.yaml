@@ -1,13 +1,13 @@
 name: Brands
-modelClass: OFFLINE\Mall\Models\Brand
-form: $/offline/mall/models/brand/fields.yaml
-defaultRedirect: offline/mall/brands
+modelClass: Winter\Mall\Models\Brand
+form: $/winter/mall/models/brand/fields.yaml
+defaultRedirect: winter/mall/brands
 create:
-    title: 'offline.mall::lang.titles.brands.create'
-    redirect: 'offline/mall/brands/update/:id'
-    redirectClose: offline/mall/brands
+    title: 'winter.mall::lang.titles.brands.create'
+    redirect: 'winter/mall/brands/update/:id'
+    redirectClose: winter/mall/brands
 update:
-    title: 'offline.mall::lang.titles.brands.edit'
-    redirect: offline/mall/brands
-    redirectClose: offline/mall/brands
+    title: 'winter.mall::lang.titles.brands.edit'
+    redirect: winter/mall/brands
+    redirectClose: winter/mall/brands
 preview: {  }

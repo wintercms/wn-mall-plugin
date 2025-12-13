@@ -2,7 +2,7 @@
 return [
     'plugin' => [
         'name' => 'Mall',
-        'description' => 'Solução E-commerce para o October CMS',
+        'description' => 'Solução E-commerce para o Winter CMS',
     ],
     'titles' => [
         'products' => [

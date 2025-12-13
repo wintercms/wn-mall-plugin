@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.categories'
-modelClass: OFFLINE\Mall\Models\Category
-list: $/offline/mall/models/category/columns.yaml
-recordUrl: 'offline/mall/categories/update/:id'
+title: 'winter.mall::lang.common.categories'
+modelClass: Winter\Mall\Models\Category
+list: $/winter/mall/models/category/columns.yaml
+recordUrl: 'winter/mall/categories/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

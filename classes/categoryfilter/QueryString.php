@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\CategoryFilter;
+namespace Winter\Mall\Classes\CategoryFilter;
 
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Property;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Property;
 
 /**
  * This class is used to (de)serialize a `Filter` class into a query string.

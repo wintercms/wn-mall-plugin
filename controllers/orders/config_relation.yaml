@@ -3,10 +3,10 @@
 # ===================================
 
 payment_logs:
-    label: 'offline.mall::lang.common.payment'
+    label: 'winter.mall::lang.common.payment'
     view:
-        list: $/offline/mall/models/paymentlog/columns.yaml
+        list: $/winter/mall/models/paymentlog/columns.yaml
         toolbarButtons: delete
     manage:
-        form: $/offline/mall/models/paymentlog/fields.yaml
+        form: $/winter/mall/models/paymentlog/fields.yaml
         recordsPerPage: 10

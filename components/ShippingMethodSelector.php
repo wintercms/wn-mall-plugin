@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\ShippingMethod;
 use Validator;
 
 /**
@@ -47,8 +47,8 @@ class ShippingMethodSelector extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.shippingMethodSelector.details.name',
-            'description' => 'offline.mall::lang.components.shippingMethodSelector.details.description',
+            'name'        => 'winter.mall::lang.components.shippingMethodSelector.details.name',
+            'description' => 'winter.mall::lang.components.shippingMethodSelector.details.description',
         ];
     }
 
@@ -121,7 +121,7 @@ class ShippingMethodSelector extends MallComponent
     public function onChangeMethod()
     {
         $v = Validator::make(post(), [
-            'id' => 'required|exists:offline_mall_shipping_methods,id',
+            'id' => 'required|exists:winter_mall_shipping_methods,id',
         ]);
 
         if ($v->fails()) {
@@ -132,7 +132,7 @@ class ShippingMethodSelector extends MallComponent
 
         if ( ! $this->methods || ! $this->methods->contains($id)) {
             throw new ValidationException([
-                'id' => trans('offline.mall::lang.components.shippingMethodSelector.errors.unavailable'),
+                'id' => trans('winter.mall::lang.components.shippingMethodSelector.errors.unavailable'),
             ]);
         }
 

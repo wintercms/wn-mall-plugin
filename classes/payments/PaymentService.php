@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
-use OFFLINE\Mall\Models\Order;
+use Winter\Mall\Models\Order;
 
 /**
  * The PaymentService orchestrates the payment process.

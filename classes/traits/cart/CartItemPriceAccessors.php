@@ -1,13 +1,13 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Cart;
+namespace Winter\Mall\Classes\Traits\Cart;
 
 
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Classes\Totals\TaxTotal;
-use OFFLINE\Mall\Classes\Traits\FilteredTaxes;
-use OFFLINE\Mall\Models\ServiceOption;
-use OFFLINE\Mall\Models\Tax;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Classes\Totals\TaxTotal;
+use Winter\Mall\Classes\Traits\FilteredTaxes;
+use Winter\Mall\Models\ServiceOption;
+use Winter\Mall\Models\Tax;
 
 trait CartItemPriceAccessors
 {

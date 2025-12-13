@@ -3,22 +3,22 @@
     <tr>
         <th>
             <span>
-                <?= e(trans('offline.mall::lang.product.name')) ?>
+                <?= e(trans('winter.mall::lang.product.name')) ?>
             </span>
         </th>
         <th class="text-right">
             <span>
-                <?= e(trans('offline.mall::lang.order.quantity')) ?>
+                <?= e(trans('winter.mall::lang.order.quantity')) ?>
             </span>
         </th>
         <th class="text-right">
             <span>
-                <?= e(trans('offline.mall::lang.product.price')) ?>
+                <?= e(trans('winter.mall::lang.product.price')) ?>
             </span>
         </th>
         <th class="text-right">
             <span>
-                <?= e(trans('offline.mall::lang.order.total')) ?>
+                <?= e(trans('winter.mall::lang.order.total')) ?>
             </span>
         </th>
     </tr>
@@ -40,7 +40,7 @@
             </div>
             <?php if ($item->service_options): ?>
                 <?php foreach($item->service_options as $option): ?>
-                    <strong><?= e(trans('offline.mall::lang.common.service')) ?></strong>:
+                    <strong><?= e(trans('winter.mall::lang.common.service')) ?></strong>:
                     <?= e($option['name']) ?><br/>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -62,7 +62,7 @@
     <tr class="orderfooter separator separator-bottom">
         <td colspan="3">
             <span>
-                <?= e(trans('offline.mall::lang.order.subtotal')) ?>
+                <?= e(trans('winter.mall::lang.order.subtotal')) ?>
             </span>
         </td>
         <td class="text-right">
@@ -76,7 +76,7 @@
     <tr class="orderdiscount">
         <td colspan="3">
             <span>
-                <?= e(trans('offline.mall::lang.common.discount')) ?>:
+                <?= e(trans('winter.mall::lang.common.discount')) ?>:
                 <?= e($entry['discount']['name']) ?>
             </span>
         </td>
@@ -92,7 +92,7 @@
     <tr class="orderfooter separator">
         <td colspan="3">
             <span>
-                <?= e(trans('offline.mall::lang.common.shipping')) ?>:
+                <?= e(trans('winter.mall::lang.common.shipping')) ?>:
                 <?= e($order['shipping']['method']['name']) ?>
                 <?php if($order['shipping']['appliedDiscount']): ?>
                 (<?= e($order['shipping']['appliedDiscount']['discount']['name']) ?>,
@@ -111,7 +111,7 @@
     <tr class="orderfooter separator">
         <td colspan="3">
             <span>
-                <?= e(trans('offline.mall::lang.common.payment')) ?>:
+                <?= e(trans('winter.mall::lang.common.payment')) ?>:
                 <?= e($order['payment']['method']['name']) ?>
             </span>
         </td>
@@ -125,7 +125,7 @@
     <tr class="orderfooter-bottomline">
         <td colspan="3">
             <span>
-                <?= e(trans('offline.mall::lang.order.grand_total')) ?>
+                <?= e(trans('winter.mall::lang.order.grand_total')) ?>
             </span>
         </td>
         <td class="text-right"><span><?= e($order->totalPostTaxes()) ?></span></td>

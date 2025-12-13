@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Queue;
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Jobs\PropertyRemovalUpdate;
-use OFFLINE\Mall\Classes\Traits\SortableRelation;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Jobs\PropertyRemovalUpdate;
+use Winter\Mall\Classes\Traits\SortableRelation;
 
 class PropertyGroup extends Model
 {
@@ -15,7 +15,7 @@ class PropertyGroup extends Model
     use SortableRelation;
     use Sortable;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
         'display_name',
@@ -30,12 +30,12 @@ class PropertyGroup extends Model
     ];
     public $fillable = ['name', 'display_name', 'slug', 'description'];
 
-    public $table = 'offline_mall_property_groups';
+    public $table = 'winter_mall_property_groups';
 
     public $belongsToMany = [
         'properties'            => [
             Property::class,
-            'table'      => 'offline_mall_property_property_group',
+            'table'      => 'winter_mall_property_property_group',
             'key'        => 'property_group_id',
             'otherKey'   => 'property_id',
             'pivot'      => ['use_for_variants', 'filter_type', 'sort_order'],
@@ -43,17 +43,17 @@ class PropertyGroup extends Model
         ],
         'filterable_properties' => [
             Property::class,
-            'table'      => 'offline_mall_property_property_group',
+            'table'      => 'winter_mall_property_property_group',
             'key'        => 'property_group_id',
             'otherKey'   => 'property_id',
             'pivot'      => ['use_for_variants', 'filter_type', 'sort_order'],
             'pivotModel' => PropertyGroupProperty::class,
-            'order'      => 'offline_mall_property_property_group.sort_order ASC',
-            'conditions' => 'offline_mall_property_property_group.filter_type is not null',
+            'order'      => 'winter_mall_property_property_group.sort_order ASC',
+            'conditions' => 'winter_mall_property_property_group.filter_type is not null',
         ],
         'categories'            => [
             Category::class,
-            'table'    => 'offline_mall_category_property_group',
+            'table'    => 'winter_mall_category_property_group',
             'key'      => 'property_group_id',
             'otherKey' => 'category_id',
             'pivot'    => ['relation_sort_order'],

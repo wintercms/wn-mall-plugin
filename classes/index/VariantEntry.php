@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Index;
+namespace Winter\Mall\Classes\Index;
 
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\Variant;
 use Event;
 
 class VariantEntry implements Entry

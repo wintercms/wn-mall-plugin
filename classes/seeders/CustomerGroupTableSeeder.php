@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\CustomerGroup;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\CustomerGroup;
 
 class CustomerGroupTableSeeder extends Seeder
 {

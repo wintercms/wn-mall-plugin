@@ -1,8 +1,8 @@
 <?php
 
-namespace OFFLINE\Mall\Models;
+namespace Winter\Mall\Models;
 
-use RainLab\User\Models\User as UserBase;
+use Winter\User\Models\User as UserBase;
 
 class User extends UserBase
 {
@@ -10,7 +10,7 @@ class User extends UserBase
         'customer' => Customer::class,
     ];
     public $belongsTo  =[
-        'customer_group' => [CustomerGroup::class, 'key' => 'offline_mall_customer_group_id'],
+        'customer_group' => [CustomerGroup::class, 'key' => 'winter_mall_customer_group_id'],
     ];
     public $with = ['customer_group'];
     public $rules = [

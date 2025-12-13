@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Payments;
+namespace Winter\Mall\Classes\Payments;
 
 /**
  * This provider can be used for all offline payments.

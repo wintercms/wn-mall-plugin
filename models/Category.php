@@ -1,19 +1,19 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Cache;
 use DB;
 use Illuminate\Support\Facades\Queue;
 use Model;
-use October\Rain\Database\Traits\NestedTree;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Classes\Jobs\PropertyRemovalUpdate;
-use OFFLINE\Mall\Classes\Traits\Category\MenuItems;
-use OFFLINE\Mall\Classes\Traits\Category\Properties;
-use OFFLINE\Mall\Classes\Traits\Category\Slug;
-use OFFLINE\Mall\Classes\Traits\Category\Translation;
-use OFFLINE\Mall\Classes\Traits\SortableRelation;
+use Winter\Storm\Database\Traits\NestedTree;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Classes\Jobs\PropertyRemovalUpdate;
+use Winter\Mall\Classes\Traits\Category\MenuItems;
+use Winter\Mall\Classes\Traits\Category\Properties;
+use Winter\Mall\Classes\Traits\Category\Slug;
+use Winter\Mall\Classes\Traits\Category\Translation;
+use Winter\Mall\Classes\Traits\SortableRelation;
 use System\Models\File;
 
 class Category extends Model
@@ -38,10 +38,12 @@ class Category extends Model
      */
     public const TREE_CACHE_KEY = 'oc-mall.categories.tree';
     /**
-     * This locale is used if RainLab.Translate is not available.
+     * This locale is used if Winter.Translate is not available.
      * @var string
      */
     public const DEFAULT_LOCALE = 'default';
+
+    const MORPH_KEY = 'mall.category';
 
     protected $dates = [
         'deleted_at',
@@ -55,7 +57,7 @@ class Category extends Model
         'description_short',
     ];
     public $implement = [
-        '@RainLab.Translate.Behaviors.TranslatableModel',
+        '@Winter.Translate.Behaviors.TranslatableModel',
     ];
     public $rules = [
         'name' => 'required',
@@ -79,18 +81,18 @@ class Category extends Model
         'inherit_property_groups'   => 'boolean',
         'inherit_review_categories' => 'boolean',
     ];
-    public $table = 'offline_mall_categories';
+    public $table = 'winter_mall_categories';
     public $belongsToMany = [
         'products'          => [
             Product::class,
-            'table'    => 'offline_mall_category_product',
+            'table'    => 'winter_mall_category_product',
             'key'      => 'category_id',
             'otherKey' => 'product_id',
             'pivot'    => ['sort_order'],
         ],
         'publishedProducts' => [
             Product::class,
-            'table'    => 'offline_mall_category_product',
+            'table'    => 'winter_mall_category_product',
             'key'      => 'category_id',
             'otherKey' => 'product_id',
             'scope'    => 'published',
@@ -98,7 +100,7 @@ class Category extends Model
         ],
         'property_groups'   => [
             PropertyGroup::class,
-            'table'    => 'offline_mall_category_property_group',
+            'table'    => 'winter_mall_category_property_group',
             'key'      => 'category_id',
             'otherKey' => 'property_group_id',
             'pivot'    => ['relation_sort_order'],
@@ -106,7 +108,7 @@ class Category extends Model
         ],
         'review_categories' => [
             ReviewCategory::class,
-            'table' => 'offline_mall_category_review_category',
+            'table' => 'winter_mall_category_review_category',
         ],
     ];
     public $attachOne = [
@@ -182,7 +184,7 @@ class Category extends Model
             $model->warmCache();
         });
         static::deleted(function (self $model) {
-            DB::table('offline_mall_category_product')->where('category_id', $model->id)->delete();
+            DB::table('winter_mall_category_product')->where('category_id', $model->id)->delete();
             $model->purgeCache();
             $model->warmCache();
         });
@@ -216,7 +218,7 @@ class Category extends Model
 
         return [
                 // null key for "no parent"
-                null => '(' . trans('offline.mall::lang.category.no_parent') . ')',
+                null => '(' . trans('winter.mall::lang.category.no_parent') . ')',
             ] + $items->listsNested('name', 'id');
     }
 
@@ -227,8 +229,8 @@ class Category extends Model
      */
     public static function allowedSortingOptions()
     {
-        $name    = trans('offline.mall::lang.product.name');
-        $created = trans('offline.mall::lang.common.created_at');
+        $name    = trans('winter.mall::lang.product.name');
+        $created = trans('winter.mall::lang.common.created_at');
 
         return [
             'name asc'        => "${name}, A->Z",

@@ -1,47 +1,47 @@
 fields:
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         oc.commentPosition: ''
         span: auto
         type: text
     payment_provider:
-        label: 'offline.mall::lang.common.payment_provider'
+        label: 'winter.mall::lang.common.payment_provider'
         oc.commentPosition: ''
         span: auto
         type: dropdown
     code:
-        label: 'offline.mall::lang.common.code'
-        comment: 'offline.mall::lang.common.code_comment'
+        label: 'winter.mall::lang.common.code'
+        comment: 'winter.mall::lang.common.code_comment'
         span: auto
         type: text
-        placeholder: 'offline.mall::lang.common.code'
+        placeholder: 'winter.mall::lang.common.code'
         preset:
             field: name
             type: slug
     pdf_partial:
-        label: 'offline.mall::lang.payment_method.pdf_partial'
-        comment: 'offline.mall::lang.payment_method.pdf_partial_comment'
+        label: 'winter.mall::lang.payment_method.pdf_partial'
+        comment: 'winter.mall::lang.payment_method.pdf_partial_comment'
         oc.commentPosition: ''
         span: auto
         type: dropdown
 tabs:
     fields:
         description:
-            label: 'offline.mall::lang.product.description'
+            label: 'winter.mall::lang.product.description'
             size: large
             span: auto
             type: richeditor
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         instructions:
-            label: 'offline.mall::lang.payment_method.instructions'
-            comment: 'offline.mall::lang.payment_method.instructions_comment'
+            label: 'winter.mall::lang.payment_method.instructions'
+            comment: 'winter.mall::lang.payment_method.instructions_comment'
             size: large
             span: auto
             type: codeeditor
             language: twig
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         logo:
-            label: 'offline.mall::lang.common.logo'
+            label: 'winter.mall::lang.common.logo'
             oc.commentPosition: ''
             mode: image
             fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
@@ -53,27 +53,27 @@ tabs:
                 extension: auto
             span: auto
             type: fileupload
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         fee_label:
-            label: 'offline.mall::lang.payment_method.fee_label'
+            label: 'winter.mall::lang.payment_method.fee_label'
             span: left
             type: text
-            comment: 'offline.mall::lang.payment_method.fee_label_comment'
-            tab: 'offline.mall::lang.common.fees'
+            comment: 'winter.mall::lang.payment_method.fee_label_comment'
+            tab: 'winter.mall::lang.common.fees'
         taxes:
             span: right
             path: taxes
             type: partial
-            tab: 'offline.mall::lang.common.fees'
+            tab: 'winter.mall::lang.common.fees'
         _prices:
-            label: 'offline.mall::lang.payment_method.price'
+            label: 'winter.mall::lang.payment_method.price'
             span: left
             type: mall.price
-            comment: 'offline.mall::lang.payment_method.price_comment'
-            tab: 'offline.mall::lang.common.fees'
+            comment: 'winter.mall::lang.payment_method.price_comment'
+            tab: 'winter.mall::lang.common.fees'
         fee_percentage:
-            label: 'offline.mall::lang.payment_method.fee_percentage'
+            label: 'winter.mall::lang.payment_method.fee_percentage'
             span: left
             type: text
-            comment: 'offline.mall::lang.payment_method.fee_percentage_comment'
-            tab: 'offline.mall::lang.common.fees'
+            comment: 'winter.mall::lang.payment_method.fee_percentage_comment'
+            tab: 'winter.mall::lang.common.fees'

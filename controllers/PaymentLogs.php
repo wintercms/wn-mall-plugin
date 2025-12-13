@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -14,13 +14,13 @@ class PaymentLogs extends Controller
     public $filterConfig = 'config_filter.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_payment_log' 
+        'winter.mall.manage_payment_log' 
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-orders', 'mall-payment-log');
+        BackendMenu::setContext('Winter.Mall', 'mall-orders', 'mall-payment-log');
     }
 
     public function listInjectRowClass($row, $definition)

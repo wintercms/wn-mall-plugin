@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Index;
+namespace Winter\Mall\Classes\Index;
 
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
 
 class Noop implements Index
 {

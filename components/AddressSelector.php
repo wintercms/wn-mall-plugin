@@ -1,14 +1,14 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\GeneralSettings;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\User\Facades\Auth;
 use Validator;
 
 /**
@@ -63,8 +63,8 @@ class AddressSelector extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.addressSelector.details.name',
-            'description' => 'offline.mall::lang.components.addressSelector.details.description',
+            'name'        => 'winter.mall::lang.components.addressSelector.details.name',
+            'description' => 'winter.mall::lang.components.addressSelector.details.description',
         ];
     }
 
@@ -96,8 +96,8 @@ class AddressSelector extends MallComponent
     public function getTypeOptions()
     {
         return [
-            'shipping' => trans('offline.mall::lang.order.shipping_address'),
-            'billing'  => trans('offline.mall::lang.order.billing_address'),
+            'shipping' => trans('winter.mall::lang.order.shipping_address'),
+            'billing'  => trans('winter.mall::lang.order.billing_address'),
         ];
     }
 
@@ -122,7 +122,7 @@ class AddressSelector extends MallComponent
         $this->setData();
 
         if (Auth::getUser() && $this->addresses->count() < 1) {
-            Flash::warning(trans('offline.mall::frontend.flash.missing_address'));
+            Flash::warning(trans('winter.mall::frontend.flash.missing_address'));
 
             $url = $this->controller->pageUrl($this->addressPage, [
                 'address'  => 'new',
@@ -199,7 +199,7 @@ class AddressSelector extends MallComponent
         $rules = [
             'id' => [
                 'required',
-                Rule::exists('offline_mall_addresses')->where(function ($q) use ($user) {
+                Rule::exists('winter_mall_addresses')->where(function ($q) use ($user) {
                     $q->where('customer_id', $user->customer->id);
                 }),
             ],

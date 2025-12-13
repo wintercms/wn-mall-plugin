@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\HashIds;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\HashIds;
 use System\Models\File;
 
 class PropertyValue extends Model
@@ -10,7 +10,7 @@ class PropertyValue extends Model
     use Validation;
     use HashIds;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         ['value', 'index' => true],
     ];
@@ -23,7 +23,7 @@ class PropertyValue extends Model
         'property_id',
     ];
     public $with = ['property'];
-    public $table = 'offline_mall_property_values';
+    public $table = 'winter_mall_property_values';
     public $belongsTo = [
         'property' => [Property::class, 'deleted' => true],
         'product'  => [Product::class],
@@ -122,7 +122,7 @@ class PropertyValue extends Model
         $type  = optional($this->property)->type;
         if ($type === 'checkbox') {
             $key = (bool)$value ? 'yes' : 'no';
-            return trans('offline.mall::lang.common.' . $key);
+            return trans('winter.mall::lang.common.' . $key);
         }
 
         return e($value);

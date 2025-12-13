@@ -1,5 +1,5 @@
 title: Brands
-modelClass: OFFLINE\Mall\Models\Brand
+modelClass: Winter\Mall\Models\Brand
 nameFrom: name
 toolbar:
     buttons: reorder_toolbar

@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use Illuminate\Support\Collection;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\CustomFieldValue;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldValue;
 use Validator;
 
 trait CustomFields

@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\Product;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\Product;
 
 class ProductTableSeeder extends Seeder
 {

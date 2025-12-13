@@ -1,21 +1,21 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
 use Event;
-use OFFLINE\Mall\Classes\Events\MailingEventHandler;
-use OFFLINE\Mall\Classes\Search\ProductsSearchProvider;
-use OFFLINE\Mall\Models\Brand;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ProductPrice;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\Variant;
-use OFFLINE\Mall\Models\Wishlist;
+use Winter\Mall\Classes\Events\MailingEventHandler;
+use Winter\Mall\Classes\Search\ProductsSearchProvider;
+use Winter\Mall\Models\Brand;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ProductPrice;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Models\Wishlist;
 
 trait BootEvents
 {
@@ -30,11 +30,11 @@ trait BootEvents
 
     public function registerObservers()
     {
-        Product::observe(\OFFLINE\Mall\Classes\Observers\ProductObserver::class);
-        Variant::observe(\OFFLINE\Mall\Classes\Observers\VariantObserver::class);
-        Brand::observe(\OFFLINE\Mall\Classes\Observers\BrandObserver::class);
-        PropertyValue::observe(\OFFLINE\Mall\Classes\Observers\PropertyValueObserver::class);
-        ProductPrice::observe(\OFFLINE\Mall\Classes\Observers\ProductPriceObserver::class);
+        Product::observe(\Winter\Mall\Classes\Observers\ProductObserver::class);
+        Variant::observe(\Winter\Mall\Classes\Observers\VariantObserver::class);
+        Brand::observe(\Winter\Mall\Classes\Observers\BrandObserver::class);
+        PropertyValue::observe(\Winter\Mall\Classes\Observers\PropertyValueObserver::class);
+        ProductPrice::observe(\Winter\Mall\Classes\Observers\ProductPriceObserver::class);
     }
 
     protected function registerGenericEvents()
@@ -47,10 +47,10 @@ trait BootEvents
     {
         Event::listen('pages.menuitem.listTypes', function () {
             return [
-                'mall-category'       => '[OFFLINE.Mall] ' . trans('offline.mall::lang.menu_items.single_category'),
-                'all-mall-categories' => '[OFFLINE.Mall] ' . trans('offline.mall::lang.menu_items.all_categories'),
-                'all-mall-products'   => '[OFFLINE.Mall] ' . trans('offline.mall::lang.menu_items.all_products'),
-                'all-mall-variants'   => '[OFFLINE.Mall] ' . trans('offline.mall::lang.menu_items.all_variants'),
+                'mall-category'       => '[Winter.Mall] ' . trans('winter.mall::lang.menu_items.single_category'),
+                'all-mall-categories' => '[Winter.Mall] ' . trans('winter.mall::lang.menu_items.all_categories'),
+                'all-mall-products'   => '[Winter.Mall] ' . trans('winter.mall::lang.menu_items.all_products'),
+                'all-mall-variants'   => '[Winter.Mall] ' . trans('winter.mall::lang.menu_items.all_variants'),
             ];
         });
 
@@ -103,7 +103,7 @@ trait BootEvents
         Event::listen('offline.gdpr::cleanup.register', function () {
             return [
                 'id'     => 'oc-mall-plugin',
-                'label'  => 'OFFLINE Mall',
+                'label'  => 'Winter Mall',
                 'models' => [
                     [
                         'label'   => 'Customers',

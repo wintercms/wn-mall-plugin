@@ -1,25 +1,25 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Classes\Customer\AuthManager;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Classes\PaymentState\PendingState;
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\CustomFieldOption;
-use OFFLINE\Mall\Models\CustomFieldValue;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\OrderState;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Models\User;
-use OFFLINE\Mall\Models\Variant;
-use OFFLINE\Mall\Tests\PluginTestCase;
-use RainLab\User\Facades\Auth;
+use Winter\Mall\Classes\Customer\AuthManager;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Classes\PaymentState\PendingState;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\CustomFieldValue;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\OrderState;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\User;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Tests\PluginTestCase;
+use Winter\User\Facades\Auth;
 
 class OrderTest extends PluginTestCase
 {

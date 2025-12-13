@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\ReorderController;
 use Backend\Classes\Controller;
@@ -7,10 +7,10 @@ use Cache;
 use DB;
 use Flash;
 use Lang;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Product;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Product;
 use Queue;
 
 class CategoriesProducts extends Controller
@@ -22,8 +22,8 @@ class CategoriesProducts extends Controller
     public $reorderConfig = 'config_reorder.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_categories',
-        'offline.mall.manage_products',
+        'winter.mall.manage_categories',
+        'winter.mall.manage_products',
     ];
 
     /**
@@ -38,7 +38,7 @@ class CategoriesProducts extends Controller
     public function __construct(Index $index)
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-categories');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-categories');
 
         $this->category = Category::findOrFail($this->params[0]);
         $this->observer = new ProductObserver($index);
@@ -62,7 +62,7 @@ class CategoriesProducts extends Controller
         }
 
         foreach ($ids as $order => $id) {
-            DB::table('offline_mall_category_product')
+            DB::table('winter_mall_category_product')
                 ->updateOrInsert(
                     ['category_id' => $this->category->id, 'product_id' => $id],
                     ['sort_order' => $order]
@@ -89,7 +89,7 @@ class CategoriesProducts extends Controller
 
     protected function getRecords()
     {
-        $orders = DB::table('offline_mall_category_product')
+        $orders = DB::table('winter_mall_category_product')
                     ->where('category_id', $this->category->id)
                     ->get(['product_id', 'sort_order'])
                     ->pluck('sort_order', 'product_id');

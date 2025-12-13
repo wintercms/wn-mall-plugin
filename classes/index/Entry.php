@@ -1,7 +1,7 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Index;
+namespace Winter\Mall\Classes\Index;
 
 interface Entry
 {

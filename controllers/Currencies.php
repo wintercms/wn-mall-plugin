@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Classes\Controller;
 use BackendMenu;
@@ -13,7 +13,7 @@ class Currencies extends Controller
     public $reorderConfig = 'config_reorder.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.settings.manage_currency'
+        'winter.mall.settings.manage_currency'
     ];
 
     public function __construct()
@@ -21,6 +21,6 @@ class Currencies extends Controller
         parent::__construct();
 
         BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('OFFLINE.Mall', 'currency_settings');
+        SettingsManager::setContext('Winter.Mall', 'currency_settings');
     }
 }

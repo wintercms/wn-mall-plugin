@@ -817,7 +817,7 @@ return [
             "manage_payment_methods" => "Può gestire i metodi di pagamento"
         ]
     ],
-    "plugin" => ["description" => "Soluzione E-commerce per October CMS", "name" => "Mall"],
+    "plugin" => ["description" => "Soluzione E-commerce per Winter CMS", "name" => "Mall"],
     "price_category_settings" => [
         "description" => "Configura categorie di prezzo aggiuntive",
         "label" => "Categorie di prezzo"

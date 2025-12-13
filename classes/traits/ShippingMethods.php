@@ -1,10 +1,10 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\ShippingMethod;
 
 trait ShippingMethods
 {

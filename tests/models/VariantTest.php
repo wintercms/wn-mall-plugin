@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Models\ImageSet;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Models\Variant;
-use OFFLINE\Mall\Tests\PluginTestCase;
+use Winter\Mall\Models\ImageSet;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Tests\PluginTestCase;
 use System\Models\File;
 
 class VariantTest extends PluginTestCase
@@ -95,7 +95,7 @@ class VariantTest extends PluginTestCase
 
     public function test_it_inherits_files()
     {
-        \DB::table('offline_mall_product_variants')
+        \DB::table('winter_mall_product_variants')
            ->where('id', $this->variant->id)
            ->update(['image_set_id' => null]);
 
@@ -115,7 +115,7 @@ class VariantTest extends PluginTestCase
 
         $this->product->main_image_set->images()->save($file);
 
-        \DB::table('offline_mall_product_variants')
+        \DB::table('winter_mall_product_variants')
            ->where('id', $this->variant->id)
            ->update(['image_set_id' => null]);
 

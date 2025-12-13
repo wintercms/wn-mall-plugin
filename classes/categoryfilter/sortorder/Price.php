@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\CategoryFilter\SortOrder;
+namespace Winter\Mall\Classes\CategoryFilter\SortOrder;
 
 abstract class Price extends SortOrder
 {

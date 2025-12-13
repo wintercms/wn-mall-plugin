@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -16,12 +16,12 @@ class Properties extends Controller
     public $formConfig = 'config_form.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_properties',
+        'winter.mall.manage_properties',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-properties');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-properties');
     }
 }

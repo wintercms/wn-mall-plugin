@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Observers;
+namespace Winter\Mall\Classes\Observers;
 
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\VariantEntry;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\VariantEntry;
+use Winter\Mall\Models\Variant;
 
 class VariantObserver
 {

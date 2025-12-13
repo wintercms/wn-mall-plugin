@@ -1,16 +1,16 @@
-<?php namespace OFFLINE\Mall\FormWidgets;
+<?php namespace Winter\Mall\FormWidgets;
 
 use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
 use Backend\FormWidgets\ColorPicker;
 use Backend\FormWidgets\FileUpload;
 use Backend\FormWidgets\DatePicker;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyGroup;
-use OFFLINE\Mall\Models\PropertyValue;
-use RainLab\Translate\FormWidgets\MLRichEditor;
-use RainLab\Translate\FormWidgets\MLText;
-use RainLab\Translate\FormWidgets\MLTextarea;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyGroup;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Translate\FormWidgets\MLRichEditor;
+use Winter\Translate\FormWidgets\MLText;
+use Winter\Translate\FormWidgets\MLTextarea;
 
 /**
  * PropertyFields Form Widget

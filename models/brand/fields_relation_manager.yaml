@@ -1,5 +1,5 @@
 fields:
     name:
-        label: 'offline.mall::lang.common.brand'
+        label: 'winter.mall::lang.common.brand'
         span: full
         type: text

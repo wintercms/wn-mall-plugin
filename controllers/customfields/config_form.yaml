@@ -1,11 +1,11 @@
-name: 'offline.mall::lang.common.custom_fields'
-modelClass: OFFLINE\Mall\Models\CustomField
-form: $/offline/mall/models/customfield/fields.yaml
-defaultRedirect: offline/mall/customfields
+name: 'winter.mall::lang.common.custom_fields'
+modelClass: Winter\Mall\Models\CustomField
+form: $/winter/mall/models/customfield/fields.yaml
+defaultRedirect: winter/mall/customfields
 create:
-    redirect: 'offline/mall/customfields/update/:id'
-    redirectClose: offline/mall/customfields
+    redirect: 'winter/mall/customfields/update/:id'
+    redirectClose: winter/mall/customfields
 update:
-    redirect: offline/mall/customfields
-    redirectClose: offline/mall/customfields
+    redirect: winter/mall/customfields
+    redirectClose: winter/mall/customfields
 preview: {  }

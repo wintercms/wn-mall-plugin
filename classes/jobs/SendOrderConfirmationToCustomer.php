@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Jobs;
+namespace Winter\Mall\Classes\Jobs;
 
 use DB;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
-use OFFLINE\Mall\Models\Order;
+use Winter\Mall\Models\Order;
 
 /**
  * This Job sends the order confirmation to the customer. It also generates
@@ -18,7 +18,7 @@ class SendOrderConfirmationToCustomer
     {
         if ($job->attempts() > 10) {
             logger()->critical(
-                '[OFFLINE.Mall] Failed to send checkout confirmation mail after 10 attempts.',
+                '[Winter.Mall] Failed to send checkout confirmation mail after 10 attempts.',
                 ['input' => $input]
             );
             $job->delete();
@@ -36,7 +36,7 @@ class SendOrderConfirmationToCustomer
             function (Message $message) use ($order) {
                 $message->to($order->customer->user->email, $order->customer->name);
                 if ($pdf = $order->getPDFInvoice()) {
-                    $file_name = trans('offline.mall::lang.order.order_file_name', ['order' => $order->id]);
+                    $file_name = trans('winter.mall::lang.order.order_file_name', ['order' => $order->id]);
                     $message->attachData($pdf->output(), sprintf('%s.pdf', $file_name));
                 }
             });

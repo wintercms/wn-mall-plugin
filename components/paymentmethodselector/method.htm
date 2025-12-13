@@ -36,8 +36,8 @@
                     {% endif %}
                     <div class="mall-payment-method__submit">
                         {% set label = __SELF__.order
-                            ? 'offline.mall::frontend.payment_method.pay_now'
-                            : 'offline.mall::frontend.payment_method.proceed' %}
+                            ? 'winter.mall::frontend.payment_method.pay_now'
+                            : 'winter.mall::frontend.payment_method.proceed' %}
                         <button class="mall-btn mall-btn--primary" type="submit" data-attach-loading>
                             {{ label | trans }}
                         </button>
@@ -53,7 +53,7 @@
                     data-request="{{ __SELF__ }}::onChangeMethod"
                     data-request-success="$.publish('mall.cart.paymentMethodChanged', data)"
                     data-request-data="id: '{{ method.id }}'">
-                {{ 'offline.mall::frontend.payment_method.button_label' | trans }}
+                {{ 'winter.mall::frontend.payment_method.button_label' | trans }}
             </button>
         {% endif %}
     </div>

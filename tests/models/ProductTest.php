@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Tests\PluginTestCase;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Tests\PluginTestCase;
 
 class ProductTest extends PluginTestCase
 {

@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -7,8 +7,8 @@ use Backend\Behaviors\ReorderController;
 use Backend\Classes\Controller;
 use BackendMenu;
 use Flash;
-use OFFLINE\Mall\Classes\Traits\ReorderRelation;
-use OFFLINE\Mall\Models\Category;
+use Winter\Mall\Classes\Traits\ReorderRelation;
+use Winter\Mall\Models\Category;
 
 class Categories extends Controller
 {
@@ -27,20 +27,20 @@ class Categories extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_categories',
+        'winter.mall.manage_categories',
     ];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-categories');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-categories');
 
         // Legacy (v1)
         if (!class_exists('System')) {
-            $this->addJs('/plugins/offline/mall/assets/Sortable.js');
+            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
         }
 
-        $this->addJs('/plugins/offline/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/backend.js');
     }
 
     public function onReorder()

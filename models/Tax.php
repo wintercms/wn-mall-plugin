@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Cache;
 use Model;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Database\Collection;
-use Rainlab\Location\Models\Country as RainLabCountry;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Database\Collection;
+use Rainlab\Location\Models\Country as WinterCountry;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -15,7 +15,7 @@ class Tax extends Model
 
     public const DEFAULT_TAX_CACHE_KEY = 'mall.taxes.default';
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
     ];
@@ -28,30 +28,30 @@ class Tax extends Model
         'percentage',
         'is_default',
     ];
-    public $table = 'offline_mall_taxes';
+    public $table = 'winter_mall_taxes';
     public $casts = ['is_default' => 'boolean'];
     public $belongsToMany = [
         'products'         => [
             Product::class,
-            'table'    => 'offline_mall_product_tax',
+            'table'    => 'winter_mall_product_tax',
             'key'      => 'tax_id',
             'otherKey' => 'product_id',
         ],
         'shipping_methods' => [
             ShippingMethod::class,
-            'table'    => 'offline_mall_shipping_method_tax',
+            'table'    => 'winter_mall_shipping_method_tax',
             'key'      => 'tax_id',
             'otherKey' => 'shipping_method_id',
         ],
         'payment_methods'  => [
             PaymentMethod::class,
-            'table'    => 'offline_mall_payment_method_tax',
+            'table'    => 'winter_mall_payment_method_tax',
             'key'      => 'tax_id',
             'otherKey' => 'payment_method_id',
         ],
         'countries'        => [
-            RainLabCountry::class,
-            'table'      => 'offline_mall_country_tax',
+            WinterCountry::class,
+            'table'      => 'winter_mall_country_tax',
             'key'        => 'tax_id',
             'otherKey'   => 'country_id',
             'conditions' => 'is_enabled = true',

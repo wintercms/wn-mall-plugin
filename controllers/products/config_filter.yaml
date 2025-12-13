@@ -4,21 +4,21 @@
 
 scopes:
     category:
-        label: offline.mall::lang.common.category
-        modelClass: OFFLINE\Mall\Models\Category
+        label: winter.mall::lang.common.category
+        modelClass: Winter\Mall\Models\Category
         scope: inCategories
 
     created_at:
-        label: offline.mall::lang.common.created_at
+        label: winter.mall::lang.common.created_at
         type: daterange
         conditions: created_at >= ':after' AND created_at <= ':before'
 
     published:
-        label: offline.mall::lang.common.hide_published
+        label: winter.mall::lang.common.hide_published
         type: checkbox
         conditions: published <> true
 
     is_virtual:
-        label: offline.mall::lang.product.filter_virtual
+        label: winter.mall::lang.product.filter_virtual
         type: checkbox
         conditions: is_virtual = true

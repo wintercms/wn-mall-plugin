@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.property_groups'
-modelClass: OFFLINE\Mall\Models\PropertyGroup
-list: $/offline/mall/models/propertygroup/columns.yaml
-recordUrl: 'offline/mall/propertygroups/update/:id'
+title: 'winter.mall::lang.common.property_groups'
+modelClass: Winter\Mall\Models\PropertyGroup
+list: $/winter/mall/models/propertygroup/columns.yaml
+recordUrl: 'winter/mall/propertygroups/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

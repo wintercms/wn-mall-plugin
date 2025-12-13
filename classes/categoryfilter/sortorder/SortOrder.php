@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\CategoryFilter\SortOrder;
+namespace Winter\Mall\Classes\CategoryFilter\SortOrder;
 
 use Event;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\Currency;
+use Winter\Mall\Models\Currency;
 
 abstract class SortOrder
 {
@@ -80,7 +80,7 @@ abstract class SortOrder
             'name'       => new Name(),
         ];
 
-        $extensions = array_filter(Event::fire('offline.mall.extendSortOrder'));
+        $extensions = array_filter(Event::fire('winter.mall.extendSortOrder'));
         if (count($extensions) > 0) {
             foreach ($extensions as $extension) {
                 $options = array_merge($options, $extension);
@@ -122,7 +122,7 @@ abstract class SortOrder
      */
     public function label(): string
     {
-        return trans('offline.mall::lang.components.productsFilter.sortOrder.' . camel_case($this->key()));
+        return trans('winter.mall::lang.components.productsFilter.sortOrder.' . camel_case($this->key()));
     }
 
     /**

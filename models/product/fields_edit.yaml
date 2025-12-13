@@ -1,63 +1,63 @@
 fields:
     name:
-        label: 'offline.mall::lang.product.name'
+        label: 'winter.mall::lang.product.name'
         oc.commentPosition: ''
         span: auto
         type: text
-        placeholder: 'offline.mall::lang.product.name'
+        placeholder: 'winter.mall::lang.product.name'
     slug:
-        label: 'offline.mall::lang.common.slug'
+        label: 'winter.mall::lang.common.slug'
         oc.commentPosition: ''
         span: auto
         type: text
-        placeholder: 'offline.mall::lang.common.slug'
+        placeholder: 'winter.mall::lang.common.slug'
         preset:
             field: name
             type: slug
 tabs:
     lazy:
-        - 'offline.mall::lang.common.attachments'
-        - 'offline.mall::lang.common.taxes'
-        - 'offline.mall::lang.common.cart'
-        - 'offline.mall::lang.common.accessories'
-        - 'offline.mall::lang.common.reviews'
+        - 'winter.mall::lang.common.attachments'
+        - 'winter.mall::lang.common.taxes'
+        - 'winter.mall::lang.common.cart'
+        - 'winter.mall::lang.common.accessories'
+        - 'winter.mall::lang.common.reviews'
     fields:
         published:
-            label: 'offline.mall::lang.product.published'
+            label: 'winter.mall::lang.product.published'
             span: left
             type: switch
-            comment: 'offline.mall::lang.product.published_comment'
-            tab: 'offline.mall::lang.product.general'
+            comment: 'winter.mall::lang.product.published_comment'
+            tab: 'winter.mall::lang.product.general'
         categories:
-            label: 'offline.mall::lang.common.categories'
+            label: 'winter.mall::lang.common.categories'
             oc.commentPosition: ''
             nameFrom: name
             descriptionFrom: description
             span: right
             type: relation
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         allow_out_of_stock_purchases:
-            label: 'offline.mall::lang.product.allow_out_of_stock_purchases'
+            label: 'winter.mall::lang.product.allow_out_of_stock_purchases'
             span: left
             type: switch
-            comment: 'offline.mall::lang.product.allow_out_of_stock_purchases_comment'
-            tab: 'offline.mall::lang.product.general'
+            comment: 'winter.mall::lang.product.allow_out_of_stock_purchases_comment'
+            tab: 'winter.mall::lang.product.general'
             trigger:
                 action: hide
                 field: inventory_management_method
                 condition: 'value[variant]'
         inventory_management_method:
-            label: 'offline.mall::lang.product.inventory_management_method'
+            label: 'winter.mall::lang.product.inventory_management_method'
             oc.commentPosition: ''
             span: left
             type: dropdown
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
             trigger:
                 action: hide
                 field: is_virtual
                 condition: 'checked'
         group_by_property_id:
-            label: 'offline.mall::lang.product.group_by_property'
+            label: 'winter.mall::lang.product.group_by_property'
             oc.commentPosition: ''
             span: left
             trigger:
@@ -65,58 +65,58 @@ tabs:
                 field: inventory_management_method
                 condition: 'value[variant]'
             type: dropdown
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
             dependsOn: categories
         _table_trigger:
             oc.commentPosition: ''
             span: left
             type: partial
             path: price_table_trigger
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         product_files_section:
-            label: 'offline.mall::lang.product.product_files'
+            label: 'winter.mall::lang.product.product_files'
             span: full
             type: section
-            comment: 'offline.mall::lang.product.product_files_section_comment'
-            tab: 'offline.mall::lang.product.general'
+            comment: 'winter.mall::lang.product.product_files_section_comment'
+            tab: 'winter.mall::lang.product.general'
         file_session_required:
-            label: 'offline.mall::lang.product_file.session_required'
-            comment: 'offline.mall::lang.product_file.session_required_comment'
+            label: 'winter.mall::lang.product_file.session_required'
+            comment: 'winter.mall::lang.product_file.session_required_comment'
             span: full
             type: checkbox
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         file_expires_after_days:
-            label: 'offline.mall::lang.product_file.expires_after_days'
-            comment: 'offline.mall::lang.product_file.expires_after_days_comment'
+            label: 'winter.mall::lang.product_file.expires_after_days'
+            comment: 'winter.mall::lang.product_file.expires_after_days_comment'
             span: auto
             type: number
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         file_max_download_count:
-            label: 'offline.mall::lang.product_file.max_download_count'
-            comment: 'offline.mall::lang.product_file.max_download_count_comment'
+            label: 'winter.mall::lang.product_file.max_download_count'
+            comment: 'winter.mall::lang.product_file.max_download_count_comment'
             span: auto
             type: number
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         missing_file_hint:
             span: full
             type: partial
             path: missing_file_hint
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         product_files:
             span: full
             path: product_files
             type: partial
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
         variants_section:
-            label: 'offline.mall::lang.common.variants'
+            label: 'winter.mall::lang.common.variants'
             span: full
             trigger:
                 action: show
                 field: inventory_management_method
                 condition: 'value[variant]'
             type: section
-            comment: 'offline.mall::lang.products.variants_comment'
-            tab: 'offline.mall::lang.product.general'
+            comment: 'winter.mall::lang.products.variants_comment'
+            tab: 'winter.mall::lang.product.general'
         variants:
             span: full
             path: variants
@@ -125,261 +125,261 @@ tabs:
                 field: inventory_management_method
                 condition: 'value[single]'
             type: partial
-            tab: 'offline.mall::lang.product.general'
+            tab: 'winter.mall::lang.product.general'
             dependsOn: categories
         description_short:
-            label: 'offline.mall::lang.product.description_short'
+            label: 'winter.mall::lang.product.description_short'
             size: small
             oc.commentPosition: ''
             span: left
             type: textarea
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         user_defined_id:
-            label: 'offline.mall::lang.product.user_defined_id'
+            label: 'winter.mall::lang.product.user_defined_id'
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         description:
-            label: 'offline.mall::lang.product.description'
+            label: 'winter.mall::lang.product.description'
             size: giant
             span: left
             type: richeditor
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         gtin:
-            label: 'offline.mall::lang.product.gtin'
+            label: 'winter.mall::lang.product.gtin'
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         mpn:
-            label: 'offline.mall::lang.product.mpn'
+            label: 'winter.mall::lang.product.mpn'
             oc.commentPosition: ''
             span: right
             type: text
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         brand:
             span: right
             path: brand
             type: partial
-            tab: 'offline.mall::lang.product.description'
+            tab: 'winter.mall::lang.product.description'
         additional_descriptions:
-            label: 'offline.mall::lang.product.additional_descriptions'
+            label: 'winter.mall::lang.product.additional_descriptions'
             oc.commentPosition: ''
-            prompt: 'offline.mall::lang.common.add_value'
+            prompt: 'winter.mall::lang.common.add_value'
             span: auto
             type: repeater
-            tab: 'offline.mall::lang.product.details'
+            tab: 'winter.mall::lang.product.details'
             form:
                 fields:
                     name:
-                        label: 'offline.mall::lang.common.name'
+                        label: 'winter.mall::lang.common.name'
                         oc.commentPosition: ''
                         span: full
                         type: text
                         required: true
                     value:
-                        label: 'offline.mall::lang.common.value'
+                        label: 'winter.mall::lang.common.value'
                         oc.commentPosition: ''
                         span: full
                         type: richeditor
                         required: true
         additional_properties:
-            label: 'offline.mall::lang.product.additional_properties'
+            label: 'winter.mall::lang.product.additional_properties'
             oc.commentPosition: ''
-            prompt: 'offline.mall::lang.common.add_value'
+            prompt: 'winter.mall::lang.common.add_value'
             span: auto
             type: repeater
-            tab: 'offline.mall::lang.product.details'
+            tab: 'winter.mall::lang.product.details'
             form:
                 fields:
                     name:
-                        label: 'offline.mall::lang.common.name'
+                        label: 'winter.mall::lang.common.name'
                         oc.commentPosition: ''
                         span: left
                         type: text
                         required: true
                     value:
-                        label: 'offline.mall::lang.common.value'
+                        label: 'winter.mall::lang.common.value'
                         oc.commentPosition: ''
                         span: right
                         type: text
                         required: true
         _properties:
             oc.commentPosition: ''
-            prompt: 'offline.mall::lang.common.add_value'
+            prompt: 'winter.mall::lang.common.add_value'
             span: full
             type: mall.propertyfields
-            tab: 'offline.mall::lang.common.properties'
+            tab: 'winter.mall::lang.common.properties'
             dependsOn: [categories, inventory_management_method]
         price_includes_tax:
-            label: 'offline.mall::lang.product.price_includes_tax'
+            label: 'winter.mall::lang.product.price_includes_tax'
             span: auto
             default: 1
             type: switch
-            comment: 'offline.mall::lang.product.price_includes_tax_comment'
-            tab: 'offline.mall::lang.common.taxes'
+            comment: 'winter.mall::lang.product.price_includes_tax_comment'
+            tab: 'winter.mall::lang.common.taxes'
         taxes:
-            label: 'offline.mall::lang.common.taxes'
+            label: 'winter.mall::lang.common.taxes'
             oc.commentPosition: ''
             span: left
             type: partial
             path: taxes
-            tab: 'offline.mall::lang.common.taxes'
+            tab: 'winter.mall::lang.common.taxes'
         image_sets:
-            label: 'offline.mall::lang.common.images'
+            label: 'winter.mall::lang.common.images'
             oc.commentPosition: ''
             span: left
             type: partial
             path: image_sets
-            tab: 'offline.mall::lang.common.attachments'
+            tab: 'winter.mall::lang.common.attachments'
         downloads:
-            label: 'offline.mall::lang.common.downloads'
+            label: 'winter.mall::lang.common.downloads'
             oc.commentPosition: ''
             mode: file
-            prompt: 'offline.mall::lang.common.select_file'
+            prompt: 'winter.mall::lang.common.select_file'
             useCaption: true
             span: right
             type: fileupload
-            tab: 'offline.mall::lang.common.attachments'
+            tab: 'winter.mall::lang.common.attachments'
         links:
-            label: 'offline.mall::lang.product.links'
+            label: 'winter.mall::lang.product.links'
             oc.commentPosition: ''
-            prompt: 'offline.mall::lang.common.add_value'
+            prompt: 'winter.mall::lang.common.add_value'
             span: right
             type: repeater
-            tab: 'offline.mall::lang.common.attachments'
+            tab: 'winter.mall::lang.common.attachments'
             form:
                 fields:
                     title:
-                        label: 'offline.mall::lang.product.link_title'
+                        label: 'winter.mall::lang.product.link_title'
                         oc.commentPosition: ''
                         span: left
                         type: text
                         required: true
                     url:
-                        label: 'offline.mall::lang.product.link_target'
+                        label: 'winter.mall::lang.product.link_target'
                         oc.commentPosition: ''
                         span: right
                         type: text
                         required: true
         embeds:
-            label: 'offline.mall::lang.product.embeds'
-            prompt: 'offline.mall::lang.common.add_value'
+            label: 'winter.mall::lang.product.embeds'
+            prompt: 'winter.mall::lang.common.add_value'
             span: right
             type: repeater
-            tab: 'offline.mall::lang.common.attachments'
+            tab: 'winter.mall::lang.common.attachments'
             form:
                 fields:
                     title:
-                        label: 'offline.mall::lang.product.embed_title'
+                        label: 'winter.mall::lang.product.embed_title'
                         span: full
                         required: true
                         type: text
                     code:
-                        label: 'offline.mall::lang.product.embed_code'
+                        label: 'winter.mall::lang.product.embed_code'
                         span: full
                         required: true
                         type: codeeditor
                         size: small
                         language: html
         shippable:
-            label: 'offline.mall::lang.product.shippable'
-            comment: 'offline.mall::lang.product.shippable_comment'
+            label: 'winter.mall::lang.product.shippable'
+            comment: 'winter.mall::lang.product.shippable_comment'
             oc.commentPosition: ''
             span: full
             type: checkbox
-            tab: 'offline.mall::lang.common.shipping'
+            tab: 'winter.mall::lang.common.shipping'
         weight:
-            label: 'offline.mall::lang.product.weight'
+            label: 'winter.mall::lang.product.weight'
             oc.commentPosition: ''
             span: auto
             type: number
-            tab: 'offline.mall::lang.common.shipping'
+            tab: 'winter.mall::lang.common.shipping'
         height:
-            label: 'offline.mall::lang.product.height'
+            label: 'winter.mall::lang.product.height'
             oc.commentPosition: ''
             span: auto
             type: number
-            tab: 'offline.mall::lang.common.shipping'
+            tab: 'winter.mall::lang.common.shipping'
         width:
-            label: 'offline.mall::lang.product.width'
+            label: 'winter.mall::lang.product.width'
             oc.commentPosition: ''
             span: auto
             type: number
-            tab: 'offline.mall::lang.common.shipping'
+            tab: 'winter.mall::lang.common.shipping'
         length:
-            label: 'offline.mall::lang.product.length'
+            label: 'winter.mall::lang.product.length'
             oc.commentPosition: ''
             span: auto
             type: number
-            tab: 'offline.mall::lang.common.shipping'
+            tab: 'winter.mall::lang.common.shipping'
         stackable:
-            label: 'offline.mall::lang.product.stackable'
+            label: 'winter.mall::lang.product.stackable'
             span: auto
             type: switch
-            comment: 'offline.mall::lang.product.stackable_comment'
-            tab: 'offline.mall::lang.common.cart'
+            comment: 'winter.mall::lang.product.stackable_comment'
+            tab: 'winter.mall::lang.common.cart'
         custom_fields:
-            label: 'offline.mall::lang.common.custom_fields'
+            label: 'winter.mall::lang.common.custom_fields'
             oc.commentPosition: ''
             span: right
             type: partial
             path: custom_fields
-            tab: 'offline.mall::lang.common.cart'
+            tab: 'winter.mall::lang.common.cart'
         services:
-            label: 'offline.mall::lang.common.services'
+            label: 'winter.mall::lang.common.services'
             oc.commentPosition: ''
             span: right
             type: partial
             path: services
-            tab: 'offline.mall::lang.common.cart'
+            tab: 'winter.mall::lang.common.cart'
         quantity_default:
-            label: 'offline.mall::lang.product.quantity_default'
+            label: 'winter.mall::lang.product.quantity_default'
             oc.commentPosition: ''
             span: left
             type: number
-            tab: 'offline.mall::lang.common.cart'
+            tab: 'winter.mall::lang.common.cart'
         quantity_min:
-            label: 'offline.mall::lang.product.quantity_min'
+            label: 'winter.mall::lang.product.quantity_min'
             oc.commentPosition: ''
             span: left
             type: number
-            tab: 'offline.mall::lang.common.cart'
+            tab: 'winter.mall::lang.common.cart'
         quantity_max:
-            label: 'offline.mall::lang.product.quantity_max'
+            label: 'winter.mall::lang.product.quantity_max'
             oc.commentPosition: ''
             span: left
             type: number
-            tab: 'offline.mall::lang.common.cart'
+            tab: 'winter.mall::lang.common.cart'
         accessories:
-            label: 'offline.mall::lang.common.accessories'
+            label: 'winter.mall::lang.common.accessories'
             span: full
             type: partial
             path: accessories
-            tab: 'offline.mall::lang.common.accessories'
+            tab: 'winter.mall::lang.common.accessories'
         meta_title:
-            label: 'offline.mall::lang.common.meta_title'
+            label: 'winter.mall::lang.common.meta_title'
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'offline.mall::lang.common.seo'
+            tab: 'winter.mall::lang.common.seo'
         meta_keywords:
-            label: 'offline.mall::lang.common.meta_keywords'
+            label: 'winter.mall::lang.common.meta_keywords'
             oc.commentPosition: ''
             span: auto
             type: text
-            tab: 'offline.mall::lang.common.seo'
+            tab: 'winter.mall::lang.common.seo'
         meta_description:
-            label: 'offline.mall::lang.common.meta_description'
+            label: 'winter.mall::lang.common.meta_description'
             size: large
             oc.commentPosition: ''
             span: left
             type: textarea
-            tab: 'offline.mall::lang.common.seo'
+            tab: 'winter.mall::lang.common.seo'
         reviews:
             span: full
             type: partial
             path: reviews
-            tab: 'offline.mall::lang.common.reviews'
-            permissions: 'offline.mall.manage_reviews'
+            tab: 'winter.mall::lang.common.reviews'
+            permissions: 'winter.mall.manage_reviews'

@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Cart;
+namespace Winter\Mall\Classes\Cart;
 
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\Totals\TotalsCalculatorInput;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\Discount;
+use Winter\Mall\Classes\Totals\TotalsCalculatorInput;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\Discount;
 
 class DiscountApplier
 {

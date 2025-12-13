@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Observers;
+namespace Winter\Mall\Classes\Observers;
 
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Models\ProductPrice;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Models\ProductPrice;
 
 class ProductPriceObserver
 {

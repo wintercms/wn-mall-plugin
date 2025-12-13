@@ -22,7 +22,7 @@ You can access the pricing information associated with a model by calling the `p
 
 ```php
 $product->price();
-> OFFLINE\Mall\Models\ProductPrice { ... }
+> Winter\Mall\Models\ProductPrice { ... }
 ```
 
 Some models have additional price relationships for special fields like `availableBelowTotal` ( 
@@ -30,10 +30,10 @@ ShippingMethod) or `totalToReach` (Discounts). All of these relationships return
  
 ```php
 $shippingMethod->availableBelowTotal();
-> OFFLINE\Mall\Models\Price { ... }
+> Winter\Mall\Models\Price { ... }
 
 $discount->totalToReach();
-> OFFLINE\Mall\Models\Price { ... }
+> Winter\Mall\Models\Price { ... }
 ```
 
 The relationship takes an optional `Currency` attribute. If no currency is specified the currently active one is used.
@@ -41,10 +41,10 @@ The currency can be supplied by ID, code or even as a Currency model instance.
 
 ```php
 $product->price('EUR');
-> OFFLINE\Mall\Models\ProductPrice { ... } // Price in EUR
+> Winter\Mall\Models\ProductPrice { ... } // Price in EUR
 
 $product->price(2);
-> OFFLINE\Mall\Models\ProductPrice { ... } // Price in EUR
+> Winter\Mall\Models\ProductPrice { ... } // Price in EUR
 ```
 
 
@@ -60,7 +60,7 @@ You can transform the price of a model by calling special getters on the `price(
 // Get the Price model in the active currency.
 $product->price();
 
-> OFFLINE\Mall\Models\ProductPrice {
+> Winter\Mall\Models\ProductPrice {
    id: 1,
    price: 89500,
    product_id: 1,
@@ -68,7 +68,7 @@ $product->price();
    currency_id: 1,
    created_at: "2018-10-20 10:47:25",
    updated_at: "2018-10-20 10:47:25",
-   currency: OFFLINE\Mall\Models\Currency { ... },
+   currency: Winter\Mall\Models\Currency { ... },
  }
  
 // Get the Price in the active currency in different formats.
@@ -96,13 +96,13 @@ $product->price(2)->string;
 > "795.00 €"
 
 // Or by model.
-$currency = \OFFLINE\Mall\Models\Currency::find(2);
+$currency = \Winter\Mall\Models\Currency::find(2);
 $product->price($currency)->string;
 > "795.00 €"
 
 // Get an array of all currencies as formatted strings.
 $model->price;
-> October\Rain\Database\Collection {#3412
+> Winter\Storm\Database\Collection {#3412
    all: [
      "USD" => "$ 895.00",
      "EUR" => "795 00€",

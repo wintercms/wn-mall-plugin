@@ -1,19 +1,27 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\ShippingMethod;
 
 class ShippingMethodTableSeeder extends Seeder
 {
     public function run()
     {
+        ShippingMethod::extend(function () {
+            $this->setTable('offline_mall_shipping_methods');
+        }, true);
+
         $method             = new ShippingMethod();
         $method->name       = 'Default';
         $method->sort_order = 1;
         $method->save();
+
+        Price::extend(function () {
+            $this->setTable('offline_mall_prices');
+        }, true);
 
         (new Price([
             'price'          => 10,
@@ -35,5 +43,13 @@ class ShippingMethodTableSeeder extends Seeder
             'priceable_type' => ShippingMethod::MORPH_KEY,
             'priceable_id'   => $method->id,
         ]))->save();
+
+        Price::extend(function () {
+            $this->setTable('winter_mall_prices');
+        }, true);
+
+        ShippingMethod::extend(function () {
+            $this->setTable('winter_mall_shipping_methods');
+        }, true);
     }
 }

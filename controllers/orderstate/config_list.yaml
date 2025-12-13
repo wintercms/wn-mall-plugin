@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.order_states'
-modelClass: OFFLINE\Mall\Models\OrderState
-list: $/offline/mall/models/orderstate/columns.yaml
-recordUrl: 'offline/mall/orderstate/update/:id'
+title: 'winter.mall::lang.common.order_states'
+modelClass: Winter\Mall\Models\OrderState
+list: $/winter/mall/models/orderstate/columns.yaml
+recordUrl: 'winter/mall/orderstate/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

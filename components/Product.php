@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Components;
+namespace Winter\Mall\Components;
 
 use Auth;
 use DB;
@@ -9,20 +9,20 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Classes\Queries\VariantByPropertyValuesQuery;
-use OFFLINE\Mall\Classes\Traits\CustomFields;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomFieldValue;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product as ProductModel;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\ReviewSettings;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Classes\Queries\VariantByPropertyValuesQuery;
+use Winter\Mall\Classes\Traits\CustomFields;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomFieldValue;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product as ProductModel;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\ReviewSettings;
+use Winter\Mall\Models\Variant;
 use Request;
 use Session;
 use System\Classes\PluginManager;
@@ -113,8 +113,8 @@ class Product extends MallComponent
     public function componentDetails()
     {
         return [
-            'name' => 'offline.mall::lang.components.product.details.name',
-            'description' => 'offline.mall::lang.components.product.details.description',
+            'name' => 'winter.mall::lang.components.product.details.name',
+            'description' => 'winter.mall::lang.components.product.details.description',
         ];
     }
 
@@ -125,16 +125,16 @@ class Product extends MallComponent
      */
     public function defineProperties()
     {
-        $langPrefix = 'offline.mall::lang.components.product.properties.redirectOnPropertyChange';
+        $langPrefix = 'winter.mall::lang.components.product.properties.redirectOnPropertyChange';
 
         return [
             'product' => [
-                'title' => 'offline.mall::lang.common.product',
+                'title' => 'winter.mall::lang.common.product',
                 'default' => ':slug',
                 'type' => 'dropdown',
             ],
             'variant' => [
-                'title' => 'offline.mall::lang.common.variant',
+                'title' => 'winter.mall::lang.common.variant',
                 'default' => ':slug',
                 'depends' => ['product'],
                 'type' => 'dropdown',
@@ -146,8 +146,8 @@ class Product extends MallComponent
                 'type' => 'checkbox',
             ],
             'currentVariantReviewsOnly' => [
-                'title' => 'offline.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.title',
-                'description' => 'offline.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.description',
+                'title' => 'winter.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.title',
+                'description' => 'winter.mall::lang.components.productReviews.properties.currentVariantReviewsOnly.description',
                 'type' => 'checkbox',
                 'default' => 0,
             ],
@@ -161,7 +161,7 @@ class Product extends MallComponent
      */
     public function getProductOptions()
     {
-        return [':slug' => trans('offline.mall::lang.components.category.properties.use_url')]
+        return [':slug' => trans('winter.mall::lang.components.category.properties.use_url')]
             + ProductModel::get()->pluck('name', 'id')->toArray();
     }
 
@@ -174,10 +174,10 @@ class Product extends MallComponent
     {
         $product = Request::input('product');
         if ( ! $product || $product === ':slug') {
-            return [':slug' => trans('offline.mall::lang.components.category.properties.use_url')];
+            return [':slug' => trans('winter.mall::lang.components.category.properties.use_url')];
         }
 
-        return [':slug' => trans('offline.mall::lang.components.category.properties.use_url')]
+        return [':slug' => trans('winter.mall::lang.components.category.properties.use_url')]
             + ProductModel::find($product)->variants->pluck('name', 'id')->toArray();
     }
 
@@ -259,7 +259,7 @@ class Product extends MallComponent
 
         $quantity = (int)input('quantity', $product->quantity_default ?? 1);
         if ($quantity < 1) {
-            throw new ValidationException(['quantity' => trans('offline.mall::lang.common.invalid_quantity')]);
+            throw new ValidationException(['quantity' => trans('winter.mall::lang.common.invalid_quantity')]);
         }
 
         // In case this product does not have any services attached, add it to the cart directly.
@@ -307,7 +307,7 @@ class Product extends MallComponent
         );
         $messages = $required->mapWithKeys(
             function ($service) {
-                return ['service.' . $service->id . '.*.required' => trans('offline.mall::frontend.services.required')];
+                return ['service.' . $service->id . '.*.required' => trans('winter.mall::frontend.services.required')];
             }
         );
 
@@ -544,7 +544,7 @@ class Product extends MallComponent
         try {
             $cartProduct = $cart->addProduct($product, $quantity, $variant, $values, $serviceOptions);
         } catch (OutOfStockException $e) {
-            throw new ValidationException(['quantity' => trans('offline.mall::lang.common.stock_limit_reached')]);
+            throw new ValidationException(['quantity' => trans('winter.mall::lang.common.stock_limit_reached')]);
         }
 
         // If the redirect_to_cart option is set to true the user is redirected to the cart.
@@ -554,7 +554,7 @@ class Product extends MallComponent
             return Redirect::to($this->controller->pageUrl($cartPage));
         }
 
-        Flash::success(trans('offline.mall::frontend.cart.added'));
+        Flash::success(trans('winter.mall::frontend.cart.added'));
 
         return [
             'product' => $product->only($this->getPublicProductAttributes()),
@@ -796,13 +796,13 @@ class Product extends MallComponent
     }
 
     /**
-     * Check if RainLab.Translate is available.
+     * Check if Winter.Translate is available.
      *
      * @return bool
      */
     protected function rainlabTranslateInstalled(): bool
     {
-        return PluginManager::instance()->exists('RainLab.Translate');
+        return PluginManager::instance()->exists('Winter.Translate');
     }
 
     /**

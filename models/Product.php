@@ -1,29 +1,29 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Cache;
 use Cms\Classes\Page;
 use DB;
 use Model;
-use October\Rain\Database\Models\DeferredBinding;
-use October\Rain\Database\Traits\Nullable;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use October\Rain\Support\Collection;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Classes\Traits\CustomFields;
-use OFFLINE\Mall\Classes\Traits\FilteredTaxes;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\Images;
-use OFFLINE\Mall\Classes\Traits\PDFMaker;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
-use OFFLINE\Mall\Classes\Traits\ProductPriceAccessors;
-use OFFLINE\Mall\Classes\Traits\PropertyValues;
-use OFFLINE\Mall\Classes\Traits\SortableRelation;
-use OFFLINE\Mall\Classes\Traits\StockAndQuantity;
-use OFFLINE\Mall\Classes\Traits\UserSpecificPrice;
-use RainLab\Translate\Models\Locale;
+use Winter\Storm\Database\Models\DeferredBinding;
+use Winter\Storm\Database\Traits\Nullable;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Storm\Support\Collection;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Classes\Traits\CustomFields;
+use Winter\Mall\Classes\Traits\FilteredTaxes;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\Images;
+use Winter\Mall\Classes\Traits\PDFMaker;
+use Winter\Mall\Classes\Traits\PriceAccessors;
+use Winter\Mall\Classes\Traits\ProductPriceAccessors;
+use Winter\Mall\Classes\Traits\PropertyValues;
+use Winter\Mall\Classes\Traits\SortableRelation;
+use Winter\Mall\Classes\Traits\StockAndQuantity;
+use Winter\Mall\Classes\Traits\UserSpecificPrice;
+use Winter\Translate\Models\Locale;
 use System\Models\File;
 
 
@@ -53,7 +53,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
     public $jsonable = ['links', 'additional_descriptions', 'additional_properties', 'embeds'];
     public $nullable = ['group_by_property_id'];
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
         ['slug', 'index' => true],
@@ -138,7 +138,7 @@ class Product extends Model
         'file_session_required',
     ];
     public $appends = ['hash_id'];
-    public $table = 'offline_mall_products';
+    public $table = 'winter_mall_products';
     public $attachMany = [
         'downloads'      => File::class,
         'initial_images' => File::class,
@@ -180,40 +180,40 @@ class Product extends Model
     public $belongsToMany = [
         'categories'      => [
             Category::class,
-            'table'    => 'offline_mall_category_product',
+            'table'    => 'winter_mall_category_product',
             'key'      => 'product_id',
             'otherKey' => 'category_id',
             'pivot'    => ['sort_order'],
         ],
         'custom_fields'   => [
             CustomField::class,
-            'table'    => 'offline_mall_product_custom_field',
+            'table'    => 'winter_mall_product_custom_field',
             'key'      => 'product_id',
             'otherKey' => 'custom_field_id',
         ],
         'accessories'     => [
             Product::class,
-            'table'      => 'offline_mall_product_accessory',
+            'table'      => 'winter_mall_product_accessory',
             'key'        => 'accessory_id',
             'otherKey'   => 'product_id',
             'conditions' => 'published = 1',
         ],
         'is_accessory_of' => [
             Product::class,
-            'table'      => 'offline_mall_product_accessory',
+            'table'      => 'winter_mall_product_accessory',
             'key'        => 'product_id',
             'otherKey'   => 'accessory_id',
             'conditions' => 'published = 1',
         ],
         'taxes'           => [
             Tax::class,
-            'table'    => 'offline_mall_product_tax',
+            'table'    => 'winter_mall_product_tax',
             'key'      => 'product_id',
             'otherKey' => 'tax_id',
         ],
         'carts'           => [
             Cart::class,
-            'table'      => 'offline_mall_cart_products',
+            'table'      => 'winter_mall_cart_products',
             'key'        => 'product_id',
             'otherKey'   => 'cart_id',
             'deleted'    => true,
@@ -222,7 +222,7 @@ class Product extends Model
         ],
         'services'        => [
             Service::class,
-            'table'    => 'offline_mall_product_service',
+            'table'    => 'winter_mall_product_service',
             'key'      => 'product_id',
             'otherKey' => 'service_id',
             'pivot'    => ['required'],
@@ -316,12 +316,12 @@ class Product extends Model
         $this->prices()->delete();
         $this->additional_prices()->delete();
         $this->property_values()->delete();
-        DB::table('offline_mall_product_accessory')->where('product_id', $this->id)->delete();
-        DB::table('offline_mall_product_tax')->where('product_id', $this->id)->delete();
-        DB::table('offline_mall_cart_products')->where('product_id', $this->id)->delete();
-        DB::table('offline_mall_product_custom_field')->where('product_id', $this->id)->delete();
-        DB::table('offline_mall_category_product')->where('product_id', $this->id)->delete();
-        DB::table('offline_mall_wishlist_items')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_product_accessory')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_product_tax')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_cart_products')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_product_custom_field')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_category_product')->where('product_id', $this->id)->delete();
+        DB::table('winter_mall_wishlist_items')->where('product_id', $this->id)->delete();
     }
 
     /**
@@ -506,7 +506,7 @@ class Product extends Model
      */
     public function getGroupByPropertyIdOptions()
     {
-        return ['' => trans('offline.mall::lang.common.none')]
+        return ['' => trans('winter.mall::lang.common.none')]
             + $this->categories->flatMap->properties->filter(function ($q) {
                 return $q->pivot->use_for_variants;
             })->pluck('name', 'id')->toArray();
@@ -518,7 +518,7 @@ class Product extends Model
     public function getSortOrders()
     {
         return Cache::rememberForever(self::sortOrderCacheKey($this->id), function () {
-            return \DB::table('offline_mall_category_product')
+            return \DB::table('winter_mall_category_product')
                       ->where('product_id', $this->id)
                       ->get(['category_id', 'sort_order',])
                       ->pluck('sort_order', 'category_id')
@@ -537,7 +537,7 @@ class Product extends Model
     }
 
     /**
-     * Resolve the item for RainLab.Sitemap and RainLab.Pages plugins.
+     * Resolve the item for Winter.Sitemap and Winter.Pages plugins.
      *
      * @param $item
      * @param $url
@@ -613,7 +613,7 @@ class Product extends Model
      */
     protected function hideField($fields, string $field)
     {
-        $isElementHolder = $fields instanceof \October\Rain\Element\ElementHolder;
+        $isElementHolder = $fields instanceof \Winter\Storm\Element\ElementHolder;
 
         if ($isElementHolder && array_key_exists($field, $fields->config)) {
             $fields->config[$field]->hidden = true;
@@ -624,9 +624,6 @@ class Product extends Model
 
     public function getInventoryManagementMethodOptions()
     {
-        return [
-            'single'  => 'offline.mall::lang.variant.method.single',
-            'variant' => 'offline.mall::lang.variant.method.variant',
-        ];
+        return trans('winter.mall::lang.variant.method');
     }
 }

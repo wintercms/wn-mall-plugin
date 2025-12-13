@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
-use OFFLINE\Mall\Models\Address;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\Tax;
-use OFFLINE\Mall\Tests\PluginTestCase;
-use RainLab\Location\Models\Country;
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Tests\PluginTestCase;
+use Winter\Location\Models\Country;
 
 class ShippingMethodTest extends PluginTestCase
 {
@@ -150,7 +150,7 @@ class ShippingMethodTest extends PluginTestCase
         $cart->addProduct($product, 1);
         $cart->setShippingAddress($address);
 
-        \DB::table('offline_mall_prices')->where('priceable_type', ShippingMethod::MORPH_KEY)->delete();
+        \DB::table('winter_mall_prices')->where('priceable_type', ShippingMethod::MORPH_KEY)->delete();
 
         $method                     = new ShippingMethod();
         $method->name               = 'Test';
@@ -195,7 +195,7 @@ class ShippingMethodTest extends PluginTestCase
         $cart->addProduct($product, 1);
         $cart->setShippingAddress($address);
 
-        \DB::table('offline_mall_prices')->where('priceable_type', ShippingMethod::MORPH_KEY)->delete();
+        \DB::table('winter_mall_prices')->where('priceable_type', ShippingMethod::MORPH_KEY)->delete();
 
         $method                     = new ShippingMethod();
         $method->name               = 'Test';
@@ -242,7 +242,7 @@ class ShippingMethodTest extends PluginTestCase
     public function setUp()
     {
         parent::setUp();
-        \DB::table('offline_mall_shipping_methods')->truncate();
+        \DB::table('winter_mall_shipping_methods')->truncate();
     }
 
     /**

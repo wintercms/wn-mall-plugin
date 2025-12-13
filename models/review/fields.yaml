@@ -1,13 +1,13 @@
 fields:
     customer:
-        label: 'offline.mall::lang.order.customer'
+        label: 'winter.mall::lang.order.customer'
         nameFrom: name
         descriptionFrom: description
         span: auto
         type: relation
-        emptyOption: 'offline.mall::lang.reviews.anonymous'
+        emptyOption: 'winter.mall::lang.reviews.anonymous'
     rating:
-        label: 'offline.mall::lang.reviews.rating'
+        label: 'winter.mall::lang.reviews.rating'
         span: auto
         type: number
         attributes:
@@ -16,43 +16,43 @@ fields:
 tabs:
     fields:
         title:
-            label: 'offline.mall::lang.common.title'
+            label: 'winter.mall::lang.common.title'
             span: left
             type: text
-            tab: 'offline.mall::lang.common.review'
+            tab: 'winter.mall::lang.common.review'
 
         pros:
-            label: 'offline.mall::lang.reviews.pros'
+            label: 'winter.mall::lang.reviews.pros'
             prompt: 'Add new item'
             span: right
             type: repeater
-            tab: 'offline.mall::lang.common.review'
+            tab: 'winter.mall::lang.common.review'
             form:
                 fields:
                     value:
-                        label: 'offline.mall::lang.common.value'
+                        label: 'winter.mall::lang.common.value'
                         span: full
                         type: text
         description:
-            label: 'offline.mall::lang.product.description'
+            label: 'winter.mall::lang.product.description'
             size: large
             span: left
             type: textarea
-            tab: 'offline.mall::lang.common.review'
+            tab: 'winter.mall::lang.common.review'
         cons:
-            label: 'offline.mall::lang.reviews.cons'
+            label: 'winter.mall::lang.reviews.cons'
             prompt: 'Add new item'
             span: right
             type: repeater
-            tab: 'offline.mall::lang.common.review'
+            tab: 'winter.mall::lang.common.review'
             form:
                 fields:
                     value:
-                        label: 'offline.mall::lang.common.value'
+                        label: 'winter.mall::lang.common.value'
                         span: full
                         type: text
         approve_now:
             type: partial
-            path: $/offline/mall/controllers/reviews/_approve_now.htm
+            path: $/winter/mall/controllers/reviews/_approve_now.htm
             span: left
-            tab: 'offline.mall::lang.common.review'
+            tab: 'winter.mall::lang.common.review'

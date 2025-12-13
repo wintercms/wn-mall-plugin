@@ -3,7 +3,7 @@
 # ===================================
 
 users:
-    label: 'offline.mall::lang.common.customers'
+    label: 'winter.mall::lang.common.customers'
     manage:
         form: $/rainlab/user/models/user/fields.yaml
         list: $/rainlab/user/models/user/columns.yaml

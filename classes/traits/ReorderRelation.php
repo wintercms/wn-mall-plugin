@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use Flash;
 use Request;
@@ -16,7 +16,7 @@ trait ReorderRelation
 
             $model->setRelationOrder($fieldName, $records, range(1, count($records)), $sortKey);
 
-            Flash::success(trans('offline.mall::lang.common.sorting_updated'));
+            Flash::success(trans('winter.mall::lang.common.sorting_updated'));
 
             $this->initRelation($model, $fieldName);
             return $this->relationRefresh($fieldName);

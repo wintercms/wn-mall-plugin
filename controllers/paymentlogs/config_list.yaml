@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.payments'
-modelClass: OFFLINE\Mall\Models\PaymentLog
-list: $/offline/mall/models/paymentlog/columns.yaml
-recordUrl: 'offline/mall/paymentlogs/update/:id'
+title: 'winter.mall::lang.common.payments'
+modelClass: Winter\Mall\Models\PaymentLog
+list: $/winter/mall/models/paymentlog/columns.yaml
+recordUrl: 'winter/mall/paymentlogs/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 filter: config_filter.yaml

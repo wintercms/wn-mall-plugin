@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Registration;
+namespace Winter\Mall\Classes\Registration;
 
 trait BootMails
 {
@@ -8,28 +8,28 @@ trait BootMails
     public function registerMailTemplates()
     {
         return [
-            'offline.mall::mail.customer.created',
-            'offline.mall::mail.order.state_changed',
-            'offline.mall::mail.order.shipped',
-            'offline.mall::mail.checkout.succeeded',
-            'offline.mall::mail.checkout.failed',
-            'offline.mall::mail.payment.failed',
-            'offline.mall::mail.payment.paid',
-            'offline.mall::mail.payment.refunded',
-            'offline.mall::mail.admin.checkout_succeeded',
-            'offline.mall::mail.admin.checkout_failed',
-            'offline.mall::mail.admin.payment_paid',
+            'winter.mall::mail.customer.created',
+            'winter.mall::mail.order.state_changed',
+            'winter.mall::mail.order.shipped',
+            'winter.mall::mail.checkout.succeeded',
+            'winter.mall::mail.checkout.failed',
+            'winter.mall::mail.payment.failed',
+            'winter.mall::mail.payment.paid',
+            'winter.mall::mail.payment.refunded',
+            'winter.mall::mail.admin.checkout_succeeded',
+            'winter.mall::mail.admin.checkout_failed',
+            'winter.mall::mail.admin.payment_paid',
         ];
     }
 
     public function registerMailPartials()
     {
         return [
-            'mall.order.table'         => 'offline.mall::mail._partials.order.table',
-            'mall.order.tracking'      => 'offline.mall::mail._partials.order.tracking',
-            'mall.order.addresses'     => 'offline.mall::mail._partials.order.addresses',
-            'mall.order.payment_state' => 'offline.mall::mail._partials.order.payment_state',
-            'mall.customer.address'    => 'offline.mall::mail._partials.customer.address',
+            'mall.order.table'         => 'winter.mall::mail._partials.order.table',
+            'mall.order.tracking'      => 'winter.mall::mail._partials.order.tracking',
+            'mall.order.addresses'     => 'winter.mall::mail._partials.order.addresses',
+            'mall.order.payment_state' => 'winter.mall::mail._partials.order.payment_state',
+            'mall.customer.address'    => 'winter.mall::mail._partials.customer.address',
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OFFLINE\Mall\Models;
+namespace Winter\Mall\Models;
 
 use Cms\Classes\Page;
 use Illuminate\Support\Facades\Cache;
@@ -11,12 +11,12 @@ use Session;
 class GeneralSettings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'offline_mall_settings';
-    public $settingsFields = '$/offline/mall/models/settings/fields_general.yaml';
+    public $settingsCode = 'winter_mall_settings';
+    public $settingsFields = '$/winter/mall/models/settings/fields_general.yaml';
 
     public function afterSave()
     {
-        Cache::forget('offline_mall.mysql.index.driver');
+        Cache::forget('winter_mall.mysql.index.driver');
     }
 
     /**

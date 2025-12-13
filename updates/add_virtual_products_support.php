@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
-use October\Rain\Database\Schema\Blueprint;
-use October\Rain\Database\Updates\Migration;
-use OFFLINE\Mall\Models\Notification;
+use Winter\Storm\Database\Schema\Blueprint;
+use Winter\Storm\Database\Updates\Migration;
+use Winter\Mall\Models\Notification;
 use Schema;
 
 class AddVirtualProductsSupport extends Migration
@@ -44,6 +44,11 @@ class AddVirtualProductsSupport extends Migration
         Schema::table('offline_mall_order_products', function (Blueprint $table) {
             $table->boolean('is_virtual')->default(0)->after('quantity');
         });
+
+        Notification::extend(function () {
+            $this->setTable('offline_mall_notifications');
+            $this->rules['code'] = str_replace('winter_', 'offline_', $this->rules['code']);
+        }, true);
         Notification::create([
             'enabled'     => true,
             'code'        => 'offline.mall::product.file_download',
@@ -51,6 +56,10 @@ class AddVirtualProductsSupport extends Migration
             'description' => 'Sent when a customer paid for an order with virtual products',
             'template'    => 'offline.mall::mail.product.file_download',
         ]);
+        Notification::extend(function () {
+            $this->setTable('winter_mall_notifications');
+            $this->rules['code'] = str_replace('offline_', 'winter_', $this->rules['code']);
+        }, true);
     }
 
     public function down()

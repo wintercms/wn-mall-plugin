@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\HashIds;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\HashIds;
 
 class CustomerPaymentMethod extends Model
 {
@@ -11,10 +11,10 @@ class CustomerPaymentMethod extends Model
     use HashIds;
     use SoftDelete;
 
-    public $table = 'offline_mall_customer_payment_methods';
+    public $table = 'winter_mall_customer_payment_methods';
     public $rules = [
-        'payment_method_id' => 'required|exists:offline_mall_payment_methods,id',
-        'customer_id'       => 'required|exists:offline_mall_customers,id',
+        'payment_method_id' => 'required|exists:winter_mall_payment_methods,id',
+        'customer_id'       => 'required|exists:winter_mall_customers,id',
     ];
     public $belongsTo = [
         'payment_method' => PaymentMethod::class,

@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Traits\Cart;
+namespace Winter\Mall\Classes\Traits\Cart;
 
 use Cookie;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\Customer;
-use RainLab\User\Models\User;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\Customer;
+use Winter\User\Models\User;
 use Session;
 
 trait CartSession

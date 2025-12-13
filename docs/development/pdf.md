@@ -17,7 +17,7 @@ Mall exposes all of the original
  [`barryvdh/laravel-dompdf` config entries](https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/develop/config/pdf.php)
  in a separate configuration file.
 
-If you wish to change the default PDF configuration create a `config/offline/mall/pdf.php`
+If you wish to change the default PDF configuration create a `config/winter/mall/pdf.php`
 file and return your custom config.
 
 See [October's docs on overriding configuration](https://octobercms.com/docs/plugin/settings#file-configuration).

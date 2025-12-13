@@ -1,11 +1,11 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Queue;
 use Model;
-use October\Rain\Database\Traits\Sluggable;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Jobs\BrandChangeUpdate;
+use Winter\Storm\Database\Traits\Sluggable;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Jobs\BrandChangeUpdate;
 use System\Models\File;
 
 class Brand extends Model
@@ -14,7 +14,7 @@ class Brand extends Model
     use Sortable;
     use Sluggable;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
         'description',
@@ -34,7 +34,7 @@ class Brand extends Model
         'website',
         'sort_order',
     ];
-    public $table = 'offline_mall_brands';
+    public $table = 'winter_mall_brands';
     public $attachOne = [
         'logo' => File::class,
     ];

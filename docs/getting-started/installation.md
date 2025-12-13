@@ -10,8 +10,8 @@ next: /getting-started/theme-setup
 The plugin can be found on the official [October CMS Marketplace](https://octobercms.com/plugin/offline-mall). You 
 can install it via the Projects feature of the Marketplace itself or via your installation's backend settings.
 
-The `OFFLINE.Mall` plugin depends on `RainLab.User`, `RainLab.Location`
-and `RainLab.Translate`.
+The `OFFLINE.Mall` plugin depends on `Winter.User`, `Winter.Location`
+and `Winter.Translate`.
 
 The easiest way to get you started is by using the command line:
 
@@ -79,7 +79,7 @@ installation.
 You can always revert back to a blank installation by running
 
 ```bash
-php artisan plugin:refresh offline.mall
+php artisan plugin:refresh winter.mall
 ```
 
 ## Demo theme
@@ -93,7 +93,7 @@ If you use the demo theme you should still apply the steps mentioned in the "Con
 
 * <input type="checkbox"> Simply clone the theme to `<your installation>/themes/mall` and select it as your active theme.
 
-* <input type="checkbox"> The demo theme requires `OFFLINE.SiteSearch` and `RainLab.Pages` to be installed. Make sure 
+* <input type="checkbox"> The demo theme requires `OFFLINE.SiteSearch` and `Winter.Pages` to be installed. Make sure 
 these plugins are available as well.
 
 If you want to start with a blank slate just follow the instructions on this and the [Theme Setup](./theme-setup.md) 

@@ -1,141 +1,135 @@
-plugin:
-    name: 'offline.mall::lang.plugin.name'
-    description: 'offline.mall::lang.plugin.description'
-    author: 'OFFLINE GmbH'
-    icon: oc-icon-shopping-cart
-    homepage: ''
 navigation:
     mall-orders:
-        label: 'offline.mall::lang.common.orders'
-        url: offline/mall/orders
+        label: 'winter.mall::lang.common.orders'
+        url: winter/mall/orders
         icon: icon-shopping-cart
         order: 801
         permissions:
-            - 'offline.mall.*'
+            - 'winter.mall.*'
         sideMenu:
             mall-orders:
-                label: 'offline.mall::lang.common.orders'
-                url: offline/mall/orders
+                label: 'winter.mall::lang.common.orders'
+                url: winter/mall/orders
                 icon: icon-check-circle
                 permissions:
-                    - offline.mall.manage_orders
+                    - winter.mall.manage_orders
             mall-discounts:
-                label: 'offline.mall::lang.common.discounts'
-                url: offline/mall/discounts
+                label: 'winter.mall::lang.common.discounts'
+                url: winter/mall/discounts
                 icon: icon-gift
                 permissions:
-                    - offline.mall.manage_discounts
+                    - winter.mall.manage_discounts
             mall-payment-log:
-                label: 'offline.mall::lang.common.payments'
-                url: offline/mall/paymentlogs
+                label: 'winter.mall::lang.common.payments'
+                url: winter/mall/paymentlogs
                 icon: icon-money
                 permissions:
-                    - offline.mall.manage_payment_log
+                    - winter.mall.manage_payment_log
     mall-catalogue:
-        label: 'offline.mall::lang.common.catalogue'
-        url: offline/mall/products
+        label: 'winter.mall::lang.common.catalogue'
+        url: winter/mall/products
         icon: icon-book
         order: 800
         permissions:
-            - offline.mall.manage_products
+            - winter.mall.manage_products
         sideMenu:
             mall-products:
-                label: 'offline.mall::lang.common.products'
-                url: offline/mall/products
+                label: 'winter.mall::lang.common.products'
+                url: winter/mall/products
                 icon: icon-cart-plus
                 permissions:
-                    - offline.mall.manage_products
+                    - winter.mall.manage_products
             mall-reviews:
-                label: 'offline.mall::lang.common.reviews'
-                url: offline/mall/reviews
+                label: 'winter.mall::lang.common.reviews'
+                url: winter/mall/reviews
                 icon: icon-star-half-full
                 permissions:
-                    - offline.mall.manage_reviews
+                    - winter.mall.manage_reviews
             mall-services:
-                label: 'offline.mall::lang.common.services'
-                url: offline/mall/services
+                label: 'winter.mall::lang.common.services'
+                url: winter/mall/services
                 icon: icon-plus-circle
                 permissions:
-                    - offline.mall.manage_services
+                    - winter.mall.manage_services
             mall-categories:
-                label: 'offline.mall::lang.common.categories'
-                url: offline/mall/categories
+                label: 'winter.mall::lang.common.categories'
+                url: winter/mall/categories
                 icon: icon-sitemap
                 permissions:
-                    - offline.mall.manage_categories
+                    - winter.mall.manage_categories
             mall-brands:
-                label: 'offline.mall::lang.common.brands'
-                url: offline/mall/brands
+                label: 'winter.mall::lang.common.brands'
+                url: winter/mall/brands
                 icon: icon-cube
                 permissions:
-                    - offline.mall.manage_brands
+                    - winter.mall.manage_brands
             mall-properties:
-                label: 'offline.mall::lang.common.properties'
-                url: offline/mall/propertygroups
+                label: 'winter.mall::lang.common.properties'
+                url: winter/mall/propertygroups
                 icon: icon-tags
                 permissions:
-                    - offline.mall.manage_properties
+                    - winter.mall.manage_properties
 permissions:
-    offline.mall.manage_products:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_products'
-    offline.mall.manage_categories:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_categories'
-    offline.mall.manage_orders:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_orders'
-    offline.mall.manage_discounts:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_discounts'
-    offline.mall.settings.manage_general:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.settings.manage_general'
-    offline.mall.settings.manage_payment_gateways:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.settings.manage_payment_gateways'
-    offline.mall.settings.manage_currency:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.settings.manage_currency'
-    offline.mall.settings.manage_payment_methods:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.settings.manage_payment_methods'
-    offline.mall.manage_properties:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_properties'
-    offline.mall.manage_customer_groups:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_customer_groups'
-    offline.mall.manage_notifications:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_notifications'
-    offline.mall.manage_price_categories:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_price_categories'
-    offline.mall.manage_order_states:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_order_states'
-    offline.mall.manage_shipping_methods:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_shipping_methods'
-    offline.mall.manage_customer_addresses:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_customer_addresses'
-    offline.mall.manage_payment_log:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_payment_log'
-    offline.mall.manage_feeds:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_feeds'
-    offline.mall.manage_wishlists:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_wishlists'
-    offline.mall.manage_services:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_services'
-    offline.mall.manage_reviews:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_reviews'
-    offline.mall.manage_brands:
-        tab: 'offline.mall::lang.plugin.name'
-        label: 'offline.mall::lang.permissions.manage_brands'
+    winter.mall.manage_products:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_products'
+    winter.mall.manage_categories:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_categories'
+    winter.mall.manage_orders:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_orders'
+    winter.mall.manage_discounts:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_discounts'
+    winter.mall.settings.manage_general:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.settings.manage_general'
+    winter.mall.settings.manage_payment_gateways:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.settings.manage_payment_gateways'
+    winter.mall.settings.manage_currency:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.settings.manage_currency'
+    winter.mall.settings.manage_payment_methods:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.settings.manage_payment_methods'
+    winter.mall.manage_properties:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_properties'
+    winter.mall.manage_customer_groups:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_customer_groups'
+    winter.mall.manage_notifications:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_notifications'
+    winter.mall.manage_price_categories:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_price_categories'
+    winter.mall.manage_order_states:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_order_states'
+    winter.mall.manage_shipping_methods:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_shipping_methods'
+    winter.mall.manage_customer_addresses:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_customer_addresses'
+    winter.mall.manage_payment_log:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_payment_log'
+    winter.mall.manage_feeds:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_feeds'
+    winter.mall.manage_wishlists:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_wishlists'
+    winter.mall.manage_services:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_services'
+    winter.mall.manage_reviews:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_reviews'
+    winter.mall.manage_brands:
+        tab: 'winter.mall::lang.plugin.name'
+        label: 'winter.mall::lang.permissions.manage_brands'

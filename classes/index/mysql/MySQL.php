@@ -1,28 +1,28 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Index\MySQL;
+namespace Winter\Mall\Classes\Index\MySQL;
 
 use Schema;
 use Cache;
 use DB;
 use Illuminate\Support\Collection;
-use October\Rain\Database\Schema\Blueprint;
-use OFFLINE\Mall\Classes\CategoryFilter\Filter;
-use OFFLINE\Mall\Classes\CategoryFilter\RangeFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SetFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\Random;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
-use OFFLINE\Mall\Classes\Index\Entry;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\IndexNotSupportedException;
-use OFFLINE\Mall\Classes\Index\IndexResult;
-use OFFLINE\Mall\Models\Currency;
+use Winter\Storm\Database\Schema\Blueprint;
+use Winter\Mall\Classes\CategoryFilter\Filter;
+use Winter\Mall\Classes\CategoryFilter\RangeFilter;
+use Winter\Mall\Classes\CategoryFilter\SetFilter;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\Random;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
+use Winter\Mall\Classes\Index\Entry;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\IndexNotSupportedException;
+use Winter\Mall\Classes\Index\IndexResult;
+use Winter\Mall\Models\Currency;
 use Throwable;
 use Event;
 
 class MySQL implements Index
 {
-    const CACHE_KEY = 'offline_mall.mysql.index.exists';
+    const CACHE_KEY = 'winter_mall.mysql.index.exists';
 
     /**
      * Type casts for index columns.

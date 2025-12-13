@@ -1,11 +1,11 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomerGroup;
-use OFFLINE\Mall\Models\PriceCategory;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomerGroup;
+use Winter\Mall\Models\PriceCategory;
 
 trait ProductPriceAccessors
 {

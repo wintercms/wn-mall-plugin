@@ -1,13 +1,17 @@
-<?php namespace OFFLINE\Mall\Updates;
+<?php namespace Winter\Mall\Updates;
 
-use October\Rain\Database\Updates\Migration;
-use OFFLINE\Mall\Models\Tax;
+use Winter\Storm\Database\Updates\Migration;
+use Winter\Mall\Models\Tax;
 use Schema;
 
 class SetDefaultTax extends Migration
 {
     public function up()
     {
+        Tax::extend(function () {
+            $this->setTable('offline_mall_taxes');
+        }, true);
+
         // Version 1.9.0 introduced a default tax. Let's use the first one as default.
         $tax = Tax::first();
         if ($tax) {

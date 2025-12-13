@@ -10,18 +10,18 @@ works out of the box.
 Data retention via [OFFLINE.GDPR](https://github.com/OFFLINE-GmbH/oc-gdpr-plugin) for Orders, Customer accounts
  and abandoned Carts is available out of the box and can be configured via the plugin's backend settings page. 
  
-## RainLab.Translate
+## Winter.Translate
 
-Support for [RainLab.Translate](https://github.com/rainlab/translate-plugin) is available out of the box. All shop data can be translated via the backend form 
+Support for [Winter.Translate](https://github.com/rainlab/translate-plugin) is available out of the box. All shop data can be translated via the backend form 
 widgets.
 
-## RainLab.Sitemap
+## Winter.Sitemap
 
-To publish all of your shop data to a [RainLab.Sitemap](https://github.com/rainlab/sitemap-plugin) generated
+To publish all of your shop data to a [Winter.Sitemap](https://github.com/rainlab/sitemap-plugin) generated
 sitemap simply add the three items `All shop categories`, `All shop products` and `All shop variants`
 to your configuration.
 
-## RainLab.Location
+## Winter.Location
 
-Support for [RainLab.Location](https://github.com/rainlab/location-plugin) is available out of the box. 
+Support for [Winter.Location](https://github.com/rainlab/location-plugin) is available out of the box. 
 Locations to be available in the shop can be configured via the plugin's backend settings page.

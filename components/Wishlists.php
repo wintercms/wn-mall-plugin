@@ -1,17 +1,17 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Cms\Classes\Theme;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\Wishlist;
-use OFFLINE\Mall\Models\WishlistItem;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Wishlist;
+use Winter\Mall\Models\WishlistItem;
+use Winter\User\Facades\Auth;
 
 class Wishlists extends MallComponent
 {
@@ -57,8 +57,8 @@ class Wishlists extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.wishlists.details.name',
-            'description' => 'offline.mall::lang.components.wishlists.details.description',
+            'name'        => 'winter.mall::lang.components.wishlists.details.name',
+            'description' => 'winter.mall::lang.components.wishlists.details.description',
         ];
     }
 
@@ -66,8 +66,8 @@ class Wishlists extends MallComponent
     {
         return [
             'showShipping' => [
-                'title'       => 'offline.mall::lang.components.wishlists.properties.showShipping.title',
-                'description' => 'offline.mall::lang.components.wishlists.properties.showShipping.description',
+                'title'       => 'winter.mall::lang.components.wishlists.properties.showShipping.title',
+                'description' => 'winter.mall::lang.components.wishlists.properties.showShipping.description',
                 'type'        => 'checkbox',
             ],
         ];
@@ -110,7 +110,7 @@ class Wishlists extends MallComponent
         $this->currentItem->name = post('name');
         $this->currentItem->save();
 
-        Flash::success(trans('offline.mall::frontend.wishlist.renamed'));
+        Flash::success(trans('winter.mall::frontend.wishlist.renamed'));
 
         return $this->refreshList();
     }
@@ -179,7 +179,7 @@ class Wishlists extends MallComponent
 
         $this->currentItem->delete();
 
-        Flash::success(trans('offline.mall::frontend.wishlist.deleted'));
+        Flash::success(trans('winter.mall::frontend.wishlist.deleted'));
 
         // Set the current item to the next available record.
         $this->items       = $this->getWishlists();
@@ -194,9 +194,9 @@ class Wishlists extends MallComponent
 
         $allInStock = $this->currentItem->addToCart(Cart::byUser(Auth::getUser()));
         if ( ! $allInStock) {
-            Flash::warning(trans('offline.mall::frontend.wishlists.stockmissing'));
+            Flash::warning(trans('winter.mall::frontend.wishlists.stockmissing'));
         } else {
-            Flash::success(trans('offline.mall::frontend.wishlists.addedtocart'));
+            Flash::success(trans('winter.mall::frontend.wishlists.addedtocart'));
         }
 
         // redirect to the cart page.

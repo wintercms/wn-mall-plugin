@@ -1,17 +1,17 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Collection;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
-use OFFLINE\Mall\Classes\Payments\PaymentService;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\CustomerPaymentMethod;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Payments\PaymentService;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CustomerPaymentMethod;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentMethod;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -82,8 +82,8 @@ class PaymentMethodSelector extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.paymentMethodSelector.details.name',
-            'description' => 'offline.mall::lang.components.paymentMethodSelector.details.description',
+            'name'        => 'winter.mall::lang.components.paymentMethodSelector.details.name',
+            'description' => 'winter.mall::lang.components.paymentMethodSelector.details.description',
         ];
     }
 
@@ -188,7 +188,7 @@ class PaymentMethodSelector extends MallComponent
         $this->setData();
 
         $rules = [
-            'id' => 'required|exists:offline_mall_payment_methods,id',
+            'id' => 'required|exists:winter_mall_payment_methods,id',
         ];
 
         $validation = Validator::make(post(), $rules);

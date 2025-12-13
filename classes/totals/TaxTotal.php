@@ -1,11 +1,11 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Totals;
+namespace Winter\Mall\Classes\Totals;
 
 use JsonSerializable;
-use OFFLINE\Mall\Classes\Traits\Rounding;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\Tax;
+use Winter\Mall\Classes\Traits\Rounding;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\Tax;
 
 class TaxTotal implements JsonSerializable
 {

@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Illuminate\Support\Facades\Cache;
 use Model;
 use Schema;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
 
 class Notification extends Model
 {
@@ -12,10 +12,10 @@ class Notification extends Model
     use Sortable;
 
     const CACHE_KEY = 'mall.enabled.notifications';
-    public $table = 'offline_mall_notifications';
+    public $table = 'winter_mall_notifications';
     public $rules = [
         'name'     => 'required',
-        'code'     => 'required|unique:offline_mall_notifications,code',
+        'code'     => 'required|unique:winter_mall_notifications,code',
         'template' => 'required',
     ];
     public $casts = [
@@ -31,7 +31,7 @@ class Notification extends Model
 
     public static function getEnabled()
     {
-        if ( ! Schema::hasTable('offline_mall_notifications')) {
+        if ( ! Schema::hasTable('winter_mall_notifications')) {
             return collect([]);
         }
 
@@ -47,6 +47,6 @@ class Notification extends Model
 
     public function beforeDeleting()
     {
-        throw new \LogicException('OFFLINE.Mall: Notifications cannot be deleted.');
+        throw new \LogicException('Winter.Mall: Notifications cannot be deleted.');
     }
 }

@@ -1,15 +1,15 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend;
 use Backend\Classes\Controller;
 use BackendMenu;
 use Event;
 use Flash;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Stats\OrdersStats;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\OrderState;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Stats\OrdersStats;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\OrderState;
 
 class Orders extends Controller
 {
@@ -23,12 +23,12 @@ class Orders extends Controller
     public $relationConfig = 'config_relation.yaml';
     public $importExportConfig = 'config_import_export.yaml';
 
-    public $requiredPermissions = ['offline.mall.manage_orders'];
+    public $requiredPermissions = ['winter.mall.manage_orders'];
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-orders', 'mall-orders');
+        BackendMenu::setContext('Winter.Mall', 'mall-orders', 'mall-orders');
     }
 
     public function listExtendQuery($query)
@@ -39,7 +39,7 @@ class Orders extends Controller
     public function index()
     {
         parent::index();
-        $this->addCss('/plugins/offline/mall/assets/backend.css');
+        $this->addCss('/plugins/winter/mall/assets/backend.css');
         $this->vars['stats'] = new OrdersStats();
         $this->vars['money'] = app(Money::class);
     }
@@ -47,11 +47,11 @@ class Orders extends Controller
     public function show()
     {
         $this->bodyClass = 'compact-container';
-        $this->pageTitle = trans('offline.mall::lang.titles.orders.show');
-        $this->addCss('/plugins/offline/mall/assets/backend.css');
-        $this->vars['ordersList']      = Backend::url('offline/mall/orders');
-        $this->vars['productUpdate']   = Backend::url('offline/mall/products/update');
-        $this->vars['addressUpdate']   = Backend::url('offline/mall/addresses/update');
+        $this->pageTitle = trans('winter.mall::lang.titles.orders.show');
+        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->vars['ordersList']      = Backend::url('winter/mall/orders');
+        $this->vars['productUpdate']   = Backend::url('winter/mall/products/update');
+        $this->vars['addressUpdate']   = Backend::url('winter/mall/addresses/update');
         $this->vars['customerPreview'] = Backend::url('rainlab/user/users/preview');
 
         $order = Order::with('products', 'order_state')->findOrFail($this->params[0]);
@@ -83,7 +83,7 @@ class Orders extends Controller
 
         $availableStatus = $order->payment_state::getAvailableTransitions();
         if ( ! in_array($newState, $availableStatus)) {
-            throw new ValidationException([trans('offline.mall::lang.order.invalid_status')]);
+            throw new ValidationException([trans('winter.mall::lang.order.invalid_status')]);
         }
 
         $order->payment_state = $newState;
@@ -154,9 +154,9 @@ class Orders extends Controller
         $order = Order::findOrFail($recordId);
         $order->delete();
 
-        Flash::success(trans('offline.mall::lang.order.deleted'));
+        Flash::success(trans('winter.mall::lang.order.deleted'));
 
-        return Backend::redirect('offline/mall/orders');
+        return Backend::redirect('winter/mall/orders');
     }
 
     protected function updateOrder(array $attributes, bool $stateNotification = true)
@@ -168,7 +168,7 @@ class Orders extends Controller
         $order->stateNotification = $stateNotification;
 
         $order->save();
-        Flash::success(trans('offline.mall::lang.order.updated'));
+        Flash::success(trans('winter.mall::lang.order.updated'));
 
         return $order;
     }

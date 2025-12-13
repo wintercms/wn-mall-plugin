@@ -1,20 +1,20 @@
 columns:
     sort_order:
-        label: 'offline.mall::lang.common.sort_order'
+        label: 'winter.mall::lang.common.sort_order'
         type: number
         searchable: false
         sortable: true
         invisible: true
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         type: text
     code:
-        label: 'offline.mall::lang.common.code'
+        label: 'winter.mall::lang.common.code'
         type: text
     description:
-        label: 'offline.mall::lang.product.description'
+        label: 'winter.mall::lang.product.description'
         type: text
         invisible: true
     payment_provider:
-        label: 'offline.mall::lang.common.payment_provider'
+        label: 'winter.mall::lang.common.payment_provider'
         type: text

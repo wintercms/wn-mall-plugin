@@ -1,18 +1,18 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Carbon\Carbon;
 use DB;
 use Event;
 use Illuminate\Support\Collection;
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Totals\TotalsCalculator;
-use OFFLINE\Mall\Classes\Totals\TotalsCalculatorInput;
-use OFFLINE\Mall\Classes\Traits\Cart\CartActions;
-use OFFLINE\Mall\Classes\Traits\Cart\CartSession;
-use OFFLINE\Mall\Classes\Traits\Cart\Discounts;
-use OFFLINE\Mall\Classes\Traits\ShippingMethods;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Totals\TotalsCalculator;
+use Winter\Mall\Classes\Totals\TotalsCalculatorInput;
+use Winter\Mall\Classes\Traits\Cart\CartActions;
+use Winter\Mall\Classes\Traits\Cart\CartSession;
+use Winter\Mall\Classes\Traits\Cart\Discounts;
+use Winter\Mall\Classes\Traits\ShippingMethods;
 use Session;
 
 /**
@@ -29,7 +29,7 @@ class Cart extends Model
 
     protected $dates = ['deleted_at'];
     public $rules = [];
-    public $table = 'offline_mall_carts';
+    public $table = 'winter_mall_carts';
     public $hasMany = [
         'products' => [CartProduct::class, 'deleted' => true],
     ];
@@ -46,7 +46,7 @@ class Cart extends Model
     public $belongsToMany = [
         'discounts' => [
             Discount::class,
-            'table' => 'offline_mall_cart_discount',
+            'table' => 'winter_mall_cart_discount',
         ],
     ];
     public $casts = [
@@ -195,7 +195,7 @@ class Cart extends Model
      * Remove all products that are no longer published.
      * Returns all removed products.
      *
-     * @return \October\Rain\Support\Collection
+     * @return \Winter\Storm\Support\Collection
      * @throws \Exception
      */
     public function removeUnpublishedProducts()
@@ -210,9 +210,9 @@ class Cart extends Model
     }
 
     /**
-     * Cleanup of old data using OFFLINE.GDPR.
+     * Cleanup of old data using Winter.GDPR.
      *
-     * @see https://github.com/OFFLINE-GmbH/oc-gdpr-plugin
+     * @see https://github.com/Winter-GmbH/oc-gdpr-plugin
      *
      * @param Carbon $deadline
      * @param int    $keepDays

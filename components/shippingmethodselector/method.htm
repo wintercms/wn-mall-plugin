@@ -16,7 +16,7 @@
                     {% if method.guaranteed_delivery_days %}
                         <div class="mall-shipping-method__delivery-days">
                             {% set days = method.guaranteed_delivery_days %}
-                            {{ 'offline.mall::frontend.shipping_method.guaranteed_delivery_days'
+                            {{ 'winter.mall::frontend.shipping_method.guaranteed_delivery_days'
                                 | transchoice(days, {days: days})
                             }}
                         </div>
@@ -24,7 +24,7 @@
                     <div class="mall-shipping-method__price">
                         {{ method.price().integer > 0
                         ? (method.price().string | raw)
-                        : ('offline.mall::frontend.no_additional_charges' | trans) }}
+                        : ('winter.mall::frontend.no_additional_charges' | trans) }}
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 {% endif %}
                 <div class="mall-shipping-method__submit">
                     <button class="mall-btn mall-btn--primary" type="submit" data-attach-loading>
-                        {{ 'offline.mall::frontend.shipping_method.proceed' | trans }}
+                        {{ 'winter.mall::frontend.shipping_method.proceed' | trans }}
                     </button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     data-request="{{ __SELF__ }}::onChangeMethod"
                     data-request-success="$.publish('mall.cart.shippingMethodChanged', data)"
                     data-request-data="id: '{{ method.id }}'">
-                {{ 'offline.mall::frontend.shipping_method.button_label' | trans }}
+                {{ 'winter.mall::frontend.shipping_method.button_label' | trans }}
             </button>
         {% endif %}
     </div>

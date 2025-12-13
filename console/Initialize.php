@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Console;
+<?php namespace Winter\Mall\Console;
 
 use DB;
 use Illuminate\Console\Command;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Variant;
 use Symfony\Component\Console\Input\InputOption;
 
 class Initialize extends Command
@@ -46,22 +46,22 @@ class Initialize extends Command
     protected function init()
     {
         $this->output->writeln('Deleting orders...');
-        DB::table('offline_mall_order_products')->truncate();
-        DB::table('offline_mall_orders')->truncate();
+        DB::table('winter_mall_order_products')->truncate();
+        DB::table('winter_mall_orders')->truncate();
 
         $this->output->writeln('Deleting carts...');
-        DB::table('offline_mall_cart_custom_field_value')->truncate();
-        DB::table('offline_mall_cart_discount')->truncate();
-        DB::table('offline_mall_cart_products')->truncate();
-        DB::table('offline_mall_carts')->truncate();
+        DB::table('winter_mall_cart_custom_field_value')->truncate();
+        DB::table('winter_mall_cart_discount')->truncate();
+        DB::table('winter_mall_cart_products')->truncate();
+        DB::table('winter_mall_carts')->truncate();
 
         $this->output->writeln('Deleting customers...');
-        DB::table('offline_mall_addresses')->truncate();
-        DB::table('offline_mall_customers')->truncate();
+        DB::table('winter_mall_addresses')->truncate();
+        DB::table('winter_mall_customers')->truncate();
         DB::table('users')->truncate();
 
         $this->output->writeln('Deleting payment logs...');
-        DB::table('offline_mall_payments_log')->truncate();
+        DB::table('winter_mall_payments_log')->truncate();
 
         $this->output->writeln('Cleaning up...');
         Product::get()->each->update(['sales_count' => 0]);

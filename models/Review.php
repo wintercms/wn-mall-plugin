@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Event;
 use Model;
-use October\Rain\Database\Traits\Validation;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\User\Facades\Auth;
 
 /**
  * @property Customer $customer
@@ -12,14 +12,14 @@ class Review extends Model
 {
     use Validation;
 
-    public $table = 'offline_mall_reviews';
+    public $table = 'winter_mall_reviews';
     public $rules = [
         'title' => 'required_with:description|max:190',
         'description' => 'max:500',
         'rating' => 'required|numeric|between:1,5',
-        'product_id' => 'required|exists:offline_mall_products,id',
-        'variant_id' => 'nullable|exists:offline_mall_product_variants,id',
-        'customer_id' => 'nullable|exists:offline_mall_customers,id',
+        'product_id' => 'required|exists:winter_mall_products,id',
+        'variant_id' => 'nullable|exists:winter_mall_product_variants,id',
+        'customer_id' => 'nullable|exists:winter_mall_customers,id',
     ];
     public $fillable = [
         'rating',
@@ -132,7 +132,7 @@ class Review extends Model
     public function getCustomerNameAttribute()
     {
         if ( ! $this->customer) {
-            return trans('offline.mall::lang.reviews.anonymous');
+            return trans('winter.mall::lang.reviews.anonymous');
         }
 
         return $this->customer->name;

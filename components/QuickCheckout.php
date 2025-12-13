@@ -1,26 +1,26 @@
 <?php
 
-namespace OFFLINE\Mall\Components;
+namespace Winter\Mall\Components;
 
 use Auth;
 use DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Collection;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\Customer\SignUpHandler;
-use OFFLINE\Mall\Classes\Payments\PaymentGateway;
-use OFFLINE\Mall\Classes\Payments\PaymentRedirector;
-use OFFLINE\Mall\Classes\Payments\PaymentService;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\CartProduct;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\PaymentMethod;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\User;
-use RainLab\Location\Models\Country;
-use RainLab\User\Facades\Auth as FrontendAuth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\Customer\SignUpHandler;
+use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Payments\PaymentRedirector;
+use Winter\Mall\Classes\Payments\PaymentService;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\User;
+use Winter\Location\Models\Country;
+use Winter\User\Facades\Auth as FrontendAuth;
 use Validator;
 
 /**
@@ -116,8 +116,8 @@ class QuickCheckout extends MallComponent
     public function componentDetails()
     {
         return [
-            'name' => 'offline.mall::lang.components.quickCheckout.details.name',
-            'description' => 'offline.mall::lang.components.quickCheckout.details.description',
+            'name' => 'winter.mall::lang.components.quickCheckout.details.name',
+            'description' => 'winter.mall::lang.components.quickCheckout.details.description',
         ];
     }
 
@@ -135,7 +135,7 @@ class QuickCheckout extends MallComponent
             ],
             'step' => [
                 'type' => 'dropdown',
-                'name' => 'offline.mall::lang.components.checkout.properties.step.name',
+                'name' => 'winter.mall::lang.components.checkout.properties.step.name',
                 'default' => 'overview',
             ],
         ];
@@ -149,11 +149,11 @@ class QuickCheckout extends MallComponent
     public function getStepOptions()
     {
         return [
-            'overview' => trans('offline.mall::lang.components.checkout.steps.confirm'),
-            'failed' => trans('offline.mall::lang.components.checkout.steps.failed'),
-            'cancelled' => trans('offline.mall::lang.components.checkout.steps.cancelled'),
-            'done' => trans('offline.mall::lang.components.checkout.steps.done'),
-            'payment' => trans('offline.mall::lang.components.checkout.steps.payment'),
+            'overview' => trans('winter.mall::lang.components.checkout.steps.confirm'),
+            'failed' => trans('winter.mall::lang.components.checkout.steps.failed'),
+            'cancelled' => trans('winter.mall::lang.components.checkout.steps.cancelled'),
+            'done' => trans('winter.mall::lang.components.checkout.steps.done'),
+            'payment' => trans('winter.mall::lang.components.checkout.steps.payment'),
         ];
     }
 
@@ -226,7 +226,7 @@ class QuickCheckout extends MallComponent
             $this->user = app(SignUpHandler::class)->handle($data, (bool)post('as_guest'));
             if ( ! $this->user) {
                 throw new ValidationException(
-                    [trans('offline.mall::lang.components.quickCheckout.errors.signup_failed')]
+                    [trans('winter.mall::lang.components.quickCheckout.errors.signup_failed')]
                 );
             }
             $this->cart = $this->cart->refresh();
@@ -234,7 +234,7 @@ class QuickCheckout extends MallComponent
 
         if ($this->cart->payment_method_id === null && $this->order === null) {
             throw new ValidationException(
-                [trans('offline.mall::lang.components.checkout.errors.missing_settings')]
+                [trans('winter.mall::lang.components.checkout.errors.missing_settings')]
             );
         }
 
@@ -278,7 +278,7 @@ class QuickCheckout extends MallComponent
         $v = Validator::make(
             post(),
             [
-                'id' => 'required|exists:offline_mall_shipping_methods,id',
+                'id' => 'required|exists:winter_mall_shipping_methods,id',
             ]
         );
 
@@ -291,7 +291,7 @@ class QuickCheckout extends MallComponent
         if ( ! $this->shippingMethods || ! $this->shippingMethods->contains($id)) {
             throw new ValidationException(
                 [
-                    'id' => trans('offline.mall::lang.components.shippingMethodSelector.errors.unavailable'),
+                    'id' => trans('winter.mall::lang.components.shippingMethodSelector.errors.unavailable'),
                 ]
             );
         }
@@ -317,7 +317,7 @@ class QuickCheckout extends MallComponent
     public function onChangePaymentMethod()
     {
         $rules = [
-            'id' => 'required|exists:offline_mall_payment_methods,id',
+            'id' => 'required|exists:winter_mall_payment_methods,id',
         ];
 
         $validation = Validator::make(post(), $rules);
@@ -367,7 +367,7 @@ class QuickCheckout extends MallComponent
      * The user removed a previously applied discount code from the cart.
      *
      * @return array
-     * @throws \October\Rain\Exception\ValidationException
+     * @throws \Winter\Storm\Exception\ValidationException
      */
     public function onRemoveDiscountCode()
     {

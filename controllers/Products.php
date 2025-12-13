@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -10,24 +10,24 @@ use BackendMenu;
 use DB;
 use Event;
 use Flash;
-use October\Rain\Database\Model;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Classes\Traits\ProductPriceTable;
-use OFFLINE\Mall\Classes\Traits\ReorderRelation;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\CustomFieldOption;
-use OFFLINE\Mall\Models\ImageSet;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\ProductFile;
-use OFFLINE\Mall\Models\ProductPrice;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\Review;
-use OFFLINE\Mall\Models\Variant;
-use RainLab\Translate\Behaviors\TranslatableModel;
-use RainLab\Translate\Models\Locale;
+use Winter\Storm\Database\Model;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Classes\Traits\ProductPriceTable;
+use Winter\Mall\Classes\Traits\ReorderRelation;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\ImageSet;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\ProductFile;
+use Winter\Mall\Models\ProductPrice;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\Review;
+use Winter\Mall\Models\Variant;
+use Winter\Translate\Behaviors\TranslatableModel;
+use Winter\Translate\Models\Locale;
 
 class Products extends Controller
 {
@@ -44,18 +44,18 @@ class Products extends Controller
     public $relationConfig = 'config_relation.yaml';
     public $productPriceTableConfig = 'config_table.yaml';
     public $requiredPermissions = [
-        'offline.mall.manage_products',
+        'winter.mall.manage_products',
     ];
     protected $optionFormWidget;
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('OFFLINE.Mall', 'mall-catalogue', 'mall-products');
+        BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-products');
 
         $model                  = post('option_id') ? CustomFieldOption::find(post('option_id')) : null;
         $this->optionFormWidget = $this->createOptionFormWidget($model);
-        $this->addCss('/plugins/offline/mall/assets/backend.css');
+        $this->addCss('/plugins/winter/mall/assets/backend.css');
 
         if (count($this->params) > 0) {
             // This is pretty hacky but it works. To get the original data from the Variant
@@ -70,10 +70,10 @@ class Products extends Controller
 
         // Legacy (v1)
         if (!class_exists('System')) {
-            $this->addJs('/plugins/offline/mall/assets/Sortable.js');
+            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
         }
 
-        $this->addJs('/plugins/offline/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/backend.js');
     }
 
     public function update($id)
@@ -85,9 +85,9 @@ class Products extends Controller
         }
         // If the product has no category something is wrong and needs fixing!
         if ( ! $this->vars['formModel']->categories) {
-            Flash::error(trans('offline.mall::lang.common.action_required'));
+            Flash::error(trans('winter.mall::lang.common.action_required'));
 
-            return redirect(Backend::url('offline/mall/products/change_category/' . $id));
+            return redirect(Backend::url('winter/mall/products/change_category/' . $id));
         }
 
         // Strike through all old file versions.
@@ -106,11 +106,11 @@ class Products extends Controller
 
     public function change_category($id)
     {
-        $this->pageTitle   = trans('offline.mall::lang.common.action_required');
+        $this->pageTitle   = trans('winter.mall::lang.common.action_required');
         $config            = $this->makeConfigFromArray([
             'fields' => [
                 'categories' => [
-                    'label'           => 'offline.mall::lang.common.category',
+                    'label'           => 'winter.mall::lang.common.category',
                     'nameFrom'        => 'name',
                     'descriptionFrom' => 'description',
                     'span'            => 'auto',
@@ -131,9 +131,9 @@ class Products extends Controller
         $product->categories()->attach(post('Product.categories'));
         $product->save();
 
-        Flash::success(trans('offline.mall::lang.common.saved_changes'));
+        Flash::success(trans('winter.mall::lang.common.saved_changes'));
 
-        return redirect(Backend::url('offline/mall/products/update/' . $this->params[0]));
+        return redirect(Backend::url('winter/mall/products/update/' . $this->params[0]));
     }
 
     /**
@@ -213,14 +213,14 @@ class Products extends Controller
         $this->vars['items'] = $items;
         $this->vars['type']  = post('type');
 
-        return ['#optionList' => $this->makePartial('$/offline/mall/controllers/customfields/_options_list.htm')];
+        return ['#optionList' => $this->makePartial('$/winter/mall/controllers/customfields/_options_list.htm')];
     }
 
     public function onApproveReview()
     {
         Review::findOrFail(post('id'))->approve();
 
-        Flash::success(trans('offline.mall::lang.reviews.approved'));
+        Flash::success(trans('winter.mall::lang.reviews.approved'));
 
         $this->initRelation(Product::findOrFail($this->params[0]), 'reviews');
 
@@ -245,7 +245,7 @@ class Products extends Controller
         $this->vars['customFieldId']    = post('manage_id');
         $this->vars['type']             = post('type');
 
-        return $this->makePartial('$/offline/mall/controllers/customfields/_option_form.htm');
+        return $this->makePartial('$/winter/mall/controllers/customfields/_option_form.htm');
     }
 
     public function onLoadEditOptionForm()
@@ -255,12 +255,12 @@ class Products extends Controller
         $this->vars['customFieldOptionId'] = post('option_id');
         $this->vars['type']                = post('type');
 
-        return $this->makePartial('$/offline/mall/controllers/customfields/_option_form.htm');
+        return $this->makePartial('$/winter/mall/controllers/customfields/_option_form.htm');
     }
 
     protected function createOptionFormWidget(CustomFieldOption $model = null)
     {
-        $config                    = $this->makeConfig('$/offline/mall/models/customfieldoption/fields.yaml');
+        $config                    = $this->makeConfig('$/winter/mall/models/customfieldoption/fields.yaml');
         $config->alias             = 'optionForm';
         $config->arrayName         = 'Option';
         $config->model             = $model ?? new CustomFieldOption();

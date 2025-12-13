@@ -1,14 +1,18 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\PaymentMethod;
 
 class PaymentMethodTableSeeder extends Seeder
 {
     public function run()
     {
+        PaymentMethod::extend(function () {
+            $this->setTable('offline_mall_payment_methods');
+        }, true);
+
         $method                   = new PaymentMethod();
         $method->name             = 'Stripe';
         $method->payment_provider = 'stripe';
@@ -26,5 +30,9 @@ class PaymentMethodTableSeeder extends Seeder
         $method->payment_provider = 'offline';
         $method->sort_order       = 3;
         $method->save();
+
+        PaymentMethod::extend(function () {
+            $this->setTable('winter_mall_payment_methods');
+        }, true);
     }
 }

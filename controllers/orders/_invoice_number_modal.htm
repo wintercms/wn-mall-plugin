@@ -5,12 +5,12 @@
                 <div class="modal-header flex-row-reverse">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">
-                        <?= e(trans('offline.mall::lang.order.update_invoice_number')) ?>
+                        <?= e(trans('winter.mall::lang.order.update_invoice_number')) ?>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="form-label"><?= e(trans('offline.mall::lang.order.invoice_number')) ?></label>
+                        <label class="form-label"><?= e(trans('winter.mall::lang.order.invoice_number')) ?></label>
                         <input type="text" name="invoiceNumber" value="<?= e($order->invoice_number) ?>" class="form-control"/>
                     </div>
                 </div>
@@ -18,14 +18,14 @@
                     <button type="button"
                             class="btn btn-default"
                             data-dismiss="modal">
-                        <?= e(trans('offline.mall::lang.order.modal.cancel')) ?>
+                        <?= e(trans('winter.mall::lang.order.modal.cancel')) ?>
                     </button>
                     <button type="button" class="btn btn-primary"
                             data-attach-loading
                             data-request="onUpdateInvoiceNumber"
                             data-request-data="id: <?= e($order['id']) ?>"
                             data-request-success="$('#content-invoice-number').modal('hide');">
-                        <?= e(trans('offline.mall::lang.order.modal.update')) ?>
+                        <?= e(trans('winter.mall::lang.order.modal.update')) ?>
                     </button>
                 </div>
             </div>

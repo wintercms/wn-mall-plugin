@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Models;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Tests\PluginTestCase;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Tests\PluginTestCase;
 
 class CategoryTest extends PluginTestCase
 {

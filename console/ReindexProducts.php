@@ -1,13 +1,13 @@
-<?php namespace OFFLINE\Mall\Console;
+<?php namespace Winter\Mall\Console;
 
 use DB;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\ProductEntry;
-use OFFLINE\Mall\Classes\Index\VariantEntry;
-use OFFLINE\Mall\Classes\Observers\ProductObserver;
-use OFFLINE\Mall\Models\Product;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\ProductEntry;
+use Winter\Mall\Classes\Index\VariantEntry;
+use Winter\Mall\Classes\Observers\ProductObserver;
+use Winter\Mall\Models\Product;
 use Symfony\Component\Console\Input\InputOption;
 
 class ReindexProducts extends Command

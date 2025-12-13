@@ -1,12 +1,12 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Cms\Classes\Controller;
 use Exception;
 use Illuminate\Http\RedirectResponse;
-use October\Rain\Exception\ValidationException;
-use October\Rain\Support\Facades\Flash;
-use OFFLINE\Mall\Models\GeneralSettings;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\User\Facades\Auth;
 
 /**
  * The MyAccount component displays an overview of a customer's account.
@@ -40,8 +40,8 @@ class MyAccount extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.myAccount.details.name',
-            'description' => 'offline.mall::lang.components.myAccount.details.description',
+            'name'        => 'winter.mall::lang.components.myAccount.details.name',
+            'description' => 'winter.mall::lang.components.myAccount.details.description',
         ];
     }
 
@@ -55,7 +55,7 @@ class MyAccount extends MallComponent
         return [
             'page' => [
                 'type'  => 'dropdown',
-                'title' => 'offline.mall::lang.components.myAccount.properties.page.title',
+                'title' => 'winter.mall::lang.components.myAccount.properties.page.title',
             ],
         ];
     }
@@ -68,9 +68,9 @@ class MyAccount extends MallComponent
     public function getPageOptions()
     {
         return [
-            'orders'    => trans('offline.mall::lang.components.myAccount.pages.orders'),
-            'profile'   => trans('offline.mall::lang.components.myAccount.pages.profile'),
-            'addresses' => trans('offline.mall::lang.components.myAccount.pages.addresses'),
+            'orders'    => trans('winter.mall::lang.components.myAccount.pages.orders'),
+            'profile'   => trans('winter.mall::lang.components.myAccount.pages.profile'),
+            'addresses' => trans('winter.mall::lang.components.myAccount.pages.addresses'),
         ];
     }
 
@@ -138,7 +138,7 @@ class MyAccount extends MallComponent
             $code = request()->get('code');
 
             $error = [
-                'code' => trans('offline.mall::frontend.account.confirmation.error'),
+                'code' => trans('winter.mall::frontend.account.confirmation.error'),
             ];
 
             $parts = explode('!', $code);

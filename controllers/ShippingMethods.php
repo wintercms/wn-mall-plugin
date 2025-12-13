@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Controllers;
+<?php namespace Winter\Mall\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
@@ -6,8 +6,8 @@ use Backend\Behaviors\RelationController;
 use Backend\Behaviors\ReorderController;
 use Backend\Classes\Controller;
 use BackendMenu;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\ShippingMethod;
 use System\Classes\SettingsManager;
 
 class ShippingMethods extends Controller
@@ -25,14 +25,14 @@ class ShippingMethods extends Controller
     public $relationConfig = 'config_relation.yaml';
 
     public $requiredPermissions = [
-        'offline.mall.manage_shipping_methods',
+        'winter.mall.manage_shipping_methods',
     ];
 
     public function __construct()
     {
         parent::__construct();
         BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('OFFLINE.Mall', 'shipping_method_settings');
+        SettingsManager::setContext('Winter.Mall', 'shipping_method_settings');
     }
 
     public function formAfterCreate(ShippingMethod $model)

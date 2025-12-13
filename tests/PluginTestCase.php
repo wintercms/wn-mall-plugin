@@ -1,10 +1,10 @@
 <?php
 
-namespace OFFLINE\Mall\Tests;
+namespace Winter\Mall\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Index\Noop;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\Noop;
 use System\Classes\PluginManager;
 
 class PluginTestCase extends \PluginTestCase

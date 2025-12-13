@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
-use OFFLINE\Mall\Classes\Traits\HashIds;
-use OFFLINE\Mall\Classes\Traits\PriceAccessors;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
+use Winter\Mall\Classes\Traits\HashIds;
+use Winter\Mall\Classes\Traits\PriceAccessors;
 use System\Models\File;
 
 class CustomFieldOption extends Model
@@ -16,7 +16,7 @@ class CustomFieldOption extends Model
 
     const MORPH_KEY = 'mall.custom_field_option';
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = ['name'];
     public $with = ['prices'];
     public $fillable = [
@@ -53,5 +53,5 @@ class CustomFieldOption extends Model
      */
     public $field_type = '';
 
-    public $table = 'offline_mall_custom_field_options';
+    public $table = 'winter_mall_custom_field_options';
 }

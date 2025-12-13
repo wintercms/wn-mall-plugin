@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.orders'
-modelClass: OFFLINE\Mall\Models\Order
-list: $/offline/mall/models/order/columns.yaml
-recordUrl: 'offline/mall/orders/show/:id'
+title: 'winter.mall::lang.common.orders'
+modelClass: Winter\Mall\Models\Order
+list: $/winter/mall/models/order/columns.yaml
+recordUrl: 'winter/mall/orders/show/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

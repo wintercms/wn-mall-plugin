@@ -1,13 +1,13 @@
-subject = "{{ 'offline.mall::mail.order.state_changed.subject' | trans() }}"
+subject = "{{ 'winter.mall::mail.order.state_changed.subject' | trans() }}"
 description = "Sent when the status of an order changes"
 ==
 
-{{ 'offline.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
+{{ 'winter.mall::mail.common.hello' | trans({firstname: order.customer.firstname, lastname: order.customer.lastname}) }}
 
-{{ 'offline.mall::mail.order.state_changed.message' | trans({number: order.order_number, state: order.order_state.name}) }}
+{{ 'winter.mall::mail.order.state_changed.message' | trans({number: order.order_number, state: order.order_state.name}) }}
 
 {% partial 'mall.order.tracking' order=order %}
 
 {% partial 'button' url=account_url type='primary' body %}
-    {{ 'offline.mall::mail.common.view_order_status_online' | trans() }}
+    {{ 'winter.mall::mail.common.view_order_status_online' | trans() }}
 {% endpartial %}

@@ -1,12 +1,12 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Queries;
+namespace Winter\Mall\Classes\Queries;
 
 use DB;
 use Illuminate\Support\Collection;
-use October\Rain\Database\QueryBuilder;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\PropertyValue;
+use Winter\Storm\Database\QueryBuilder;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\PropertyValue;
 
 /**
  * This query is used to get a specific Variant model by
@@ -48,14 +48,14 @@ class VariantByPropertyValuesQuery
     {
         $query = PropertyValue
             ::leftJoin(
-                'offline_mall_product_variants',
+                'winter_mall_product_variants',
                 'variant_id',
                 '=',
-                'offline_mall_product_variants.id'
+                'winter_mall_product_variants.id'
             )
-            ->whereNull('offline_mall_product_variants.deleted_at')
-            ->where('offline_mall_product_variants.published', true)
-            ->where('offline_mall_product_variants.product_id', $this->product->id)
+            ->whereNull('winter_mall_product_variants.deleted_at')
+            ->where('winter_mall_product_variants.published', true)
+            ->where('winter_mall_product_variants.product_id', $this->product->id)
             ->select(DB::raw('variant_id, count(*) as matching_attributes'))
             ->groupBy(['variant_id'])
             ->with('variant')

@@ -1,48 +1,48 @@
 columns:
     id:
-        label: 'offline.mall::lang.common.id'
+        label: 'winter.mall::lang.common.id'
         type: number
         sortable: true
         invisible: true
     order:
-        label: 'offline.mall::lang.order.order_number'
+        label: 'winter.mall::lang.order.order_number'
         relation: order
         type: number
         searchable: true
         sortable: true
         select: order_number
     failed:
-        label: 'offline.mall::lang.order.status'
+        label: 'winter.mall::lang.order.status'
         type: partial
         searchable: true
         sortable: true
-        path: $/offline/mall/controllers/paymentlogs/_failed.htm
+        path: $/winter/mall/controllers/paymentlogs/_failed.htm
     total:
-        label: 'offline.mall::lang.order.total'
+        label: 'winter.mall::lang.order.total'
         type: partial
         searchable: false
         sortable: false
-        path: $/offline/mall/controllers/paymentlogs/_total.htm
+        path: $/winter/mall/controllers/paymentlogs/_total.htm
     order_data:
-        label: 'offline.mall::lang.order.data'
+        label: 'winter.mall::lang.order.data'
         searchable: true
         type: partial
-        path: $/offline/mall/controllers/paymentlogs/_order_data.htm
+        path: $/winter/mall/controllers/paymentlogs/_order_data.htm
         invisible: true
         sortable: true
     reference:
-        label: 'offline.mall::lang.common.reference'
+        label: 'winter.mall::lang.common.reference'
         type: text
         searchable: true
         sortable: true
     payment_method:
-        label: 'offline.mall::lang.common.payment_method'
+        label: 'winter.mall::lang.common.payment_method'
         type: partial
         searchable: true
         sortable: true
-        path: $/offline/mall/controllers/paymentlogs/_payment_method.htm
+        path: $/winter/mall/controllers/paymentlogs/_payment_method.htm
     payment_provider:
-        label: 'offline.mall::lang.common.payment_provider'
+        label: 'winter.mall::lang.common.payment_provider'
         type: text
         searchable: true
         sortable: true
@@ -54,34 +54,34 @@ columns:
         sortable: true
         invisible: true
     session_id:
-        label: 'offline.mall::lang.common.session_id'
+        label: 'winter.mall::lang.common.session_id'
         type: text
         searchable: true
         sortable: true
         invisible: true
     data:
-        label: 'offline.mall::lang.common.data'
+        label: 'winter.mall::lang.common.data'
         type: text
         searchable: true
         invisible: true
         sortable: true
     message_raw:
-        label: 'offline.mall::lang.common.message'
+        label: 'winter.mall::lang.common.message'
         type: text
         searchable: false
         sortable: false
     code:
-        label: 'offline.mall::lang.common.code'
+        label: 'winter.mall::lang.common.code'
         type: text
         searchable: true
         sortable: true
     created_at:
-        label: 'offline.mall::lang.common.created_at'
+        label: 'winter.mall::lang.common.created_at'
         type: datetime
         searchable: true
         sortable: true
     updated_at:
-        label: 'offline.mall::lang.common.updated_at'
+        label: 'winter.mall::lang.common.updated_at'
         type: datetime
         searchable: true
         invisible: true

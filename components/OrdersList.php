@@ -1,10 +1,10 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use Auth;
 use Illuminate\Support\Collection;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Order;
-use OFFLINE\Mall\Models\OrderState;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Order;
+use Winter\Mall\Models\OrderState;
 
 /**
  * The OrdersList component displays a list of all the user's orders.
@@ -38,8 +38,8 @@ class OrdersList extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.ordersList.details.name',
-            'description' => 'offline.mall::lang.components.ordersList.details.description',
+            'name'        => 'winter.mall::lang.components.ordersList.details.name',
+            'description' => 'winter.mall::lang.components.ordersList.details.description',
         ];
     }
 

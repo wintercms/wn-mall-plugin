@@ -1,14 +1,14 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Totals;
+namespace Winter\Mall\Classes\Totals;
 
 use Carbon\Carbon;
-use OFFLINE\Mall\Classes\Cart\DiscountApplier;
-use OFFLINE\Mall\Classes\Traits\Rounding;
-use OFFLINE\Mall\Models\Discount;
-use OFFLINE\Mall\Models\ShippingMethod;
-use OFFLINE\Mall\Models\ShippingMethodRate;
-use OFFLINE\Mall\Models\Tax;
+use Winter\Mall\Classes\Cart\DiscountApplier;
+use Winter\Mall\Classes\Traits\Rounding;
+use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\ShippingMethod;
+use Winter\Mall\Models\ShippingMethodRate;
+use Winter\Mall\Models\Tax;
 
 class ShippingTotal implements \JsonSerializable
 {

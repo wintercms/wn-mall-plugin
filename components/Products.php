@@ -1,24 +1,24 @@
-<?php namespace OFFLINE\Mall\Components;
+<?php namespace Winter\Mall\Components;
 
 use ArrayAccess;
 use Flash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Classes\CategoryFilter\QueryString;
-use OFFLINE\Mall\Classes\CategoryFilter\SetFilter;
-use OFFLINE\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
-use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
-use OFFLINE\Mall\Classes\Index\Index;
-use OFFLINE\Mall\Classes\Traits\CustomFields;
-use OFFLINE\Mall\Models\Cart as CartModel;
-use OFFLINE\Mall\Models\Category as CategoryModel;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\GeneralSettings;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Variant;
-use RainLab\User\Facades\Auth;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Classes\CategoryFilter\QueryString;
+use Winter\Mall\Classes\CategoryFilter\SetFilter;
+use Winter\Mall\Classes\CategoryFilter\SortOrder\SortOrder;
+use Winter\Mall\Classes\Exceptions\OutOfStockException;
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Traits\CustomFields;
+use Winter\Mall\Models\Cart as CartModel;
+use Winter\Mall\Models\Category as CategoryModel;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\GeneralSettings;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Variant;
+use Winter\User\Facades\Auth;
 use Redirect;
 
 /**
@@ -126,8 +126,8 @@ class Products extends MallComponent
     public function componentDetails()
     {
         return [
-            'name'        => 'offline.mall::lang.components.products.details.name',
-            'description' => 'offline.mall::lang.components.products.details.description',
+            'name'        => 'winter.mall::lang.components.products.details.name',
+            'description' => 'winter.mall::lang.components.products.details.description',
         ];
     }
 
@@ -140,55 +140,55 @@ class Products extends MallComponent
     {
         return [
             'category'        => [
-                'title'   => 'offline.mall::lang.common.category',
+                'title'   => 'winter.mall::lang.common.category',
                 'default' => null,
                 'type'    => 'dropdown',
             ],
             'filterComponent' => [
-                'title'       => 'offline.mall::lang.components.products.properties.filter_component.title',
-                'description' => 'offline.mall::lang.components.products.properties.filter_component.description',
+                'title'       => 'winter.mall::lang.components.products.properties.filter_component.title',
+                'description' => 'winter.mall::lang.components.products.properties.filter_component.description',
                 'default'     => 'productsFilter',
                 'type'        => 'string',
             ],
             'filter'          => [
-                'title'       => 'offline.mall::lang.components.products.properties.filter.title',
-                'description' => 'offline.mall::lang.components.products.properties.filter.description',
+                'title'       => 'winter.mall::lang.components.products.properties.filter.title',
+                'description' => 'winter.mall::lang.components.products.properties.filter.description',
                 'default'     => null,
                 'type'        => 'string',
             ],
             'setPageTitle'    => [
-                'title'       => 'offline.mall::lang.components.products.properties.set_page_title.title',
-                'description' => 'offline.mall::lang.components.products.properties.set_page_title.description',
+                'title'       => 'winter.mall::lang.components.products.properties.set_page_title.title',
+                'description' => 'winter.mall::lang.components.products.properties.set_page_title.description',
                 'default'     => '0',
                 'type'        => 'checkbox',
             ],
             'includeVariants' => [
-                'title'       => 'offline.mall::lang.components.products.properties.include_variants.title',
-                'description' => 'offline.mall::lang.components.products.properties.include_variants.description',
+                'title'       => 'winter.mall::lang.components.products.properties.include_variants.title',
+                'description' => 'winter.mall::lang.components.products.properties.include_variants.description',
                 'default'     => '1',
                 'type'        => 'checkbox',
             ],
             'includeChildren' => [
-                'title'       => 'offline.mall::lang.components.products.properties.include_children.title',
-                'description' => 'offline.mall::lang.components.products.properties.include_children.description',
+                'title'       => 'winter.mall::lang.components.products.properties.include_children.title',
+                'description' => 'winter.mall::lang.components.products.properties.include_children.description',
                 'default'     => '0',
                 'type'        => 'checkbox',
             ],
             'perPage'         => [
-                'title'       => 'offline.mall::lang.components.products.properties.per_page.title',
-                'description' => 'offline.mall::lang.components.products.properties.per_page.description',
+                'title'       => 'winter.mall::lang.components.products.properties.per_page.title',
+                'description' => 'winter.mall::lang.components.products.properties.per_page.description',
                 'default'     => '9',
                 'type'        => 'string',
             ],
             'paginate'        => [
-                'title'       => 'offline.mall::lang.components.products.properties.paginate.title',
-                'description' => 'offline.mall::lang.components.products.properties.paginate.description',
+                'title'       => 'winter.mall::lang.components.products.properties.paginate.title',
+                'description' => 'winter.mall::lang.components.products.properties.paginate.description',
                 'default'     => '1',
                 'type'        => 'checkbox',
             ],
             'sort'            => [
-                'title'       => 'offline.mall::lang.components.products.properties.sort.title',
-                'description' => 'offline.mall::lang.components.products.properties.sort.description',
+                'title'       => 'winter.mall::lang.components.products.properties.sort.title',
+                'description' => 'winter.mall::lang.components.products.properties.sort.description',
                 'default'     => null,
                 'type'        => 'dropdown',
             ],
@@ -203,8 +203,8 @@ class Products extends MallComponent
     public function getCategoryOptions()
     {
         return [
-                null    => trans('offline.mall::lang.components.products.properties.no_category_filter'),
-                ':slug' => trans('offline.mall::lang.components.products.properties.use_url'),
+                null    => trans('winter.mall::lang.components.products.properties.no_category_filter'),
+                ':slug' => trans('winter.mall::lang.components.products.properties.use_url'),
             ]
             + CategoryModel::get()->pluck('name', 'id')->toArray();
     }
@@ -216,7 +216,7 @@ class Products extends MallComponent
      */
     public function getSortOptions()
     {
-        return [null => trans('offline.mall::lang.common.none')] + SortOrder::dropdownOptions();
+        return [null => trans('winter.mall::lang.common.none')] + SortOrder::dropdownOptions();
     }
 
     /**
@@ -302,13 +302,13 @@ class Products extends MallComponent
         $cart     = CartModel::byUser(Auth::getUser());
         $quantity = (int)post('quantity', $product->quantity_default ?? 1);
         if ($quantity < 1) {
-            throw new ValidationException(['quantity' => trans('offline.mall::lang.common.invalid_quantity')]);
+            throw new ValidationException(['quantity' => trans('winter.mall::lang.common.invalid_quantity')]);
         }
 
         try {
             $cart->addProduct($product, $quantity, $variant, $values);
         } catch (OutOfStockException $e) {
-            throw new ValidationException(['stock' => trans('offline.mall::lang.common.stock_limit_reached')]);
+            throw new ValidationException(['stock' => trans('winter.mall::lang.common.stock_limit_reached')]);
         }
 
         // If the redirect_to_cart option is set to true the user is redirected to the cart.
@@ -318,7 +318,7 @@ class Products extends MallComponent
             return Redirect::to($this->controller->pageUrl($cartPage));
         }
 
-        Flash::success(trans('offline.mall::frontend.cart.added'));
+        Flash::success(trans('winter.mall::frontend.cart.added'));
 
         return [
             'added'    => true,
@@ -446,7 +446,7 @@ class Products extends MallComponent
 
         if ($this->property('category') === ':slug' && $this->param('slug') === null) {
             throw new \LogicException(
-                'OFFLINE.Mall: A :slug URL parameter is needed when selecting products by category slug.'
+                'Winter.Mall: A :slug URL parameter is needed when selecting products by category slug.'
             );
         }
 

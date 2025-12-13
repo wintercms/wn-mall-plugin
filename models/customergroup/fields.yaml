@@ -1,21 +1,21 @@
 fields:
     name:
-        label: 'offline.mall::lang.common.name'
+        label: 'winter.mall::lang.common.name'
         span: auto
         type: text
     code:
-        label: 'offline.mall::lang.category.code'
+        label: 'winter.mall::lang.category.code'
         span: auto
         preset:
             field: name
             type: slug
         type: text
-        comment: 'offline.mall::lang.customer_group.code_comment'
+        comment: 'winter.mall::lang.customer_group.code_comment'
     discount:
-        label: 'offline.mall::lang.common.discount'
+        label: 'winter.mall::lang.common.discount'
         span: auto
         type: number
-        comment: 'offline.mall::lang.customer_group.discount_comment'
+        comment: 'winter.mall::lang.customer_group.discount_comment'
 tabs:
     fields:
         customers:
@@ -23,4 +23,4 @@ tabs:
             path: users
             context: update
             type: partial
-            tab: 'offline.mall::lang.common.customers'
+            tab: 'winter.mall::lang.common.customers'

@@ -1,8 +1,8 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 class CustomerGroupPrice extends Price
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\Validation;
 
     /**
      * Mark this price as specific to the logged in customer.
@@ -19,7 +19,7 @@ class CustomerGroupPrice extends Price
 
     public $rules = [
     ];
-    public $table = 'offline_mall_customer_group_prices';
+    public $table = 'winter_mall_customer_group_prices';
     public $morphTo = [
         'priceable' => [],
     ];

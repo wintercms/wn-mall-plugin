@@ -1,16 +1,16 @@
 fields:
     name:
-        label: 'offline.mall::lang.custom_field_options.option'
+        label: 'winter.mall::lang.custom_field_options.option'
         oc.commentPosition: ''
         span: left
         type: text
     prices:
-        label: 'offline.mall::lang.product.price'
+        label: 'winter.mall::lang.product.price'
         oc.commentPosition: ''
         span: right
         type: mall.price
     image:
-        label: 'offline.mall::lang.common.image'
+        label: 'winter.mall::lang.common.image'
         oc.commentPosition: ''
         mode: image
         imageWidth: '150'
@@ -26,7 +26,7 @@ fields:
             field: field_type
             condition: value[image]
     option_value:
-        label: 'offline.mall::lang.common.color'
+        label: 'winter.mall::lang.common.color'
         oc.commentPosition: ''
         span: full
         type: colorpicker

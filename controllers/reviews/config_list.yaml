@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.reviews'
-modelClass: OFFLINE\Mall\Models\Review
-list: $/offline/mall/models/review/columns.yaml
-recordUrl: 'offline/mall/reviews/update/:id'
+title: 'winter.mall::lang.common.reviews'
+modelClass: Winter\Mall\Models\Review
+list: $/winter/mall/models/review/columns.yaml
+recordUrl: 'winter/mall/reviews/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

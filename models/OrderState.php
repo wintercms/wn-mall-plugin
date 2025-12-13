@@ -1,9 +1,9 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use Model;
-use October\Rain\Database\Traits\SoftDelete;
-use October\Rain\Database\Traits\Sortable;
-use October\Rain\Database\Traits\Validation;
+use Winter\Storm\Database\Traits\SoftDelete;
+use Winter\Storm\Database\Traits\Sortable;
+use Winter\Storm\Database\Traits\Validation;
 
 class OrderState extends Model
 {
@@ -15,7 +15,7 @@ class OrderState extends Model
     public const FLAG_CANCELLED = 'CANCELLED';
     public const FLAG_COMPLETE = 'COMPLETE';
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     protected $dates = ['deleted_at'];
 
     public $translatable = [
@@ -26,7 +26,7 @@ class OrderState extends Model
         'name' => 'required',
     ];
 
-    public $table = 'offline_mall_order_states';
+    public $table = 'winter_mall_order_states';
 
     public $hasMany = [
         'orders' => Order::class,
@@ -35,9 +35,9 @@ class OrderState extends Model
     public function getFlagOptions()
     {
         return [
-            self::FLAG_CANCELLED => trans('offline.mall::lang.order_states.flags.cancelled'),
-            self::FLAG_COMPLETE  => trans('offline.mall::lang.order_states.flags.complete'),
-            self::FLAG_NEW       => trans('offline.mall::lang.order_states.flags.new'),
+            self::FLAG_CANCELLED => trans('winter.mall::lang.order_states.flags.cancelled'),
+            self::FLAG_COMPLETE  => trans('winter.mall::lang.order_states.flags.complete'),
+            self::FLAG_NEW       => trans('winter.mall::lang.order_states.flags.new'),
         ];
     }
 }

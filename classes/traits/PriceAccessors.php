@@ -1,15 +1,15 @@
 <?php
 
 
-namespace OFFLINE\Mall\Classes\Traits;
+namespace Winter\Mall\Classes\Traits;
 
 use Closure;
-use October\Rain\Database\Collection;
-use OFFLINE\Mall\Classes\Utils\Money;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Database\Collection;
+use Winter\Mall\Classes\Utils\Money;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Variant;
 
 trait PriceAccessors
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Totals;
+namespace Winter\Mall\Classes\Totals;
 
-use OFFLINE\Mall\Classes\Traits\Rounding;
-use OFFLINE\Mall\Models\PaymentMethod;
+use Winter\Mall\Classes\Traits\Rounding;
+use Winter\Mall\Models\PaymentMethod;
 
 class PaymentTotal implements \JsonSerializable
 {

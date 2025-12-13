@@ -1,17 +1,17 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Customer;
+namespace Winter\Mall\Classes\Customer;
 
 use Event;
 use Exception;
 use Flash;
-use October\Rain\Auth\AuthException;
-use October\Rain\Exception\ValidationException;
-use OFFLINE\Mall\Models\Cart;
-use OFFLINE\Mall\Models\Customer;
-use OFFLINE\Mall\Models\User;
+use Winter\Storm\Auth\AuthException;
+use Winter\Storm\Exception\ValidationException;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\Customer;
+use Winter\Mall\Models\User;
 use Auth;
-use OFFLINE\Mall\Models\Wishlist;
+use Winter\Mall\Models\Wishlist;
 use Redirect;
 use Validator;
 
@@ -28,7 +28,7 @@ class DefaultSignInHandler implements SignInHandler
                 ? 'not_activated'
                 : 'unknown_user';
 
-            Flash::error(trans('offline.mall::lang.components.signup.errors.' . $error));
+            Flash::error(trans('winter.mall::lang.components.signup.errors.' . $error));
         } catch (Exception $ex) {
             Flash::error($ex->getMessage());
         }
@@ -74,7 +74,7 @@ class DefaultSignInHandler implements SignInHandler
 
         if ($user->customer->is_guest) {
             Auth::logout();
-            throw new AuthException('offline.mall::lang.components.signup.errors.user_is_guest');
+            throw new AuthException('winter.mall::lang.components.signup.errors.user_is_guest');
         }
 
         Cart::transferSessionCartToCustomer($user->customer);
@@ -88,17 +88,17 @@ class DefaultSignInHandler implements SignInHandler
      */
     protected function validate(array $data)
     {
-        $minPasswordLength = \RainLab\User\Models\User::getMinPasswordLength();
+        $minPasswordLength = \Winter\User\Models\User::getMinPasswordLength();
         $rules    = [
             'login'    => 'required|email|between:6,255',
             'password' => sprintf('required|min:%d|max:255', $minPasswordLength),
         ];
         $messages = [
-            'login.required'    => trans('offline.mall::lang.components.signup.errors.login.required'),
-            'login.email'       => trans('offline.mall::lang.components.signup.errors.login.email'),
-            'login.between'     => trans('offline.mall::lang.components.signup.errors.login.between'),
-            'password.required' => trans('offline.mall::lang.components.signup.errors.password.required'),
-            'password.max'      => trans('offline.mall::lang.components.signup.errors.password.max'),
+            'login.required'    => trans('winter.mall::lang.components.signup.errors.login.required'),
+            'login.email'       => trans('winter.mall::lang.components.signup.errors.login.email'),
+            'login.between'     => trans('winter.mall::lang.components.signup.errors.login.between'),
+            'password.required' => trans('winter.mall::lang.components.signup.errors.password.required'),
+            'password.max'      => trans('winter.mall::lang.components.signup.errors.password.max'),
         ];
 
         $validation = Validator::make($data, $rules, $messages);

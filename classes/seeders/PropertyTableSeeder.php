@@ -1,16 +1,20 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Seeders;
+namespace Winter\Mall\Classes\Seeders;
 
-use October\Rain\Database\Updates\Seeder;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyGroup;
+use Winter\Storm\Database\Updates\Seeder;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyGroup;
 
 class PropertyTableSeeder extends Seeder
 {
     public function run()
     {
+        Property::extend(function () {
+            $this->setTable('offline_mall_properties');
+        }, true);
+
         $method       = new Property();
         $method->name = 'Height';
         $method->type = 'text';
@@ -41,6 +45,15 @@ class PropertyTableSeeder extends Seeder
         ];
         $method->save();
 
+        Property::extend(function () {
+            $this->setTable('winter_mall_properties');
+        }, true);
+
+        PropertyGroup::extend(function () {
+            $this->setTable('offline_mall_property_groups');
+            $this->belongsToMany['properties']['table'] = 'offline_mall_property_property_group';
+        }, true);
+
         $propertyGroup = new PropertyGroup();
         $propertyGroup->name = 'Dimensions';
         $propertyGroup->save();
@@ -51,7 +64,22 @@ class PropertyTableSeeder extends Seeder
         $propertyGroup->save();
         $propertyGroup->properties()->attach([4]);
 
+        PropertyGroup::extend(function () {
+            $this->setTable('winter_mall_property_groups');
+            $this->belongsToMany['properties']['table'] = 'winter_mall_property_property_group';
+        }, true);
+
+        Category::extend(function () {
+            $this->setTable('offline_mall_categories');
+            $this->belongsToMany['property_groups']['table'] = 'offline_mall_category_property_group';
+        }, true);
+
         $category = Category::first();
         $category->property_groups()->attach($propertyGroup->id);
+
+        Category::extend(function () {
+            $this->setTable('winter_mall_categories');
+            $this->belongsToMany['property_groups']['table'] = 'winter_mall_category_property_group';
+        }, true);
     }
 }

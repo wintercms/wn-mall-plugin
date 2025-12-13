@@ -1,14 +1,14 @@
-name: 'offline.mall::lang.common.shipping_methods'
-modelClass: OFFLINE\Mall\Models\ShippingMethod
-form: $/offline/mall/models/shippingmethod/fields.yaml
-defaultRedirect: offline/mall/shippingmethods
+name: 'winter.mall::lang.common.shipping_methods'
+modelClass: Winter\Mall\Models\ShippingMethod
+form: $/winter/mall/models/shippingmethod/fields.yaml
+defaultRedirect: winter/mall/shippingmethods
 create:
-    title: 'offline.mall::lang.titles.shipping_methods.create'
-    redirect: 'offline/mall/shippingmethods/update/:id'
-    redirectClose: offline/mall/shippingmethods
+    title: 'winter.mall::lang.titles.shipping_methods.create'
+    redirect: 'winter/mall/shippingmethods/update/:id'
+    redirectClose: winter/mall/shippingmethods
 update:
-    title: 'offline.mall::lang.titles.shipping_methods.update'
-    redirect: offline/mall/shippingmethods
-    redirectClose: offline/mall/shippingmethods
+    title: 'winter.mall::lang.titles.shipping_methods.update'
+    redirect: winter/mall/shippingmethods
+    redirectClose: winter/mall/shippingmethods
 preview:
-    title: 'offline.mall::lang.titles.shipping_methods.preview'
+    title: 'winter.mall::lang.titles.shipping_methods.preview'

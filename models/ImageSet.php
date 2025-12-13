@@ -1,4 +1,4 @@
-<?php namespace OFFLINE\Mall\Models;
+<?php namespace Winter\Mall\Models;
 
 use DB;
 use Model;
@@ -6,18 +6,18 @@ use System\Models\File;
 
 class ImageSet extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\Validation;
 
     const MORPH_KEY = 'mall.imageset';
 
     public $with = ['images'];
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name'
     ];
 
     protected $fillable = ['name', 'is_main_set', 'product_id'];
-    public $table = 'offline_mall_image_sets';
+    public $table = 'winter_mall_image_sets';
     public $rules = [
         'name' => 'required',
     ];
@@ -35,7 +35,7 @@ class ImageSet extends Model
             $set->handleMainSetStatus();
         });
         static::deleted(function (self $set) {
-            DB::table('offline_mall_product_variants')
+            DB::table('winter_mall_product_variants')
               ->where('image_set_id', $set->id)
               ->update(['image_set_id' => null]);
         });
@@ -47,7 +47,7 @@ class ImageSet extends Model
      */
     protected function handleMainSetStatus()
     {
-        $existingSets = DB::table('offline_mall_image_sets')
+        $existingSets = DB::table('winter_mall_image_sets')
                           ->where('product_id', $this->product_id)
                           ->count();
 
@@ -56,7 +56,7 @@ class ImageSet extends Model
         }
 
         if ($this->is_main_set) {
-            DB::table('offline_mall_image_sets')
+            DB::table('winter_mall_image_sets')
               ->where('product_id', $this->product_id)
               ->where('id', '<>', $this->id)
               ->update(['is_main_set' => false]);

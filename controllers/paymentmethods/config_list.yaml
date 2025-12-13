@@ -1,7 +1,7 @@
-title: 'offline.mall::lang.common.payment_methods'
-modelClass: OFFLINE\Mall\Models\PaymentMethod
-list: $/offline/mall/models/paymentmethod/columns.yaml
-recordUrl: 'offline/mall/paymentmethods/update/:id'
+title: 'winter.mall::lang.common.payment_methods'
+modelClass: Winter\Mall\Models\PaymentMethod
+list: $/winter/mall/models/paymentmethod/columns.yaml
+recordUrl: 'winter/mall/paymentmethods/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
 showSetup: true

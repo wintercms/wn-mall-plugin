@@ -1,9 +1,9 @@
 <?php
 
-namespace OFFLINE\Mall\Models;
+namespace Winter\Mall\Models;
 
-use October\Rain\Database\Pivot;
-use October\Rain\Database\Traits\Nullable;
+use Winter\Storm\Database\Pivot;
+use Winter\Storm\Database\Traits\Nullable;
 
 class PropertyGroupProperty extends Pivot
 {
@@ -18,9 +18,9 @@ class PropertyGroupProperty extends Pivot
     public static function getFilterTypeOptions($dashes = true)
     {
         return [
-            null    => ($dashes ? '-- ' : '') . trans('offline.mall::lang.properties.filter_types.none'),
-            'set'   => trans('offline.mall::lang.properties.filter_types.set'),
-            'range' => trans('offline.mall::lang.properties.filter_types.range'),
+            null    => ($dashes ? '-- ' : '') . trans('winter.mall::lang.properties.filter_types.none'),
+            'set'   => trans('winter.mall::lang.properties.filter_types.set'),
+            'range' => trans('winter.mall::lang.properties.filter_types.range'),
         ];
     }
 }

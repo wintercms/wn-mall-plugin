@@ -1,19 +1,19 @@
 <?php
 
-namespace OFFLINE\Mall\Classes\Demo\Products;
+namespace Winter\Mall\Classes\Demo\Products;
 
-use October\Rain\Support\Arr;
-use OFFLINE\Mall\Models\Brand;
-use OFFLINE\Mall\Models\Category;
-use OFFLINE\Mall\Models\CategoryReview;
-use OFFLINE\Mall\Models\Currency;
-use OFFLINE\Mall\Models\CustomField;
-use OFFLINE\Mall\Models\ImageSet;
-use OFFLINE\Mall\Models\Price;
-use OFFLINE\Mall\Models\Product;
-use OFFLINE\Mall\Models\Property;
-use OFFLINE\Mall\Models\PropertyValue;
-use OFFLINE\Mall\Models\Variant;
+use Winter\Storm\Support\Arr;
+use Winter\Mall\Models\Brand;
+use Winter\Mall\Models\Category;
+use Winter\Mall\Models\CategoryReview;
+use Winter\Mall\Models\Currency;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\ImageSet;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyValue;
+use Winter\Mall\Models\Variant;
 
 abstract class DemoProduct
 {
