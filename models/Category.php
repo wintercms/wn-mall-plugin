@@ -89,6 +89,7 @@ class Category extends Model
             'key'      => 'category_id',
             'otherKey' => 'product_id',
             'pivot'    => ['sort_order'],
+            'order'    => 'pivot_sort_order',
         ],
         'publishedProducts' => [
             Product::class,
@@ -97,6 +98,7 @@ class Category extends Model
             'otherKey' => 'product_id',
             'scope'    => 'published',
             'pivot'    => ['sort_order'],
+            'order'    => 'pivot_sort_order',
         ],
         'property_groups'   => [
             PropertyGroup::class,
