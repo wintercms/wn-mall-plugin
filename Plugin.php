@@ -87,7 +87,7 @@ class Plugin extends PluginBase
             'sideMenu' => [
                 'mall-products' => [
                     'label' => 'winter.mall::lang.common.products',
-                    'url' => 'winter/mall/products',
+                    'url' => Backend::url('winter/mall/products'),
                     'icon' => 'icon-cart-plus',
                     'order' => 100,
                     'permissions' => [
@@ -96,7 +96,7 @@ class Plugin extends PluginBase
                 ],
                 'mall-categories' => [
                     'label' => 'winter.mall::lang.common.categories',
-                    'url' => 'winter/mall/categories',
+                    'url' => Backend::url('winter/mall/categories'),
                     'icon' => 'icon-sitemap',
                     'order' => 400,
                     'permissions' => [
@@ -105,7 +105,7 @@ class Plugin extends PluginBase
                 ],
                 'mall-properties' => [
                     'label' => 'winter.mall::lang.common.properties',
-                    'url' => 'winter/mall/propertygroups',
+                    'url' => Backend::url('winter/mall/propertygroups'),
                     'icon' => 'icon-tags',
                     'order' => 600,
                     'permissions' => [
@@ -117,7 +117,7 @@ class Plugin extends PluginBase
         if (GeneralSettings::get('use_reviews', true)) {
             $result['mall-catalogue']['sideMenu']['mall-reviews'] = [
                 'label' => 'winter.mall::lang.common.reviews',
-                'url' => 'winter/mall/reviews',
+                'url' => Backend::url('winter/mall/reviews'),
                 'icon' => 'icon-star-half-full',
                 'order' => 200,
                 'permissions' => [
@@ -128,7 +128,7 @@ class Plugin extends PluginBase
         if (GeneralSettings::get('use_services', true)) {
             $result['mall-catalogue']['sideMenu']['mall-services'] = [
                 'label' => 'winter.mall::lang.common.services',
-                'url' => 'winter/mall/services',
+                'url' => Backend::url('winter/mall/services'),
                 'icon' => 'icon-plus-circle',
                 'order' => 300,
                 'permissions' => [
@@ -139,7 +139,7 @@ class Plugin extends PluginBase
         if (GeneralSettings::get('use_brands', true)) {
             $result['mall-catalogue']['sideMenu']['mall-brands'] = [
                 'label' => 'winter.mall::lang.common.brands',
-                'url' => 'winter/mall/brands',
+                'url' => Backend::url('winter/mall/brands'),
                 'icon' => 'icon-cube',
                 'order' => 500,
                 'permissions' => [
@@ -159,7 +159,7 @@ class Plugin extends PluginBase
                 'sideMenu' => [
                     'mall-orders' => [
                         'label' => 'winter.mall::lang.common.orders',
-                        'url' => 'winter/mall/orders',
+                        'url' => Backend::url('winter/mall/orders'),
                         'icon' => 'icon-check-circle',
                         'permissions' => [
                             'winter.mall.manage_orders',
@@ -167,7 +167,7 @@ class Plugin extends PluginBase
                     ],
                     'mall-discounts' => [
                         'label' => 'winter.mall::lang.common.discounts',
-                        'url' => 'winter/mall/discounts',
+                        'url' => Backend::url('winter/mall/discounts'),
                         'icon' => 'icon-gift',
                         'permissions' => [
                             'winter.mall.manage_discounts',
@@ -175,7 +175,7 @@ class Plugin extends PluginBase
                     ],
                     'mall-payment-log' => [
                         'label' => 'winter.mall::lang.common.payments',
-                        'url' => 'winter/mall/paymentlogs',
+                        'url' => Backend::url('winter/mall/paymentlogs'),
                         'icon' => 'icon-money',
                         'permissions' => [
                             'winter.mall.manage_payment_log'
