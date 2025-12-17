@@ -1,8 +1,9 @@
 fields:
-    parent:
-        label: 'winter.mall::lang.category.parent'
-        type: dropdown
+    name:
+        label: 'winter.mall::lang.category.name'
+        oc.commentPosition: ''
         span: left
+        type: text
     slug:
         label: 'winter.mall::lang.common.slug'
         oc.commentPosition: ''
@@ -11,11 +12,10 @@ fields:
             field: name
             type: slug
         type: text
-    name:
-        label: 'winter.mall::lang.category.name'
-        oc.commentPosition: ''
-        span: auto
-        type: text
+    parent:
+        label: 'winter.mall::lang.category.parent'
+        type: dropdown
+        span: left
     image:
         label: 'winter.mall::lang.common.main_image'
         oc.commentPosition: ''
