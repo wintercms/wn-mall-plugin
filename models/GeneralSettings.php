@@ -36,7 +36,7 @@ class GeneralSettings extends Model
             if (!$page->hasComponent($component)) {
                 continue;
             }
-            $cmsPages[$page->baseFileName] = $page->title;
+            $cmsPages[$page->baseFileName] = $page->title ?? $page->id;
         }
 
         if (count($cmsPages) < 1) {
