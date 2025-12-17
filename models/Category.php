@@ -89,7 +89,7 @@ class Category extends Model
             'key'      => 'category_id',
             'otherKey' => 'product_id',
             'pivot'    => ['sort_order'],
-            'order'    => 'pivot_sort_order',
+            'order'    => 'sort_order',
         ],
         'publishedProducts' => [
             Product::class,
