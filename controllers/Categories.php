@@ -9,6 +9,7 @@ use BackendMenu;
 use Flash;
 use Winter\Mall\Classes\Traits\ReorderRelation;
 use Winter\Mall\Models\Category;
+use Winter\Mall\Models\GeneralSettings;
 
 class Categories extends Controller
 {
@@ -41,6 +42,13 @@ class Categories extends Controller
         }
 
         $this->addJs('/plugins/winter/mall/assets/backend.js');
+    }
+
+    public function formExtendFields($widget)
+    {
+        if (!GeneralSettings::get('use_reviews', true)) {
+            $widget->removeTab('winter.mall::lang.common.review_categories');
+        }
     }
 
     public function onReorder()

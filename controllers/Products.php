@@ -17,6 +17,7 @@ use Winter\Mall\Classes\Traits\ProductPriceTable;
 use Winter\Mall\Classes\Traits\ReorderRelation;
 use Winter\Mall\Models\CustomField;
 use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\GeneralSettings;
 use Winter\Mall\Models\ImageSet;
 use Winter\Mall\Models\Price;
 use Winter\Mall\Models\Product;
@@ -461,5 +462,22 @@ class Products extends Controller
                 ]);
             }
         });
+    }
+
+    public function formExtendFields($widget)
+    {
+        if (!GeneralSettings::get('use_orders', true)) {
+            $widget->removeField('allow_out_of_stock_purchases');
+            $widget->removeField('_table_trigger');
+            $widget->removeTab('winter.mall::lang.common.cart');
+            $widget->removeTab('winter.mall::lang.common.shipping');
+            $widget->removeTab('winter.mall::lang.common.taxes');
+        }
+        if (!GeneralSettings::get('use_reviews', true)) {
+            $widget->removeTab('winter.mall::lang.common.reviews');
+        }
+        if (!GeneralSettings::get('use_brands', true)) {
+            $widget->removeField('brand');
+        }
     }
 }
