@@ -1163,4 +1163,10 @@
         'approve' => 'Approve review',
         'approve_next' => 'Approve and go to next',
     ],
+    'settings' => [
+        'modules-brands' => 'Use Brands',
+        'modules-orders' => 'Use Orders',
+        'modules-reviews' => 'Use Reviews',
+        'modules-services' => 'Use Services',
+    ],
 ];

@@ -1,4 +1,5 @@
-fields:
+tabs:
+  fields:
     base:
         label: winter.mall::lang.general_settings.base
         type: section
@@ -103,3 +104,28 @@ fields:
         type: switch
         default: 0
         comment: winter.mall::lang.general_settings.shipping_selection_before_payment_comment
+
+    use_brands:
+      label: winter.mall::lang.settings.modules-brands
+      tab: Modules
+      type: switch
+      default: true
+
+    use_reviews:
+      label: winter.mall::lang.settings.modules-reviews
+      tab: Modules
+      type: switch
+      default: true
+
+    use_services:
+      label: winter.mall::lang.settings.modules-services
+      tab: Modules
+      type: switch
+      default: true
+
+    use_orders:
+      label: winter.mall::lang.settings.modules-orders
+      tab: Modules
+      type: switch
+      default: true
+
