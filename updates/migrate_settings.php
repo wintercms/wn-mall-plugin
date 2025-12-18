@@ -53,14 +53,21 @@ class MigrateSettings extends Migration
 
         foreach ($this->gw->getProviders() as $provider) {
             foreach (array_keys($provider->settings()) as $key) {
-                $value = PaymentGatewaySettings::get($key);
+                $data = PaymentGatewaySettings::get($key);
+                try {
+                    $value = decrypt($data);
+                } catch (\Exception) {
+                    $value = $data;
+                }
                 $value = GeneralSettings::set($key, $value);
             }
         }
+
         foreach (['google_merchant_enabled', 'google_merchant_key'] as $key) {
             $value = FeedSettings::get($key);
             GeneralSettings::set($key, $value);
         }
+
         foreach (['enabled', 'moderated', 'allow_anonymous'] as $key) {
             $value = ReviewSettings::get($key);
             GeneralSettings::set($key, $value);
