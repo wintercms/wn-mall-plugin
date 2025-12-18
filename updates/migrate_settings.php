@@ -68,15 +68,18 @@ class MigrateSettings extends Migration
                 $dstPaymentGatewaySettings->set($key, $value);
             }
         }
+        $srcPaymentGatewaySettings->resetDefault();
 
         foreach (['google_merchant_enabled', 'google_merchant_key'] as $key) {
             $value = FeedSettings::get($key);
             GeneralSettings::set($key, $value);
         }
+        FeedSettings::resetDefault();
 
         foreach (['enabled', 'moderated', 'allow_anonymous'] as $key) {
             $value = ReviewSettings::get($key);
             GeneralSettings::set($key, $value);
         }
+        ReviewSettings::resetDefault();
     }
 }
