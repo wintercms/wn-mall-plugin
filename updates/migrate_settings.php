@@ -1,7 +1,9 @@
 <?php namespace Winter\Mall\Updates;
 
+use App;
 use Winter\Storm\Database\Updates\Migration;
 use Winter\Mall\Classes\Payments\PaymentGateway;
+use Winter\Mall\Classes\Registration\BootServiceContainer;
 use Winter\Mall\Models\GeneralSettings;
 use Winter\Mall\Models\FeedSettings;
 use Winter\Mall\Models\PaymentGatewaySettings;
@@ -9,10 +11,20 @@ use Winter\Mall\Models\ReviewSettings;
 
 class MigrateSettings extends Migration
 {
+    use BootServiceContainer;
+
+    protected function init()
+    {
+        $this->app = App::make('app');
+        $this->registerServices();
+        $this->gw = app(PaymentGateway::class);
+    }
+
     public function up()
     {
-        $gw = app(PaymentGateway::class);
-        foreach ($gw->getProviders() as $provider) {
+        $this->init();
+
+        foreach ($this->gw->getProviders() as $provider) {
             foreach (array_keys($provider->settings()) as $key) {
                 $value = GeneralSettings::get($key);
                 PaymentGatewaySettings::set($key, $value);
@@ -30,8 +42,9 @@ class MigrateSettings extends Migration
 
     public function down()
     {
-        $gw = app(PaymentGateway::class);
-        foreach ($gw->getProviders() as $provider) {
+        $this->init();
+
+        foreach ($this->gw->getProviders() as $provider) {
             foreach (array_keys($provider->settings()) as $key) {
                 $value = PaymentGatewaySettings::get($key);
                 $value = GeneralSettings::set($key, $value);
