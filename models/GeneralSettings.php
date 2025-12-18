@@ -14,6 +14,14 @@ class GeneralSettings extends Model
     public $settingsCode = 'winter_mall_settings';
     public $settingsFields = '$/winter/mall/models/settings/fields_general.yaml';
 
+    public function initSettingsData()
+    {
+        $this->use_orders   = true;
+        $this->use_reviews  = true;
+        $this->use_brands   = true;
+        $this->use_settings = true;
+    }
+
     public function afterSave()
     {
         Cache::forget('winter_mall.mysql.index.driver');
