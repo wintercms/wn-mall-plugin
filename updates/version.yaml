@@ -467,4 +467,6 @@
 2.1.0:
     - 'Rebranded to Winter/Mall'
     - rename_tables.php
-
+2.1.1:
+    - 'Seperate General/Feed/Review/PaymentGateway settings'
+    - migrate_settings.php
