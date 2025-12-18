@@ -30,7 +30,7 @@ class MigrateSettings extends Migration
     {
         $this->init();
 
-        GeneralSettings::firstWhere('item', 'offline_mall_settings')->update(['item' => 'winter_mall_settings']);
+        DB::table('system_settings')->where('item', 'offline_mall_settings')->update(['item' => 'winter_mall_settings']);
 
         $srcPaymentGatewaySettings = GeneralSettings::instance();
         $dstPaymentGatewaySettings = PaymentGatewaySettings::instance();
