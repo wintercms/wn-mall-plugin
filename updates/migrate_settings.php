@@ -1,6 +1,7 @@
 <?php namespace Winter\Mall\Updates;
 
 use App;
+use DB;
 use Cache;
 use Winter\Storm\Database\Updates\Migration;
 use Winter\Mall\Classes\Payments\PaymentGateway;
@@ -28,6 +29,8 @@ class MigrateSettings extends Migration
     public function up()
     {
         $this->init();
+
+        GeneralSettings::firstWhere('item', 'offline_mall_settings')->update(['item' => 'winter_mall_settings']);
 
         $srcPaymentGatewaySettings = GeneralSettings::instance();
         $dstPaymentGatewaySettings = PaymentGatewaySettings::instance();
@@ -81,5 +84,7 @@ class MigrateSettings extends Migration
             GeneralSettings::set($key, $value);
         }
         ReviewSettings::resetDefault();
+
+        DB::table('system_settings')->where('item', 'winter_mall_settings')->update(['item' => 'offline_mall_settings']);
     }
 }
