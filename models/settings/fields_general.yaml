@@ -24,53 +24,50 @@ tabs:
         type: partial
         path: $/winter/mall/models/settings/_index_hint.htm
 
-    links:
-        label: winter.mall::lang.general_settings.links
-        comment: winter.mall::lang.general_settings.links_comment
-        type: section
-
     product_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.product_page
         span: left
         type: dropdown
         comment: winter.mall::lang.general_settings.product_page_comment
 
     category_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.category_page
         span: right
         type: dropdown
         comment: winter.mall::lang.general_settings.category_page_comment
 
     address_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.address_page
         span: left
         type: dropdown
         comment: winter.mall::lang.general_settings.address_page_comment
 
     checkout_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.checkout_page
         span: right
         type: dropdown
         comment: winter.mall::lang.general_settings.checkout_page_comment
 
     account_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.account_page
         span: left
         type: dropdown
         comment: winter.mall::lang.general_settings.account_page_comment
 
     cart_page:
+        tab: winter.mall::lang.general_settings.links
         label: winter.mall::lang.general_settings.cart_page
         span: right
         type: dropdown
         comment: winter.mall::lang.general_settings.cart_page_comment
 
-    customizations:
-        label: winter.mall::lang.general_settings.customizations
-        comment: winter.mall::lang.general_settings.customizations_comment
-        type: section
-
     redirect_to_cart:
+        tab: winter.mall::lang.general_settings.customizations
         label: winter.mall::lang.general_settings.redirect_to_cart
         span: left
         type: switch
@@ -78,6 +75,7 @@ tabs:
         comment: winter.mall::lang.general_settings.redirect_to_cart_comment
 
     order_start:
+        tab: winter.mall::lang.general_settings.customizations
         label: winter.mall::lang.general_settings.order_number_start
         comment: winter.mall::lang.general_settings.order_number_start_comment
         type: text
@@ -85,6 +83,7 @@ tabs:
         default: 1
 
     use_state:
+        tab: winter.mall::lang.general_settings.customizations
         label: winter.mall::lang.general_settings.use_state
         span: left
         type: switch
@@ -92,6 +91,7 @@ tabs:
         comment: winter.mall::lang.general_settings.use_state_comment
 
     group_search_results_by_product:
+        tab: winter.mall::lang.general_settings.customizations
         label: winter.mall::lang.general_settings.group_search_results_by_product
         span: left
         type: switch
@@ -99,6 +99,7 @@ tabs:
         comment: winter.mall::lang.general_settings.group_search_results_by_product_comment
 
     shipping_selection_before_payment:
+        tab: winter.mall::lang.general_settings.customizations
         label: winter.mall::lang.general_settings.shipping_selection_before_payment
         span: left
         type: switch
@@ -106,26 +107,26 @@ tabs:
         comment: winter.mall::lang.general_settings.shipping_selection_before_payment_comment
 
     use_brands:
-      label: winter.mall::lang.settings.modules-brands
       tab: Modules
+      label: winter.mall::lang.settings.modules-brands
       type: switch
       default: true
 
     use_reviews:
-      label: winter.mall::lang.settings.modules-reviews
       tab: Modules
+      label: winter.mall::lang.settings.modules-reviews
       type: switch
       default: true
 
     use_services:
-      label: winter.mall::lang.settings.modules-services
       tab: Modules
+      label: winter.mall::lang.settings.modules-services
       type: switch
       default: true
 
     use_orders:
-      label: winter.mall::lang.settings.modules-orders
       tab: Modules
+      label: winter.mall::lang.settings.modules-orders
       type: switch
       default: true
 
