@@ -2,6 +2,7 @@
 
 
 use Backend;
+use Event;
 use Illuminate\Support\Facades\View;
 use Winter\Mall\Classes\Registration\BootComponents;
 use Winter\Mall\Classes\Registration\BootEvents;
@@ -71,6 +72,23 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('winter.mall.initialize', Initialize::class);
 
         View::share('app_url', config('app.url'));
+
+        Event::listen('system.settings.extendItems', function ($manager) {
+            if (!GeneralSettings::get('use_orders', true)) {
+                $manager->removeSettingItem('Offline.Mall', 'currency_settings');
+                $manager->removeSettingItem('Offline.Mall', 'feed_settings');
+                $manager->removeSettingItem('Offline.Mall', 'notification_settings');
+                $manager->removeSettingItem('Offline.Mall', 'order_state_settings');
+                $manager->removeSettingItem('Offline.Mall', 'payment_method_settings');
+                $manager->removeSettingItem('Offline.Mall', 'payment_gateways_settings');
+                $manager->removeSettingItem('Offline.Mall', 'price_categories_settings');
+                $manager->removeSettingItem('Offline.Mall', 'shipping_method_settings');
+                $manager->removeSettingItem('Offline.Mall', 'tax_settings');
+            }
+            if (!GeneralSettings::get('use_reviews', true)) {
+                $manager->removeSettingItem('Offline.Mall', 'review_settings');
+            }
+        });
     }
 
     public function registerNavigation()
