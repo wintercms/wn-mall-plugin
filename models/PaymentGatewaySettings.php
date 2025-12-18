@@ -15,7 +15,7 @@ class PaymentGatewaySettings extends Model
     protected $encryptable = [];
 
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'winter_mall_settings';
+    public $settingsCode = 'winter_mall_payment_gateway_settings';
     public $settingsFields = '$/winter/mall/models/settings/fields_payment_gateways.yaml';
 
     /**
