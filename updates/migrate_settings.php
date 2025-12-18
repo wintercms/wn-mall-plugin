@@ -1,6 +1,7 @@
 <?php namespace Winter\Mall\Updates;
 
 use App;
+use Cache;
 use Winter\Storm\Database\Updates\Migration;
 use Winter\Mall\Classes\Payments\PaymentGateway;
 use Winter\Mall\Classes\Registration\BootServiceContainer;
@@ -13,8 +14,12 @@ class MigrateSettings extends Migration
 {
     use BootServiceContainer;
 
+    protected $app = null;
+    protected $gw = null;
+
     protected function init()
     {
+        Cache::clear();
         $this->app = App::make('app');
         $this->registerServices();
         $this->gw = app(PaymentGateway::class);
@@ -24,15 +29,18 @@ class MigrateSettings extends Migration
     {
         $this->init();
 
+        $srcPaymentGatewaySettings = GeneralSettings::instance();
+        $dstPaymentGatewaySettings = PaymentGatewaySettings::instance();
+
         foreach ($this->gw->getProviders() as $provider) {
             foreach (array_keys($provider->settings()) as $key) {
-                $data = GeneralSettings::get($key);
+                $data = $srcPaymentGatewaySettings->get($key);
                 try {
                     $value = decrypt($data);
                 } catch (\Exception) {
                     $value = $data;
                 }
-                PaymentGatewaySettings::set($key, $value);
+                $dstPaymentGatewaySettings->set($key, $value);
             }
         }
 
@@ -51,15 +59,13 @@ class MigrateSettings extends Migration
     {
         $this->init();
 
+        $srcPaymentGatewaySettings = PaymentGatewaySettings::instance();
+        $dstPaymentGatewaySettings = GeneralSettings::instance();
+
         foreach ($this->gw->getProviders() as $provider) {
             foreach (array_keys($provider->settings()) as $key) {
-                $data = PaymentGatewaySettings::get($key);
-                try {
-                    $value = decrypt($data);
-                } catch (\Exception) {
-                    $value = $data;
-                }
-                $value = GeneralSettings::set($key, $value);
+                $value = $srcPaymentGatewaySettings->get($key);
+                $dstPaymentGatewaySettings->set($key, $value);
             }
         }
 
