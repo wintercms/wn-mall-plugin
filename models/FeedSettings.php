@@ -8,7 +8,7 @@ use Session;
 class FeedSettings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'winter_mall_settings';
+    public $settingsCode = 'winter_mall_feed_settings';
     public $settingsFields = '$/winter/mall/models/settings/fields_feeds.yaml';
 
     public function filterFields()
