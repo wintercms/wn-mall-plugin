@@ -8,7 +8,7 @@ use Session;
 class ReviewSettings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
-    public $settingsCode = 'winter_mall_settings';
+    public $settingsCode = 'winter_mall_review_settings';
     public $settingsFields = '$/winter/mall/models/settings/fields_reviews.yaml';
 
     public function initSettingsData()
