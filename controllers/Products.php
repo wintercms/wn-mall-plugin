@@ -312,7 +312,7 @@ class Products extends Controller
         if ($this->relationName === 'variants') {
             $this->updateProductPrices($this->vars['formModel'], $this->relationModel);
             $this->createImageSetFromTempImages($this->relationModel);
-            Variants::handlePropertyValueUpdates($this->relationModel);
+            $this->relationModel->handlePropertyValueUpdates();
 
             (new ProductObserver(app(Index::class)))->updated($this->vars['formModel']);
         }        
@@ -336,7 +336,7 @@ class Products extends Controller
                 $this->createImageSetFromTempImages($variant);
             }
 
-            Variants::handlePropertyValueUpdates($variant);
+            $variant->handlePropertyValueUpdates();
 
             // Force a re-index of the product
             (new ProductObserver(app(Index::class)))->updated($this->vars['formModel']);

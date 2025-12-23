@@ -16,6 +16,8 @@ use Winter\Mall\Classes\Traits\ProductPriceAccessors;
 use Winter\Mall\Classes\Traits\PropertyValues;
 use Winter\Mall\Classes\Traits\StockAndQuantity;
 use Winter\Mall\Classes\Traits\UserSpecificPrice;
+use Winter\Mall\Models\Property;
+use Winter\Mall\Models\PropertyValue;
 use Winter\Translate\Models\Locale;
 use System\Models\File;
 
@@ -298,5 +300,56 @@ class Variant extends Model
         return [
             'items' => $items,
         ];
+    }
+
+    /**
+     * Handle the form data from the property value form.
+     */
+    public function handlePropertyValueUpdates()
+    {
+        $locales = [];
+        if (class_exists(Locale::class)) {
+            $locales = Locale::isEnabled()->get();
+        }
+
+        $formData = array_wrap(post('VariantPropertyValues', []));
+        if (count($formData) < 1) {
+            PropertyValue::where('variant_id', $this->id)->delete();
+        }
+
+        $properties     = Property::whereIn('id', array_keys($formData))->get();
+        $propertyValues = PropertyValue::where('variant_id', $this->id)->get();
+
+        foreach ($formData as $id => $value) {
+            $property = $properties->find($id);
+            $pv       = $propertyValues->where('property_id', $id)->first()
+                ?? new PropertyValue([
+                    'variant_id'  => $this->id,
+                    'product_id'  => $this->product_id,
+                    'property_id' => $id,
+                ]);
+
+            $pv->value = $value;
+            foreach ($locales as $locale) {
+                $transValue = post(
+                    sprintf('RLTranslate.%s.VariantPropertyValues.%d', $locale->code, $id),
+                    post(sprintf('VariantPropertyValues.%d', $id)) // fallback
+                );
+                $transValue = $this->handleTranslatedPropertyValue(
+                    $property,
+                    $pv,
+                    $value,
+                    $transValue,
+                    $locale->code
+                );
+                $pv->setAttributeTranslated('value', $transValue, $locale->code);
+            }
+
+            if (($pv->value === null || $pv->value === '') && $pv->exists) {
+                $pv->delete();
+            } else {
+                $pv->save();
+            }
+        }
     }
 }
