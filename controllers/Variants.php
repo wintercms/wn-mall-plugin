@@ -4,6 +4,7 @@ use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use BackendMenu;
+use Winter\Mall\Models\GeneralSettings;
 
 class Variants extends Controller
 {
@@ -18,4 +19,11 @@ class Variants extends Controller
     public $requiredPermissions = [
         'winter.mall.manage_products',
     ];
+
+    public function formExtendFields($widget)
+    {
+        if (!GeneralSettings::get('use_orders', true)) {
+            $widget->removeTab('winter.mall::lang.common.shipping');
+        }
+    }
 }
