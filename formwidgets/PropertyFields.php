@@ -298,7 +298,8 @@ class PropertyFields extends FormWidgetBase
         $formField->value   = $value->value;
         $formField->label   = $property->name;
         $formField->options = collect($property->options)->map(function ($i) {
-            return [$i['value'], $i['value']];
+            $value = array_get($i, 'value');
+            return [$value, $value];
         })->toArray();
 
         return $this->makePartial(
@@ -313,7 +314,8 @@ class PropertyFields extends FormWidgetBase
         $formField->value   = $value->value;
         $formField->label   = $property->name;
         $formField->options = collect($property->options)->map(function ($i) {
-            return [$i['value'], $i['value']];
+            $value = array_get($i, 'value');
+            return [$value, $value];
         })->toArray();
 
         return $this->makePartial(
