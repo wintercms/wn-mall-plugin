@@ -295,6 +295,19 @@ class Products extends Controller
         });
     }
 
+    public function relationExtendManageWidget($widget, $field, $model)
+    {
+        if ($field !== 'variants') {
+            return;
+        }
+
+        if (!GeneralSettings::get('use_orders', true)) {
+            $widget->bindEvent('form.extendFields', function ($fields) use ($widget) {
+                $widget->removeTab('winter.mall::lang.common.shipping');
+            });
+        }
+    }
+
     public function onRelationManageCreate()
     {
         $this->asExtension(RelationController::class)->onRelationManageCreate();
