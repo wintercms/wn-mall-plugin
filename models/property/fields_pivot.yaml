@@ -1,5 +1,5 @@
 fields:
-    pivot[use_for_variants]@update:
+    pivot[use_for_variants]:
         label: 'winter.mall::lang.properties.use_for_variants'
         comment: 'winter.mall::lang.properties.use_for_variants_comment'
         type: switch
