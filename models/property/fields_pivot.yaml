@@ -24,10 +24,6 @@ fields:
             action: hide
             field: type
             condition: 'value[date] or value[datetime]' # frontend filters for these types are not yet implemented.
-        options:
-            '': 'winter.mall::lang.properties.filter_types.none'
-            set: 'winter.mall::lang.properties.filter_types.set'
-            range: 'winter.mall::lang.properties.filter_types.range'
     type:
         label: 'winter.mall::lang.custom_fields.type'
         oc.commentPosition: ''
