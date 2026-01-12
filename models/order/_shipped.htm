@@ -2,6 +2,6 @@
 $key = $record->is_shipped ? 'shipped' : 'not_shipped';
 $class = $record->is_shipped ? 'success' : 'mute';
 ?>
-<span class="oc-icon-circle text-<?= $class ?>">
+<span class="wn-icon-circle text-<?= $class ?>">
     <?= e(trans('winter.mall::lang.order.' . $key)) ?>
 </span>
