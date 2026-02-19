@@ -17,7 +17,12 @@ class RenameTables extends Migration
 
     public function up()
     {
-        $tables = collect(Db::select('SHOW TABLES LIKE "offline_mall_%"'))->map(fn($table) => head((array)$table))->all();
+        $query = match(config('database.default')) {
+            'mysql' => 'SHOW TABLES LIKE "offline_mall_%"',
+            'sqlite' => 'SELECT name FROM sqlite_master WHERE type="table" AND name LIKE "offline_mall_%"',
+            default => 'SELECT table_name FROM information_schema.tables WHERE table_name LIKE "offline_mall_%"', 
+        };
+        $tables = collect(Db::select($query))->map(fn($table) => head((array)$table))->all();
 
         foreach ($tables as $old) {
             $new = str_replace('offline_', 'winter_', $old);
