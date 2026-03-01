@@ -601,7 +601,9 @@ class Product extends Model
         // If less than properties are available (1 is the null property)
         // we can remove everything that has to do with variants.
         if (count($this->getGroupByPropertyIdOptions()) < 2) {
-            $fields->variants->path               = 'variants_unavailable';
+            if (isset($fields->variants)) {
+                $fields->variants->path = 'variants_unavailable';
+            }
             $fields->group_by_property_id->hidden = true;
         }
     }
