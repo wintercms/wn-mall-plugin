@@ -259,4 +259,9 @@ class Category extends Model
 
         return $groups ?? new Collection();
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
 }

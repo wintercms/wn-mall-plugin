@@ -470,3 +470,6 @@
 2.1.1:
     - 'Seperate General/Feed/Review/PaymentGateway settings'
     - migrate_settings.php
+2.1.2:
+    - Add published field to Category model
+    - add_categories_published_field.php

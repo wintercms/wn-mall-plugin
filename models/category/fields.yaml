@@ -1,4 +1,9 @@
 fields:
+    published:
+        label: 'winter.mall::lang.product.published'
+        type: switch
+        default: true
+        span: auto
     name:
         label: 'winter.mall::lang.category.name'
         oc.commentPosition: ''
