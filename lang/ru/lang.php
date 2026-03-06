@@ -380,7 +380,7 @@ return [
         'width' => 'Ширина (мм)',
         'quantity_default' => 'Количество по умолчанию',
         'quantity_min' => 'Минимальное количество',
-        'quantity_max' => 'Минимальное количество',
+        'quantity_max' => 'Максимальное количество',
         'inventory_management_method' => 'Метод управления инвентаризации',
         'allow_out_of_stock_purchases' => 'Разрешить покупки, если нет на складе',
         'allow_out_of_stock_purchases_comment' => 'Этот товар можно заказать, даже если нет на складе',
