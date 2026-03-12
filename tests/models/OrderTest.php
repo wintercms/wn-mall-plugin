@@ -10,6 +10,7 @@ use Winter\Mall\Models\CustomField;
 use Winter\Mall\Models\CustomFieldOption;
 use Winter\Mall\Models\CustomFieldValue;
 use Winter\Mall\Models\Discount;
+use Winter\Mall\Models\GeneralSettings;
 use Winter\Mall\Models\Order;
 use Winter\Mall\Models\OrderState;
 use Winter\Mall\Models\Price;
@@ -19,6 +20,7 @@ use Winter\Mall\Models\Tax;
 use Winter\Mall\Models\User;
 use Winter\Mall\Models\Variant;
 use Winter\Mall\Tests\PluginTestCase;
+use Winter\Storm\Exception\ValidationException;
 use Winter\User\Facades\Auth;
 
 class OrderTest extends PluginTestCase
@@ -63,6 +65,64 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(json_encode(Address::find(2)), $order->getOriginal('shipping_address'));
 
         $this->assertNotNull($cart->deleted_at);
+    }
+
+    public function test_it_blocks_order_creation_if_billing_phone_is_required_and_missing()
+    {
+        GeneralSettings::set('address_phone_required_billing', true);
+        GeneralSettings::set('address_phone_required_shipping', false);
+
+        $this->expectException(ValidationException::class);
+
+        $cart                      = $this->getFullCart();
+        $cart->shipping_address_id = 2;
+        $cart->billing_address_id  = 1;
+        $cart->save();
+
+        Order::fromCart($cart);
+    }
+
+    public function test_it_allows_order_creation_when_shipping_equals_billing_and_phone_exists()
+    {
+        GeneralSettings::set('address_phone_required_billing', false);
+        GeneralSettings::set('address_phone_required_shipping', true);
+
+        $billing = Address::find(1);
+        $billing->phone = '+33123456789';
+        $billing->save();
+
+        $cart                      = $this->getFullCart();
+        $cart->shipping_address_id = 1;
+        $cart->billing_address_id  = 1;
+        $cart->save();
+
+        $order = Order::fromCart($cart);
+
+        $this->assertNotNull($order->id);
+        $this->assertEquals('+33123456789', array_get($order->shipping_address, 'phone'));
+    }
+
+    public function test_it_blocks_order_creation_if_shipping_phone_is_required_and_missing()
+    {
+        GeneralSettings::set('address_phone_required_billing', false);
+        GeneralSettings::set('address_phone_required_shipping', true);
+
+        $this->expectException(ValidationException::class);
+
+        $billing = Address::find(1);
+        $billing->phone = '+33123456789';
+        $billing->save();
+
+        $shipping = Address::find(2);
+        $shipping->phone = null;
+        $shipping->save();
+
+        $cart                      = $this->getFullCart();
+        $cart->shipping_address_id = 2;
+        $cart->billing_address_id  = 1;
+        $cart->save();
+
+        Order::fromCart($cart);
     }
 
     public function test_it_updates_product_stock()
@@ -277,6 +337,14 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(11, $discount1->fresh()->number_of_usages);
         $this->assertEquals(13, $discount2->fresh()->number_of_usages);
         $this->assertEquals(19, $discount3->fresh()->number_of_usages);
+    }
+
+    public function tearDown(): void
+    {
+        GeneralSettings::set('address_phone_required_billing', false);
+        GeneralSettings::set('address_phone_required_shipping', false);
+
+        parent::tearDown();
     }
 
     protected function getFullCart(): Cart
