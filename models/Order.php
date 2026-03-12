@@ -168,6 +168,24 @@ class Order extends Model
                 throw new ValidationException(['Your order has no shipping method set. Please select a shipping method.']);
             }
 
+            $billingPhoneRequired = (bool)GeneralSettings::get('address_phone_required_billing', false);
+            $shippingPhoneRequired = (bool)GeneralSettings::get('address_phone_required_shipping', false);
+            $billingAddress = $cart->billing_address;
+            $shippingAddress = $cart->shipping_address;
+            $shippingAddressForValidation = $cart->shipping_address_same_as_billing ? $billingAddress : $shippingAddress;
+
+            if ($billingPhoneRequired && strlen(trim((string)array_get($billingAddress, 'phone'))) < 1) {
+                throw new ValidationException([
+                    'billing_phone' => trans('winter.mall::lang.components.signup.errors.phone.required'),
+                ]);
+            }
+
+            if ($shippingPhoneRequired && strlen(trim((string)array_get($shippingAddressForValidation, 'phone'))) < 1) {
+                throw new ValidationException([
+                    'shipping_phone' => trans('winter.mall::lang.components.signup.errors.phone.required'),
+                ]);
+            }
+
             $totals = $cart->totals;
 
             $order                                          = new static;

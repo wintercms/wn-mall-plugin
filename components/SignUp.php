@@ -31,6 +31,18 @@ class SignUp extends MallComponent
      * @var boolean
      */
     public $useState = true;
+    /**
+     * Require phone field for billing address.
+     *
+     * @var bool
+     */
+    public $phoneRequiredBilling = false;
+    /**
+     * Require phone field for shipping address.
+     *
+     * @var bool
+     */
+    public $phoneRequiredShipping = false;
 
     /**
      * Component details.
@@ -71,6 +83,8 @@ class SignUp extends MallComponent
 
         $this->requiresConfirmation = UserSettings::get('activate_mode') === UserSettings::ACTIVATE_USER;
         $this->useState             = GeneralSettings::get('use_state', true);
+        $this->phoneRequiredBilling = GeneralSettings::get('address_phone_required_billing', false);
+        $this->phoneRequiredShipping = GeneralSettings::get('address_phone_required_shipping', false);
     }
 
     /**

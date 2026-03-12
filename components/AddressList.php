@@ -131,6 +131,19 @@ class AddressList extends MallComponent
             throw new ValidationException(['id' => trans('winter.mall::lang.components.addressList.errors.address_not_found')]);
         }
 
+        $isBilling = $type === 'billing';
+        $isShipping = $type === 'shipping';
+
+        $billingPhoneRequired = (bool)GeneralSettings::get('address_phone_required_billing', false);
+        $shippingPhoneRequired = (bool)GeneralSettings::get('address_phone_required_shipping', false);
+        $phoneRequired = ($isBilling && $billingPhoneRequired) || ($isShipping && $shippingPhoneRequired);
+
+        if ($phoneRequired && strlen(trim((string)$address->phone)) < 1) {
+            throw new ValidationException([
+                'id' => trans('winter.mall::frontend.address_change_phone_error'),
+            ]);
+        }
+
         if ($type === 'billing') {
             $this->defaultBillingAddressId = $customer->default_billing_address_id = $id;
             $cart->setBillingAddress($address);
