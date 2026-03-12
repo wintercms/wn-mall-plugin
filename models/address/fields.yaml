@@ -16,6 +16,10 @@ fields:
         label: 'winter.mall::frontend.form.recipient'
         span: auto
         type: text
+    phone:
+        label: 'winter.mall::frontend.form.phone'
+        span: auto
+        type: text
     zip:
         label: 'winter.mall::frontend.form.zip'
         span: left

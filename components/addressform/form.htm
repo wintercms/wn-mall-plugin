@@ -17,6 +17,14 @@
     <div data-validate-for="{{ type }}address_name"></div>
 </div>
 <div class="mall-form-control">
+    <label for="{{ type }}phone">{{ 'winter.mall::frontend.form.phone' | trans }}</label>
+    <input id="{{ type }}phone" name="{{ type }}phone" type="text"
+           value="{{ address.phone }}"
+           placeholder="{{ 'winter.mall::frontend.form.phone_placeholder' | trans }}"
+           {% if __SELF__.phoneRequired %}required{% endif %}>
+    <div data-validate-for="{{ type }}phone"></div>
+</div>
+<div class="mall-form-control">
     <label for="{{ type }}lines">{{ 'winter.mall::frontend.form.address_lines' | trans }}</label>
     <textarea id="{{ type }}lines" type="text" name="{{ type }}lines">{{ address.lines }}</textarea>
     <div data-validate-for="{{ type }}lines"></div>
