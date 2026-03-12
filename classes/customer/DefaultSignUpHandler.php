@@ -196,6 +196,14 @@ class DefaultSignUpHandler implements SignUpHandler
             unset($rules['billing_state_id'], $rules['shipping_state_id']);
         }
 
+        if ((bool)GeneralSettings::get('address_phone_required_billing', false) === true) {
+            $rules['billing_phone'] = 'required';
+        }
+
+        if ((bool)GeneralSettings::get('address_phone_required_shipping', false) === true) {
+            $rules['shipping_phone'] = 'required_if:use_different_shipping,1';
+        }
+
         Event::fire('mall.customer.extendSignupRules', [&$rules, $forSignup]);
 
         if (PluginManager::instance()->hasPlugin('Winter.Location')) {
@@ -232,6 +240,8 @@ class DefaultSignUpHandler implements SignUpHandler
             'shipping_city.required'       => trans('winter.mall::lang.components.signup.errors.city.required'),
             'shipping_country_id.required' => trans('winter.mall::lang.components.signup.errors.country_id.required'),
             'shipping_country_id.exists'   => trans('winter.mall::lang.components.signup.errors.country_id.exists'),
+            'billing_phone.required'       => trans('winter.mall::lang.components.signup.errors.phone.required'),
+            'shipping_phone.required_if'   => trans('winter.mall::lang.components.signup.errors.phone.required'),
 
             'password.required' => trans('winter.mall::lang.components.signup.errors.password.required'),
             'password.min'      => trans('winter.mall::lang.components.signup.errors.password.min'),

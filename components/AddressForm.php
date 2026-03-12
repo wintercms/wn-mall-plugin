@@ -1,6 +1,8 @@
 <?php namespace Winter\Mall\Components;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
+use Winter\Storm\Exception\ValidationException;
 use Winter\Storm\Support\Facades\Flash;
 use Winter\Mall\Models\Address;
 use Winter\Mall\Models\Cart;
@@ -43,6 +45,12 @@ class AddressForm extends MallComponent
      * @var boolean
      */
     public $useState = true;
+    /**
+     * Require phone field for this form context.
+     *
+     * @var bool
+     */
+    public $phoneRequired = false;
 
     /**
      * Component details.
@@ -133,6 +141,8 @@ class AddressForm extends MallComponent
         $this->setVar('cart', Cart::byUser(Auth::getUser()));
         $this->setVar('countries', Country::getNameList());
         $this->setVar('useState', GeneralSettings::get('use_state', true));
+        $this->phoneRequired = $this->isPhoneRequired();
+        $this->setVar('phoneRequired', $this->phoneRequired);
 
         $hashId = $this->property('address');
         if ($hashId === 'new') {
@@ -177,6 +187,17 @@ class AddressForm extends MallComponent
         $data  = post();
         $isNew = $this->property('address') === 'new';
 
+        if ($this->isPhoneRequired()) {
+            $validation = Validator::make(
+                $data,
+                ['phone' => 'required'],
+                ['phone.required' => trans('winter.mall::lang.components.signup.errors.phone.required')]
+            );
+            if ($validation->fails()) {
+                throw new ValidationException($validation);
+            }
+        }
+
         if ($isNew) {
             $this->address              = new Address();
             $this->address->customer_id = $user->customer->id;
@@ -211,6 +232,28 @@ class AddressForm extends MallComponent
         }
 
         return null;
+    }
+
+    protected function isPhoneRequired(): bool
+    {
+        $billingRequired = (bool)GeneralSettings::get('address_phone_required_billing', false);
+        $shippingRequired = (bool)GeneralSettings::get('address_phone_required_shipping', false);
+        $set = $this->property('set');
+
+        if ($set === 'billing') {
+            return $billingRequired;
+        }
+
+        if ($set === 'shipping') {
+            return $shippingRequired;
+        }
+
+        if ($set === 'both') {
+            return $billingRequired || $shippingRequired;
+        }
+
+        // No explicit context is available (e.g. customer account address page).
+        return $billingRequired || $shippingRequired;
     }
 
     /**

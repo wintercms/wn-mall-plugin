@@ -210,6 +210,13 @@ class AddressSelector extends MallComponent
             throw new ValidationException($validation);
         }
 
+        $address = Address::byCustomer($user->customer)->find($data['id']);
+        if ($address && $this->isPhoneRequiredForCurrentType() && strlen(trim((string)$address->phone)) < 1) {
+            throw new ValidationException([
+                'id' => trans('winter.mall::frontend.address_change_phone_error'),
+            ]);
+        }
+
         $col = $this->type . '_address_id';
 
         $cart         = Cart::byUser($user);
@@ -223,5 +230,18 @@ class AddressSelector extends MallComponent
         $this->setData();
 
         return [$selector => $this->renderPartial($partial)];
+    }
+
+    protected function isPhoneRequiredForCurrentType(): bool
+    {
+        if ($this->type === 'billing') {
+            return (bool)GeneralSettings::get('address_phone_required_billing', false);
+        }
+
+        if ($this->type === 'shipping') {
+            return (bool)GeneralSettings::get('address_phone_required_shipping', false);
+        }
+
+        return false;
     }
 }

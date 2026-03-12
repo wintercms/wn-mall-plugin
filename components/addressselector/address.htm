@@ -10,6 +10,10 @@
             {{ address.state.name }} <br/>
         {% endif %}
         {{ address.country.name }}
+        {% if address.phone %}
+            <br/>
+            {{ address.phone }}
+        {% endif %}
     </p>
     <p class="mall-address__actions">
         <a href="javascript:;" class="js-change-address" data-type="{{ __SELF__.type }}">

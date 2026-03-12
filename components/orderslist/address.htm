@@ -9,4 +9,8 @@
         {{ address.state.name }}<br />
     {% endif %}
     {{ address.country.name }}
+    {% if address.phone %}
+        <br/>
+        {{ address.phone }}
+    {% endif %}
 </p>

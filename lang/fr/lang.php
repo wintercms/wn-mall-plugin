@@ -165,6 +165,10 @@
         'group_search_results_by_product_comment' => 'Inclure un produit une seule fois dans les résultats de la recherche, ne pas afficher toutes les variantes correspondantes',
         'shipping_selection_before_payment' => 'Sélectionnez le mode d\'expédition avant le paiement lors du passage en caisse.',
         'shipping_selection_before_payment_comment' => 'Par défaut, lors du passage à la caisse, l\'utilisateur doit d\'abord choisir un mode de paiement avant de sélectionner un mode d\'expédition ; utilisez cette option pour inverser cette logique.',
+        'address_phone_required_billing' => 'Rendre le téléphone obligatoire pour les adresses de facturation',
+        'address_phone_required_billing_comment' => 'Si activé, le téléphone de facturation est requis pendant l\'inscription et la création de commande.',
+        'address_phone_required_shipping' => 'Rendre le téléphone obligatoire pour les adresses de livraison',
+        'address_phone_required_shipping_comment' => 'Si activé, le téléphone de livraison est requis lors de l\'utilisation d\'une adresse de livraison différente.',
         'admin_email' => 'Email de l\'administrateur',
         'admin_email_comment' => 'Les notifications de l\'administrateur seront envoyées à cette adresse',
         'base' => 'Paramètres de base',
@@ -1006,6 +1010,9 @@
                 'state_id' => [
                     'required' => 'Choisissez un état',
                     'exists' => 'La valeur sélectionnée n\'est pas valide.',
+                ],
+                'phone' => [
+                    'required' => 'Veuillez saisir un numéro de téléphone.',
                 ],
                 'terms_accepted' => [
                     'required' => 'Veuillez accepter nos conditions générales de vente. .',

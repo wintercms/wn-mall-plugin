@@ -14,6 +14,11 @@ columns:
         type: text
         searchable: true
         sortable: true
+    phone:
+        label: 'winter.mall::frontend.form.phone'
+        type: text
+        searchable: true
+        sortable: true
     lines:
         label: 'winter.mall::frontend.form.address_lines'
         type: text
