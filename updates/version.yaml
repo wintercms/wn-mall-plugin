@@ -473,3 +473,6 @@
 2.1.2:
     - Add published field to Category model
     - add_categories_published_field.php
+2.1.3:
+    - Add native phone field support on addresses
+    - add_phone_to_addresses_table.php
