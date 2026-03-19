@@ -1,50 +1,51 @@
 {
-  "name": "winter/wn-mall-plugin",
-  "type": "winter-plugin",
-  "description": "E-commerce solution for Winter CMS",
-  "keywords": [
-    "winter",
-    "cms",
-    "e-commerce",
-    "shop",
-    "plugin"
-  ],
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Tobias Kündig",
-      "email": "tobias@offline.ch"
+    "name": "winter/wn-mall-plugin",
+    "type": "winter-plugin",
+    "description": "E-commerce solution for Winter CMS",
+    "keywords": [
+        "winter",
+        "cms",
+        "e-commerce",
+        "shop",
+        "plugin"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Kündig",
+            "email": "tobias@offline.ch"
+        }
+    ],
+    "replace": {
+        "offline/oc-mall-plugin": "~2.0|v2.x-dev"
+    },
+    "require": {
+        "php": ">=8.1",
+        "composer/installers": "~1.0",
+        "hashids/hashids": "^4.1.0",
+        "league/omnipay": "^3.2",
+        "omnipay/paypal": "^3.0",
+        "omnipay/stripe": "^3.0",
+        "barryvdh/laravel-dompdf": "^2.1|~3.1",
+        "winter/wn-user-plugin": "dev-main|^2.3",
+        "winter/wn-location-plugin": "dev-main|^2.2",
+        "winter/wn-translate-plugin": "dev-main|^2.3"
+    },
+    "suggest": {
+        "vitalybaev/google-merchant-feed": "Required to use the Google Merchant Feed integration",
+        "bummzack/omnipay-postfinance": "Required to use the PostFinance payment provider",
+        "elasticsearch/elasticsearch": "Required to use the ElasticSearch indexing support (experimental)",
+        "offline/jsonq": "Required to use the file based index",
+        "tmarois/filebase": "Required to use the file based index"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "^2.6",
+        "mockery/mockery": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
     }
-  ],
-  "replace": {
-      "offline/oc-mall-plugin": "~2.0|v2.x-dev"
-  },
-  "require": {
-    "composer/installers": "~1.0",
-    "hashids/hashids": "^4.1.0",
-    "league/omnipay": "^3.2",
-    "omnipay/paypal": "^3.0",
-    "omnipay/stripe": "^3.0",
-    "barryvdh/laravel-dompdf": "^2.1|~3.1",
-    "winter/wn-user-plugin": "dev-main|^2.3",
-    "winter/wn-location-plugin": "dev-main|^2.2",
-    "winter/wn-translate-plugin": "dev-main|^2.3"
-  },
-  "suggest": {
-    "vitalybaev/google-merchant-feed": "Required to use the Google Merchant Feed integration",
-    "bummzack/omnipay-postfinance": "Required to use the PostFinance payment provider",
-    "elasticsearch/elasticsearch": "Required to use the ElasticSearch indexing support (experimental)",
-    "offline/jsonq": "Required to use the file based index",
-    "tmarois/filebase": "Required to use the file based index"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "*",
-    "phpmd/phpmd": "^2.6",
-    "mockery/mockery": "^1.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true
-    }
-  }
 }
