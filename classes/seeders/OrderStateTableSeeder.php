@@ -29,10 +29,6 @@ class OrderStateTableSeeder extends Seeder
             ],
         ];
 
-        OrderState::extend(function () {
-            $this->setTable('offline_mall_order_states');
-        }, true);
-
         foreach ($states as $state) {
             $s = new OrderState();
             if ($isTranslatable) {
@@ -40,17 +36,15 @@ class OrderStateTableSeeder extends Seeder
             }
 
             $s->forceFill(array_except($state, 'german_name'));
+            $s->setTable('offline_mall_order_states');
             $s->save();
 
             if ($isTranslatable) {
                 $s->translateContext('de');
                 $s->name = $state['german_name'];
+                $s->setTable('offline_mall_order_states');
                 $s->save();
             }
         }
-
-        OrderState::extend(function () {
-            $this->setTable('winter_mall_order_states');
-        }, true);
     }
 }

@@ -9,17 +9,10 @@ class TaxTableSeeder extends Seeder
 {
     public function run()
     {
-        Tax::extend(function () {
-            $this->setTable('offline_mall_taxes');
-        }, true);
-
         $method             = new Tax();
         $method->name       = 'Default';
         $method->percentage = 8;
+        $method->setTable('offline_mall_taxes');
         $method->save();
-
-        Tax::extend(function () {
-            $this->setTable('winter_mall_taxes');
-        }, true);
     }
 }
