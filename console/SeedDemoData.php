@@ -92,18 +92,21 @@ class SeedDemoData extends Command
         ];
     }
 
+    /**
+     * Refresh the plugin, clear existing attachments, flush the indexes
+     *
+     * @return void
+     */
     protected function cleanup()
     {
         $this->output->writeln('Resetting plugin data...');
 
-        // October 2.0
-        if (class_exists(\Editor\ServiceProvider::class)) {
-            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall', '--force' => true]);
-        } else {
-            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall']);
-        }
+        $this->callSilent('plugin:refresh', [
+            'plugin'  => 'Winter.Mall',
+            '--force' => true,
+        ]);
 
-        Artisan::call('cache:clear');
+        $this->callSilent('cache:clear');
 
         DB::table('system_files')
           ->where('attachment_type', 'LIKE', 'Winter%Mall%')
