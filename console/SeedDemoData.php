@@ -2,7 +2,7 @@
 
 use DB;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Winter\Mall\Classes\Demo\Products\Cruiser1000;
 use Winter\Mall\Classes\Demo\Products\Cruiser1500;
 use Winter\Mall\Classes\Demo\Products\Cruiser3000;
@@ -28,8 +28,6 @@ use Winter\Mall\Models\ReviewCategory;
 use Winter\Mall\Models\Service;
 use Winter\Mall\Models\ServiceOption;
 use Winter\Mall\Models\Tax;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Helper\ProgressBar;
 
 class SeedDemoData extends Command
 {
