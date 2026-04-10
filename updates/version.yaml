@@ -479,3 +479,5 @@
 2.1.4:
     - 'Fixed creation of options for the ‘checkboxlist’ property and `mall:seed-demo` command.'
     - 'Update PHP requirement to >=8.1'
+2.1.5:
+    - 'Only create carts once a product is added'
