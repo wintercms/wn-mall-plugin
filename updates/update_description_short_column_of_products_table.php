@@ -7,7 +7,7 @@ class UpdateDescriptionShortColumnOfProductsTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_products', function($table)
+        Schema::table('winter_mall_products', function($table)
         {
             $table->text('description_short')->change();
         });
@@ -15,7 +15,7 @@ class UpdateDescriptionShortColumnOfProductsTable extends Migration
 
     public function down()
     {
-        Schema::table('offline_mall_products', function($table)
+        Schema::table('winter_mall_products', function($table)
         {
             $table->string('description_short', 255)->change();
         });

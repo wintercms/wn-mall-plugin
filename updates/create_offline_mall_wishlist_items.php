@@ -7,7 +7,7 @@ class CreateOfflineMallWishlistItems extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_wishlist_items', function ($table) {
+        Schema::create('winter_mall_wishlist_items', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('wishlist_id')->index();
@@ -22,6 +22,6 @@ class CreateOfflineMallWishlistItems extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_wishlist_items');
+        Schema::dropIfExists('winter_mall_wishlist_items');
     }
 }

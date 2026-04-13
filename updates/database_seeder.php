@@ -40,10 +40,10 @@ class DatabaseSeeder extends Seeder
         (new PriceCategory([
             'code' => 'old_price',
             'name' => 'Old price',
-        ]))->setTable('offline_mall_price_categories')->save();
+        ]))->setTable('winter_mall_price_categories')->save();
 
         Currency::extend(function () {
-            $this->setTable('offline_mall_currencies');
+            $this->setTable('winter_mall_currencies');
             $this->rules['code'] = str_replace('winter_', 'offline_', $this->rules['code']);
         }, true);
         Currency::create([

@@ -7,7 +7,7 @@ class CreateOfflineMallImageSets extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_image_sets', function ($table) {
+        Schema::create('winter_mall_image_sets', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name')->nullable();
@@ -20,6 +20,6 @@ class CreateOfflineMallImageSets extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_image_sets');
+        Schema::dropIfExists('winter_mall_image_sets');
     }
 }

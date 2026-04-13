@@ -36,13 +36,13 @@ class OrderStateTableSeeder extends Seeder
             }
 
             $s->forceFill(array_except($state, 'german_name'));
-            $s->setTable('offline_mall_order_states');
+            $s->setTable('winter_mall_order_states');
             $s->save();
 
             if ($isTranslatable) {
                 $s->translateContext('de');
                 $s->name = $state['german_name'];
-                $s->setTable('offline_mall_order_states');
+                $s->setTable('winter_mall_order_states');
                 $s->save();
             }
         }

@@ -7,7 +7,7 @@ class CreateOfflineMallProductPrices extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_product_prices', function ($table) {
+        Schema::create('winter_mall_product_prices', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('price')->nullable();
@@ -27,6 +27,6 @@ class CreateOfflineMallProductPrices extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_product_prices');
+        Schema::dropIfExists('winter_mall_product_prices');
     }
 }

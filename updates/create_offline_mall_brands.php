@@ -7,7 +7,7 @@ class CreateOfflineMallBrands extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_brands', function ($table) {
+        Schema::create('winter_mall_brands', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name');
@@ -22,6 +22,6 @@ class CreateOfflineMallBrands extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_brands');
+        Schema::dropIfExists('winter_mall_brands');
     }
 }

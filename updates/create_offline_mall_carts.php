@@ -7,7 +7,7 @@ class CreateOfflineMallCarts extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_carts', function ($table) {
+        Schema::create('winter_mall_carts', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('session_id')->nullable();
@@ -28,6 +28,6 @@ class CreateOfflineMallCarts extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_carts');
+        Schema::dropIfExists('winter_mall_carts');
     }
 }

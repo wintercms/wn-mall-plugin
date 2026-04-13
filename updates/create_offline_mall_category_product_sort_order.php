@@ -7,7 +7,7 @@ class CreateOfflineMallCategoryProductSortOrder extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_category_product_sort_order', function ($table) {
+        Schema::create('winter_mall_category_product_sort_order', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -18,6 +18,6 @@ class CreateOfflineMallCategoryProductSortOrder extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_category_product_sort_order');
+        Schema::dropIfExists('winter_mall_category_product_sort_order');
     }
 }

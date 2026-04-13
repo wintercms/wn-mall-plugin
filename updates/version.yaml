@@ -1,49 +1,49 @@
 1.0.0:
     - 'First public release'
-    - create_offline_mall_products.php
-    - create_offline_mall_product_variants.php
-    - create_offline_mall_product_accessory.php
-    - create_offline_mall_custom_fields.php
-    - create_offline_mall_custom_field_options.php
-    - create_offline_mall_categories.php
-    - create_offline_mall_taxes.php
-    - create_offline_mall_product_tax.php
-    - create_offline_mall_carts.php
-    - create_offline_mall_cart_products.php
-    - create_offline_mall_shipping_methods.php
-    - create_offline_mall_shipping_method_tax.php
-    - create_offline_mall_country_tax.php
-    - create_offline_mall_shipping_method_rates.php
-    - create_offline_mall_cart_custom_field_value.php
-    - create_offline_mall_discounts.php
-    - create_offline_mall_cart_discount.php
-    - create_offline_mall_orders.php
-    - create_offline_mall_order_products.php
-    - create_offline_mall_addresses.php
-    - create_offline_mall_customers.php
-    - create_offline_mall_shipping_countries.php
-    - create_offline_mall_payments_log.php
-    - create_offline_mall_payment_methods.php
-    - create_offline_mall_payment_method_tax.php
-    - create_offline_mall_product_custom_field.php
-    - create_offline_mall_properties.php
-    - create_offline_mall_property_values.php
-    - create_offline_mall_order_states.php
-    - create_offline_mall_brands.php
-    - create_offline_mall_image_sets.php
-    - create_offline_mall_property_property_group.php
-    - create_offline_mall_property_groups.php
-    - create_offline_mall_category_property_group.php
-    - create_offline_mall_customer_groups.php
-    - create_offline_mall_customer_group_prices.php
-    - create_offline_mall_price_categories.php
-    - create_offline_mall_prices.php
-    - create_offline_mall_product_prices.php
-    - create_offline_mall_category_product_sort_order.php
-    - create_offline_mall_currencies.php
+    - create_winter_mall_products.php
+    - create_winter_mall_product_variants.php
+    - create_winter_mall_product_accessory.php
+    - create_winter_mall_custom_fields.php
+    - create_winter_mall_custom_field_options.php
+    - create_winter_mall_categories.php
+    - create_winter_mall_taxes.php
+    - create_winter_mall_product_tax.php
+    - create_winter_mall_carts.php
+    - create_winter_mall_cart_products.php
+    - create_winter_mall_shipping_methods.php
+    - create_winter_mall_shipping_method_tax.php
+    - create_winter_mall_country_tax.php
+    - create_winter_mall_shipping_method_rates.php
+    - create_winter_mall_cart_custom_field_value.php
+    - create_winter_mall_discounts.php
+    - create_winter_mall_cart_discount.php
+    - create_winter_mall_orders.php
+    - create_winter_mall_order_products.php
+    - create_winter_mall_addresses.php
+    - create_winter_mall_customers.php
+    - create_winter_mall_shipping_countries.php
+    - create_winter_mall_payments_log.php
+    - create_winter_mall_payment_methods.php
+    - create_winter_mall_payment_method_tax.php
+    - create_winter_mall_product_custom_field.php
+    - create_winter_mall_properties.php
+    - create_winter_mall_property_values.php
+    - create_winter_mall_order_states.php
+    - create_winter_mall_brands.php
+    - create_winter_mall_image_sets.php
+    - create_winter_mall_property_property_group.php
+    - create_winter_mall_property_groups.php
+    - create_winter_mall_category_property_group.php
+    - create_winter_mall_customer_groups.php
+    - create_winter_mall_customer_group_prices.php
+    - create_winter_mall_price_categories.php
+    - create_winter_mall_prices.php
+    - create_winter_mall_product_prices.php
+    - create_winter_mall_category_product_sort_order.php
+    - create_winter_mall_currencies.php
     - allow_non_unique_emails_for_rainlab_user.php
     - add_customer_group_id_to_rainlab_users.php
-    - create_offline_mall_notifications.php
+    - create_winter_mall_notifications.php
     - database_seeder.php
 1.0.2:
     - Fixed event handler for welcome email
@@ -136,7 +136,7 @@
     - Added italian translations (thanks to @marcomessa)
 1.2.0:
     - Customers can now re-use payment methods (like Credit cards)
-    - create_offline_mall_customer_payment_methods.php
+    - create_winter_mall_customer_payment_methods.php
 1.2.1:
     - Minor bug fixes and optimizations
     - remove_description_column_from_order_products.php
@@ -198,13 +198,13 @@
     - add_embeds_column_to_products_table.php
 1.4.0:
     - Added Wishlists feature
-    - create_offline_mall_wishlists.php
-    - create_offline_mall_wishlist_items.php
+    - create_winter_mall_wishlists.php
+    - create_winter_mall_wishlist_items.php
 1.4.1:
     - "!!! Added terms and conditions checkbox to signup form. If you manually modified the signup form partials make sure to add the checkbox as well since it is being validated as required by default. (see https://tinyurl.com/yyanm7eo)"
 1.5.0:
     - Added Services feature (e. g. extended warranty, on-site installation)
-    - create_offline_mall_services.php
+    - create_winter_mall_services.php
 1.5.1:
     - "!!! There is now a changelog documenting breaking changes with every future release. Make sure to check it out: https://bit.ly/2kCk2F9"
 1.5.2:
@@ -213,7 +213,7 @@
     - Another bugfix release
 1.6.0:
     - Added Reviews. Speaking of reviews, did you already add a review for this plugin ;-)? https://octobercms.com/plugin/offline-mall
-    - create_offline_mall_reviews.php
+    - create_winter_mall_reviews.php
 1.6.1:
     - "Bugfix release. Don't forget to check out the new changelog for updates to 1.6.0: https://offline-gmbh.github.io/oc-mall-plugin/changelog/1.6.0.html"
 1.6.2:
@@ -377,7 +377,7 @@
     - 'Added support for PHP 8 (see changelog: https://offline-gmbh.github.io/oc-mall-plugin/changelog/1.14.0.html)'
 1.14.1:
     - 'Added possibility to apply discounts when a certain shipping method is selected (credits to @inalto)'
-    - create_offline_mall_shipping_method_discount.php
+    - create_winter_mall_shipping_method_discount.php
 1.14.2:
     - 'Various minor bugfixes and improvements'
 1.14.3:

@@ -9,7 +9,7 @@ class UseTextColumnsForPaymentLog extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_payments_log', function ($table) {
+        Schema::table('winter_mall_payments_log', function ($table) {
             $table->text('payment_method')->change();
             $table->text('message')->change();
         });

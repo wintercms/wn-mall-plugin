@@ -7,7 +7,7 @@ class AddRoundingColumnToCurrenciesTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_currencies', function($table)
+        Schema::table('winter_mall_currencies', function($table)
         {
             $table->integer('rounding')->nullable();
         });
@@ -15,7 +15,7 @@ class AddRoundingColumnToCurrenciesTable extends Migration
 
     public function down()
     {
-        Schema::table('offline_mall_currencies', function($table)
+        Schema::table('winter_mall_currencies', function($table)
         {
             $table->dropColumn('rounding');
         });

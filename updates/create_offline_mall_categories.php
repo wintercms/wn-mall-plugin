@@ -7,7 +7,7 @@ class CreateOfflineMallCategories extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_categories', function ($table) {
+        Schema::create('winter_mall_categories', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 255);
@@ -38,6 +38,6 @@ class CreateOfflineMallCategories extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_categories');
+        Schema::dropIfExists('winter_mall_categories');
     }
 }

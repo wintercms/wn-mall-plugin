@@ -7,14 +7,14 @@ class AddShortDescriptionFieldToCategory extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_categories', function ($table) {
+        Schema::table('winter_mall_categories', function ($table) {
             $table->string('description_short', 255)->nullable();
         });
     }
 
     public function down()
     {
-        Schema::table('offline_mall_categories', function ($table) {
+        Schema::table('winter_mall_categories', function ($table) {
             $table->dropColumn(['description_short']);
         });
     }

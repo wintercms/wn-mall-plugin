@@ -8,14 +8,14 @@ class AddValidFromColumnToDiscountsTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_discounts', function (Blueprint $table) {
+        Schema::table('winter_mall_discounts', function (Blueprint $table) {
             $table->dateTime('valid_from')->after('max_number_of_usages')->nullable();
         });
     }
 
     public function down()
     {
-        Schema::table('offline_mall_discounts', function (Blueprint $table) {
+        Schema::table('winter_mall_discounts', function (Blueprint $table) {
             $table->dropColumn(['valid_from']);
         });
     }

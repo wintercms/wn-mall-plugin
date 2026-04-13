@@ -18,8 +18,8 @@ class RenameTables extends Migration
     public function up()
     {
         $query = match(config('database.default')) {
-            'sqlite' => 'SELECT name FROM sqlite_master WHERE type="table" AND name LIKE "offline_mall_%"',
-            default => 'SELECT table_name FROM information_schema.tables WHERE table_name LIKE "offline_mall_%"', 
+            'sqlite' => 'SELECT name FROM sqlite_master WHERE type="table" AND name LIKE "winter_mall_%"',
+            default => 'SELECT table_name FROM information_schema.tables WHERE table_name LIKE "winter_mall_%"', 
         };
         $tables = collect(Db::select($query))->map(fn($table) => head((array)$table))->all();
 

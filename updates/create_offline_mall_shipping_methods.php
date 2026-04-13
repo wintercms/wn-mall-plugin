@@ -7,7 +7,7 @@ class CreateOfflineMallShippingMethods extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_shipping_methods', function ($table) {
+        Schema::create('winter_mall_shipping_methods', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name', 255);
@@ -22,6 +22,6 @@ class CreateOfflineMallShippingMethods extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_shipping_methods');
+        Schema::dropIfExists('winter_mall_shipping_methods');
     }
 }

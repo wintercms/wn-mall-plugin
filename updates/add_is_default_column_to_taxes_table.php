@@ -7,7 +7,7 @@ class AddIsDefaultColumnToTaxesTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_taxes', function($table)
+        Schema::table('winter_mall_taxes', function($table)
         {
             $table->boolean('is_default')->default(0);
         });
@@ -15,7 +15,7 @@ class AddIsDefaultColumnToTaxesTable extends Migration
     
     public function down()
     {
-        Schema::table('offline_mall_taxes', function($table)
+        Schema::table('winter_mall_taxes', function($table)
         {
             $table->dropColumn('is_default');
         });

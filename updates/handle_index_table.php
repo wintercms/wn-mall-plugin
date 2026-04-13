@@ -14,6 +14,6 @@ class HandleIndexTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_index');
+        Schema::dropIfExists('winter_mall_index');
     }
 }

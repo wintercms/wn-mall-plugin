@@ -10,12 +10,12 @@ class UpdateJsonableColumnsToMediumtext extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_payments_log', function (Blueprint $table) {
+        Schema::table('winter_mall_payments_log', function (Blueprint $table) {
             $table->mediumText('payment_method')->change();
             $table->mediumText('data')->change();
             $table->longText('order_data')->change();
         });
-        Schema::table('offline_mall_orders', function (Blueprint $table) {
+        Schema::table('winter_mall_orders', function (Blueprint $table) {
             $table->mediumText('currency')->change();
             $table->mediumText('billing_address')->change();
             $table->mediumText('shipping_address')->change();
@@ -24,7 +24,7 @@ class UpdateJsonableColumnsToMediumtext extends Migration
             $table->mediumText('payment')->change();
             $table->mediumText('payment_data')->change();
         });
-        Schema::table('offline_mall_order_products', function (Blueprint $table) {
+        Schema::table('winter_mall_order_products', function (Blueprint $table) {
             $table->mediumText('property_values')->change();
             $table->longText('custom_field_values')->change();
             $table->mediumText('taxes')->change();

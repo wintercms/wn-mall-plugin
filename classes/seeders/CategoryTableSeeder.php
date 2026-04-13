@@ -10,7 +10,7 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         Category::extend(function () {
-            $this->setTable('offline_mall_categories');
+            $this->setTable('winter_mall_categories');
         }, true);
 
         $category       = new Category();

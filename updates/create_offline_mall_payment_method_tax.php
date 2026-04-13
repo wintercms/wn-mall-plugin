@@ -7,7 +7,7 @@ class CreateOfflineMallPaymentMethodTax extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_payment_method_tax', function ($table) {
+        Schema::create('winter_mall_payment_method_tax', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
@@ -19,6 +19,6 @@ class CreateOfflineMallPaymentMethodTax extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('offline_mall_payment_method_tax');
+        Schema::dropIfExists('winter_mall_payment_method_tax');
     }
 }

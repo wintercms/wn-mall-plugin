@@ -7,7 +7,7 @@ class CreateOfflineMallProductCustomFields extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_custom_fields', function ($table) {
+        Schema::create('winter_mall_custom_fields', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name');
@@ -19,6 +19,6 @@ class CreateOfflineMallProductCustomFields extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_custom_fields');
+        Schema::dropIfExists('winter_mall_custom_fields');
     }
 }

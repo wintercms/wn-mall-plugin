@@ -9,8 +9,8 @@ class RemoveDescriptionColumnFromOrderProducts extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_order_products', function ($table) {
-            if (Schema::hasColumn('offline_mall_order_products', 'description')) {
+        Schema::table('winter_mall_order_products', function ($table) {
+            if (Schema::hasColumn('winter_mall_order_products', 'description')) {
                 $table->dropColumn(['description']);
             }
         });
@@ -18,7 +18,7 @@ class RemoveDescriptionColumnFromOrderProducts extends Migration
 
     public function down()
     {
-        Schema::table('offline_mall_order_products', function ($table) {
+        Schema::table('winter_mall_order_products', function ($table) {
             $table->longText('description')->nullable();
         });
     }

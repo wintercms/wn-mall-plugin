@@ -9,7 +9,7 @@ class SetDefaultTax extends Migration
     public function up()
     {
         Tax::extend(function () {
-            $this->setTable('offline_mall_taxes');
+            $this->setTable('winter_mall_taxes');
         }, true);
 
         // Version 1.9.0 introduced a default tax. Let's use the first one as default.

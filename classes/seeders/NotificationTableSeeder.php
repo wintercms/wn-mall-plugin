@@ -10,7 +10,7 @@ class NotificationTableSeeder extends Seeder
     public function run()
     {
         Notification::extend(function () {
-            $this->setTable('offline_mall_notifications');
+            $this->setTable('winter_mall_notifications');
             $this->rules['code'] = str_replace('winter_', 'offline_', $this->rules['code']);
         }, true);
         Notification::create([

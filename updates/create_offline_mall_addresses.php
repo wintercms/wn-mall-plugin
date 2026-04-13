@@ -7,7 +7,7 @@ class CreateOfflineMallAddresses extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_addresses', function ($table) {
+        Schema::create('winter_mall_addresses', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('company')->nullable();
@@ -27,6 +27,6 @@ class CreateOfflineMallAddresses extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_addresses');
+        Schema::dropIfExists('winter_mall_addresses');
     }
 }

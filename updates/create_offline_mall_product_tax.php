@@ -8,7 +8,7 @@ class CreateOfflineMallProductTax extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_product_tax', function (Blueprint $table) {
+        Schema::create('winter_mall_product_tax', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('tax_id');
@@ -20,6 +20,6 @@ class CreateOfflineMallProductTax extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_product_tax');
+        Schema::dropIfExists('winter_mall_product_tax');
     }
 }

@@ -7,7 +7,7 @@ class CreateOfflineMallProperties extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_properties', function ($table) {
+        Schema::create('winter_mall_properties', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name');
@@ -27,6 +27,6 @@ class CreateOfflineMallProperties extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_properties');
+        Schema::dropIfExists('winter_mall_properties');
     }
 }

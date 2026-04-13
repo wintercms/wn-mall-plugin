@@ -9,13 +9,13 @@ class AddVirtualProductsSupport extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_products', function (Blueprint $table) {
+        Schema::table('winter_mall_products', function (Blueprint $table) {
             $table->boolean('is_virtual')->default(false);
             $table->integer('file_expires_after_days')->unsigned()->nullable();
             $table->integer('file_max_download_count')->unsigned()->nullable();
             $table->boolean('file_session_required')->default(0);
         });
-        Schema::create('offline_mall_product_files', function (Blueprint $table) {
+        Schema::create('winter_mall_product_files', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -25,7 +25,7 @@ class AddVirtualProductsSupport extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
-        Schema::create('offline_mall_product_file_grants', function (Blueprint $table) {
+        Schema::create('winter_mall_product_file_grants', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('order_product_id')->unsigned();
@@ -37,16 +37,16 @@ class AddVirtualProductsSupport extends Migration
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('expires_at')->nullable();
         });
-        Schema::table('offline_mall_orders', function (Blueprint $table) {
+        Schema::table('winter_mall_orders', function (Blueprint $table) {
             $table->boolean('is_virtual')->default(0)->after('total_post_taxes');
             $table->date('paid_at')->nullable()->after('shipped_at');
         });
-        Schema::table('offline_mall_order_products', function (Blueprint $table) {
+        Schema::table('winter_mall_order_products', function (Blueprint $table) {
             $table->boolean('is_virtual')->default(0)->after('quantity');
         });
 
         Notification::extend(function () {
-            $this->setTable('offline_mall_notifications');
+            $this->setTable('winter_mall_notifications');
             $this->rules['code'] = str_replace('winter_', 'offline_', $this->rules['code']);
         }, true);
         Notification::create([
@@ -64,7 +64,7 @@ class AddVirtualProductsSupport extends Migration
 
     public function down()
     {
-        Schema::table('offline_mall_products', function (Blueprint $table) {
+        Schema::table('winter_mall_products', function (Blueprint $table) {
             $table->dropColumn([
                 'is_virtual',
                 'file_expires_after_days',
@@ -72,13 +72,13 @@ class AddVirtualProductsSupport extends Migration
                 'file_session_required',
             ]);
         });
-        Schema::table('offline_mall_orders', function (Blueprint $table) {
+        Schema::table('winter_mall_orders', function (Blueprint $table) {
             $table->dropColumn(['is_virtual', 'paid_at']);
         });
-        Schema::table('offline_mall_order_products', function (Blueprint $table) {
+        Schema::table('winter_mall_order_products', function (Blueprint $table) {
             $table->dropColumn(['is_virtual']);
         });
-        Schema::dropIfExists('offline_mall_product_files');
-        Schema::dropIfExists('offline_mall_product_file_grants');
+        Schema::dropIfExists('winter_mall_product_files');
+        Schema::dropIfExists('winter_mall_product_file_grants');
     }
 }

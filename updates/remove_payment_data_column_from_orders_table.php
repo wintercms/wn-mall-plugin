@@ -9,8 +9,8 @@ class RemovePaymentDataColumnFromOrdersTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_orders', function ($table) {
-            if (Schema::hasColumn('offline_mall_orders', 'payment_data')) {
+        Schema::table('winter_mall_orders', function ($table) {
+            if (Schema::hasColumn('winter_mall_orders', 'payment_data')) {
                 $table->dropColumn(['payment_data']);
             }
         });
@@ -18,7 +18,7 @@ class RemovePaymentDataColumnFromOrdersTable extends Migration
 
     public function down()
     {
-        Schema::table('offline_mall_orders', function ($table) {
+        Schema::table('winter_mall_orders', function ($table) {
             $table->mediumText('payment_data')->nullable();
         });
     }

@@ -7,7 +7,7 @@ class CreateOfflineMallCartCustomFieldValue extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_cart_custom_field_value', function ($table) {
+        Schema::create('winter_mall_cart_custom_field_value', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('cart_product_id')->unsigned()->nullable();
@@ -21,6 +21,6 @@ class CreateOfflineMallCartCustomFieldValue extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_cart_custom_field_value');
+        Schema::dropIfExists('winter_mall_cart_custom_field_value');
     }
 }

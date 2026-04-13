@@ -7,7 +7,7 @@ class CreateOfflineMallCustomerPaymentMethods extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_customer_payment_methods', function ($table) {
+        Schema::create('winter_mall_customer_payment_methods', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name')->nullabe();
@@ -19,27 +19,27 @@ class CreateOfflineMallCustomerPaymentMethods extends Migration
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
         });
-        Schema::table('offline_mall_orders', function ($table) {
+        Schema::table('winter_mall_orders', function ($table) {
             $table->integer('customer_payment_method_id')->nullable();
         });
-        Schema::table('offline_mall_carts', function ($table) {
+        Schema::table('winter_mall_carts', function ($table) {
             $table->integer('customer_payment_method_id')->nullable();
         });
-        Schema::table('offline_mall_customers', function ($table) {
+        Schema::table('winter_mall_customers', function ($table) {
             $table->string('stripe_customer_id')->nullable();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_customer_payment_methods');
-        Schema::table('offline_mall_orders', function ($table) {
+        Schema::dropIfExists('winter_mall_customer_payment_methods');
+        Schema::table('winter_mall_orders', function ($table) {
             $table->dropColumn(['customer_payment_method_id']);
         });
-        Schema::table('offline_mall_carts', function ($table) {
+        Schema::table('winter_mall_carts', function ($table) {
             $table->dropColumn(['customer_payment_method_id']);
         });
-        Schema::table('offline_mall_customers', function ($table) {
+        Schema::table('winter_mall_customers', function ($table) {
             $table->dropColumn(['stripe_customer_id']);
         });
     }

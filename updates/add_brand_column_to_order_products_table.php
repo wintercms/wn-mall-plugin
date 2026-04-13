@@ -8,14 +8,14 @@ class AddBrandColumnToOrderProductsTable extends Migration
 {
     public function up()
     {
-        Schema::table('offline_mall_order_products', function (Blueprint $table) {
+        Schema::table('winter_mall_order_products', function (Blueprint $table) {
             $table->text('brand')->after('variant_name')->nullable();
         });
     }
 
     public function down()
     {
-        Schema::table('offline_mall_order_products', function (Blueprint $table) {
+        Schema::table('winter_mall_order_products', function (Blueprint $table) {
             $table->dropColumn(['brand']);
         });
     }

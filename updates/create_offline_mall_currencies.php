@@ -7,7 +7,7 @@ class CreateOfflineMallCurrencies extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_currencies', function ($table) {
+        Schema::create('winter_mall_currencies', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('code');
@@ -23,6 +23,6 @@ class CreateOfflineMallCurrencies extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_currencies');
+        Schema::dropIfExists('winter_mall_currencies');
     }
 }

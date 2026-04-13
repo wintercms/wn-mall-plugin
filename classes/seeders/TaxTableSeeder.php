@@ -12,7 +12,7 @@ class TaxTableSeeder extends Seeder
         $method             = new Tax();
         $method->name       = 'Default';
         $method->percentage = 8;
-        $method->setTable('offline_mall_taxes');
+        $method->setTable('winter_mall_taxes');
         $method->save();
     }
 }

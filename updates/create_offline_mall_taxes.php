@@ -7,7 +7,7 @@ class CreateOfflineMallTaxes extends Migration
 {
     public function up()
     {
-        Schema::create('offline_mall_taxes', function ($table) {
+        Schema::create('winter_mall_taxes', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name', 255);
@@ -19,6 +19,6 @@ class CreateOfflineMallTaxes extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('offline_mall_taxes');
+        Schema::dropIfExists('winter_mall_taxes');
     }
 }
