@@ -36,10 +36,8 @@
 
 {% for option in product.service_options %}
     <tr class="mall-cart__services {{ loop.first ? 'mall-cart__services--first' }} {{ loop.last ? 'mall-cart__services--last' }}">
-        <td></td>
         <td colspan="2">
             {{ option.name }}
         </td>
-        <td></td>
     </tr>
 {% endfor %}
