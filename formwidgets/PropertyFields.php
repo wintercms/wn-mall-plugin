@@ -273,7 +273,11 @@ class PropertyFields extends FormWidgetBase
 
     private function checkboxlist($property, PropertyValue $value)
     {
-        $escapedValue = json_decode($value->value, true);
+        $rawValue = $value->getAttributeTranslated('value') ?? $value->attributes['value'] ?? '';
+        $escapedValue = is_string($rawValue) ? json_decode($rawValue, true) : $rawValue;
+        if (!is_array($escapedValue)) {
+            $escapedValue = [];
+        }
 
         $formField          = $this->newFormField($property);
         $formField->value   = $escapedValue;
