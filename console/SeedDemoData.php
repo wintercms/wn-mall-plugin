@@ -2,7 +2,7 @@
 
 use DB;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Winter\Mall\Classes\Demo\Products\Cruiser1000;
 use Winter\Mall\Classes\Demo\Products\Cruiser1500;
 use Winter\Mall\Classes\Demo\Products\Cruiser3000;
@@ -28,11 +28,24 @@ use Winter\Mall\Models\ReviewCategory;
 use Winter\Mall\Models\Service;
 use Winter\Mall\Models\ServiceOption;
 use Winter\Mall\Models\Tax;
-use Symfony\Component\Console\Input\InputOption;
 
 class SeedDemoData extends Command
 {
+    /**
+     * @var string The console command name.
+     */
     protected $name = 'mall:seed-demo';
+
+    /**
+     * @var string The name and signature of this command.
+     */
+    protected $signature = 'mall:seed-demo
+        {--f|force : Don\'t ask before deleting the data..}
+        ';
+
+    /**
+     * @var string The console command description.
+     */
     protected $description = 'Import Winter.Mall demo data';
 
     public $bikePropertyGroups = [];
@@ -52,58 +65,43 @@ class SeedDemoData extends Command
             return new Noop();
         });
 
-        $this->cleanup();
-        $this->createCurrencies();
-        $this->createBrands();
-        $this->createProperties();
-        $this->createReviewCategories();
-        $this->createCategories();
-        $this->createTaxes();
-        $this->createProducts();
-        $this->createServices();
+        $this->components->task('Resetting plugin data', fn() => $this->cleanup());
+        $this->components->task('Creating currencies', fn() => $this->createCurrencies());
+        $this->components->task('Creating brands', fn() => $this->createBrands());
+        $this->components->task('Creating properties', fn() => $this->createProperties());
+        $this->components->task('Creating review categories', fn() => $this->createReviewCategories());
+        $this->components->task('Creating products categories', fn() => $this->createCategories());
+        $this->components->task('Creating taxes', fn() => $this->createTaxes());
+        $this->components->task('Creating products', fn() => $this->createProducts());
+        // $this->createProducts();
+        // $this->output->newLine();
+        $this->components->task('Creating products services', fn() => $this->createServices());
 
 
         app()->bind(Index::class, function () use ($originalIndex) {
             return $originalIndex;
         });
 
-        Artisan::call('mall:reindex', ['--force' => true]);
+        $this->callSilent('mall:reindex', [
+            '--force' => true,
+        ]);
 
         $this->output->success('All done!');
     }
 
     /**
-     * Get the console command arguments.
-     * @return array
+     * Refresh the plugin, clear existing attachments, flush the indexes
+     *
+     * @return void
      */
-    protected function getArguments()
-    {
-        return [];
-    }
-
-    /**
-     * Get the console command options.
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['force', null, InputOption::VALUE_NONE, 'Don\'t ask before deleting the data.', null],
-        ];
-    }
-
     protected function cleanup()
     {
-        $this->output->writeln('Resetting plugin data...');
+        $this->callSilent('plugin:refresh', [
+            'plugin'  => 'Winter.Mall',
+            '--force' => true,
+        ]);
 
-        // October 2.0
-        if (class_exists(\Editor\ServiceProvider::class)) {
-            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall', '--force' => true]);
-        } else {
-            Artisan::call('plugin:refresh', ['name' => 'Winter.Mall']);
-        }
-
-        Artisan::call('cache:clear');
+        $this->callSilent('cache:clear');
 
         DB::table('system_files')
           ->where('attachment_type', 'LIKE', 'Winter%Mall%')
@@ -115,47 +113,53 @@ class SeedDemoData extends Command
         $index->drop(VariantEntry::INDEX);
     }
 
+    /**
+     * Create availables products
+     *
+     * @return void
+     */
     protected function createProducts()
     {
-        $this->output->newLine();
-        $this->output->writeln('Creating products...');
-        $this->output->newLine();
+        $progressBar = new ProgressBar($this->output, 10);
+        $progressBar->setFormat('%message% <fg=yellow>%current%/%max%</> <fg=cyan;options=blink>%product%</>');
+        $message = '';
 
-        $this->output->progressStart(10);
+        $products = [
+            'Cruiser1000' => Cruiser1000::class,
+            'Cruiser1500' => Cruiser1500::class,
+            'Cruiser3000' => Cruiser3000::class,
+            'Cruiser3500' => Cruiser3500::class,
+            'Cruiser5000' => Cruiser5000::class,
+            'RedShirt' => RedShirt::class,
+            'Jersey' => Jersey::class,
+            'GiftCard50' => GiftCard50::class,
+            'GiftCard100' => GiftCard100::class,
+            'GiftCard200' => GiftCard200::class,
+        ];
 
-        // Bikes
-        (new Cruiser1000())->create();
-        $this->output->progressAdvance();
+        foreach ($products as $product => $model) {
+            $progressBar->setMessage($message .'<fg=gray>...</>');
+            $progressBar->setMessage($product, 'product');
+            $progressBar->advance();
+            (new $model())->create();
+            $message = '  Creating products ';
+        }
 
-        (new Cruiser1500())->create();
-        $this->output->progressAdvance();
+        $progressBar->finish();
+        $progressBar->clear();
 
-        (new Cruiser3000())->create();
-        $this->output->progressAdvance();
-
-        (new Cruiser3500())->create();
-        $this->output->progressAdvance();
-
-        (new Cruiser5000())->create();
-        $this->output->progressAdvance();
-
-        // Clothing
-        (new RedShirt())->create();
-        $this->output->progressAdvance();
-
-        (new Jersey())->create();
-
-        // Gift Cards
-        (new GiftCard50())->create();
-        (new GiftCard100())->create();
-        (new GiftCard200())->create();
-
-        $this->output->progressFinish();
+        $progressBar->setFormat('%message%');
+        $progressBar->setMessage($message);
+        $progressBar->display();
     }
 
+    /**
+     * Create shop categories
+     *
+     * @return void
+     */
     protected function createCategories()
     {
-        $this->output->writeln('Creating categories...');
         DB::table('winter_mall_categories')->truncate();
         DB::table('winter_mall_category_property_group')->truncate();
 
@@ -221,9 +225,13 @@ class SeedDemoData extends Command
         ]);
     }
 
+    /**
+     * Create property groups and their properties
+     *
+     * @return void
+     */
     protected function createProperties()
     {
-        $this->output->writeln('Creating properties...');
         DB::table('winter_mall_property_property_group')->truncate();
         DB::table('winter_mall_property_groups')->truncate();
         DB::table('winter_mall_properties')->truncate();
@@ -362,9 +370,13 @@ class SeedDemoData extends Command
 
     }
 
+    /**
+     * Create brands
+     *
+     * @return void
+     */
     protected function createBrands()
     {
-        $this->output->writeln('Creating brands...');
         Brand::create([
             'name'        => 'Cruiser Bikes',
             'slug'        => 'cruiser-bikes',
@@ -374,9 +386,13 @@ class SeedDemoData extends Command
         ]);
     }
 
+    /**
+     * Create availables currencies
+     *
+     * @return void
+     */
     protected function createCurrencies()
     {
-        $this->output->writeln('Creating currencies...');
         DB::table('winter_mall_currencies')->truncate();
         Currency::create([
             'code'     => 'USD',
@@ -401,9 +417,13 @@ class SeedDemoData extends Command
         ]);
     }
 
+    /**
+     * Create shop taxes rates
+     *
+     * @return void
+     */
     protected function createTaxes()
     {
-        $this->output->writeln('Creating taxes...');
         DB::table('winter_mall_taxes')->truncate();
         Tax::create([
             'name'       => 'VAT',
@@ -411,18 +431,26 @@ class SeedDemoData extends Command
         ]);
     }
 
+    /**
+     * Create review categories
+     *
+     * @return void
+     */
     protected function createReviewCategories()
     {
-        $this->output->writeln('Creating review categories...');
         DB::table('winter_mall_review_categories')->truncate();
         ReviewCategory::create(['name' => 'Price']);
         ReviewCategory::create(['name' => 'Design']);
         ReviewCategory::create(['name' => 'Build quality']);
     }
 
+    /**
+     * Create services and associate them to products
+     *
+     * @return void
+     */
     protected function createServices()
     {
-        $this->output->writeln('Creating services...');
         DB::table('winter_mall_services')->truncate();
         DB::table('winter_mall_service_options')->truncate();
 

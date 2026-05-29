@@ -66,6 +66,18 @@ class QuickCheckout extends MallComponent
      */
     public $useState = true;
     /**
+     * Require phone field for billing address.
+     *
+     * @var bool
+     */
+    public $phoneRequiredBilling = false;
+    /**
+     * Require phone field for shipping address.
+     *
+     * @var bool
+     */
+    public $phoneRequiredShipping = false;
+    /**
      * Name of the CMS page that hosts the signUp component.
      *
      * @var string
@@ -483,6 +495,8 @@ class QuickCheckout extends MallComponent
 
         $this->countries = Country::getNameList();
         $this->useState = GeneralSettings::get('use_state', true);
+        $this->phoneRequiredBilling = GeneralSettings::get('address_phone_required_billing', false);
+        $this->phoneRequiredShipping = GeneralSettings::get('address_phone_required_shipping', false);
 
         $this->setVar('shippingMethods', ShippingMethod::getAvailableByCart($cart));
         if ($this->user && $orderId = request()->get('order')) {

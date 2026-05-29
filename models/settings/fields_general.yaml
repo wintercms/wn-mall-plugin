@@ -106,6 +106,22 @@ tabs:
         default: 0
         comment: winter.mall::lang.general_settings.shipping_selection_before_payment_comment
 
+    address_phone_required_billing:
+        tab: winter.mall::lang.general_settings.customizations
+        label: winter.mall::lang.general_settings.address_phone_required_billing
+        span: left
+        type: switch
+        default: 0
+        comment: winter.mall::lang.general_settings.address_phone_required_billing_comment
+
+    address_phone_required_shipping:
+        tab: winter.mall::lang.general_settings.customizations
+        label: winter.mall::lang.general_settings.address_phone_required_shipping
+        span: left
+        type: switch
+        default: 0
+        comment: winter.mall::lang.general_settings.address_phone_required_shipping_comment
+
     use_brands:
       tab: Modules
       label: winter.mall::lang.settings.modules-brands

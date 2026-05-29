@@ -20,6 +20,8 @@ class GeneralSettings extends Model
         $this->use_reviews  = true;
         $this->use_brands   = true;
         $this->use_settings = true;
+        $this->address_phone_required_billing = false;
+        $this->address_phone_required_shipping = false;
     }
 
     public function afterSave()

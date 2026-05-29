@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Winter\Mall\Classes\Traits;
-
 
 use Winter\Mall\Models\ShippingMethod;
 
@@ -16,7 +14,9 @@ trait ShippingMethods
     public function setShippingMethod(?ShippingMethod $method)
     {
         $this->shipping_method_id = $method ? $method->id : null;
-        $this->save();
+        if ($this->exists) {
+            $this->save();
+        }
     }
 
     /**

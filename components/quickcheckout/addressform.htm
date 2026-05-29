@@ -32,6 +32,14 @@
             <div data-validate-for="{{ type }}_city"></div>
         </div>
     </div>
+    {% set phoneRequired = (type == 'billing' and __SELF__.phoneRequiredBilling) %}
+    <div class="mall-form-control">
+        <label for="{{ type }}_phone">{{ 'winter.mall::frontend.form.phone' | trans }}</label>
+        <input id="{{ type }}_phone" name="{{ type }}_phone" type="text"
+               placeholder="{{ 'winter.mall::frontend.form.phone_placeholder' | trans }}"
+               {% if phoneRequired %}required{% endif %}>
+        <div data-validate-for="{{ type }}_phone"></div>
+    </div>
     <div class="{{ __SELF__.useState ? 'mall-two-fields' }}" id="countryState_{{ type }}">
         {% partial __SELF__ ~ '::countrystate' type=type %}
     </div>

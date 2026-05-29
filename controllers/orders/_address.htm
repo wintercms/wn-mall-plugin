@@ -11,5 +11,9 @@
         <?= e($address['city']) ?><br/>
         <?= e(optional($address['state'])['name']) ?><br/>
         <?= e(optional($address['country'])['name']) ?>
+
+        <?php if (array_get($address, 'phone')): ?>
+            <br/><i class="wn-icon-phone"></i> <?= e(array_get($address, 'phone')) ?>
+        <?php endif; ?>
     </p>
 </div>

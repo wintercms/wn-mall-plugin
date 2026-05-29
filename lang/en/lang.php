@@ -165,6 +165,10 @@
         'group_search_results_by_product_comment' => 'Include a Product only once in the search results, don\'t display all matching Variants',
         'shipping_selection_before_payment' => 'Select shipping method BEFORE payment during checkout',
         'shipping_selection_before_payment_comment' => 'By default, during checkout, the user is first asked to select a payment method before selecting a shipping method; use this option to reverse this logic',
+        'address_phone_required_billing' => 'Require phone number for billing addresses',
+        'address_phone_required_billing_comment' => 'If enabled, billing phone is required during signup and order creation.',
+        'address_phone_required_shipping' => 'Require phone number for shipping addresses',
+        'address_phone_required_shipping_comment' => 'If enabled, shipping phone is required when using a different shipping address.',
         'admin_email' => 'Admin email',
         'admin_email_comment' => 'Admin notifications will be sent to this addres',
         'base' => 'Base settings',
@@ -1006,6 +1010,9 @@
                 'state_id' => [
                     'required' => 'Choose a state',
                     'exists' => 'The selected value is not valid.',
+                ],
+                'phone' => [
+                    'required' => 'Please enter a phone number.',
                 ],
                 'terms_accepted' => [
                     'required' => 'Please accept our terms and conditions.',

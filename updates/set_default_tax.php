@@ -18,6 +18,11 @@ class SetDefaultTax extends Migration
             $tax->is_default = true;
             $tax->save();
         }
+
+        Tax::extend(function () {
+            $this->setTable('winter_mall_taxes');
+        }, true);
+
     }
 
     public function down()

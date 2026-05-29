@@ -28,6 +28,7 @@ class Address extends Model
     public $fillable = [
         'company',
         'name',
+        'phone',
         'customer_id',
         'lines',
         'zip',
@@ -111,6 +112,7 @@ class Address extends Model
             'id'          => $this->id,
             'company'     => $this->company,
             'name'        => $this->name,
+            'phone'       => $this->phone,
             'lines'       => $this->lines,
             'zip'         => $this->zip,
             'city'        => $this->city,

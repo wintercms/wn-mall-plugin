@@ -1,5 +1,9 @@
 # wn-mall-plugin
 
+![Blocks Plugin](https://github.com/wintercms/wn-mall-plugin/blob/main/.github/banner.png?raw=true)
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wintercms/wn-mall-plugin/blob/main/LICENSE)
+
 > E-commerce solution for Winter CMS
 
 `wn-mall-plugin` is a fully featured online shop solution for Winter CMS.
@@ -114,3 +118,9 @@ If you found a bug or want to request a feature please file a GitHub issue.
 
 PRs are always welcome! Open them against the `develop` branch.
 If you plan a time consuming contribution please open an issue first and describe what changes you have in mind. 
+
+
+## 🏆 Credits
+
+This plugin is a fork of the fantastic [Offline.mall](https://github.com/OFFLINE-GmbH/oc-mall-plugin) plugin, adapted for WinterCMS with their friendly permission. 
+A big thank you to them for this remarkable work.

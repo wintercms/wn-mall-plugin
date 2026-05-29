@@ -84,14 +84,14 @@
             <div class="layout-absolute">
                 <div class="sidebar-content">
                     <?= $this->makePartial('address', [
-                        'address' => $order['shipping_address'],
-                        'heading' => e(trans('winter.mall::lang.order.shipping_address'))
+                        'address' => $order['billing_address'],
+                        'heading' => e(trans('winter.mall::lang.order.billing_address'))
                     ]) ?>
 
                     <?php if( ! $order['shipping_address_same_as_billing']): ?>
                         <?= $this->makePartial('address', [
-                            'address' => $order['billing_address'],
-                            'heading' => e(trans('winter.mall::lang.order.billing_address'))
+                            'address' => $order['shipping_address'],
+                            'heading' => e(trans('winter.mall::lang.order.shipping_address'))
                         ]) ?>
                     <?php else: ?>
                         <div class="sidebar-box sidebar-box--with-icon">

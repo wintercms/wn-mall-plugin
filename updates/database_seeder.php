@@ -37,16 +37,10 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Cache::clear();
 
-        PriceCategory::extend(function () {
-            $this->setTable('offline_mall_price_categories');
-        }, true);
-        PriceCategory::create([
+        (new PriceCategory([
             'code' => 'old_price',
             'name' => 'Old price',
-        ]);
-        PriceCategory::extend(function () {
-            $this->setTable('winter_mall_price_categories');
-        }, true);
+        ]))->setTable('offline_mall_price_categories')->save();
 
         Currency::extend(function () {
             $this->setTable('offline_mall_currencies');
@@ -93,5 +87,8 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificationTableSeeder::class);
 
         ReviewSettings::set('enabled', true);
+
+        Model::reguard();
+        Cache::clear();
     }
 }

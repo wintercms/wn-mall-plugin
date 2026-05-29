@@ -47,7 +47,7 @@ class Plugin extends PluginBase
         return [
             'name' => 'winter.mall::lang.plugin.name',
             'description' => 'winter.mall::lang.plugin.description',
-            'author' => 'OFFLINE GmbH',
+            'author' => 'Winter CMS',
             'icon' => 'wn-icon-shopping-cart',
             'homepage' => '',
             'replaces' => ['OFFLINE.Mall' => '~2.0'],
