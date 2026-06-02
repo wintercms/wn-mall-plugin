@@ -100,6 +100,15 @@
                         </div>
                     <?php endif; ?>
 
+                    <?php if ($order['customer_notes']): ?>
+                        <div class="sidebar-box">
+                            <h4 class="sidebar-box__heading">
+                                <?= e(trans('winter.mall::lang.order.customer_notes')) ?>
+                            </h4>
+                            <p><?= e($order['customer_notes']) ?></p>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>
