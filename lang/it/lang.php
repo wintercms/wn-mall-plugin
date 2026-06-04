@@ -660,6 +660,7 @@ return [
         "modification_date" => "Modificato il",
         "not_shipped" => "Pendente",
         "notes" => "Note",
+        'customer_notes' => 'Note del cliente',
         "order_file_name" => "ordine-:order",
         "order_number" => "# Ordine",
         "payment_gateway_used" => "Gateway di pagamento",

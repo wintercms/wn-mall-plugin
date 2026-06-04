@@ -587,6 +587,7 @@
         'total_weight' => 'Total weight',
         'total_rebate_rate' => 'Total rebate',
         'notes' => 'Notes',
+        'customer_notes' => 'Customer notes',
         'custom_fields' => 'Custom fields',
         'shipping_enabled' => 'Shipping enabled',
         'payment_transaction_id' => 'Payment transaction id',
