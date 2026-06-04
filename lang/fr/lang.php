@@ -587,6 +587,7 @@
         'total_weight' => 'Poids total',
         'total_rebate_rate' => 'Remise totale',
         'notes' => 'Notes',
+        'customer_notes' => 'Notes du client',
         'custom_fields' => 'Champs personnalisés',
         'shipping_enabled' => 'Expédition activée',
         'payment_transaction_id' => 'ID de la transaction de paiement',
