@@ -482,3 +482,5 @@
 2.1.5:
     - 'Only create carts once a product is added'
     - rename_customer_group_id_column.php
+2.1.6:
+    - 'Add `customer_notes` in backend order detail (thanks to @skrezh)'
