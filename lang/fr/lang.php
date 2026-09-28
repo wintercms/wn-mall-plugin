@@ -325,6 +325,7 @@
         'title' => 'Titre',
         'version' => 'Version',
         'show_deleted' => 'Afficher les supprimés',
+        'restore_selected' => 'Restaurer les sélectionnés',
         'purge_deleted' => 'Purger les supprimés',
         'confirm_purge_deleted' => 'Êtes-vous sûr de vouloir supprimer définitivement les enregistrements supprimés ?',
     ],
