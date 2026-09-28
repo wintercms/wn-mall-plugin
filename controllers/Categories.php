@@ -36,12 +36,8 @@ class Categories extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-categories');
 
-        // Legacy (v1)
-        if (!class_exists('System')) {
-            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
-        }
-
         $this->addJs('/plugins/winter/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/Sortable.js');
     }
 
     public function formExtendFields($widget)
@@ -55,5 +51,19 @@ class Categories extends Controller
     {
         parent::onReorder();
         (new Category())->purgeCache();
+    }
+
+    public function listInjectRowClass($record, $definition = null)
+    {
+        if ($record->trashed()) {
+            return 'strike selected nolink';
+        }
+    }
+
+    public function onPurgeDeleted()
+    {
+        Category::onlyTrashed()->forceDelete();
+
+        return $this->listRefresh();
     }
 }

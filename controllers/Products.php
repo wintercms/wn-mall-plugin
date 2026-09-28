@@ -70,12 +70,8 @@ class Products extends Controller
             }
         }
 
-        // Legacy (v1)
-        if (!class_exists('System')) {
-            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
-        }
-
         $this->addJs('/plugins/winter/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/Sortable.js');
     }
 
     public function update($id)
@@ -442,5 +438,19 @@ class Products extends Controller
         if (!GeneralSettings::get('use_brands', true)) {
             $widget->removeField('brand');
         }
+    }
+
+    public function listInjectRowClass($record, $definition = null)
+    {
+        if ($record->trashed()) {
+            return 'strike selected nolink';
+        }
+    }
+
+    public function onPurgeDeleted()
+    {
+        Product::onlyTrashed()->forceDelete();
+
+        return $this->listRefresh();
     }
 }

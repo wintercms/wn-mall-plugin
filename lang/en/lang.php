@@ -324,6 +324,9 @@
         'review_category' => 'Review category',
         'title' => 'Title',
         'version' => 'Version',
+        'show_deleted' => 'Show deleted',
+        'purge_deleted' => 'Purge deleted records',
+        'confirm_purge_deleted' => 'Purging deleted records: are you sure?',
     ],
     'variant' => [
         'method' => [

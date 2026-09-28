@@ -35,11 +35,7 @@ class PropertyGroups extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-properties');
 
-        // Legacy (v1)
-        if (!class_exists('System')) {
-            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
-        }
-
         $this->addJs('/plugins/winter/mall/assets/backend.js');
+        $this->addJs('/plugins/winter/mall/assets/Sortable.js');
     }
 }

@@ -21,3 +21,5 @@ structure:
     showReorder: true
     treeExpanded: true
     maxDepth: 0
+
+filter: config_filter.yaml

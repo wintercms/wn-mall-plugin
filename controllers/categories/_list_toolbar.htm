@@ -1,6 +1,6 @@
 <div data-control="toolbar">
-        <a href="<?= Backend::url('winter/mall/categories/create') ?>" class="btn btn-primary wn-icon-plus"><?= e(trans('backend::lang.form.create')) ?></a>
-        <button
+    <a href="<?= Backend::url('winter/mall/categories/create') ?>" class="btn btn-primary wn-icon-plus"><?= e(trans('backend::lang.form.create')) ?></a>
+    <button
         class="btn btn-default wn-icon-trash-o"
         disabled="disabled"
         onclick="$(this).data('request-data', {
@@ -15,7 +15,23 @@
         data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
-    <?php if (!class_exists('System')): ?>
-        <a href="<?= Backend::url('winter/mall/categories/reorder') ?>" class="btn btn-default wn-icon-sort"><?= e(trans('winter.mall::lang.common.reorder')) ?></a>
-    <?php endif ?>
+
+<?php if ($this->user->isSuperUser()): ?>
+    <button
+      class="btn btn-default oc-icon-refresh"
+      hidden
+      data-request="onPurgeDeleted"
+      data-request-confirm="<?= e(trans('winter.mall::lang.common.confirm_purge_deleted')) ?>"
+      data-trigger-action="show"
+      data-trigger=".control-filter input#listFilter-scope-showDeleted[type=checkbox]"
+      data-trigger-condition="checked"
+      data-hotkey="ctrl+delete, cmd+delete"
+      data-stripe-load-indicator>
+      <?= e(trans('winter.mall::lang.common.purge_deleted')) ?>
+    </button>
+<?php endif ?>
+
+    <a href="<?= Backend::url('winter/mall/categories/reorder') ?>" class="btn btn-default wn-icon-sort"><?= e(trans('winter.mall::lang.common.reorder')) ?></a>
+
+    <?= $this->fireViewEvent('winter.mall.extendCategoriesToolbar') ?>
 </div>

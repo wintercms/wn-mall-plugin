@@ -22,3 +22,8 @@ scopes:
         label: winter.mall::lang.product.filter_virtual
         type: checkbox
         conditions: is_virtual = true
+
+    showDeleted:
+        label: winter.mall::lang.common.show_deleted
+        type: checkbox
+        scope: withTrashed

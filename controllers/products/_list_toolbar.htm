@@ -16,5 +16,20 @@
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
 
+<?php if ($this->user->isSuperUser()): ?>
+    <button
+      class="btn btn-default oc-icon-refresh"
+      hidden
+      data-request="onPurgeDeleted"
+      data-request-confirm="<?= e(trans('winter.mall::lang.common.confirm_purge_deleted')) ?>"
+      data-trigger=".control-filter input#listFilter-scope-showDeleted[type=checkbox]"
+      data-trigger-action="show"
+      data-trigger-condition="checked"
+      data-hotkey="ctrl+delete, cmd+delete"
+      data-stripe-load-indicator>
+      <?= e(trans('winter.mall::lang.common.purge_deleted')) ?>
+    </button>
+<?php endif ?>
+
     <?= $this->fireViewEvent('winter.mall.extendProductsToolbar') ?>
 </div>
