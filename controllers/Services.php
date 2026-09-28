@@ -29,8 +29,8 @@ class Services extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-services');
 
-        $this->addJs('/plugins/winter/mall/assets/backend.js');
-        $this->addJs('/plugins/winter/mall/assets/Sortable.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js');
+        $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 
     public function onRelationManageCreate()

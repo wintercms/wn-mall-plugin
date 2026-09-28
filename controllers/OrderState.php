@@ -33,6 +33,6 @@ class OrderState extends Controller
     public function index()
     {
         parent::index();
-        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->addCss('$/winter/mall/assets/css/backend.css');
     }
 }

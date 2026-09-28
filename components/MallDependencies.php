@@ -37,6 +37,6 @@ class MallDependencies extends MallComponent
      */
     public function init()
     {
-        $this->addJs('assets/pubsub.js');
+        $this->addJs('assets/js/pubsub.js');
     }
 }

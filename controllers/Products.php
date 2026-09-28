@@ -57,7 +57,7 @@ class Products extends Controller
 
         $model                  = post('option_id') ? CustomFieldOption::find(post('option_id')) : null;
         $this->optionFormWidget = $this->createOptionFormWidget($model);
-        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->addCss('$/winter/mall/assets/css/backend.css');
 
         if (count($this->params) > 0) {
             // This is pretty hacky but it works. To get the original data from the Variant
@@ -70,8 +70,8 @@ class Products extends Controller
             }
         }
 
-        $this->addJs('/plugins/winter/mall/assets/backend.js');
-        $this->addJs('/plugins/winter/mall/assets/Sortable.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js');
+        $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 
     public function update($id)
