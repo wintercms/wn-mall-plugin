@@ -141,6 +141,8 @@
         'description' => 'Gérer les taxes',
     ],
     'general_settings' => [
+        'add_properties_controller' => 'Ajouter le controlleur de propriétés',
+        'add_properties_controller_comment' => 'Le controlleur de propriétés et celui des groupes de propriétés sont séparés.',
         'category' => 'Mall: Générale',
         'category_payments' => 'Mall: Paiements',
         'category_orders' => 'Mall: Commandes',

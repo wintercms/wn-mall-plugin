@@ -122,6 +122,14 @@ tabs:
         default: 0
         comment: winter.mall::lang.general_settings.address_phone_required_shipping_comment
 
+    add_properties_controller:
+        tab: winter.mall::lang.general_settings.customizations
+        label: winter.mall::lang.general_settings.add_properties_controller
+        span: left
+        type: switch
+        default: 0
+        comment: winter.mall::lang.general_settings.add_properties_controller_comment
+
     use_brands:
       tab: Modules
       label: winter.mall::lang.settings.modules-brands

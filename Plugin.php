@@ -132,6 +132,18 @@ class Plugin extends PluginBase
                 ],
             ],
         ];
+        if (GeneralSettings::get('add_properties_controller', false)) {
+            $result['mall-catalogue']['sideMenu']['mall-properties']['label'] = 'winter.mall::lang.common.property_groups';
+
+            $result['mall-catalogue']['sideMenu']['properties'] = [
+                'owner' => 'Winter.Mall',
+                'label' => 'winter.mall::lang.common.properties',
+                'url' => Backend::url('winter/mall/properties'),
+                'icon' => 'icon-tag',
+                'order' => 600,
+                'permissions' => ['winter.mall.manage_properties'],
+            ];
+        }
         if (GeneralSettings::get('use_reviews', true)) {
             $result['mall-catalogue']['sideMenu']['mall-reviews'] = [
                 'label' => 'winter.mall::lang.common.reviews',
