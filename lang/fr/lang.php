@@ -366,6 +366,7 @@
         'datetime' => 'Date et heure',
     ],
     'product' => [
+        'no_selection' => 'Aucun produit selectionné',
         'user_defined_id' => 'ID produit',
         'name' => 'Nom produit',
         'published' => 'Publié',
@@ -461,6 +462,7 @@
         'create_new' => 'Créer un nouvel ensemble',
     ],
     'category' => [
+        'no_selection' => 'Aucune catégorie selectionnée',
         'name' => 'Nom',
         'code' => 'Code',
         'code_comment' => 'Ce code peut être utilisé pour identifier cette catégorie dans vos partials frontend.',

@@ -366,6 +366,7 @@
         'datetime' => 'Date Time',
     ],
     'product' => [
+        'no_selection' => 'No products selected',
         'user_defined_id' => 'Product ID',
         'name' => 'Product name',
         'published' => 'Published',
@@ -461,6 +462,7 @@
         'create_new' => 'Create new set',
     ],
     'category' => [
+        'no_selection' => 'No categories selected',
         'name' => 'Name',
         'code' => 'Code',
         'code_comment' => 'This code can be used to identify this category in your frontend partials.',

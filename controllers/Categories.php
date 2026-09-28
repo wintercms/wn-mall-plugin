@@ -72,7 +72,7 @@ class Categories extends Controller
         $checkedIds = post('checked');
 
         if (!$checkedIds || !is_array($checkedIds) || !count($checkedIds)) {
-            Flash::error('No categories selected');
+            Flash::error( trans('winter.mall::lang.category.no_selection') );
         } else {
             foreach ($checkedIds as $id) {
                 if ($record = Category::withTrashed()->find($id)) {
