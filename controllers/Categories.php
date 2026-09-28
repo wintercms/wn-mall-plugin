@@ -36,7 +36,7 @@ class Categories extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-categories');
 
-        $this->addJs('$/winter/mall/assets/js/backend.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js', 'Winter.Mall');
         $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 
@@ -63,6 +63,23 @@ class Categories extends Controller
     public function onPurgeDeleted()
     {
         Category::onlyTrashed()->forceDelete();
+
+        return $this->listRefresh();
+    }
+
+    public function onRestoreSelected()
+    {
+        $checkedIds = post('checked');
+
+        if (!$checkedIds || !is_array($checkedIds) || !count($checkedIds)) {
+            Flash::error('No categories selected');
+        } else {
+            foreach ($checkedIds as $id) {
+                if ($record = Category::withTrashed()->find($id)) {
+                    $record->restore();
+                }
+            }
+        }
 
         return $this->listRefresh();
     }

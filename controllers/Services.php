@@ -29,7 +29,7 @@ class Services extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-services');
 
-        $this->addJs('$/winter/mall/assets/js/backend.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js', 'Winter.Mall');
         $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 

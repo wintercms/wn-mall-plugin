@@ -16,6 +16,8 @@
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
 
+    <a href="<?= Backend::url('winter/mall/categories/reorder') ?>" class="btn btn-default wn-icon-sort"><?= e(trans('winter.mall::lang.common.reorder')) ?></a>
+
 <?php if ($this->user->isSuperUser()): ?>
     <button
       class="btn btn-default oc-icon-refresh"
@@ -29,9 +31,19 @@
       data-stripe-load-indicator>
       <?= e(trans('winter.mall::lang.common.purge_deleted')) ?>
     </button>
+    <button
+      class="btn btn-default oc-icon-recycle hidden"
+      disabled
+      onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+      data-request="onRestoreSelected"
+      data-trigger-action="enable"
+      data-trigger=".control-list input[type=checkbox]"
+      data-trigger-condition="checked"
+      data-request-success="$(this).prop('disabled', true)"
+      data-stripe-load-indicator>
+      <?= e(trans('winter.mall::lang.common.restore_selected')) ?>
+    </button>
 <?php endif ?>
-
-    <a href="<?= Backend::url('winter/mall/categories/reorder') ?>" class="btn btn-default wn-icon-sort"><?= e(trans('winter.mall::lang.common.reorder')) ?></a>
 
     <?= $this->fireViewEvent('winter.mall.extendCategoriesToolbar') ?>
 </div>

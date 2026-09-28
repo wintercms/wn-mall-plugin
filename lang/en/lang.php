@@ -325,6 +325,7 @@
         'title' => 'Title',
         'version' => 'Version',
         'show_deleted' => 'Show deleted',
+        'restore_selected' => 'Restore selected records',
         'purge_deleted' => 'Purge deleted records',
         'confirm_purge_deleted' => 'Purging deleted records: are you sure?',
     ],

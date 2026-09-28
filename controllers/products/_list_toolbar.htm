@@ -29,6 +29,18 @@
       data-stripe-load-indicator>
       <?= e(trans('winter.mall::lang.common.purge_deleted')) ?>
     </button>
+    <button
+      class="btn btn-default oc-icon-recycle hidden"
+      disabled
+      onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+      data-request="onRestoreSelected"
+      data-trigger-action="enable"
+      data-trigger=".control-list input[type=checkbox]"
+      data-trigger-condition="checked"
+      data-request-success="$(this).prop('disabled', true)"
+      data-stripe-load-indicator>
+      <?= e(trans('winter.mall::lang.common.restore_selected')) ?>
+    </button>
 <?php endif ?>
 
     <?= $this->fireViewEvent('winter.mall.extendProductsToolbar') ?>
