@@ -15,7 +15,6 @@ use Winter\Mall\Classes\Observers\ProductObserver;
 use Winter\Mall\Classes\Traits\CustomFields;
 use Winter\Mall\Classes\Traits\FilteredTaxes;
 use Winter\Mall\Classes\Traits\HashIds;
-use Winter\Mall\Classes\Traits\Images;
 use Winter\Mall\Classes\Traits\PDFMaker;
 use Winter\Mall\Classes\Traits\PriceAccessors;
 use Winter\Mall\Classes\Traits\ProductPriceAccessors;
@@ -36,7 +35,6 @@ class Product extends Model
     use SoftDelete;
     use Sluggable;
     use UserSpecificPrice;
-    use Images;
     use CustomFields;
     use PropertyValues;
     use HashIds;
@@ -53,7 +51,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
     public $jsonable = ['links', 'additional_descriptions', 'additional_properties', 'embeds'];
     public $nullable = ['group_by_property_id'];
-    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel', 'Winter.Mall.Behaviors.Images'];
     public $translatable = [
         'name',
         ['slug', 'index' => true],
@@ -140,8 +138,8 @@ class Product extends Model
     public $appends = ['hash_id'];
     public $table = 'winter_mall_products';
     public $attachMany = [
-        'downloads'      => File::class,
-        'initial_images' => File::class,
+        'downloads'      => [File::class, 'delete' => true],
+        'initial_images' => [File::class, 'delete' => true],
     ];
     public $belongsTo = [
         'brand'             => Brand::class,

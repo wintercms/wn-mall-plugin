@@ -10,7 +10,6 @@ use Winter\Storm\Database\Traits\SoftDelete;
 use Winter\Storm\Database\Traits\Validation;
 use Winter\Mall\Classes\Traits\CustomFields;
 use Winter\Mall\Classes\Traits\HashIds;
-use Winter\Mall\Classes\Traits\Images;
 use Winter\Mall\Classes\Traits\PriceAccessors;
 use Winter\Mall\Classes\Traits\ProductPriceAccessors;
 use Winter\Mall\Classes\Traits\PropertyValues;
@@ -25,7 +24,6 @@ class Variant extends Model
 {
     use Validation;
     use SoftDelete;
-    use Images;
     use HashIds;
     use CustomFields;
     use UserSpecificPrice;
@@ -41,7 +39,7 @@ class Variant extends Model
     public $nullable = ['image_set_id'];
     public $table = 'winter_mall_product_variants';
     public $dates = ['deleted_at'];
-    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel', 'Winter.Mall.Behaviors.Images'];
     public $appends = ['hashid'];
     public $translatable = [
         'name',
@@ -71,8 +69,8 @@ class Variant extends Model
         'allow_out_of_stock_purchases' => 'boolean',
     ];
     public $attachMany = [
-        'temp_images' => File::class,
-        'downloads'   => File::class,
+        'temp_images' => [File::class, 'delete' => true],
+        'downloads'   => [File::class, 'delete' => true],
     ];
     public $belongsTo = [
         'product'    => Product::class,
