@@ -1,13 +1,13 @@
 <?php
 
-
-namespace Winter\Mall\Classes\Traits;
+namespace Winter\Mall\Behaviors;
 
 use Winter\Storm\Support\Collection;
+use Winter\Storm\Database\ModelBehavior;
 use Winter\Mall\Models\ImageSet;
 use System\Models\File;
 
-trait Images
+class Images extends ModelBehavior
 {
     /**
      * Returns the first available image.
@@ -16,7 +16,7 @@ trait Images
      */
     public function getImageAttribute()
     {
-        return optional($this->main_image_set_images)->first();
+        return optional($this->model->main_image_set_images)->first();
     }
 
     /**
@@ -36,7 +36,7 @@ trait Images
      */
     public function getImagesAttribute()
     {
-        return optional($this->main_image_set_images)->slice(1);
+        return optional($this->model->main_image_set_images)->slice(1);
     }
 
     /**
@@ -44,7 +44,7 @@ trait Images
      */
     public function getMainImageSetImagesAttribute()
     {
-        return optional($this->main_image_set)->images;
+        return optional($this->model->main_image_set)->images;
     }
 
     /**
@@ -54,7 +54,7 @@ trait Images
      */
     public function getAllImagesAttribute()
     {
-        return $this->main_image_set_images;
+        return $this->model->main_image_set_images;
     }
 
     /**
@@ -62,12 +62,12 @@ trait Images
      */
     public function getMainImageSetAttribute()
     {
-        if ( ! $this->image_sets) {
+        if ( ! $this->model->image_sets) {
             return null;
         }
 
-        return $this->image_sets instanceof ImageSet
-            ? $this->image_sets
-            : optional($this->image_sets->sortByDesc('is_main_set'))->first();
+        return $this->model->image_sets instanceof ImageSet
+            ? $this->model->image_sets
+            : optional($this->model->image_sets->sortByDesc('is_main_set'))->first();
     }
 }
