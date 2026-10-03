@@ -20,6 +20,12 @@ class Variants extends Controller
         'winter.mall.manage_products',
     ];
 
+    public function __construct()
+    {
+        parent::__construct();
+        session()->forget('mall.variants.disable-inheritance');
+    }
+
     public function formAfterUpdate($model)
     {
         $model->handlePropertyValueUpdates();
