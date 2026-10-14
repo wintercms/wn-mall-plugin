@@ -98,7 +98,19 @@ class VariantEntry implements Entry
         }
 
         return $input->groupBy('property_id')->map(function ($value) {
-            return $value->pluck('index_value')->unique()->filter()->values();
+            return $value->pluck('index_value')
+                ->unique()
+                ->filter()
+                ->flatMap(function ($indexValue) {
+                    // Handle checkboxlist values stored as dot-separated string
+                    if (strpos($indexValue, '.') !== false) {
+                        return explode('.', $indexValue);
+                    }
+                    return [$indexValue];
+                })
+                ->unique()
+                ->filter()
+                ->values();
         })->filter();
     }
 }

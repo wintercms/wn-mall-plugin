@@ -74,4 +74,63 @@ class UniquePropertyValuesInCategoriesQuery
                 'winter_mall_property_values.product_id'
             );
     }
+
+    /**
+     * Get all unique property values, properly handling checkboxlist JSON arrays.
+     *
+     * @return Collection
+     */
+    public function get()
+    {
+        $raw = $this->query()->get();
+
+        // Process the results to expand checkboxlist JSON values into individual entries
+        $processed = collect();
+        foreach ($raw as $row) {
+            $propertyId = $row->property_id;
+            $value = $row->value;
+            $indexValue = $row->index_value;
+
+            // Check if this value is a JSON array (checkboxlist with multiple values)
+            $decoded = json_decode($value, true);
+            if (is_array($decoded) && !$this->isAssoc($decoded)) {
+                // This is a checkboxlist JSON array - create individual entries for each value
+                foreach ($decoded as $singleValue) {
+                    $sluggedValue = str_slug($singleValue);
+                    // Avoid duplicates
+                    $key = $propertyId . '_' . $sluggedValue;
+                    if (!$processed->has($key)) {
+                        $processed->put($key, (object)[
+                            'id' => $row->id,
+                            'value' => $singleValue,
+                            'index_value' => $sluggedValue,
+                            'property_id' => $propertyId,
+                        ]);
+                    }
+                }
+            } else {
+                // Regular value - keep as is
+                $key = $propertyId . '_' . $indexValue;
+                if (!$processed->has($key)) {
+                    $processed->put($key, $row);
+                }
+            }
+        }
+
+        return $processed->values();
+    }
+
+    /**
+     * Check if an array is associative (not a sequential list).
+     *
+     * @param array $arr
+     * @return bool
+     */
+    private function isAssoc(array $arr)
+    {
+        if (empty($arr)) {
+            return false;
+        }
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
 }
