@@ -7,10 +7,10 @@ use Winter\Storm\Database\Traits\Sluggable;
 use Winter\Storm\Database\Traits\SoftDelete;
 use Winter\Storm\Database\Traits\Sortable;
 use Winter\Storm\Database\Traits\Validation;
-use Winter\Storm\Parse\Twig;
 use Winter\Mall\Classes\Payments\PaymentGateway;
 use Winter\Mall\Classes\Traits\PriceAccessors;
 use System\Models\File;
+use App;
 use Auth;
 use Winter\Mall\Classes\Totals\PaymentTotal;
 
@@ -76,6 +76,11 @@ class PaymentMethod extends Model
     /**
      * Renders the payment instructions.
      *
+     * The instructions are Twig a shop manager wrote in a `codeeditor` field, so they render
+     * through the plugin's sandboxed environment. Winter\Storm\Parse\Twig, which this used
+     * before, renders through the system environment, and that one is not sandboxed: it backs
+     * the `.htm` view engine and so renders views that ship in a repository.
+     *
      * @param Order|null $order
      * @param Cart|null  $cart
      *
@@ -87,10 +92,12 @@ class PaymentMethod extends Model
             return null;
         }
 
-        return (new Twig)->parse($this->instructions, [
-            'order' => $order,
-            'cart'  => $cart,
-        ]);
+        return App::make('mall.twig.environment')
+            ->createTemplate($this->instructions)
+            ->render([
+                'order' => $order,
+                'cart'  => $cart,
+            ]);
     }
 
     public function getPaymentProviderOptions(): array

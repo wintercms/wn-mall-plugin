@@ -11,9 +11,14 @@ class PluginTestCase extends \PluginTestCase
 {
     use DatabaseTransactions;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
+
+        // System\ServiceProvider sets this while the test database is still empty, and
+        // registerPlugin() returns on it before it reaches register(), so without clearing it
+        // registerAll() leaves every binding a plugin declares unbound
+        PluginManager::$noInit = false;
 
         $pluginManager = PluginManager::instance();
         $pluginManager->registerAll(true);
@@ -24,7 +29,7 @@ class PluginTestCase extends \PluginTestCase
         });
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

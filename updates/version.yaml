@@ -484,3 +484,5 @@
     - rename_customer_group_id_column.php
 2.1.6:
     - 'Add `customer_notes` in backend order detail (thanks to @skrezh)'
+2.1.7:
+    - 'Render currency formats and payment instructions in a sandboxed Twig environment'
