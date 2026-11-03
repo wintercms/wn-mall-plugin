@@ -37,7 +37,6 @@ tabs:
             type: relation
             displayTree: true
             quickTreeActions: true
-
             tab: 'winter.mall::lang.product.general'
         allow_out_of_stock_purchases:
             label: 'winter.mall::lang.product.allow_out_of_stock_purchases'
