@@ -476,9 +476,9 @@ class Product extends Model
         }
     }
 
-    public function scopePublished($query, $state = true)
+    public function scopePublished($query)
     {
-        return $query->where('published', $state);
+        return $query->where('published', true);
     }
 
     public function scopeInCategories($query, $ids)
