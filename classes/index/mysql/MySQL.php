@@ -281,9 +281,9 @@ class MySQL implements Index
 
             // Apply the right cast for this value. This makes sure, that prices are sorted as floats, not as strings.
             if (isset($this->columnCasts[$field])) {
-                $orderBy = sprintf('CAST(JSON_EXTRACT(%s, ?) as %s) %s', DB::raw($field),  $this->columnCasts[$field], $order->direction());
+                $orderBy = sprintf('CAST(JSON_EXTRACT(%s, ?) as %s) %s', $field, $this->columnCasts[$field], $order->direction());
             } else {
-                $orderBy = sprintf('JSON_EXTRACT(%s, ?) %s', DB::raw($field), $order->direction());
+                $orderBy = sprintf('JSON_EXTRACT(%s, ?) %s', $field, $order->direction());
             }
 
             $db->orderByRaw($orderBy, ['$.' . '"' . $nested . '"']);
