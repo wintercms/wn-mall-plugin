@@ -34,7 +34,8 @@
         "barryvdh/laravel-dompdf": "^2.1|~3.1",
         "winter/wn-user-plugin": "dev-main|^2.3",
         "winter/wn-location-plugin": "dev-main|^2.2",
-        "winter/wn-translate-plugin": "dev-main|^2.3"
+        "winter/wn-translate-plugin": "dev-main|^2.3",
+        "winter/wn-system-module": "^1.2.15 || dev-develop"
     },
     "suggest": {
         "vitalybaev/google-merchant-feed": "Required to use the Google Merchant Feed integration",

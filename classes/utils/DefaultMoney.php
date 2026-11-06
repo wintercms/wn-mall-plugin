@@ -4,13 +4,11 @@ namespace Winter\Mall\Classes\Utils;
 
 use Illuminate\Support\Facades\App;
 use Winter\Mall\Models\Currency;
-use Twig\Environment;
-use Twig\Loader\ArrayLoader;
 
 class DefaultMoney implements Money
 {
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      */
     protected $twig;
 
@@ -32,7 +30,14 @@ class DefaultMoney implements Money
             'integers' => $integers,
             'decimals' => str_pad($decimals, 2, '0', STR_PAD_LEFT),
             'product'  => $product,
-            'currency' => $currency,
+            // The four keys the format's help panel documents, rather than the model that
+            // carries them - a currency format has no use for the rest of it
+            'currency' => [
+                'code'     => $currency['code'],
+                'symbol'   => $currency['symbol'],
+                'decimals' => $currency['decimals'],
+                'rate'     => $currency['rate'],
+            ],
         ]);
     }
 
@@ -41,10 +46,12 @@ class DefaultMoney implements Money
         return round($value / 100, $decimals ?? 2);
     }
 
+    /**
+     * Renders a currency format, which is Twig a shop manager wrote, through the plugin's
+     * sandboxed environment rather than a bare one built here.
+     */
     protected function render($contents, array $vars)
     {
-        $twig = new Environment(new ArrayLoader(['content' => $contents]));
-
-        return $twig->render('content', $vars);
+        return $this->twig->createTemplate($contents)->render($vars);
     }
 }
