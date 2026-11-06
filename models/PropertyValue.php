@@ -56,7 +56,19 @@ class PropertyValue extends Model
         if ($this->isColor()) {
             $value = $this->jsonDecodeValue()['name'] ?? '';
         }
-        $this->index_value = str_slug($value);
+        $type = optional($this->property)->type;
+        if ($type === 'checkboxlist') {
+            $decoded = json_decode($value, true);
+            if (is_array($decoded)) {
+                $this->index_value = implode('.', array_map(function($item) {
+                    return str_slug($item);
+                }, $decoded));
+            } else {
+                $this->index_value = str_slug($value);
+            }
+        } else {
+            $this->index_value = str_slug($value);
+        }
     }
 
     public function setValueAttribute($value)
@@ -88,6 +100,11 @@ class PropertyValue extends Model
 
         if ($type === 'color') {
             return $this->jsonDecodeValue($value);
+        }
+
+        if ($type === 'checkboxlist') {
+            $decoded = json_decode($value, true);
+            return is_array($decoded) ? $decoded : [$value];
         }
 
         return $value;
@@ -123,6 +140,14 @@ class PropertyValue extends Model
         if ($type === 'checkbox') {
             $key = (bool)$value ? 'yes' : 'no';
             return trans('winter.mall::lang.common.' . $key);
+        }
+
+        if ($type === 'checkboxlist') {
+            $decoded = json_decode($value, true);
+            if (is_array($decoded)) {
+                return e(implode(', ', $decoded));
+            }
+            return e($value);
         }
 
         return e($value);

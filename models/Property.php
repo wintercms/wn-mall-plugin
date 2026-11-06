@@ -94,7 +94,7 @@ class Property extends Model
 
     public static function getValuesForCategory($categories)
     {
-        $raw    = (new UniquePropertyValuesInCategoriesQuery($categories))->query()->get();
+        $raw    = (new UniquePropertyValuesInCategoriesQuery($categories))->get();
         $values = PropertyValue::hydrate($raw->toArray())->load(['property.translations', 'translations']);
         $values = $values->groupBy('property_id')->map(function ($values) {
             // if this property has options make sure to restore the original order
@@ -106,7 +106,11 @@ class Property extends Model
             $order = collect($firstProp->options)->flatten()->flip();
 
             return $values->sortBy(function ($value) use ($order) {
-                return $order[$value->value] ?? 0;
+                $sortValue = $value->value;
+                if (is_array($sortValue)) {
+                    $sortValue = reset($sortValue);
+                }
+                return $order[$sortValue] ?? 0;
             });
         });
 
