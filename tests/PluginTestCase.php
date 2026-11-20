@@ -2,33 +2,34 @@
 
 namespace Winter\Mall\Tests;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use System\Tests\Bootstrap\PluginTestCase as BasePluginTestCase;
 use Winter\Mall\Classes\Index\Index;
 use Winter\Mall\Classes\Index\Noop;
-use System\Classes\PluginManager;
 
-class PluginTestCase extends \PluginTestCase
+class PluginTestCase extends BasePluginTestCase
 {
-    use DatabaseTransactions;
+    public function createApplication()
+    {
+        $app = parent::createApplication();
 
-    public function setUp()
+        // The plugin's version history seeds demo data while the tables still
+        // carry their pre-2.1 names, which breaks the plugin refresh performed
+        // during test setup. Run the migrations in the production environment
+        // to skip those seeders; the test cases create the data they need.
+        $app['env'] = 'production';
+
+        return $app;
+    }
+
+    public function setUp(): void
     {
         parent::setUp();
 
-        $pluginManager = PluginManager::instance();
-        $pluginManager->registerAll(true);
-        $pluginManager->bootAll(true);
+        $this->app['env'] = 'testing';
 
-        app()->bind(Index::class, function() {
+        // The tests never need a real search index.
+        $this->app->bind(Index::class, function () {
             return new Noop();
         });
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        $pluginManager = PluginManager::instance();
-        $pluginManager->unregisterAll();
     }
 }

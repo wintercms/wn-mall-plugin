@@ -239,7 +239,7 @@ class ShippingMethodTest extends PluginTestCase
         return $availableMethod;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         \DB::table('winter_mall_shipping_methods')->truncate();
