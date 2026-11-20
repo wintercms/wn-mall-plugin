@@ -1,5 +1,6 @@
 <?php namespace Winter\Mall\Models;
 
+use Illuminate\Support\Collection;
 use Model;
 use Winter\Storm\Database\Traits\Validation;
 use Winter\Mall\Classes\Traits\HashIds;
@@ -56,19 +57,7 @@ class PropertyValue extends Model
         if ($this->isColor()) {
             $value = $this->jsonDecodeValue()['name'] ?? '';
         }
-        $type = optional($this->property)->type;
-        if ($type === 'checkboxlist') {
-            $decoded = json_decode($value, true);
-            if (is_array($decoded)) {
-                $this->index_value = implode('.', array_map(function($item) {
-                    return str_slug($item);
-                }, $decoded));
-            } else {
-                $this->index_value = str_slug($value);
-            }
-        } else {
-            $this->index_value = str_slug($value);
-        }
+        $this->index_value = str_slug($value);
     }
 
     public function setValueAttribute($value)
@@ -79,6 +68,11 @@ class PropertyValue extends Model
     public function isColor()
     {
         return optional($this->property)->type === 'color';
+    }
+
+    public function isCheckboxList(): bool
+    {
+        return optional($this->property)->type === 'checkboxlist';
     }
 
     public function getValueAttribute()
@@ -103,8 +97,14 @@ class PropertyValue extends Model
         }
 
         if ($type === 'checkboxlist') {
+            if ($value === null || $value === '') {
+                return $value;
+            }
             $decoded = json_decode($value, true);
-            return is_array($decoded) ? $decoded : [$value];
+
+            // A stored list is always a JSON array. Single values are used for
+            // the transient options returned by splitIntoSingleValues().
+            return is_array($decoded) ? $decoded : $value;
         }
 
         return $value;
@@ -117,6 +117,60 @@ class PropertyValue extends Model
     public function getSafeValueAttribute()
     {
         return \is_array($this->value) ? json_encode($this->value) : $this->value;
+    }
+
+    /**
+     * Splits a checkboxlist value into one transient PropertyValue per selected option.
+     *
+     * Translations are stored for the whole list, so they have to be split by index
+     * as well. Otherwise each option would display the full translated list.
+     *
+     * @return Collection
+     */
+    public function splitIntoSingleValues(): Collection
+    {
+        $items = $this->value;
+        if (! is_array($items) || count($items) === 0) {
+            return collect();
+        }
+
+        $translations = [];
+        foreach ($this->translations as $translation) {
+            $data = $translation->attribute_data;
+            if (is_string($data)) {
+                $data = json_decode($data, true);
+            }
+            if (! is_array($data) || ! array_key_exists('value', $data)) {
+                continue;
+            }
+
+            $labels = $data['value'];
+            if (is_string($labels)) {
+                $labels = json_decode($labels, true);
+            }
+            if (is_array($labels)) {
+                $translations[$translation->locale] = array_values($labels);
+            }
+        }
+
+        return collect(array_values($items))->map(function ($item, $index) use ($translations) {
+            $single = new static([
+                'property_id' => $this->property_id,
+                'product_id'  => $this->product_id,
+                'variant_id'  => $this->variant_id,
+                'value'       => $item,
+            ]);
+            $single->setRelation('property', $this->property);
+            $single->index_value = str_slug($item);
+
+            foreach ($translations as $locale => $labels) {
+                if (array_key_exists($index, $labels)) {
+                    $single->setAttributeTranslated('value', $labels[$index], $locale);
+                }
+            }
+
+            return $single;
+        })->values();
     }
 
     /**

@@ -86,7 +86,12 @@ trait PropertyValues
     {
         return $this->property_values
             ->reject(function (PropertyValue $value) {
-                return $value->value === '' || $value->value === null || $value->property === null;
+                $propertyValue = $value->value;
+
+                return $propertyValue === null
+                    || $propertyValue === ''
+                    || $propertyValue === []
+                    || $value->property === null;
             })
             ->map(function (PropertyValue $value) {
                 // display_value is already escaped in PropertyValue::getDisplayValueAttribute()

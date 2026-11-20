@@ -94,8 +94,15 @@ class Property extends Model
 
     public static function getValuesForCategory($categories)
     {
-        $raw    = (new UniquePropertyValuesInCategoriesQuery($categories))->get();
+        $raw    = (new UniquePropertyValuesInCategoriesQuery($categories))->query()->get();
         $values = PropertyValue::hydrate($raw->toArray())->load(['property.translations', 'translations']);
+
+        $values = $values->flatMap(function (PropertyValue $value) {
+            return $value->isCheckboxList() ? $value->splitIntoSingleValues() : [$value];
+        })->unique(function (PropertyValue $value) {
+            return $value->property_id . '|' . $value->index_value;
+        })->values();
+
         $values = $values->groupBy('property_id')->map(function ($values) {
             // if this property has options make sure to restore the original order
             $firstProp = $values->first()->property;
@@ -106,11 +113,7 @@ class Property extends Model
             $order = collect($firstProp->options)->flatten()->flip();
 
             return $values->sortBy(function ($value) use ($order) {
-                $sortValue = $value->value;
-                if (is_array($sortValue)) {
-                    $sortValue = reset($sortValue);
-                }
-                return $order[$sortValue] ?? 0;
+                return $order[$value->value] ?? 0;
             });
         });
 
