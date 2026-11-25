@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Mall\Tests\Classes\Updates;
+namespace Winter\Mall\Tests\Unit\Classes\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;

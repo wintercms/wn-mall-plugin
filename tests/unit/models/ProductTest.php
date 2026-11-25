@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Winter\Mall\Models\CustomField;
 use Winter\Mall\Models\Product;

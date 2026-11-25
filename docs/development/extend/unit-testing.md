@@ -29,6 +29,10 @@ runs the migrations, and loads the Mall test data. The PHP SQLite extension is r
 A `config/testing/database.php` file overrides this default, so it must point to a dedicated
 test database.
 
+The existing tests are organized under `tests/unit` by the classes, models, or traits they
+cover. `tests/feature` and `tests/fixtures` are reserved for future feature tests and fixture
+files.
+
 ### Running Tests with Composer
 
 From the Winter CMS root, you can also use its Composer test script with the Mall configuration:

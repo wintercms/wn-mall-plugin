@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Mall\Tests\Classes\Totals;
+namespace Winter\Mall\Tests\Unit\Classes\Totals;
 
 use Auth;
 use Winter\Mall\Classes\Totals\TotalsCalculator;

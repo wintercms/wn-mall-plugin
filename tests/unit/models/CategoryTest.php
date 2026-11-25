@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Winter\Mall\Models\Category;

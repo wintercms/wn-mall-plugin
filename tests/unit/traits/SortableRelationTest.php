@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Traits;
 
 use Winter\Mall\Models\Category;
 use Winter\Mall\Models\PropertyGroup;

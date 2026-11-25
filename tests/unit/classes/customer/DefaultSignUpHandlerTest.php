@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Classes\Customer;
+<?php namespace Winter\Mall\Tests\Unit\Classes\Customer;
 
 use Winter\Mall\Classes\Customer\DefaultSignUpHandler;
 use Winter\Mall\Models\GeneralSettings;
