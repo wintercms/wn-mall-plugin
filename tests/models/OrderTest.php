@@ -25,7 +25,7 @@ use Winter\User\Facades\Auth;
 
 class OrderTest extends PluginTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -73,6 +73,7 @@ class OrderTest extends PluginTestCase
         GeneralSettings::set('address_phone_required_shipping', false);
 
         $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(trans('winter.mall::lang.components.signup.errors.phone.required'));
 
         $cart                      = $this->getFullCart();
         $cart->shipping_address_id = 2;
@@ -108,6 +109,7 @@ class OrderTest extends PluginTestCase
         GeneralSettings::set('address_phone_required_shipping', true);
 
         $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(trans('winter.mall::lang.components.signup.errors.phone.required'));
 
         $billing = Address::find(1);
         $billing->phone = '+33123456789';
@@ -372,6 +374,7 @@ class OrderTest extends PluginTestCase
         $productB->name               = 'Another Product';
         $productB->stock              = 10;
         $productB->weight             = 800;
+        $productB->published          = true;
         $productB->price_includes_tax = true;
         $productB->save();
         $productB->price = ['CHF' => 100, 'EUR' => 300];
@@ -415,6 +418,11 @@ class OrderTest extends PluginTestCase
         $customFieldValueB->custom_field_option_id = $sizeB->id;
 
         $cart = new Cart();
+        $cart->setCustomer(Customer::first());
+        $cart->setBillingAddress(Address::find(1));
+        $cart->setShippingAddress(Address::find(2));
+        $cart->save();
+
         $cart->addProduct($productA, 2, null, collect([$customFieldValueA]));
         $cart->addProduct($productA, 1, null, collect([$customFieldValueB]));
         $cart->addProduct($productB, 2);
@@ -427,17 +435,17 @@ class OrderTest extends PluginTestCase
 
         $cart->setShippingMethod($shippingMethod);
 
-        $cart->setCustomer(Customer::first());
-
-        $cart->setBillingAddress(Address::find(1));
-        $cart->setShippingAddress(Address::find(2));
-
         return $cart;
     }
 
     protected function getSimpleCart($withProduct = false): Cart
     {
         $cart = new Cart();
+        $cart->setCustomer(Customer::first());
+        $cart->setBillingAddress(Address::find(1));
+        $cart->setShippingAddress(Address::find(2));
+        $cart->save();
+
         if ($withProduct) {
             $product                     = Product::first();
             $product->stackable          = true;
@@ -453,9 +461,6 @@ class OrderTest extends PluginTestCase
         }
 
         $cart->setShippingMethod(ShippingMethod::first());
-        $cart->setCustomer(Customer::first());
-        $cart->setBillingAddress(Address::find(1));
-        $cart->setShippingAddress(Address::find(2));
 
         return $cart;
     }

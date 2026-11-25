@@ -25,7 +25,7 @@ class TotalsCalculatorTest extends PluginTestCase
 {
     protected $address;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -1013,9 +1013,9 @@ class TotalsCalculatorTest extends PluginTestCase
         $variant             = new Variant();
         $variant->name       = 'Variant';
         $variant->product_id = $productA->id;
-        $variant->price      = ['CHF' => 100, 'EUR' => 150];
         $variant->stock      = 20;
         $variant->save();
+        $variant->price = ['CHF' => 10000, 'EUR' => 15000];
 
         $cart = $this->getCart();
         $cart->addProduct($productA, 2, $variant);
@@ -1038,7 +1038,7 @@ class TotalsCalculatorTest extends PluginTestCase
         $discount->shipping_prices()->save(new Price([
             'price'       => 0,
             'currency_id' => 1,
-            'field'       => 'shipping_price',
+            'field'       => 'shipping_prices',
         ]));
 
         $cart->applyDiscount($discount);

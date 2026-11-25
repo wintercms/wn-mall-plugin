@@ -14,19 +14,54 @@ composer require --dev "fakerphp/faker:^1.23" "mockery/mockery:^1.6"
 
 ## 2. Run tests
 
-You can either use Octobers `plugin:test Winter.Mall` console command, or you can visit the 
-`plugins/winter/mall` plugins root directory and run the whole test suite using the composer 
-command `composer test`.
+From the Winter CMS root, run:
+
+```sh
+php artisan winter:test -p Winter.Mall
+```
+or if you want to render test method names as human-readable sentences:
+```sh
+php artisan winter:test -p Winter.Mall -- --testdox
+```
+
+By default, Winter's plugin test case creates a fresh SQLite in-memory database for each test,
+runs the migrations, and loads the Mall test data. The PHP SQLite extension is required.
+A `config/testing/database.php` file overrides this default, so it must point to a dedicated
+test database.
+
+### Running Tests with Composer
+
+From the Winter CMS root, you can also use its Composer test script with the Mall configuration:
+
+```sh
+composer test -- --configuration=plugins/winter/mall/phpunit.xml --bootstrap=modules/system/tests/bootstrap/app.php
+```
+### Filtering Tests
 
 You can also use the PHPUnits `--filter` option to test only specific classes or methods. Visit 
 [the official documentation](https://docs.phpunit.de/en/9.6/textui.html) for more information.
 
-Examples:
+The examples use the class name without its namespace to avoid escaping backslashes.
+The method name must include the `test_` prefix.
+
+### Examples
+
+Examples with artisan:
 
 ```sh
 # To run a single class
-composer test -- --filter 'Winter\\Mall\\Tests\\TestClass'
+php artisan winter:test -p Winter.Mall -- --filter 'CartProductTest::'
 
 # To run a single method
-composer test -- --filter 'Winter\\Mall\\Tests\\TestClass::methodName'
+php artisan winter:test -p Winter.Mall -- --filter 'CartProductTest::test_custom_field_value_conversion$'
+```
+
+Examples with composer:
+
+```sh
+# To run a single class
+composer test -- --configuration=plugins/winter/mall/phpunit.xml --bootstrap=modules/system/tests/bootstrap/app.php --filter 'CartProductTest::'
+
+# To run a single method
+composer test -- --configuration=plugins/winter/mall/phpunit.xml --bootstrap=modules/system/tests/bootstrap/app.php --filter 'CartProductTest::test_custom_field_value_conversion$'
 ```

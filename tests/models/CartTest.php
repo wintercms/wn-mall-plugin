@@ -529,7 +529,7 @@ class CartTest extends PluginTestCase
     }
 
 
-    public function test_transferred_carts_get_merged()
+    public function test_transferred_cart_replaces_the_existing_customer_cart()
     {
         $customer = Customer::first();
         $prod1 = Product::find(1);
@@ -540,12 +540,12 @@ class CartTest extends PluginTestCase
         $cart->customer_id = $customer->id;
         $cart->save();
         $cart->addProduct($prod1);
+        $existingCartId = $cart->id;
 
         $this->assertEquals(1, $cart->products->count());
         $this->assertEquals(1, $cart->products->first()->id);
 
-        // Create a new Cart and transfer it to the customer. The Carts
-        // have to be merged.
+        // Create a new Cart and transfer it to the customer.
         $cart = new Cart();
         $cart->save();
         $cart->addProduct($prod2);
@@ -554,9 +554,11 @@ class CartTest extends PluginTestCase
 
         $cart = $cart->fresh();
 
-        $this->assertEquals(2, $cart->products->count());
-        $this->assertEquals(1, $cart->products->first()->id);
-        $this->assertEquals(2, $cart->products->last()->id);
+        $this->assertEquals($customer->id, $cart->customer_id);
+        $this->assertCount(1, $cart->products);
+        $this->assertEquals($prod2->id, $cart->products->first()->product_id);
+        $this->assertNull(Cart::find($existingCartId));
+        $this->assertNotNull(DB::table('winter_mall_carts')->where('id', $existingCartId)->value('deleted_at'));
     }
 
     /**
