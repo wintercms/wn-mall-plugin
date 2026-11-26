@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         operatingSystem: [ubuntu-latest]
-        phpVersion: ['8.1', '8.2', '8.3', '8.4']
+        phpVersion: ['8.2', '8.3', '8.4']
         winterBranch: ['develop']
       fail-fast: false
     name: PHP ${{ matrix.phpVersion }} / Winter ${{ matrix.winterBranch }}
