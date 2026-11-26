@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Winter\Mall\Classes\Customer\AuthManager;
 use Winter\User\Facades\Auth;
@@ -11,7 +11,12 @@ use Winter\Mall\Tests\PluginTestCase;
 
 class CustomerGroupPriceTest extends PluginTestCase
 {
-    public function setUp()
+    /**
+     * Create a variant and configure customer authentication.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
         $variant             = new Variant();
@@ -25,6 +30,11 @@ class CustomerGroupPriceTest extends PluginTestCase
         });
     }
 
+    /**
+     * Check customer group price relationships on products and variants.
+     *
+     * @return void
+     */
     public function test_relationship()
     {
         $price                    = new CustomerGroupPrice();
@@ -42,6 +52,11 @@ class CustomerGroupPriceTest extends PluginTestCase
         $this->assertCount(1, $variant->customer_group_prices);
     }
 
+    /**
+     * Check that product prices reflect the authenticated customer's group.
+     *
+     * @return void
+     */
     public function test_price_is_loaded_correctly()
     {
         $price                    = new CustomerGroupPrice();

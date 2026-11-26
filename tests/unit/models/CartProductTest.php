@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Winter\Mall\Models\Address;
 use Winter\Mall\Models\Cart;
@@ -22,7 +22,12 @@ class CartProductTest extends PluginTestCase
     public $customFieldValueA;
     protected $address;
 
-    public function setUp()
+    /**
+     * Create product, variant, custom field and cart fixtures.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -92,6 +97,11 @@ class CartProductTest extends PluginTestCase
     }
 
 
+    /**
+     * Check conversion of cart product custom field values.
+     *
+     * @return void
+     */
     public function test_custom_field_value_conversion()
     {
         $cartProduct = CartProduct::first();
@@ -107,6 +117,11 @@ class CartProductTest extends PluginTestCase
         $this->assertNull($transformed[1]['custom_field_option']);
     }
 
+    /**
+     * Check custom field pricing on a cart product with a variant.
+     *
+     * @return void
+     */
     public function test_custom_field_price_with_variant()
     {
         $cart = new Cart();
@@ -121,6 +136,11 @@ class CartProductTest extends PluginTestCase
         $this->assertEquals(30000, $cartProduct->price()->integer);
     }
 
+    /**
+     * Check service option pricing when prices include tax.
+     *
+     * @return void
+     */
     public function test_service_options_price_calculations_including_tax()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -165,6 +185,11 @@ class CartProductTest extends PluginTestCase
         $this->assertEquals(60000, $entry->totalPostTaxes);
     }
 
+    /**
+     * Check service option pricing when prices exclude tax.
+     *
+     * @return void
+     */
     public function test_service_options_price_calculations_excluding_tax()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -210,6 +235,13 @@ class CartProductTest extends PluginTestCase
     }
 
 
+    /**
+     * Create a tax fixture with the given name and percentage.
+     *
+     * @param string $name
+     * @param int $percentage
+     * @return Tax
+     */
     protected function getTax($name, int $percentage): Tax
     {
         $tax1             = new Tax();
@@ -220,6 +252,11 @@ class CartProductTest extends PluginTestCase
         return $tax1;
     }
 
+    /**
+     * Create a cart with the test shipping address.
+     *
+     * @return Cart
+     */
     protected function getCart()
     {
         $cart = new Cart();
@@ -230,6 +267,12 @@ class CartProductTest extends PluginTestCase
     }
 
 
+    /**
+     * Create a product fixture with the given prices.
+     *
+     * @param int|array $price
+     * @return Product|null
+     */
     protected function getProduct($price)
     {
         if (is_int($price)) {

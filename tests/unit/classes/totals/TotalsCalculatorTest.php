@@ -1,6 +1,6 @@
 <?php
 
-namespace Winter\Mall\Tests\Classes\Totals;
+namespace Winter\Mall\Tests\Unit\Classes\Totals;
 
 use Auth;
 use Winter\Mall\Classes\Totals\TotalsCalculator;
@@ -25,13 +25,23 @@ class TotalsCalculatorTest extends PluginTestCase
 {
     protected $address;
 
-    public function setUp()
+    /**
+     * Load the address used by the calculator fixtures.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->address = Address::first();
     }
 
+    /**
+     * Check the total for a single product and its quantity.
+     *
+     * @return void
+     */
     public function test_it_works_for_a_single_product()
     {
         $quantity = 5;
@@ -44,6 +54,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals($quantity * $price['CHF'] * 100, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the total for a product with service options.
+     *
+     * @return void
+     */
     public function test_it_works_for_a_single_product_with_service_options()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -76,6 +91,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(60000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the total for multiple products with service options.
+     *
+     * @return void
+     */
     public function test_it_works_for_multiple_products_with_service_options()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -109,6 +129,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(48863.64, round($calc->productPreTaxes(), 2));
     }
 
+    /**
+     * Check the total for multiple products.
+     *
+     * @return void
+     */
     public function test_it_works_for_multiple_products()
     {
         $quantity  = 5;
@@ -127,6 +152,11 @@ class TotalsCalculatorTest extends PluginTestCase
         );
     }
 
+    /**
+     * Check tax calculations when prices include tax.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_included()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -149,6 +179,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(3077, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check included tax on the amount remaining after a discount.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_included_on_amount_after_discount_applied()
     {
         $this->markTestSkipped('This test covers an open bug, @see https://github.com/Winter-GmbH/oc-mall-plugin/issues/423');
@@ -186,6 +221,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(1538.5, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check included tax when a discount reduces the amount to zero.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_included_on_zero_amount_after_discount_applied()
     {
         $this->markTestSkipped('This test covers an open bug, @see https://github.com/Winter-GmbH/oc-mall-plugin/issues/423');
@@ -219,6 +259,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(0, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check multiple tax rates after a discount is applied.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_with_different_taxes_and_discount()
     {
         $this->markTestSkipped('This test covers an open bug, @see https://github.com/Winter-GmbH/oc-mall-plugin/issues/423');
@@ -266,6 +311,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(612.5, round($calc->taxes()[2]->total()));
     }
 
+    /**
+     * Check tax calculations when prices exclude tax.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_excluded()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -287,6 +337,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(3200, $calc->taxes()[1]->total());
     }
 
+    /**
+     * Check excluded tax calculations with a discount.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_excluded_with_discount()
     {
         $this->markTestSkipped('This test covers an open bug, @see https://github.com/Winter-GmbH/oc-mall-plugin/issues/423');
@@ -324,6 +379,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(1600, $calc->taxes()[1]->total());
     }
 
+    /**
+     * Check excluded tax on the amount remaining after a discount.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_excluded_on_amount_after_discount_applied()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -345,6 +405,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(3200, $calc->taxes()[1]->total());
     }
 
+    /**
+     * Check shipping cost calculations.
+     *
+     * @return void
+     */
     public function test_it_calculates_shipping_cost()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -375,6 +440,11 @@ class TotalsCalculatorTest extends PluginTestCase
     }
 
 
+    /**
+     * Check calculations using an enforced shipping cost.
+     *
+     * @return void
+     */
     public function test_it_calculates_enforced_shipping_cost()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -403,6 +473,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(5152, round($calc->totalTaxes()));
     }
 
+    /**
+     * Check tax totals for products and shipping.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -432,6 +507,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(909, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check that tax totals account for product quantities.
+     *
+     * @return void
+     */
     public function test_it_calculates_taxes_with_quantity()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -461,6 +541,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(1667, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check that tax amounts are consolidated.
+     *
+     * @return void
+     */
     public function test_it_consolidates_taxes()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -488,6 +573,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(1909, round($calc->taxes()[0]->total()));
     }
 
+    /**
+     * Check the detailed tax breakdown.
+     *
+     * @return void
+     */
     public function test_it_calculates_detailed_taxes()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -516,6 +606,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(909, round($calc->detailedTaxes()[1]->total()));
     }
 
+    /**
+     * Check the total product weight.
+     *
+     * @return void
+     */
     public function test_it_calculates_weight_total()
     {
         $product         = $this->getProduct(100);
@@ -537,6 +632,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(5000, $calc->weightTotal());
     }
 
+    /**
+     * Check the total weight when the cart contains variants.
+     *
+     * @return void
+     */
     public function test_it_calculates_weight_total_with_variants()
     {
         $product         = $this->getProduct(100);
@@ -566,6 +666,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(5000, $calc->weightTotal());
     }
 
+    /**
+     * Check shipping costs using special rates.
+     *
+     * @return void
+     */
     public function test_it_calculates_shipping_cost_with_special_rates()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -602,6 +707,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(3077, round($calc->taxes()[1]->total()));
     }
 
+    /**
+     * Check the contribution of variant prices to the total.
+     *
+     * @return void
+     */
     public function test_it_calculates_variant_cost()
     {
         $product            = Product::first();
@@ -626,6 +736,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(300 * 100, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the contribution of custom field prices to the total.
+     *
+     * @return void
+     */
     public function test_it_calculates_custom_fields_cost()
     {
         $product = $this->getProduct(['CHF' => 200, 'EUR' => 150]);
@@ -667,6 +782,11 @@ class TotalsCalculatorTest extends PluginTestCase
     }
 
 
+    /**
+     * Check the fallback price for a custom field.
+     *
+     * @return void
+     */
     public function test_it_calculates_custom_field_fallback_cost()
     {
         $product = $this->getProduct(200);
@@ -705,6 +825,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(1500 * 100, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the application of fixed-amount discounts.
+     *
+     * @return void
+     */
     public function test_it_applies_fixed_discounts()
     {
         $quantity = 5;
@@ -731,6 +856,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(($quantity * $price['CHF'] * 100) - 10000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the application of percentage discounts.
+     *
+     * @return void
+     */
     public function test_it_applies_rate_discounts()
     {
         $quantity = 5;
@@ -753,6 +883,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(($quantity * $price['CHF'] * 100) / 2, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check that percentage discounts use the base price.
+     *
+     * @return void
+     */
     public function test_it_applies_rate_discounts_always_to_base_price()
     {
         $quantity = 5;
@@ -779,6 +914,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(($quantity * $price['CHF'] * 100) / 2, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check discounts that replace the shipping price.
+     *
+     * @return void
+     */
     public function test_it_applies_alternate_shipping_price_discounts()
     {
         $tax1 = $this->getTax('Test 1', 10);
@@ -824,6 +964,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(5524, round($calc->totalTaxes()));
     }
 
+    /**
+     * Check the minimum total for a fixed-amount discount.
+     *
+     * @return void
+     */
     public function test_it_applies_fixed_amount_discount_only_when_given_total_is_reached()
     {
         $product = $this->getProduct(100);
@@ -861,6 +1006,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(15000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the minimum total for a percentage discount.
+     *
+     * @return void
+     */
     public function test_it_applies_rate_discounts_only_when_given_total_is_reached()
     {
         $product = $this->getProduct(100);
@@ -894,6 +1044,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(15000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the minimum total for an alternate shipping price discount.
+     *
+     * @return void
+     */
     public function test_it_applies_alternate_shipping_price_discounts_only_when_given_total_is_reached()
     {
         $product = $this->getProduct(100);
@@ -938,6 +1093,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(30000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the required product condition for a fixed-amount discount.
+     *
+     * @return void
+     */
     public function test_it_applies_fixed_amount_discount_only_when_needed_product_is_in_cart()
     {
         $productA = $this->getProduct(100);
@@ -973,6 +1133,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(15000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the required product condition for a percentage discount.
+     *
+     * @return void
+     */
     public function test_it_applies_rate_discounts_only_when_needed_product_is_in_cart()
     {
         $productA = $this->getProduct(100);
@@ -1003,6 +1168,11 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(15000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Check the required product condition for an alternate shipping price discount.
+     *
+     * @return void
+     */
     public function test_it_applies_alternate_shipping_price_discounts_only_when_needed_product_is_in_cart()
     {
         $productA = $this->getProduct(100);
@@ -1013,9 +1183,9 @@ class TotalsCalculatorTest extends PluginTestCase
         $variant             = new Variant();
         $variant->name       = 'Variant';
         $variant->product_id = $productA->id;
-        $variant->price      = ['CHF' => 100, 'EUR' => 150];
         $variant->stock      = 20;
         $variant->save();
+        $variant->price = ['CHF' => 10000, 'EUR' => 15000];
 
         $cart = $this->getCart();
         $cart->addProduct($productA, 2, $variant);
@@ -1038,7 +1208,7 @@ class TotalsCalculatorTest extends PluginTestCase
         $discount->shipping_prices()->save(new Price([
             'price'       => 0,
             'currency_id' => 1,
-            'field'       => 'shipping_price',
+            'field'       => 'shipping_prices',
         ]));
 
         $cart->applyDiscount($discount);
@@ -1052,6 +1222,12 @@ class TotalsCalculatorTest extends PluginTestCase
         $this->assertEquals(30000, $calc->totalPostTaxes());
     }
 
+    /**
+     * Create a product fixture with the given prices.
+     *
+     * @param int|array $price
+     * @return Product|null
+     */
     protected function getProduct($price)
     {
         if (is_int($price)) {
@@ -1066,6 +1242,11 @@ class TotalsCalculatorTest extends PluginTestCase
         return Product::find($product->id);
     }
 
+    /**
+     * Create a cart with the test shipping address.
+     *
+     * @return Cart
+     */
     protected function getCart(): Cart
     {
         $cart                      = new Cart();
@@ -1075,6 +1256,13 @@ class TotalsCalculatorTest extends PluginTestCase
         return $cart;
     }
 
+    /**
+     * Create a tax fixture with the given name and percentage.
+     *
+     * @param string $name
+     * @param int $percentage
+     * @return Tax
+     */
     protected function getTax($name, int $percentage): Tax
     {
         $tax1             = new Tax();

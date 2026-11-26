@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Cache;
 use Model;
 use Winter\Storm\Database\Traits\Validation;
 use Winter\Storm\Database\Collection;
-use Rainlab\Location\Models\Country as WinterCountry;
+use Winter\Location\Models\Country;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -50,7 +50,7 @@ class Tax extends Model
             'otherKey' => 'payment_method_id',
         ],
         'countries'        => [
-            WinterCountry::class,
+            Country::class,
             'table'      => 'winter_mall_country_tax',
             'key'        => 'tax_id',
             'otherKey'   => 'country_id',

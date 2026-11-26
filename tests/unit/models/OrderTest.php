@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Winter\Mall\Classes\Customer\AuthManager;
 use Winter\Mall\Classes\Exceptions\OutOfStockException;
@@ -25,7 +25,12 @@ use Winter\User\Facades\Auth;
 
 class OrderTest extends PluginTestCase
 {
-    public function setUp()
+    /**
+     * Configure customer authentication for order tests.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -35,6 +40,11 @@ class OrderTest extends PluginTestCase
         Auth::login(User::first());
     }
 
+    /**
+     * Check creation of an order from a cart.
+     *
+     * @return void
+     */
     public function test_it_creates_a_new_order_from_a_cart()
     {
         $cart                      = $this->getFullCart();
@@ -67,12 +77,18 @@ class OrderTest extends PluginTestCase
         $this->assertNotNull($cart->deleted_at);
     }
 
+    /**
+     * Check that a missing required billing phone prevents order creation.
+     *
+     * @return void
+     */
     public function test_it_blocks_order_creation_if_billing_phone_is_required_and_missing()
     {
         GeneralSettings::set('address_phone_required_billing', true);
         GeneralSettings::set('address_phone_required_shipping', false);
 
         $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(trans('winter.mall::lang.components.signup.errors.phone.required'));
 
         $cart                      = $this->getFullCart();
         $cart->shipping_address_id = 2;
@@ -82,6 +98,11 @@ class OrderTest extends PluginTestCase
         Order::fromCart($cart);
     }
 
+    /**
+     * Check order creation with a shared billing and shipping address containing a phone.
+     *
+     * @return void
+     */
     public function test_it_allows_order_creation_when_shipping_equals_billing_and_phone_exists()
     {
         GeneralSettings::set('address_phone_required_billing', false);
@@ -102,12 +123,18 @@ class OrderTest extends PluginTestCase
         $this->assertEquals('+33123456789', array_get($order->shipping_address, 'phone'));
     }
 
+    /**
+     * Check that a missing required shipping phone prevents order creation.
+     *
+     * @return void
+     */
     public function test_it_blocks_order_creation_if_shipping_phone_is_required_and_missing()
     {
         GeneralSettings::set('address_phone_required_billing', false);
         GeneralSettings::set('address_phone_required_shipping', true);
 
         $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(trans('winter.mall::lang.components.signup.errors.phone.required'));
 
         $billing = Address::find(1);
         $billing->phone = '+33123456789';
@@ -125,6 +152,11 @@ class OrderTest extends PluginTestCase
         Order::fromCart($cart);
     }
 
+    /**
+     * Check that order creation updates product stock.
+     *
+     * @return void
+     */
     public function test_it_updates_product_stock()
     {
         $product        = Product::first();
@@ -141,6 +173,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(8, $product->fresh()->stock);
     }
 
+    /**
+     * Check that ordering an out-of-stock product is rejected.
+     *
+     * @return void
+     */
     public function test_it_prevents_out_of_stock_purchase()
     {
         $this->expectException(OutOfStockException::class);
@@ -160,6 +197,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(10, $product->fresh()->stock);
     }
 
+    /**
+     * Check that an out-of-stock product can be ordered when allowed.
+     *
+     * @return void
+     */
     public function test_it_allows_explicit_out_of_stock_purchase()
     {
         $product                               = Product::first();
@@ -177,6 +219,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(-2, $product->fresh()->stock);
     }
 
+    /**
+     * Check that order creation updates variant stock.
+     *
+     * @return void
+     */
     public function test_it_updates_variant_stock()
     {
         $product        = Product::first();
@@ -200,6 +247,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(18, $variant->fresh()->stock);
     }
 
+    /**
+     * Check that ordering an out-of-stock variant is rejected.
+     *
+     * @return void
+     */
     public function test_it_prevents_out_of_stock_variant_purchase()
     {
         $this->expectException(OutOfStockException::class);
@@ -226,6 +278,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(20, $variant->fresh()->stock);
     }
 
+    /**
+     * Check that an out-of-stock variant can be ordered when allowed.
+     *
+     * @return void
+     */
     public function test_it_allows_explicit_out_of_stock_variant_purchase()
     {
         $this->expectException(OutOfStockException::class);
@@ -252,6 +309,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(-1, $variant->fresh()->stock);
     }
 
+    /**
+     * Check the shipping method used for an order with a shipping discount.
+     *
+     * @return void
+     */
     public function test_it_uses_the_correct_discounted_shipping_method()
     {
         $cart   = $this->getSimpleCart(true);
@@ -285,6 +347,11 @@ class OrderTest extends PluginTestCase
         );
     }
 
+    /**
+     * Check discount usage counts after order creation.
+     *
+     * @return void
+     */
     public function test_discount_number_of_usages_gets_updated()
     {
         $cart                            = $this->getSimpleCart(true);
@@ -339,6 +406,11 @@ class OrderTest extends PluginTestCase
         $this->assertEquals(19, $discount3->fresh()->number_of_usages);
     }
 
+    /**
+     * Reset the required phone settings after each test.
+     *
+     * @return void
+     */
     public function tearDown(): void
     {
         GeneralSettings::set('address_phone_required_billing', false);
@@ -347,6 +419,11 @@ class OrderTest extends PluginTestCase
         parent::tearDown();
     }
 
+    /**
+     * Create a cart with products, custom fields, taxes and shipping.
+     *
+     * @return Cart
+     */
     protected function getFullCart(): Cart
     {
         $tax1             = new Tax();
@@ -372,6 +449,7 @@ class OrderTest extends PluginTestCase
         $productB->name               = 'Another Product';
         $productB->stock              = 10;
         $productB->weight             = 800;
+        $productB->published          = true;
         $productB->price_includes_tax = true;
         $productB->save();
         $productB->price = ['CHF' => 100, 'EUR' => 300];
@@ -415,6 +493,11 @@ class OrderTest extends PluginTestCase
         $customFieldValueB->custom_field_option_id = $sizeB->id;
 
         $cart = new Cart();
+        $cart->setCustomer(Customer::first());
+        $cart->setBillingAddress(Address::find(1));
+        $cart->setShippingAddress(Address::find(2));
+        $cart->save();
+
         $cart->addProduct($productA, 2, null, collect([$customFieldValueA]));
         $cart->addProduct($productA, 1, null, collect([$customFieldValueB]));
         $cart->addProduct($productB, 2);
@@ -427,17 +510,23 @@ class OrderTest extends PluginTestCase
 
         $cart->setShippingMethod($shippingMethod);
 
-        $cart->setCustomer(Customer::first());
-
-        $cart->setBillingAddress(Address::find(1));
-        $cart->setShippingAddress(Address::find(2));
-
         return $cart;
     }
 
+    /**
+     * Create a cart with addresses and optionally a product.
+     *
+     * @param bool $withProduct
+     * @return Cart
+     */
     protected function getSimpleCart($withProduct = false): Cart
     {
         $cart = new Cart();
+        $cart->setCustomer(Customer::first());
+        $cart->setBillingAddress(Address::find(1));
+        $cart->setShippingAddress(Address::find(2));
+        $cart->save();
+
         if ($withProduct) {
             $product                     = Product::first();
             $product->stackable          = true;
@@ -453,9 +542,6 @@ class OrderTest extends PluginTestCase
         }
 
         $cart->setShippingMethod(ShippingMethod::first());
-        $cart->setCustomer(Customer::first());
-        $cart->setBillingAddress(Address::find(1));
-        $cart->setShippingAddress(Address::find(2));
 
         return $cart;
     }

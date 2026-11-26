@@ -8,7 +8,7 @@ use Winter\Storm\Database\Collection;
 use Winter\Storm\Database\Traits\Sortable;
 use Winter\Storm\Database\Traits\Validation;
 use Winter\Mall\Classes\Traits\PriceAccessors;
-use Rainlab\Location\Models\Country as WinterCountry;
+use Winter\Location\Models\Country;
 use System\Models\File;
 
 class ShippingMethod extends Model
@@ -81,7 +81,7 @@ class ShippingMethod extends Model
             'otherKey' => 'discount_id',
         ],
         'countries' => [
-            WinterCountry::class,
+            Country::class,
             'table'    => 'winter_mall_shipping_countries',
             'key'      => 'shipping_method_id',
             'otherKey' => 'country_id',

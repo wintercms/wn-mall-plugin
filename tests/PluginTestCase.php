@@ -2,33 +2,23 @@
 
 namespace Winter\Mall\Tests;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Winter\Mall\Classes\Index\Index;
 use Winter\Mall\Classes\Index\Noop;
-use System\Classes\PluginManager;
+use System\Tests\Bootstrap\PluginTestCase as BasePluginTestCase;
 
-class PluginTestCase extends \PluginTestCase
+abstract class PluginTestCase extends BasePluginTestCase
 {
-    use DatabaseTransactions;
-
-    public function setUp()
+    /**
+     * Bind the no-op index implementation for plugin tests.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
-
-        $pluginManager = PluginManager::instance();
-        $pluginManager->registerAll(true);
-        $pluginManager->bootAll(true);
 
         app()->bind(Index::class, function() {
             return new Noop();
         });
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        $pluginManager = PluginManager::instance();
-        $pluginManager->unregisterAll();
     }
 }

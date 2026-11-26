@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use DB;
 use Winter\Storm\Exception\ValidationException;
@@ -17,6 +17,11 @@ use Winter\Mall\Tests\PluginTestCase;
 
 class CartTest extends PluginTestCase
 {
+    /**
+     * Check that identical stackable products share a cart entry.
+     *
+     * @return void
+     */
     public function test_it_stacks_products()
     {
         $product            = Product::first();
@@ -34,6 +39,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(2, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that identical stackable variants share a cart entry.
+     *
+     * @return void
+     */
     public function test_it_stacks_variants()
     {
         $product            = Product::first();
@@ -57,6 +67,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(2, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that unstackable variants use separate cart entries.
+     *
+     * @return void
+     */
     public function test_it_doesnt_stack_unstackable_variants()
     {
         $product            = Product::first();
@@ -80,6 +95,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that products with matching custom fields are stacked.
+     *
+     * @return void
+     */
     public function test_it_stacks_custom_field_variants()
     {
         $product            = Product::first();
@@ -123,6 +143,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals($customFieldValue->id, $cart->products->first()->fresh()->custom_field_values[0]->id);
     }
 
+    /**
+     * Check that unstackable products use separate cart entries.
+     *
+     * @return void
+     */
     public function test_it_doesnt_stack_products()
     {
         $product            = Product::first();
@@ -140,6 +165,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that unstackable products with custom fields use separate entries.
+     *
+     * @return void
+     */
     public function test_it_doesnt_stack_product_custom_field_variants()
     {
         $product            = Product::first();
@@ -184,6 +214,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals($customFieldValue->id, $cart->products[1]->fresh()->custom_field_values[0]->id);
     }
 
+    /**
+     * Check that products with different custom fields are not stacked.
+     *
+     * @return void
+     */
     public function test_it_doesnt_stack_different_custom_fields_product_variants()
     {
         $product            = Product::first();
@@ -229,6 +264,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals($customFieldValueB->id, $cart->products[1]->fresh()->custom_field_values[0]->id);
     }
 
+    /**
+     * Check that products with different custom field text values are not stacked.
+     *
+     * @return void
+     */
     public function test_it_doesnt_stack_different_custom_field_product_variants_with_text_values()
     {
         $product            = Product::first();
@@ -264,6 +304,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals($customFieldValueB->id, $cart->products[1]->fresh()->custom_field_values[0]->id);
     }
 
+    /**
+     * Check the default quantity for a cart product.
+     *
+     * @return void
+     */
     public function test_it_uses_default_quantity()
     {
         $product                   = Product::first();
@@ -276,6 +321,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(4, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check the minimum product quantity.
+     *
+     * @return void
+     */
     public function test_it_enforces_min_quantity()
     {
         $product               = Product::first();
@@ -288,6 +338,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(4, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check the maximum product quantity.
+     *
+     * @return void
+     */
     public function test_it_enforces_max_quantity()
     {
         $product               = Product::first();
@@ -300,6 +355,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(4, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check detection of a product quantity exceeding stock.
+     *
+     * @return void
+     */
     public function test_it_detects_product_out_of_stock_quantity()
     {
         $this->expectException(OutOfStockException::class);
@@ -314,6 +374,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(0, $cart->products->count());
     }
 
+    /**
+     * Check detection of a variant quantity exceeding stock.
+     *
+     * @return void
+     */
     public function test_it_detects_variant_out_of_stock_quantity()
     {
         $this->expectException(OutOfStockException::class);
@@ -333,6 +398,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(0, $cart->products->count());
     }
 
+    /**
+     * Check that an out-of-stock variant can be purchased when allowed.
+     *
+     * @return void
+     */
     public function test_it_allows_variant_out_of_stock_purchase()
     {
         $product = Product::first();
@@ -351,6 +421,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->products->count());
     }
 
+    /**
+     * Check that an out-of-stock product can be purchased when allowed.
+     *
+     * @return void
+     */
     public function test_it_allows_product_out_of_stock_purchase()
     {
         $product                               = Product::first();
@@ -364,6 +439,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->products->count());
     }
 
+    /**
+     * Check the maximum quantity when products are stacked.
+     *
+     * @return void
+     */
     public function test_it_enforces_max_quantity_on_stacked_products()
     {
         $product               = Product::first();
@@ -378,6 +458,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(4, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that stacking products increases the cart entry quantity.
+     *
+     * @return void
+     */
     public function test_it_increases_the_quantity_for_stacked_products()
     {
         $product            = Product::first();
@@ -391,6 +476,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(5, $cart->products->first()->quantity);
     }
 
+    /**
+     * Check that the same discount cannot be applied twice.
+     *
+     * @return void
+     */
     public function test_the_same_discount_cannot_be_applied_twice()
     {
         $this->expectException(ValidationException::class);
@@ -414,6 +504,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->discounts->count());
     }
 
+    /**
+     * Check that only one shipping discount is applied.
+     *
+     * @return void
+     */
     public function test_only_one_shipping_discount_is_applied()
     {
         $this->expectException(ValidationException::class);
@@ -446,6 +541,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals(1, $cart->discounts->count());
     }
 
+    /**
+     * Check that an unavailable shipping method is replaced with an available one.
+     *
+     * @return void
+     */
     public function test_shipping_method_gets_reset_if_it_becomes_unavailable()
     {
         DB::table('winter_mall_shipping_methods')->truncate();
@@ -495,6 +595,11 @@ class CartTest extends PluginTestCase
         $this->assertEquals($availableMethod->id, $cart->shipping_method_id);
     }
 
+    /**
+     * Check that the shipping method is cleared when none is available.
+     *
+     * @return void
+     */
     public function test_shipping_method_gets_nulled_of_none_is_available()
     {
         DB::table('winter_mall_shipping_methods')->truncate();
@@ -529,7 +634,12 @@ class CartTest extends PluginTestCase
     }
 
 
-    public function test_transferred_carts_get_merged()
+    /**
+     * Check that a transferred cart replaces the customer's existing cart.
+     *
+     * @return void
+     */
+    public function test_transferred_cart_replaces_the_existing_customer_cart()
     {
         $customer = Customer::first();
         $prod1 = Product::find(1);
@@ -540,12 +650,12 @@ class CartTest extends PluginTestCase
         $cart->customer_id = $customer->id;
         $cart->save();
         $cart->addProduct($prod1);
+        $existingCartId = $cart->id;
 
         $this->assertEquals(1, $cart->products->count());
         $this->assertEquals(1, $cart->products->first()->id);
 
-        // Create a new Cart and transfer it to the customer. The Carts
-        // have to be merged.
+        // Create a new Cart and transfer it to the customer.
         $cart = new Cart();
         $cart->save();
         $cart->addProduct($prod2);
@@ -554,12 +664,16 @@ class CartTest extends PluginTestCase
 
         $cart = $cart->fresh();
 
-        $this->assertEquals(2, $cart->products->count());
-        $this->assertEquals(1, $cart->products->first()->id);
-        $this->assertEquals(2, $cart->products->last()->id);
+        $this->assertEquals($customer->id, $cart->customer_id);
+        $this->assertCount(1, $cart->products);
+        $this->assertEquals($prod2->id, $cart->products->first()->product_id);
+        $this->assertNull(Cart::find($existingCartId));
+        $this->assertNotNull(DB::table('winter_mall_carts')->where('id', $existingCartId)->value('deleted_at'));
     }
 
     /**
+     * Create a shipping method fixture.
+     *
      * @return ShippingMethod
      */
     protected function getShippingMethod(): ShippingMethod

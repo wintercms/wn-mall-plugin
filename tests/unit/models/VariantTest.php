@@ -1,4 +1,4 @@
-<?php namespace Winter\Mall\Tests\Models;
+<?php namespace Winter\Mall\Tests\Unit\Models;
 
 use Winter\Mall\Models\ImageSet;
 use Winter\Mall\Models\Price;
@@ -15,7 +15,12 @@ class VariantTest extends PluginTestCase
     public $product;
     public $variant;
 
-    public function setUp()
+    /**
+     * Create product and variant fixtures with image sets.
+     *
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -70,6 +75,11 @@ class VariantTest extends PluginTestCase
         $this->product->refresh('image_sets');
     }
 
+    /**
+     * Check that a variant inherits parent product fields.
+     *
+     * @return void
+     */
     public function test_it_inherits_parent_fields()
     {
         $this->assertEquals($this->product->meta_description, $this->variant->meta_description);
@@ -77,6 +87,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('Variant', $this->variant->name);
     }
 
+    /**
+     * Check that a variant inherits parent product relationships.
+     *
+     * @return void
+     */
     public function test_it_inherits_parent_relations()
     {
         $tax             = new Tax();
@@ -87,12 +102,22 @@ class VariantTest extends PluginTestCase
         $this->assertEquals($this->product->taxes->pluck('id'), $this->variant->taxes->pluck('id'));
     }
 
+    /**
+     * Check that a variant retains its own images.
+     *
+     * @return void
+     */
     public function test_it_keeps_own_files()
     {
         $this->assertEquals('variant.jpg', $this->variant->main_image->disk_name);
         $this->assertEquals('product.jpg', $this->product->main_image->disk_name);
     }
 
+    /**
+     * Check that a variant without an image set inherits product images.
+     *
+     * @return void
+     */
     public function test_it_inherits_files()
     {
         \DB::table('winter_mall_product_variants')
@@ -105,6 +130,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('product.jpg', $this->product->main_image->disk_name);
     }
 
+    /**
+     * Check inherited image accessors for a variant without an image set.
+     *
+     * @return void
+     */
     public function test_it_inherits_file_accessors_for_images()
     {
         $file               = new File();
@@ -128,6 +158,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(2, $this->variant->all_images->count());
     }
 
+    /**
+     * Check that a variant name is not used as its property description.
+     *
+     * @return void
+     */
     public function test_name_is_not_used_as_property_description()
     {
         $product             = Product::first();
@@ -140,6 +175,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('', $product->variants->where('id', $variant->id)->first()->properties_description);
     }
 
+    /**
+     * Check variant price accessors.
+     *
+     * @return void
+     */
     public function test_price_accessors()
     {
         $priceInt       = ['CHF' => 2050, 'EUR' => 8050];
@@ -161,6 +201,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('CHF 20.50', (string)$variant->price('CHF'));
     }
 
+    /**
+     * Check that variant price accessors inherit product prices.
+     *
+     * @return void
+     */
     public function test_price_accessors_are_inherited()
     {
         $price          = ['CHF' => 20.50, 'EUR' => 80.50];
@@ -182,6 +227,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('CHF 20.50', (string)$variant->price('CHF'));
     }
 
+    /**
+     * Check inherited variant prices in a specific currency.
+     *
+     * @return void
+     */
     public function test_price_accessors_in_specific_currency_are_inherited()
     {
         $price = ['CHF' => 100, 'EUR' => 90];
@@ -201,6 +251,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(110.00, $variant->price('CHF')->decimal);
     }
 
+    /**
+     * Check that variant price accessors for other fields are not inherited.
+     *
+     * @return void
+     */
     public function test_price_accessors_for_other_fields_are_not_inherited()
     {
         $price = ['CHF' => 100, 'EUR' => 90];
@@ -220,6 +275,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(null, $variant->oldPrice('CHF')->decimal);
     }
 
+    /**
+     * Check price inheritance when a variant price is explicitly null.
+     *
+     * @return void
+     */
     public function test_explicit_null_price_accessors_are_inherited()
     {
         $price          = ['CHF' => 20.50, 'EUR' => 80.50];
@@ -244,6 +304,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals('CHF 20.50', (string)$variant->price('CHF'));
     }
 
+    /**
+     * Check variant price inheritance separately for each currency.
+     *
+     * @return void
+     */
     public function test_price_accessors_are_inherited_by_currency()
     {
         $price          = ['CHF' => 20.50, 'EUR' => 80.50];
@@ -267,6 +332,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(5000, $variant->price('EUR')->integer);
     }
 
+    /**
+     * Check variant accessors for alternative prices.
+     *
+     * @return void
+     */
     public function test_alternative_price_accessors()
     {
         $price          = ['CHF' => 20.50, 'EUR' => 80.50];
@@ -300,6 +370,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(8050, $variant->oldPrice('EUR')->integer);
     }
 
+    /**
+     * Check variant stock values.
+     *
+     * @return void
+     */
     public function test_stock_values()
     {
         $this->product->stock = 100;
@@ -315,6 +390,11 @@ class VariantTest extends PluginTestCase
         $this->assertEquals(0, $variant->stock);
     }
 
+    /**
+     * Check that a variant property description includes its property values.
+     *
+     * @return void
+     */
     public function test_name_fallback()
     {
         $product             = Product::first();
@@ -344,6 +424,11 @@ class VariantTest extends PluginTestCase
         );
     }
 
+    /**
+     * Check that empty values are omitted from a variant property description.
+     *
+     * @return void
+     */
     public function test_name_fallback_ignore_empty()
     {
         $product             = Product::first();
@@ -373,6 +458,11 @@ class VariantTest extends PluginTestCase
         );
     }
 
+    /**
+     * Check how a color value is rendered in a variant property description.
+     *
+     * @return void
+     */
     public function test_name_fallback_color()
     {
         $product             = Product::first();
