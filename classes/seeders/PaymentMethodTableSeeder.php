@@ -15,7 +15,7 @@ class PaymentMethodTableSeeder extends Seeder
         $method->sort_order       = 1;
         $method->setTable('offline_mall_payment_methods');
         $method->save();
-        
+
         $method                   = new PaymentMethod();
         $method->name             = 'PayPal';
         $method->payment_provider = 'paypal-rest';
