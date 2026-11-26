@@ -6,6 +6,11 @@ use Winter\Mall\Tests\PluginTestCase;
 
 class SortableRelationTest extends PluginTestCase
 {
+    /**
+     * Document the expected initial relation sort order.
+     *
+     * @return void
+     */
     public function test_it_handles_initial_sort_order()
     {
         $category       = Category::first();
@@ -20,6 +25,11 @@ class SortableRelationTest extends PluginTestCase
         // $this->assertEquals(4, $category->property_groups->first()->pivot->sort_order);
     }
 
+    /**
+     * Check that relation sort order can be updated.
+     *
+     * @return void
+     */
     public function test_it_sets_relation_order()
     {
         $group =  PropertyGroup::first();

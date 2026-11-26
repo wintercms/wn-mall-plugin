@@ -11,6 +11,11 @@ use Winter\Location\Models\Country;
 
 class PaymentMethodTest extends PluginTestCase
 {
+    /**
+     * Check that payment fees are added to the order total.
+     *
+     * @return void
+     */
     public function test_fees_are_added_to_order_total()
     {
         $product = $this->getProduct(100);
@@ -36,6 +41,11 @@ class PaymentMethodTest extends PluginTestCase
         $this->assertEquals(330, round($cart->totals()->paymentTotal()->totalPostTaxes(), 0));
     }
 
+    /**
+     * Check payment fees and taxes in the order total.
+     *
+     * @return void
+     */
     public function test_fees_are_added_to_order_total_with_taxes()
     {
         $product = $this->getProduct(100);
@@ -73,6 +83,11 @@ class PaymentMethodTest extends PluginTestCase
         $this->assertEquals(16, round($cart->totals()->taxes()->last()->total()));
     }
 
+    /**
+     * Check that country-specific taxes are added.
+     *
+     * @return void
+     */
     public function test_country_specific_taxes_are_added()
     {
         $product = $this->getProduct(100);
@@ -124,6 +139,8 @@ class PaymentMethodTest extends PluginTestCase
     }
 
     /**
+     * Set the price of a product fixture.
+     *
      * @return mixed
      */
     protected function getProduct(int $price): Product

@@ -10,6 +10,11 @@ class CategoryTest extends PluginTestCase
     public $child;
     public $nestedChild;
 
+    /**
+     * Create the category hierarchy used for slug lookups.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -44,6 +49,11 @@ class CategoryTest extends PluginTestCase
         $this->nestedChild = $nestedChild;
     }
 
+    /**
+     * Check category lookup by a single slug.
+     *
+     * @return void
+     */
     public function test_it_finds_a_category_by_a_slug()
     {
         $hit = Category::getByNestedSlug('parent');
@@ -56,6 +66,11 @@ class CategoryTest extends PluginTestCase
         $this->assertEquals($this->parent->id, $hit->id);
     }
 
+    /**
+     * Check category lookup by a nested slug path.
+     *
+     * @return void
+     */
     public function test_it_finds_a_category_by_a_nested_slug()
     {
         $hit = Category::getByNestedSlug('parent');

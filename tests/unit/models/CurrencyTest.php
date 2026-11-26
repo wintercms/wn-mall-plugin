@@ -13,6 +13,7 @@ class CurrencyTest extends PluginTestCase
 {
     /**
      * Check if Table-Seeder sets the default currency correctly.
+     * 
      * @return void
      */
     public function test_has_one_default_currency()
@@ -25,6 +26,7 @@ class CurrencyTest extends PluginTestCase
 
     /**
      * Only one currency can be the default currency.
+     * 
      * @return void
      */
     public function test_only_one_default_currency()

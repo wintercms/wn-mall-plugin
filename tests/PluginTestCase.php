@@ -8,6 +8,11 @@ use System\Tests\Bootstrap\PluginTestCase as BasePluginTestCase;
 
 abstract class PluginTestCase extends BasePluginTestCase
 {
+    /**
+     * Bind the no-op index implementation for plugin tests.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();

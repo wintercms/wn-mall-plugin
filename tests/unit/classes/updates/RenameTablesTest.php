@@ -10,6 +10,11 @@ use Winter\Mall\Updates\RenameTables;
 
 class RenameTablesTest extends PluginTestCase
 {
+    /**
+     * Check table renaming and data preservation in both migration directions.
+     *
+     * @return void
+     */
     public function test_it_renames_tables_in_both_directions_on_the_test_connection()
     {
         Schema::create('winter_mall_rename_test', function (Blueprint $table) {

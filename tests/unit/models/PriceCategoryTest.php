@@ -15,6 +15,7 @@ class PriceCategoryTest extends PluginTestCase
 {
     /**
      * Create and receive additional prices.
+     * 
      * @return void
      */
     public function test_create_additional_prices()
@@ -36,6 +37,7 @@ class PriceCategoryTest extends PluginTestCase
 
     /**
      * Delete prices from each price category.
+     * 
      * @return void
      */
     public function test_delete_all_prices()
@@ -56,6 +58,7 @@ class PriceCategoryTest extends PluginTestCase
 
     /**
      * Prepare Tests below
+     * 
      * @return void
      */
     protected function prepare()

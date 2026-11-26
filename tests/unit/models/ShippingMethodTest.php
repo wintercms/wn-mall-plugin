@@ -11,6 +11,11 @@ use Winter\Location\Models\Country;
 
 class ShippingMethodTest extends PluginTestCase
 {
+    /**
+     * Check shipping availability against a minimum cart total.
+     *
+     * @return void
+     */
     public function test_it_returns_available_by_min_total()
     {
         $product = $this->getProduct(99);
@@ -38,6 +43,11 @@ class ShippingMethodTest extends PluginTestCase
         $this->assertEquals($availableMethod->id, $available->first()->id);
     }
 
+    /**
+     * Check shipping availability against a maximum cart total.
+     *
+     * @return void
+     */
     public function test_it_returns_available_by_max_total()
     {
         $product = $this->getProduct(100);
@@ -65,6 +75,11 @@ class ShippingMethodTest extends PluginTestCase
         $this->assertEquals($availableMethod->id, $available->first()->id);
     }
 
+    /**
+     * Check shipping availability against minimum and maximum cart totals.
+     *
+     * @return void
+     */
     public function test_it_returns_available_by_min_and_max_total()
     {
         $product = $this->getProduct(100);
@@ -102,6 +117,11 @@ class ShippingMethodTest extends PluginTestCase
         $this->assertEquals($availableMethod->id, $available->first()->id);
     }
 
+    /**
+     * Check shipping availability by destination country.
+     *
+     * @return void
+     */
     public function test_it_returns_available_by_destination_country()
     {
         $product = $this->getProduct(100);
@@ -133,6 +153,11 @@ class ShippingMethodTest extends PluginTestCase
         $this->assertEquals($availableMethod->id, $available->first()->id);
     }
 
+    /**
+     * Check shipping price calculations when prices exclude tax.
+     *
+     * @return void
+     */
     public function test_it_calculates_price_exclusive_tax()
     {
         $product = $this->getProduct(100);
@@ -178,6 +203,11 @@ class ShippingMethodTest extends PluginTestCase
         $this->assertEquals(500, $cart->totals()->taxes()->last()->total());
     }
 
+    /**
+     * Check shipping price calculations when prices include tax.
+     *
+     * @return void
+     */
     public function test_it_calculates_price_inclusive_tax()
     {
         $product = $this->getProduct(100);
@@ -221,6 +251,8 @@ class ShippingMethodTest extends PluginTestCase
     }
 
     /**
+     * Create an available shipping method with a price.
+     *
      * @return ShippingMethod
      */
     protected function getMethod(): ShippingMethod
@@ -239,6 +271,11 @@ class ShippingMethodTest extends PluginTestCase
         return $availableMethod;
     }
 
+    /**
+     * Clear shipping methods before each test.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -246,6 +283,8 @@ class ShippingMethodTest extends PluginTestCase
     }
 
     /**
+     * Set the price of a product fixture.
+     *
      * @return mixed
      */
     protected function getProduct(int $price): Product
