@@ -343,7 +343,7 @@ class Variant extends Model
                 $pv->setAttributeTranslated('value', $transValue, $locale->code);
             }
 
-            if (($pv->value === null || $pv->value === '') && $pv->exists) {
+            if (($value === null || $value === '' || $value === []) && $pv->exists) {
                 $pv->delete();
             } else {
                 $pv->save();

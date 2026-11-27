@@ -6,10 +6,13 @@ use Illuminate\Support\Collection;
 use Winter\Mall\Models\Currency;
 use Winter\Mall\Models\CustomerGroup;
 use Winter\Mall\Models\Variant;
+use Winter\Mall\Classes\Traits\MapsPropertyValues;
 use Event;
 
 class VariantEntry implements Entry
 {
+    use MapsPropertyValues;
+
     const INDEX = 'variants';
 
     protected $variant;
@@ -89,16 +92,5 @@ class VariantEntry implements Entry
                 })->filter(),
             ];
         });
-    }
-
-    protected function mapProps(?Collection $input): Collection
-    {
-        if ($input === null) {
-            return collect();
-        }
-
-        return $input->groupBy('property_id')->map(function ($value) {
-            return $value->pluck('index_value')->unique()->filter()->values();
-        })->filter();
     }
 }

@@ -366,7 +366,7 @@ class Product extends Model
             }
 
             // If the value became empty delete it.
-            if (($value === null || $value === '') && $pv->exists) {
+            if (($value === null || $value === '' || $value === []) && $pv->exists) {
                 $pv->delete();
             } else {
                 $pv->save();
