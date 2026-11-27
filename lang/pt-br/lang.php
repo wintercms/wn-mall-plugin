@@ -580,6 +580,7 @@ return [
         'total_weight' => 'Peso total',
         'total_rebate_rate' => 'Total descontado',
         'notes' => 'Notas',
+        'customer_notes' => 'Observações do cliente',
         'custom_fields' => 'Campos customizados',
         'shipping_enabled' => 'Frete ativo',
         'payment_transaction_id' => 'ID da transação de pagamento',

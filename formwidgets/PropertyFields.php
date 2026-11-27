@@ -263,10 +263,7 @@ class PropertyFields extends FormWidgetBase
             return [$value => $value];
         })->toArray();
 
-        $widget = $this->makePartial(
-            $this->backendPartial('field_dropdown'),
-            ['field' => $formField, 'value' => $escapedValue]
-        );
+        $widget = $this->makePartial('field_dropdown', ['field' => $formField, 'value' => $escapedValue]);
 
         return $this->makePartial('dropdown', ['widget' => $widget, 'field' => $property]);
     }
@@ -288,10 +285,7 @@ class PropertyFields extends FormWidgetBase
             return [$value => $value];
         })->toArray();
 
-        $widget = $this->makePartial(
-            $this->backendPartial('field_checkboxlist'),
-            ['field' => $formField, 'value' => $escapedValue]
-        );
+        $widget = $this->makePartial('field_checkboxlist', ['field' => $formField, 'value' => $escapedValue]);
 
         return $this->makePartial('dropdown', ['widget' => $widget, 'field' => $property]);
     }
@@ -306,10 +300,7 @@ class PropertyFields extends FormWidgetBase
             return [$value, $value];
         })->toArray();
 
-        return $this->makePartial(
-            $this->backendPartial('field_checkbox'),
-            ['field' => $formField, 'value' => $value->value]
-        );
+        return $this->makePartial('field_checkbox', ['field' => $formField, 'value' => $value->value]);
     }
 
     private function switch($property, PropertyValue $value)
@@ -322,10 +313,7 @@ class PropertyFields extends FormWidgetBase
             return [$value, $value];
         })->toArray();
 
-        return $this->makePartial(
-            $this->backendPartial('field_switch'),
-            ['field' => $formField, 'value' => $value->value]
-        );
+        return $this->makePartial('field_switch', ['field' => $formField, 'value' => $value->value]);
     }
 
     private function image($property, PropertyValue $value)
@@ -363,18 +351,5 @@ class PropertyFields extends FormWidgetBase
     public function fieldPrefix(): string
     {
         return $this->formField->config['fieldPrefix'] ?? 'PropertyValues';
-    }
-
-    protected function backendPartial(string $partial)
-    {
-        // viewpath for the backend form partials is now added in render()
-        $path = $partial;
-
-        // October 2.0, add .htm extension.
-        if (class_exists('System')) {
-            $path .= '.htm';
-        }
-
-        return $path;
     }
 }

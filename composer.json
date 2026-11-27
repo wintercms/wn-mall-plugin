@@ -2,20 +2,25 @@
     "name": "winter/wn-mall-plugin",
     "type": "winter-plugin",
     "description": "E-commerce solution for Winter CMS",
-    "keywords": [
-        "winter",
-        "cms",
-        "e-commerce",
-        "shop",
-        "plugin"
-    ],
+    "keywords": ["winter", "winter cms", "plugin", "e-commerce", "shop"],
     "license": "MIT",
     "authors": [
         {
             "name": "Tobias Kündig",
-            "email": "tobias@offline.ch"
+            "email": "tobias@offline.ch",
+            "role": "Original Author"
+        },
+        {
+            "name": "Winter CMS Maintainers",
+            "homepage": "https://wintercms.com",
+            "role": "Maintainer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/wintercms/wn-mall-plugin/issues",
+        "discord": "https://discord.gg/D5MFSPH6Ux",
+        "source": "https://github.com/wintercms/wn-mall-plugin"
+    },
     "replace": {
         "offline/oc-mall-plugin": "~2.0|v2.x-dev"
     },

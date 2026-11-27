@@ -17,7 +17,7 @@ class RenameTables extends Migration
 
     public function up()
     {
-        $query = match(config('database.default')) {
+        $query = match(Db::connection()->getDriverName()) {
             'sqlite' => 'SELECT name FROM sqlite_master WHERE type="table" AND name LIKE "offline_mall_%"',
             default => 'SELECT table_name FROM information_schema.tables WHERE table_name LIKE "offline_mall_%"', 
         };
@@ -42,7 +42,7 @@ class RenameTables extends Migration
 
     public function down()
     {
-        $query = match(config('database.default')) {
+        $query = match(Db::connection()->getDriverName()) {
             'sqlite' => 'SELECT name FROM sqlite_master WHERE type="table" AND name LIKE "winter_mall_%"',
             default => 'SELECT table_name FROM information_schema.tables WHERE table_name LIKE "winter_mall_%"', 
         };

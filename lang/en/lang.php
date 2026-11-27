@@ -141,6 +141,8 @@
         'description' => 'Manage taxes',
     ],
     'general_settings' => [
+        'add_properties_controller' => 'Add Properties Controller',
+        'add_properties_controller_comment' => 'Add separate entries for the property & property groups controllers.',
         'category' => 'Mall: General',
         'category_payments' => 'Mall: Payments',
         'category_orders' => 'Mall: Orders',
@@ -324,6 +326,10 @@
         'review_category' => 'Review category',
         'title' => 'Title',
         'version' => 'Version',
+        'show_deleted' => 'Show deleted',
+        'restore_selected' => 'Restore selected records',
+        'purge_deleted' => 'Purge deleted records',
+        'confirm_purge_deleted' => 'Purging deleted records: are you sure?',
     ],
     'variant' => [
         'method' => [
@@ -362,6 +368,7 @@
         'datetime' => 'Date Time',
     ],
     'product' => [
+        'no_selection' => 'No products selected',
         'user_defined_id' => 'Product ID',
         'name' => 'Product name',
         'published' => 'Published',
@@ -457,6 +464,7 @@
         'create_new' => 'Create new set',
     ],
     'category' => [
+        'no_selection' => 'No categories selected',
         'name' => 'Name',
         'code' => 'Code',
         'code_comment' => 'This code can be used to identify this category in your frontend partials.',
@@ -587,6 +595,7 @@
         'total_weight' => 'Total weight',
         'total_rebate_rate' => 'Total rebate',
         'notes' => 'Notes',
+        'customer_notes' => 'Customer notes',
         'custom_fields' => 'Custom fields',
         'shipping_enabled' => 'Shipping enabled',
         'payment_transaction_id' => 'Payment transaction id',

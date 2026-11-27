@@ -1,3 +1,10 @@
-vendor
+.DS_Store
+.idea
+.env
+.phpunit.result.cache
+.vscode
 composer.lock
-docs/.vuepress/dist
+docs/.vitepress/cache
+docs/.vitepress/dist
+node_modules
+vendor

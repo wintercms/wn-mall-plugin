@@ -1,0 +1,49 @@
+{
+    "name": "winter/mall",
+    "version": "2.1.4",
+    "homepage": "https://github.com/wintercms/wn-mall-plugin",
+    "description": "E-commerce solution for Winter CMS",
+    "keywords": [
+        "wintercms",
+        "winter",
+        "cms",
+        "e-commerce",
+        "shop",
+        "plugin"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wintercms/wn-mall-plugin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/wintercms/wn-mall-plugin/issues"
+    },
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "authors": [
+        {
+            "name": "Tobias Kündig",
+            "email": "tobias@offline.ch",
+            "homepage": "https://offline.ch",
+            "role": "Original Author"
+        },
+        {
+            "name": "Winter CMS Maintainers",
+            "homepage": "https://wintercms.com",
+            "role": "Maintainer"
+        }
+    ],
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
+    },
+    "devDependencies": {
+        "vitepress": "^1.6.4"
+    }
+}

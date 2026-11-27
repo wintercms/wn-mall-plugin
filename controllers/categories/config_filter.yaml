@@ -1,0 +1,5 @@
+scopes:
+    showDeleted:
+        label: winter.mall::lang.common.show_deleted
+        type: checkbox
+        scope: withTrashed

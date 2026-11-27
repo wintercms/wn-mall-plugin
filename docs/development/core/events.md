@@ -1,0 +1,252 @@
+<script setup>
+import BadgeStd from '../../.vitepress/components/BadgeStd.vue'
+</script>
+
+# Events
+
+The wn-mall-plugin emits the following events:
+
+## Order
+<!-- <BadgeStd label="Full parity with OFFLINE.Mall" color="tip" /> -->
+
+### `mall.order.beforeCreate`
+
+An order is about to be created. This event receives the `$cart` model that is about to be converted into an `Order` model.
+
+### `mall.order.afterCreate`
+
+An order has been created. This event receives the `$order` model and `$cart` model that was used to create the order.
+
+### `mall.order.state.changed`
+
+An order's `OrderState` has changed. This event receives the modified `$order` as a single argument.
+
+### `mall.order.tracking.changed`
+
+An order's tracking information has changed. This event receives the modified `$order` as a single argument.
+
+### `mall.order.payment_state.changed`
+
+An order's payment state has changed. This event receives the modified `$order` as a single argument.
+
+### `mall.order.shipped`
+
+An order has been marked as shipped. This event receives the shipped `$order` as a single argument.
+
+## Customer
+<!-- <BadgeStd label="Full parity with OFFLINE.Mall" color="tip" /> -->
+
+### `mall.customer.beforeSignup`
+
+This event is emitted before a new customer account is created. This event receives the `SignupHandler` implementation 
+and all sign up form data as arguments.
+
+### `mall.customer.afterSignup`
+
+This event is emitted after a new customer account was created. This event receives the `SignupHandler` implementation 
+and the created `User` model as arguments. 
+
+### `mall.customer.beforeAuthenticate`
+
+This event is emitted when a existing customer tries to sign in. This event receives the `SignupHandler` 
+implementation and the provided credentials as arguments. 
+
+## Cart
+<!-- TODO - Add this event - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/classes/traits/cart/CartActions.php#L35
+### `mall.cart.product.beforeAdded`
+
+This event is emitted before a product is added to the cart. It receives the following arguments:
+
+* `Cart` model
+* `Product` model that will be added to the cart
+* `quantity` the quantity of the product that will be added to the cart
+* `variant` the variant that will be added to the cart
+* `values` the values of custom fields that will be added to the cart
+* `serviceOptionIds` the IDs of the selected service options that will be added to the cart
+
+If a `CartProduct` instance is returned from this event, Mall's internal logic to add the product to the Cart will be skipped.
+
+You can use this event to implement your own "add to cart" logic.
+-->
+
+### `mall.cart.product.added`
+
+This event is emitted when a product has been added to the cart. It receives the following arguments:
+
+* `CartProduct` model that was updated in the cart 
+
+### `mall.cart.product.removed`
+
+This event is emitted when a product has been removed from the cart. It receives the following arguments:
+
+* `CartProduct` model that was removed from the cart 
+
+### `mall.cart.product.updating`
+
+This event is emitted before a cart product is being updated. It receives the following arguments:
+
+* `CartProduct` model that was updated in the cart 
+
+### `mall.cart.product.updated`
+
+This event is emitted when a cart product was updated. It receives the following arguments:
+
+* `CartProduct` model that was updated in the cart 
+
+### `mall.cart.product.quantityChanged`
+
+This event is emitted when the quantity of a cart product has changed. It receives the following arguments:
+
+* `CartProduct` model that was updated in the cart 
+* `oldQuantity` the old quantity value 
+* `newQuantity` the new quantity value 
+
+<!-- TODO: Add this event - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/models/PaymentMethod.php#L218
+### `mall.cart.extendAvailablePaymentMethods`
+
+This event allows to customize the payment methods based on the current cart.
+-->
+
+## Checkout
+
+### `mall.checkout.succeeded`
+
+This event is emitted when a checkout has been completed successfully. It receives a `PaymentResult` as a single 
+argument.
+
+### `mall.checkout.failed`
+
+This event is emitted when there was a problem during the checkout process. It receives a `PaymentResult` as a single 
+argument.
+
+## Shipping
+
+### `mall.shipping.methods.availability`
+
+This event is emitted immediately after the shipping methods have been filtered according to their availability by country and the total amount of the cart. It receives the following arguments:
+
+* `ShippingMethod` collection of all available shipping methods
+* `Cart` the current cart 
+* `Whishlist` the current whishlist
+
+## Review
+
+### `mall.review.created`
+
+This event is emitted when a review was created. It receives the created `Review` model as a single 
+argument.
+
+### `mall.review.updated`
+
+This event is emitted when a review was updated. It receives the updated `Review` model as a single 
+argument.
+
+## Product
+
+### `mall.product.file_grant.created`
+
+This event is emitted when a product file grant was created. It receives the created `ProductFileGrant` model as 
+well as the related `Product` model.
+
+For a usage example see
+[Virtual Products -> Generate user specific product files](/guide/usage/virtual-products#generate-user-specific-product-files)
+
+<!-- TODO - Add this event - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/classes/traits/UserSpecificPrice.php#L46
+### `mall.product.checkCustomerGroupDiscount`
+
+This event allows you to override a Product's customer group discount. 
+
+Return a `Price` model to define a custom price. Return `false` to skip the discount.
+
+```php
+Event::listen('mall.product.checkCustomerGroupDiscount', function ($model, \Winter\Mall\Models\CustomerGroup $customerGroup, \Winter\Mall\Models\Price $originalPrice) {
+    // Override the price for this customer group.
+    return Price::fromArray(['EUR' => 20_00]); // 20.00 EUR
+    // Skip the discount for this customer group.
+    // return false;
+});
+```
+-->
+
+
+## Products
+
+<!-- TODO - Add this event - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/components/Products.php#L501
+### `mall.products.filter.extend`
+
+Use this event to change the Product filter configuration.
+
+This event is emitted after the filters have been processed. It receives the `Products` component and the `Filters` collection as arguments.
+
+```php
+Event::listen('mall.products.filter.extend', function (\Winter\Mall\Components\Products $component, $filters) {
+      // only show products from category 2. Use can use ->get() here since a category filter is always present.
+      $filters->get('category_id')->values = [2];
+      // Add filter to hide product with ID 1
+      $filters->put('product_id', new SetFilter(property: 'product_id', values: [1], exclude: true));
+      // Add filter to only show variant with ID 17
+      $filters->put('variant_id', new SetFilter(property: 'variant_id', values: [17], exclude: false));
+});
+```
+-->
+<!-- TODO - Add this event - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/components/ProductsFilter.php#L513
+## ProductsFilter
+
+### `mall.productsFilter.props.extend`
+
+Use this event to change the ProductsFilter component's properties.
+
+This event is emitted after the component's properties have been set. It receives the `ProductsFilter` component as a single argument.
+
+```php
+// Example on how to use a fictional 'visibleForLoggedInUser' scope to change the displayed groups and values.
+Event::listen('mall.productsFilter.props.extend', function (\Winter\Mall\Components\ProductsFilter $component) {
+    // Change the available PropertyGroups
+    $component->propertyGroups = PropertyGroup::visibleForLoggedInUser()->get();
+    // Change the displayed property values.
+    $component->values = PropertyValue::visibleForLoggedInUser()->get()->unique('index_value')->groupBy('property_id');
+});
+``
+-->
+
+
+## Index
+
+### `mall.index.extendProduct` and `mall.index.extendVariant`
+
+This event can be used to add additional data to the index table.
+
+It receives the `Product` model (for Products) or the `Product` and `Variant` models (for Variants). You can return an array of additional data to be stored with the index entry.
+
+## Backend 
+
+<!-- TODO - Add events parity with Offline.Mall for backend orders
+https://github.com/OFFLINE-GmbH/oc-mall-plugin/commit/b10343c9ee1fd2e3a549d32650819f20ca40e2d5
+
+### `mall.backend.orders.extendCustomerDetails`
+### `mall.backend.orders.extendItemDetails`
+-->
+
+<!-- TODO - Check to see if this event can be added - see : https://github.com/OFFLINE-GmbH/oc-mall-plugin/blob/cdb9d836e1066757dea7c5c6dbbcb9178ede6575/controllers/orders/show.php#L103
+### `mall.backend.order.sidebar`
+
+Add custom content to the order detail sidebar. This event receives the `$order` model as a single argument.
+
+Returned strings will be added to the sidebar.
+
+```php
+Event::listen('mall.backend.order.sidebar', function (\Winter\Mall\Models\Order $order) {
+    $form = new Form(null, [
+        'model' => $order,
+        'fields' => [
+            'some_custom_order_field' => [
+                'label' => 'Custom order field',
+                'type' => 'textarea'
+            ],
+        ]
+    ]);
+
+    return $form->render();
+});
+```
+-->

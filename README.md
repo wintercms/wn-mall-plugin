@@ -28,7 +28,7 @@
 
 #### Documentation
 The documentation of this plugin can be found here:
-[https://offline-gmbh.github.io/oc-mall-plugin/](https://offline-gmbh.github.io/oc-mall-plugin/)
+[https://wintercms.github.io/wn-mall-plugin/](https://wintercms.github.io/wn-mall-plugin/)
 
 #### Requirements
 
@@ -58,7 +58,7 @@ composer require \
 ``` 
 
 Once the plugin is installed take a look at
-[the official documentation](https://offline-gmbh.github.io/oc-mall-plugin/)
+[the official documentation](https://wintercms.github.io/wn-mall-plugin/)
 to get everything up and running.
 
 ## Benchmarks
@@ -67,7 +67,7 @@ Below are some totally unscientific benchmarks created on a lazy Saturday aftern
 These tests were run on a DigitalOcean CPU optimized Droplet with 2 vCPU and 4GB RAM.
 October was run on Ubuntu 18.04, PHP 7.2.10, Apache 2.4.19 and MySQL 5.7.24.
 
-All measurements were done using the [Bedard.Debugbar](https://octobercms.com/plugin/bedard-debugbar) 
+All measurements were done using the [Winter.Debugbar](https://github.com/wintercms/wn-debugbar-plugin) 
 plugin and are the average load time over 10 page loads (I told you they were unscientific!).
  
 `Index size` defines the size of the `winter_mall_index` table. This table includes de-normalized 
@@ -105,14 +105,14 @@ the plugin performs install it yourself and give it a go!
 
 ### Documentation
 
-The raw documentation for this plugin is stored in the docs directory. It is written in markdown and built with 
-[VuePress](https://vuepress.vuejs.org/).
-
-For a live preview of the docs install `vuepress` locally and run `vuepress dev` from the docs directory.
+The raw documentation for this plugin is stored in the `/docs` directory. It is written in markdown and built with 
+[VitePress](https://vitepress.dev/).
+    
+For a live preview of the documentation, go to the root plugin directory `plugins/winter/mall`, install the dependencies using npm i (ensure node.js and npm is installed on your machine first) and run the local server using npm run docs:dev.
 
 ### Bugs and feature requests
 
-If you found a bug or want to request a feature please file a GitHub issue.
+If you found a bug or want to request a feature please file a [GitHub issue](https://github.com/wintercms/wn-mall-plugin/issues).
 
 ### Pull requests
 

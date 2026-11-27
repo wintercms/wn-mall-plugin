@@ -57,7 +57,7 @@ class Products extends Controller
 
         $model                  = post('option_id') ? CustomFieldOption::find(post('option_id')) : null;
         $this->optionFormWidget = $this->createOptionFormWidget($model);
-        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->addCss('$/winter/mall/assets/css/backend.css');
 
         if (count($this->params) > 0) {
             // This is pretty hacky but it works. To get the original data from the Variant
@@ -70,12 +70,8 @@ class Products extends Controller
             }
         }
 
-        // Legacy (v1)
-        if (!class_exists('System')) {
-            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
-        }
-
-        $this->addJs('/plugins/winter/mall/assets/backend.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js', 'Winter.Mall');
+        $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 
     public function update($id)
@@ -442,5 +438,36 @@ class Products extends Controller
         if (!GeneralSettings::get('use_brands', true)) {
             $widget->removeField('brand');
         }
+    }
+
+    public function listInjectRowClass($record, $definition = null)
+    {
+        if ($record->trashed()) {
+            return 'strike selected nolink';
+        }
+    }
+
+    public function onPurgeDeleted()
+    {
+        Product::onlyTrashed()->forceDelete();
+
+        return $this->listRefresh();
+    }
+
+    public function onRestoreSelected()
+    {
+        $checkedIds = post('checked');
+
+        if (!$checkedIds || !is_array($checkedIds) || !count($checkedIds)) {
+            Flash::error( trans('winter.mall::lang.product.no_selection') );
+        } else {
+            foreach ($checkedIds as $id) {
+                if ($record = Product::withTrashed()->find($id)) {
+                    $record->restore();
+                }
+            }
+        }
+
+        return $this->listRefresh();
     }
 }

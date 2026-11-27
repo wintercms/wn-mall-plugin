@@ -580,6 +580,7 @@ return [
         'total_weight' => 'Общий вес',
         'total_rebate_rate' => 'Общая скидка',
         'notes' => 'Примечания',
+        'customer_notes' => 'Комментарий покупателя',
         'custom_fields' => 'Настраиваемые поля',
         'shipping_enabled' => 'Доставка включена',
         'payment_transaction_id' => 'Идентификатор транзакции оплаты',

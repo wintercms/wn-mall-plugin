@@ -46,7 +46,7 @@ class CategoriesProducts extends Controller
 
     public function reorder()
     {
-        $this->addJs('/modules/backend/behaviors/reordercontroller/assets/js/october.reorder.js', 'core');
+        $this->addJs('/modules/backend/behaviors/reordercontroller/assets/js/winter.reorder.js', 'core');
 
         $this->pageTitle = $this->pageTitle
             ?: Lang::get($this->getConfig('title', 'backend::lang.reorder.default_title'));

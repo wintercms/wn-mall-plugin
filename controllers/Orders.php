@@ -39,7 +39,7 @@ class Orders extends Controller
     public function index()
     {
         parent::index();
-        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->addCss('$/winter/mall/assets/css/backend.css');
         $this->vars['stats'] = new OrdersStats();
         $this->vars['money'] = app(Money::class);
     }
@@ -48,7 +48,7 @@ class Orders extends Controller
     {
         $this->bodyClass = 'compact-container';
         $this->pageTitle = trans('winter.mall::lang.titles.orders.show');
-        $this->addCss('/plugins/winter/mall/assets/backend.css');
+        $this->addCss('$/winter/mall/assets/css/backend.css');
         $this->vars['ordersList']      = Backend::url('winter/mall/orders');
         $this->vars['productUpdate']   = Backend::url('winter/mall/products/update');
         $this->vars['addressUpdate']   = Backend::url('winter/mall/addresses/update');

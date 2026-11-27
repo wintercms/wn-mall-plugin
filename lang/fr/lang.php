@@ -141,6 +141,8 @@
         'description' => 'Gérer les taxes',
     ],
     'general_settings' => [
+        'add_properties_controller' => 'Ajouter le controlleur de propriétés',
+        'add_properties_controller_comment' => 'Le controlleur de propriétés et celui des groupes de propriétés sont séparés.',
         'category' => 'Mall: Générale',
         'category_payments' => 'Mall: Paiements',
         'category_orders' => 'Mall: Commandes',
@@ -324,6 +326,10 @@
         'review_category' => 'Catégorie de l\'avis',
         'title' => 'Titre',
         'version' => 'Version',
+        'show_deleted' => 'Afficher les supprimés',
+        'restore_selected' => 'Restaurer les sélectionnés',
+        'purge_deleted' => 'Purger les supprimés',
+        'confirm_purge_deleted' => 'Êtes-vous sûr de vouloir supprimer définitivement les enregistrements supprimés ?',
     ],
     'variant' => [
         'method' => [
@@ -362,6 +368,7 @@
         'datetime' => 'Date et heure',
     ],
     'product' => [
+        'no_selection' => 'Aucun produit selectionné',
         'user_defined_id' => 'ID produit',
         'name' => 'Nom produit',
         'published' => 'Publié',
@@ -457,6 +464,7 @@
         'create_new' => 'Créer un nouvel ensemble',
     ],
     'category' => [
+        'no_selection' => 'Aucune catégorie selectionnée',
         'name' => 'Nom',
         'code' => 'Code',
         'code_comment' => 'Ce code peut être utilisé pour identifier cette catégorie dans vos partials frontend.',
@@ -587,6 +595,7 @@
         'total_weight' => 'Poids total',
         'total_rebate_rate' => 'Remise totale',
         'notes' => 'Notes',
+        'customer_notes' => 'Notes du client',
         'custom_fields' => 'Champs personnalisés',
         'shipping_enabled' => 'Expédition activée',
         'payment_transaction_id' => 'ID de la transaction de paiement',

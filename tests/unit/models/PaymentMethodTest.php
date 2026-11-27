@@ -1,0 +1,154 @@
+<?php namespace Winter\Mall\Tests\Unit\Models;
+
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\PaymentMethod;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Tests\PluginTestCase;
+use Winter\Location\Models\Country;
+
+class PaymentMethodTest extends PluginTestCase
+{
+    /**
+     * Check that payment fees are added to the order total.
+     *
+     * @return void
+     */
+    public function test_fees_are_added_to_order_total()
+    {
+        $product = $this->getProduct(100);
+        $cart    = new Cart();
+
+        $cart->addProduct($product, 1);
+
+        $method                   = new PaymentMethod();
+        $method->name             = 'Test';
+        $method->fee_percentage   = 2.9;
+        $method->payment_provider = 'stripe';
+        $method->save();
+        $method->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 0.30,
+        ]));
+
+        $cart->setPaymentMethod($method);
+
+        $this->assertEquals(10330, round($cart->totals()->totalPostTaxes(), 0));
+        $this->assertEquals(330, round($cart->totals()->paymentTotal()->totalPreTaxes(), 0));
+        $this->assertEquals(0, round($cart->totals()->paymentTotal()->totalTaxes(), 0));
+        $this->assertEquals(330, round($cart->totals()->paymentTotal()->totalPostTaxes(), 0));
+    }
+
+    /**
+     * Check payment fees and taxes in the order total.
+     *
+     * @return void
+     */
+    public function test_fees_are_added_to_order_total_with_taxes()
+    {
+        $product = $this->getProduct(100);
+        $cart    = new Cart();
+        $cart->shipping_address_id = Address::first()->id;
+
+        $cart->addProduct($product, 1);
+
+        $method                   = new PaymentMethod();
+        $method->name             = 'Test';
+        $method->fee_percentage   = 2.9;
+        $method->payment_provider = 'stripe';
+        $method->save();
+        $method->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 0.30,
+        ]));
+        $method->taxes()->save(new Tax([
+            'name'       => 'Payment Tax 1',
+            'percentage' => 5,
+        ]));
+        $method->taxes()->save(new Tax([
+            'name'       => 'Payment Tax 2',
+            'percentage' => 5,
+        ]));
+
+        $cart->setPaymentMethod($method);
+
+        $this->assertEquals(10364, round($cart->totals()->totalPostTaxes()));
+        $this->assertEquals(330, round($cart->totals()->paymentTotal()->totalPreTaxes()));
+        $this->assertEquals(34, round($cart->totals()->paymentTotal()->totalTaxes()));
+        $this->assertEquals(364, round($cart->totals()->paymentTotal()->totalPostTaxes()));
+
+        $this->assertEquals(2, $cart->totals()->taxes()->count());
+        $this->assertEquals(16, round($cart->totals()->taxes()->last()->total()));
+    }
+
+    /**
+     * Check that country-specific taxes are added.
+     *
+     * @return void
+     */
+    public function test_country_specific_taxes_are_added()
+    {
+        $product = $this->getProduct(100);
+        $cart    = new Cart();
+
+        $cart->addProduct($product, 1);
+
+        $address              = new Address();
+        $address->name        = 'Mr. Miller';
+        $address->lines       = 'Street 12';
+        $address->zip         = '6003';
+        $address->city        = 'Lucerne';
+        $address->customer_id = 1;
+        $address->country_id  = Country::where('code', 'CH')->first()->id;
+        $address->save();
+
+        $cart->setShippingAddress($address);
+
+        $method                   = new PaymentMethod();
+        $method->name             = 'Test';
+        $method->fee_percentage   = 2.9;
+        $method->payment_provider = 'stripe';
+        $method->save();
+        $method->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 0.30,
+        ]));
+        $countryTax = new Tax([
+            'name'       => 'Payment Tax 1',
+            'percentage' => 5,
+        ]);
+        $countryTax->save();
+        $countryTax->countries()->attach(1);
+
+        $method->taxes()->save($countryTax);
+        $method->taxes()->save(new Tax([
+            'name'       => 'Payment Tax 2',
+            'percentage' => 10,
+        ]));
+
+        $cart->setPaymentMethod($method);
+
+        $this->assertEquals(10364, round($cart->totals()->totalPostTaxes()));
+        $this->assertEquals(330, round($cart->totals()->paymentTotal()->totalPreTaxes()));
+        $this->assertEquals(34, round($cart->totals()->paymentTotal()->totalTaxes()));
+        $this->assertEquals(364, round($cart->totals()->paymentTotal()->totalPostTaxes()));
+
+        $this->assertEquals(1, $cart->totals()->taxes()->count());
+    }
+
+    /**
+     * Set the price of a product fixture.
+     *
+     * @return mixed
+     */
+    protected function getProduct(int $price): Product
+    {
+        $product = Product::first();
+        $product->save();
+        $product->price = ['CHF' => $price, 'EUR' => 150];
+
+        return Product::first();
+    }
+}

@@ -18,8 +18,8 @@ class Price extends FormWidgetBase
     public function init()
     {
         $this->defaultCurrency = Currency::orderBy('is_default', 'DESC')->first();
-        $this->addJs('/plugins/winter/mall/assets/pricewidget.js', 'Winter.Mall');
-        $this->addCss('/plugins/winter/mall/assets/pricewidget.css', 'Winter.Mall');
+        $this->addJs('$/winter/mall/assets/js/pricewidget.js', 'Winter.Mall');
+        $this->addCss('$/winter/mall/assets/css/pricewidget.css', 'Winter.Mall');
     }
 
     public function render()

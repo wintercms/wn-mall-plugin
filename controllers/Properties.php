@@ -4,6 +4,7 @@ use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use BackendMenu;
+use Winter\Mall\Models\Property;
 
 class Properties extends Controller
 {

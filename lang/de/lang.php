@@ -577,6 +577,7 @@
         'total_weight' => 'Gesamgtgewicht',
         'total_rebate_rate' => 'Gesamt-Rabatt',
         'notes' => 'Notiz',
+        'customer_notes' => 'Kundenhinweise',
         'custom_fields' => 'Benutzerdefinierte Felder',
         'shipping_enabled' => 'Versand aktiv',
         'payment_transaction_id' => 'Transaktions-ID',

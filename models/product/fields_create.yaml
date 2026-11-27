@@ -22,6 +22,8 @@ tabs:
             descriptionFrom: description
             span: auto
             type: relation
+            displayTree: true
+            quickTreeActions: true
             tab: 'winter.mall::lang.product.general'
         is_virtual:
             label: 'winter.mall::lang.product.is_virtual'

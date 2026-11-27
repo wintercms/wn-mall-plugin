@@ -1,0 +1,291 @@
+<?php namespace Winter\Mall\Tests\Unit\Models;
+
+use Winter\Mall\Models\Address;
+use Winter\Mall\Models\Cart;
+use Winter\Mall\Models\CartProduct;
+use Winter\Mall\Models\CustomField;
+use Winter\Mall\Models\CustomFieldOption;
+use Winter\Mall\Models\CustomFieldValue;
+use Winter\Mall\Models\Price;
+use Winter\Mall\Models\Product;
+use Winter\Mall\Models\Service;
+use Winter\Mall\Models\ServiceOption;
+use Winter\Mall\Models\Tax;
+use Winter\Mall\Models\Variant;
+use Winter\Mall\Tests\PluginTestCase;
+
+class CartProductTest extends PluginTestCase
+{
+    public $product;
+    public $variant;
+    public $cart;
+    public $customFieldValueA;
+    protected $address;
+
+    /**
+     * Create product, variant, custom field and cart fixtures.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->address = Address::first();
+
+        $product                   = Product::first();
+        $product->meta_description = 'Test';
+        $product->save();
+        $product->price = ['CHF' => 200, 'EUR' => 150];
+
+        $this->product = $product;
+
+        $variant             = new Variant();
+        $variant->product_id = $product->id;
+        $variant->name       = 'Variant';
+        $variant->price      = null;
+        $variant->stock      = 20;
+        $variant->save();
+
+        $this->variant = $variant;
+
+        $sizeA             = new CustomFieldOption();
+        $sizeA->name       = 'Size A';
+        $sizeA->sort_order = 1;
+        $sizeA->save();
+        $sizeA->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 100,
+        ]));
+
+        $field       = new CustomField();
+        $field->name = 'Size';
+        $field->type = 'dropdown';
+        $field->save();
+
+        $field2       = new CustomField();
+        $field2->name = 'Label';
+        $field2->type = 'text';
+        $field2->save();
+
+        $field2->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 300,
+        ]));
+
+        $field->custom_field_options()->save($sizeA);
+
+        $this->product->custom_fields()->attach($field);
+        $this->product->custom_fields()->attach($field2);
+
+        $customFieldValueA                         = new CustomFieldValue();
+        $customFieldValueA->custom_field_id        = $field->id;
+        $customFieldValueA->custom_field_option_id = $sizeA->id;
+
+        $this->customFieldValueA = $customFieldValueA;
+
+        $customFieldValueB                  = new CustomFieldValue();
+        $customFieldValueB->custom_field_id = $field2->id;
+        $customFieldValueB->value           = 'Test';
+
+        $cart = new Cart();
+        $cart->save();
+
+        $this->cart = $cart;
+
+        $cart->addProduct($product, 2, null, collect([$customFieldValueA, $customFieldValueB]));
+    }
+
+
+    /**
+     * Check conversion of cart product custom field values.
+     *
+     * @return void
+     */
+    public function test_custom_field_value_conversion()
+    {
+        $cartProduct = CartProduct::first();
+
+        $transformed = $cartProduct->convertCustomFieldValues();
+
+        $this->assertEquals(2, $transformed->count());
+        $this->assertEquals('100.0', $transformed[0]['price']['CHF']);
+        $this->assertEquals('Size A', $transformed[0]['display_value']);
+        $this->assertEquals('Test', $transformed[1]['value']);
+        $this->assertEquals('Test', $transformed[1]['display_value']);
+        $this->assertEquals('300.0', $transformed[1]['price']['CHF']);
+        $this->assertNull($transformed[1]['custom_field_option']);
+    }
+
+    /**
+     * Check custom field pricing on a cart product with a variant.
+     *
+     * @return void
+     */
+    public function test_custom_field_price_with_variant()
+    {
+        $cart = new Cart();
+        $cart->save();
+
+        $cart->addProduct($this->product, 1, $this->variant, collect([$this->customFieldValueA]));
+        $cartProduct = CartProduct::find($cart->products->first()->id);
+
+        $variant = $cartProduct->variant;
+
+        $this->assertEquals(20000, $variant->price()->integer);
+        $this->assertEquals(30000, $cartProduct->price()->integer);
+    }
+
+    /**
+     * Check service option pricing when prices include tax.
+     *
+     * @return void
+     */
+    public function test_service_options_price_calculations_including_tax()
+    {
+        $tax1 = $this->getTax('Test 1', 10);
+
+        $quantity = 2;
+
+        $service = Service::create(['name' => 'Test']);
+        $service->taxes()->attach($tax1->id);
+
+        $option = ServiceOption::create(['name' => 'Test Option', 'service_id' => $service->id]);
+        $option->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 100,
+        ]));
+
+        $product                     = $this->getProduct(200);
+        $product->price_includes_tax = true;
+        $product->save();
+        $product->taxes()->attach($tax1->id);
+
+        $cart  = $this->getCart();
+        $entry = $cart->addProduct($product, $quantity, null, null, [$option->id]);
+
+        $this->assertEquals(18181.82, round($entry->productPreTaxes, 2));
+        $this->assertEquals(1818.18, round($entry->productTaxes, 2));
+        $this->assertEquals(20000, $entry->productPostTaxes);
+
+        $this->assertEquals(27272.73, round($entry->pricePreTaxes, 2));
+        $this->assertEquals(12727.27, round($entry->taxes, 2));
+        $this->assertEquals(40000, $entry->pricePostTaxes);
+
+        $this->assertEquals(9090.91, round($entry->servicePreTaxes, 2));
+        $this->assertEquals(909.09, round($entry->serviceTaxes, 2));
+        $this->assertEquals(10000, $entry->servicePostTaxes);
+
+        $this->assertEquals(18181.82, round($entry->totalServicePreTaxes, 2));
+        $this->assertEquals(1818.18, round($entry->totalServiceTaxes, 2));
+        $this->assertEquals(20000, $entry->totalServicePostTaxes);
+
+        $this->assertEquals(54545.45, round($entry->totalPreTaxes, 2));
+        $this->assertEquals(5454.55, round($entry->totalTaxes, 2));
+        $this->assertEquals(60000, $entry->totalPostTaxes);
+    }
+
+    /**
+     * Check service option pricing when prices exclude tax.
+     *
+     * @return void
+     */
+    public function test_service_options_price_calculations_excluding_tax()
+    {
+        $tax1 = $this->getTax('Test 1', 10);
+
+        $quantity = 2;
+
+        $service = Service::create(['name' => 'Test']);
+        $service->taxes()->attach($tax1->id);
+
+        $option = ServiceOption::create(['name' => 'Test Option', 'service_id' => $service->id]);
+        $option->prices()->save(new Price([
+            'currency_id' => 1,
+            'price'       => 100,
+        ]));
+
+        $product                     = $this->getProduct(200);
+        $product->price_includes_tax = false;
+        $product->save();
+        $product->taxes()->attach($tax1->id);
+
+        $cart  = $this->getCart();
+        $entry = $cart->addProduct($product, $quantity, null, null, [$option->id]);
+
+        $this->assertEquals(20000, round($entry->productPreTaxes, 2));
+        $this->assertEquals(2000, round($entry->productTaxes, 2));
+        $this->assertEquals(22000, $entry->productPostTaxes);
+
+        $this->assertEquals(29090.91, round($entry->pricePreTaxes, 2));
+        $this->assertEquals(2909.09, round($entry->taxes, 2));
+        $this->assertEquals(32000, $entry->pricePostTaxes);
+
+        $this->assertEquals(9090.91, round($entry->servicePreTaxes, 2));
+        $this->assertEquals(909.09, round($entry->serviceTaxes, 2));
+        $this->assertEquals(10000, $entry->servicePostTaxes);
+
+        $this->assertEquals(18181.82, round($entry->totalServicePreTaxes, 2));
+        $this->assertEquals(1818.18, round($entry->totalServiceTaxes, 2));
+        $this->assertEquals(20000, $entry->totalServicePostTaxes);
+
+        $this->assertEquals(58181.82, round($entry->totalPreTaxes, 2));
+        $this->assertEquals(5818.18, round($entry->totalTaxes, 2));
+        $this->assertEquals(64000, $entry->totalPostTaxes);
+    }
+
+
+    /**
+     * Create a tax fixture with the given name and percentage.
+     *
+     * @param string $name
+     * @param int $percentage
+     * @return Tax
+     */
+    protected function getTax($name, int $percentage): Tax
+    {
+        $tax1             = new Tax();
+        $tax1->name       = $name;
+        $tax1->percentage = $percentage;
+        $tax1->save();
+
+        return $tax1;
+    }
+
+    /**
+     * Create a cart with the test shipping address.
+     *
+     * @return Cart
+     */
+    protected function getCart()
+    {
+        $cart = new Cart();
+        $cart->shipping_address_id = $this->address->id;
+        $cart->save();
+
+        return $cart;
+    }
+
+
+    /**
+     * Create a product fixture with the given prices.
+     *
+     * @param int|array $price
+     * @return Product|null
+     */
+    protected function getProduct($price)
+    {
+        if (is_int($price)) {
+            $price = ['CHF' => $price, 'EUR' => $price];
+        }
+
+        $product = Product::first()->replicate(['category_id']);
+        $product->save();
+        $product->price = $price;
+
+        // Reload everything to prevent stale relationships.
+        return Product::find($product->id);
+    }
+
+}
+

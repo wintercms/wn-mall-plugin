@@ -36,12 +36,8 @@ class Categories extends Controller
         parent::__construct();
         BackendMenu::setContext('Winter.Mall', 'mall-catalogue', 'mall-categories');
 
-        // Legacy (v1)
-        if (!class_exists('System')) {
-            $this->addJs('/plugins/winter/mall/assets/Sortable.js');
-        }
-
-        $this->addJs('/plugins/winter/mall/assets/backend.js');
+        $this->addJs('$/winter/mall/assets/js/backend.js', 'Winter.Mall');
+        $this->addJs('$/winter/mall/assets/js/Sortable.js');
     }
 
     public function formExtendFields($widget)
@@ -55,5 +51,36 @@ class Categories extends Controller
     {
         parent::onReorder();
         (new Category())->purgeCache();
+    }
+
+    public function listInjectRowClass($record, $definition = null)
+    {
+        if ($record->trashed()) {
+            return 'strike selected nolink';
+        }
+    }
+
+    public function onPurgeDeleted()
+    {
+        Category::onlyTrashed()->forceDelete();
+
+        return $this->listRefresh();
+    }
+
+    public function onRestoreSelected()
+    {
+        $checkedIds = post('checked');
+
+        if (!$checkedIds || !is_array($checkedIds) || !count($checkedIds)) {
+            Flash::error( trans('winter.mall::lang.category.no_selection') );
+        } else {
+            foreach ($checkedIds as $id) {
+                if ($record = Category::withTrashed()->find($id)) {
+                    $record->restore();
+                }
+            }
+        }
+
+        return $this->listRefresh();
     }
 }
