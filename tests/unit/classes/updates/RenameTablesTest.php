@@ -5,10 +5,10 @@ namespace Winter\Mall\Tests\Unit\Classes\Updates;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use Winter\Mall\Updates\RenameTables;
 
-class RenameTablesTest extends PluginTestCase
+class RenameTablesTest extends MallTestCase
 {
     /**
      * Check table renaming and data preservation in both migration directions.

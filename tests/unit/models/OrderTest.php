@@ -19,11 +19,11 @@ use Winter\Mall\Models\ShippingMethod;
 use Winter\Mall\Models\Tax;
 use Winter\Mall\Models\User;
 use Winter\Mall\Models\Variant;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use Winter\Storm\Exception\ValidationException;
 use Winter\User\Facades\Auth;
 
-class OrderTest extends PluginTestCase
+class OrderTest extends MallTestCase
 {
     /**
      * Configure customer authentication for order tests.

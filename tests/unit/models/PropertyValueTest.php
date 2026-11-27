@@ -7,6 +7,11 @@ use Winter\Mall\Tests\MallTestCase;
 
 class PropertyValueTest extends MallTestCase
 {
+    /**
+     * Test that text and textarea values round trip correctly.
+     *
+     * @return void
+     */
     public function test_text_and_textarea_values_round_trip()
     {
         foreach (['text', 'textarea'] as $type) {
@@ -20,6 +25,11 @@ class PropertyValueTest extends MallTestCase
         }
     }
 
+    /**
+     * Test that dropdown values round trip correctly.
+     *
+     * @return void
+     */
     public function test_dropdown_value_round_trip()
     {
         $property = $this->createProperty('dropdown', [
@@ -34,6 +44,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('red', $value->index_value);
     }
 
+    /**
+     * Test that checkbox values round trip correctly.
+     *
+     * @return void
+     */
     public function test_checkbox_value_round_trip()
     {
         $property = $this->createProperty('checkbox');
@@ -45,6 +60,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('1', $value->index_value);
     }
 
+    /**
+     * Test that float values round trip correctly.
+     *
+     * @return void
+     */
     public function test_float_value_round_trip()
     {
         $property = $this->createProperty('float');
@@ -55,6 +75,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('12.5', $value->display_value);
     }
 
+    /**
+     * Test that integer values round trip correctly.
+     *
+     * @return void
+     */
     public function test_integer_value_round_trip()
     {
         $property = $this->createProperty('integer');
@@ -66,6 +91,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('42', $value->index_value);
     }
 
+    /**
+     * Test that color values round trip correctly.
+     *
+     * @return void
+     */
     public function test_color_value_round_trip()
     {
         $property = $this->createProperty('color');
@@ -78,6 +108,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertStringContainsString('title="Red"', $value->display_value);
     }
 
+    /**
+     * Test that checkboxlist values are decoded into an array.
+     *
+     * @return void
+     */
     public function test_checkboxlist_value_is_decoded_into_an_array()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -90,6 +125,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('drinkssauces', $value->index_value);
     }
 
+    /**
+     * Test that a single checkboxlist value is decoded into an array.
+     *
+     * @return void
+     */
     public function test_checkboxlist_single_value_is_decoded_into_an_array()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -100,6 +140,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('Drinks', $value->display_value);
     }
 
+    /**
+     * Test that the zero option is preserved in checkboxlist values.
+     *
+     * @return void
+     */
     public function test_checkboxlist_preserves_the_zero_option()
     {
         $property = $this->createProperty('checkboxlist', [
@@ -113,6 +158,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('0, Drinks', $value->display_value);
     }
 
+    /**
+     * Test that null and empty values are not wrapped in arrays.
+     *
+     * @return void
+     */
     public function test_null_and_empty_values_are_not_wrapped_in_arrays()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -125,6 +175,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('', PropertyValue::find($emptyValue->id)->value);
     }
 
+    /**
+     * Test that text values that look like JSON are not decoded.
+     *
+     * @return void
+     */
     public function test_text_value_that_looks_like_json_is_not_decoded()
     {
         $property = $this->createProperty('text');
@@ -135,6 +190,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame(e('["Drinks","Sauces"]'), $value->display_value);
     }
 
+    /**
+     * Test that checkboxlist values are split into single values.
+     *
+     * @return void
+     */
     public function test_checkboxlist_splits_into_single_values()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -148,6 +208,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame($property->id, $split->first()->property->id);
     }
 
+    /**
+     * Test that checkboxlist split keeps translated labels per option.
+     *
+     * @return void
+     */
     public function test_checkboxlist_split_keeps_translated_labels_per_option()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -164,6 +229,11 @@ class PropertyValueTest extends MallTestCase
         $this->assertSame('Soßen', $split->last()->getAttributeTranslated('value', 'de'));
     }
 
+    /**
+     * Test that empty checkboxlist is not part of the properties description.
+     *
+     * @return void
+     */
     public function test_empty_checkboxlist_is_not_part_of_the_properties_description()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());

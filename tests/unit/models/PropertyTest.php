@@ -7,6 +7,11 @@ use Winter\Mall\Tests\MallTestCase;
 
 class PropertyTest extends MallTestCase
 {
+    /**
+     * Test that checkboxlist values are split into individual filter options.
+     * 
+     * @return void
+     */
     public function test_checkboxlist_values_are_split_into_individual_filter_options()
     {
         $category = $this->createCategory();
@@ -25,6 +30,11 @@ class PropertyTest extends MallTestCase
         $this->assertSame(['Drinks', 'Sauces'], $values->pluck('display_value')->all());
     }
 
+    /**
+     * Test that checkboxlist filter options follow the property option order.
+     * 
+     * @return void
+     */
     public function test_checkboxlist_filter_options_follow_the_property_option_order()
     {
         $category = $this->createCategory();
@@ -41,6 +51,11 @@ class PropertyTest extends MallTestCase
         $this->assertSame(['Sauces', 'Drinks'], $values->pluck('value')->all());
     }
 
+    /**
+     * Test that text values that look like JSON are not split into individual filter options.
+     * 
+     * @return void
+     */
     public function test_text_value_that_looks_like_json_is_not_split_into_filter_options()
     {
         $category = $this->createCategory();
@@ -56,6 +71,11 @@ class PropertyTest extends MallTestCase
         $this->assertSame('drinkssauces', $values->first()->index_value);
     }
 
+    /**
+     * Test that checkboxlist filter options use the translated label of each option.
+     * 
+     * @return void
+     */
     public function test_checkboxlist_filter_options_use_the_translated_label_of_each_option()
     {
         $category = $this->createCategory();
@@ -74,6 +94,11 @@ class PropertyTest extends MallTestCase
         $this->assertSame('Soßen', $labels['Sauces']->getAttributeTranslated('value', 'de'));
     }
 
+    /**
+     * Test that filter options from different arrays are not duplicated.
+     * 
+     * @return void
+     */
     public function test_filter_options_from_different_arrays_are_not_duplicated()
     {
         $category = $this->createCategory();

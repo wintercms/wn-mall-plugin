@@ -7,9 +7,9 @@ use Winter\Mall\Models\CustomerGroupPrice;
 use Winter\Mall\Models\Product;
 use Winter\Mall\Models\User;
 use Winter\Mall\Models\Variant;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class CustomerGroupPriceTest extends PluginTestCase
+class CustomerGroupPriceTest extends MallTestCase
 {
     /**
      * Create a variant and configure customer authentication.

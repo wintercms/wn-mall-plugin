@@ -9,9 +9,9 @@ use Winter\Mall\Models\Currency;
 use Winter\Mall\Models\Price;
 use Winter\Mall\Models\PriceCategory;
 use Winter\Mall\Models\Product;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class PriceCategoryTest extends PluginTestCase
+class PriceCategoryTest extends MallTestCase
 {
     /**
      * Create and receive additional prices.

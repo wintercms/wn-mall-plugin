@@ -9,6 +9,11 @@ use Winter\Mall\Tests\MallTestCase;
 
 class ProductEntryTest extends MallTestCase
 {
+    /**
+     * Test that checkboxlist values are split into individual index tokens.
+     *
+     * @return void
+     */
     public function test_checkboxlist_values_become_individual_index_tokens()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -20,6 +25,11 @@ class ProductEntryTest extends MallTestCase
         $this->assertSame(['drinks', 'sauces'], $tokens->all());
     }
 
+    /**
+     * Test that checkboxlist tokens are derived from the stored value on reindex.
+     *
+     * @return void
+     */
     public function test_checkboxlist_tokens_are_derived_from_the_stored_value_on_reindex()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());
@@ -34,6 +44,11 @@ class ProductEntryTest extends MallTestCase
         $this->assertSame(['drinks', 'sauces'], $tokens->all());
     }
 
+    /**
+     * Test that the zero option is kept as an index token.
+     *
+     * @return void
+     */
     public function test_the_zero_option_is_kept_as_an_index_token()
     {
         $property = $this->createProperty('checkboxlist', [
@@ -48,6 +63,11 @@ class ProductEntryTest extends MallTestCase
         $this->assertSame(['0', 'drinks'], $tokens->all());
     }
 
+    /**
+     * Test that text values are not split into multiple tokens.
+     *
+     * @return void
+     */
     public function test_text_values_are_not_split_into_multiple_tokens()
     {
         $property = $this->createProperty('text');
@@ -59,6 +79,11 @@ class ProductEntryTest extends MallTestCase
         $this->assertSame(['drinkssauces'], $tokens->all());
     }
 
+    /**
+     * Test that variant entry splits checkboxlist values.
+     *
+     * @return void
+     */
     public function test_variant_entry_splits_checkboxlist_values()
     {
         $property = $this->createProperty('checkboxlist', $this->checkboxListOptions());

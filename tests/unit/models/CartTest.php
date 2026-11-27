@@ -13,9 +13,9 @@ use Winter\Mall\Models\Price;
 use Winter\Mall\Models\Product;
 use Winter\Mall\Models\ShippingMethod;
 use Winter\Mall\Models\Variant;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class CartTest extends PluginTestCase
+class CartTest extends MallTestCase
 {
     /**
      * Check that identical stackable products share a cart entry.

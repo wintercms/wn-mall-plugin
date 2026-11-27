@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Winter\Mall\Models\Category;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class CategoryTest extends PluginTestCase
+class CategoryTest extends MallTestCase
 {
     public $parent;
     public $child;

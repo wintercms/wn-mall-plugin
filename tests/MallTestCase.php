@@ -2,14 +2,37 @@
 
 namespace Winter\Mall\Tests;
 
+use Winter\Mall\Classes\Index\Index;
+use Winter\Mall\Classes\Index\Noop;
 use Winter\Mall\Models\Category;
 use Winter\Mall\Models\Product;
 use Winter\Mall\Models\Property;
 use Winter\Mall\Models\PropertyValue;
 use Winter\Mall\Models\Variant;
+use System\Tests\Bootstrap\PluginTestCase as BasePluginTestCase;
 
-abstract class MallTestCase extends PluginTestCase
+abstract class MallTestCase extends BasePluginTestCase
 {
+    /**
+     * Bind the no-op index implementation for plugin tests.
+     *
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        app()->bind(Index::class, function() {
+            return new Noop();
+        });
+    }
+
+    /**
+     * Create a new category for testing purposes.
+     *
+     * @param string $name
+     * @return Category
+     */
     protected function createCategory(string $name = 'Test category'): Category
     {
         $category       = new Category();
@@ -20,6 +43,12 @@ abstract class MallTestCase extends PluginTestCase
         return $category->fresh();
     }
 
+    /**
+     * Create a new product for testing purposes.
+     *
+     * @param array $attributes
+     * @return Product
+     */
     protected function createProduct(array $attributes = []): Product
     {
         $product                              = new Product();
@@ -39,6 +68,13 @@ abstract class MallTestCase extends PluginTestCase
         return $product->fresh();
     }
 
+    /**
+     * Create a new property for testing purposes.
+     *
+     * @param string $type
+     * @param array $options
+     * @return Property
+     */
     protected function createProperty(string $type, array $options = []): Property
     {
         $property          = new Property();
@@ -50,6 +86,15 @@ abstract class MallTestCase extends PluginTestCase
         return $property->fresh();
     }
 
+    /**
+     * Create a new property value for testing purposes.
+     *
+     * @param Property $property
+     * @param mixed $value
+     * @param Product $product
+     * @param Variant|null $variant
+     * @return PropertyValue
+     */
     protected function createPropertyValue(
         Property $property,
         $value,
@@ -66,6 +111,13 @@ abstract class MallTestCase extends PluginTestCase
         return $propertyValue->fresh();
     }
 
+    /**
+     * Create a new variant for testing purposes.
+     *
+     * @param Product $product
+     * @param array $attributes
+     * @return Variant
+     */
     protected function createVariant(Product $product, array $attributes = []): Variant
     {
         $variant            = new Variant();
@@ -78,6 +130,11 @@ abstract class MallTestCase extends PluginTestCase
         return $variant->fresh();
     }
 
+    /**
+     * Get the default checkbox list options for testing purposes.
+     *
+     * @return array
+     */
     protected function checkboxListOptions(): array
     {
         return [

@@ -12,9 +12,9 @@ use Winter\Mall\Models\Service;
 use Winter\Mall\Models\ServiceOption;
 use Winter\Mall\Models\Tax;
 use Winter\Mall\Models\Variant;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class CartProductTest extends PluginTestCase
+class CartProductTest extends MallTestCase
 {
     public $product;
     public $variant;

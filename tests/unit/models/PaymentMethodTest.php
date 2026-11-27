@@ -6,10 +6,10 @@ use Winter\Mall\Models\PaymentMethod;
 use Winter\Mall\Models\Price;
 use Winter\Mall\Models\Product;
 use Winter\Mall\Models\Tax;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use Winter\Location\Models\Country;
 
-class PaymentMethodTest extends PluginTestCase
+class PaymentMethodTest extends MallTestCase
 {
     /**
      * Check that payment fees are added to the order total.

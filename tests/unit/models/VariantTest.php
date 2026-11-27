@@ -7,10 +7,10 @@ use Winter\Mall\Models\Property;
 use Winter\Mall\Models\PropertyValue;
 use Winter\Mall\Models\Tax;
 use Winter\Mall\Models\Variant;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use System\Models\File;
 
-class VariantTest extends PluginTestCase
+class VariantTest extends MallTestCase
 {
     public $product;
     public $variant;

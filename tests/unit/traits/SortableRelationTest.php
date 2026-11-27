@@ -2,9 +2,9 @@
 
 use Winter\Mall\Models\Category;
 use Winter\Mall\Models\PropertyGroup;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class SortableRelationTest extends PluginTestCase
+class SortableRelationTest extends MallTestCase
 {
     /**
      * Document the expected initial relation sort order.

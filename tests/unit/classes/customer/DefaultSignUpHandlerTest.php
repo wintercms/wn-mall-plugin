@@ -2,9 +2,9 @@
 
 use Winter\Mall\Classes\Customer\DefaultSignUpHandler;
 use Winter\Mall\Models\GeneralSettings;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class DefaultSignUpHandlerTest extends PluginTestCase
+class DefaultSignUpHandlerTest extends MallTestCase
 {
     /**
      * Check that signup does not require phone numbers when the settings are disabled.

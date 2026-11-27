@@ -6,10 +6,10 @@ namespace Winter\Mall\Tests\Unit\Models;
 
 use Exception;
 use Winter\Mall\Models\Currency;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use Throwable;
 
-class CurrencyTest extends PluginTestCase
+class CurrencyTest extends MallTestCase
 {
     /**
      * Check if Table-Seeder sets the default currency correctly.

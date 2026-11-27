@@ -2,9 +2,9 @@
 
 use Winter\Mall\Models\CustomField;
 use Winter\Mall\Models\Product;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 
-class ProductTest extends PluginTestCase
+class ProductTest extends MallTestCase
 {
     /**
      * Check the product's custom field relationship.

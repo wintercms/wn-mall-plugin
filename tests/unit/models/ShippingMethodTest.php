@@ -6,10 +6,10 @@ use Winter\Mall\Models\Price;
 use Winter\Mall\Models\Product;
 use Winter\Mall\Models\ShippingMethod;
 use Winter\Mall\Models\Tax;
-use Winter\Mall\Tests\PluginTestCase;
+use Winter\Mall\Tests\MallTestCase;
 use Winter\Location\Models\Country;
 
-class ShippingMethodTest extends PluginTestCase
+class ShippingMethodTest extends MallTestCase
 {
     /**
      * Check shipping availability against a minimum cart total.
